@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/screen_Background"
+    android:theme="@style/screen_Background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".First_Screen">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="@dimen/_225sdp"
+        android:layout_height="@dimen/_216sdp"
+        android:layout_marginTop="@dimen/_105sdp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo"
+        tools:ignore="ContentDescription" />
+
+    <androidx.appcompat.widget.AppCompatButton
+
+        android:id="@+id/Sing_Up_BTN"
+        style="@style/EditTextStyle"
+        android:theme="@style/EditTextStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/_85sdp"
+        android:layout_marginStart="@dimen/_38sdp"
+        android:layout_marginEnd="@dimen/_38sdp"
+
+        android:onClick="Go_to_Sing_Up"
+        android:text="إنشاء حساب"
+        android:textSize="@dimen/_15sdp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/Sing_In_BTN"
+        style="@style/EditTextStyle"
+        android:theme="@style/EditTextStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/_51sdp"
+        android:layout_marginStart="@dimen/_38sdp"
+        android:layout_marginEnd="@dimen/_38sdp"
+
+        android:onClick="Go_to_Sing_In"
+        android:text="تسجيل الدخول"
+        android:textSize="@dimen/_15sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Sing_Up_BTN"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    style="@style/screen_Background"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:theme="@style/screen_Background"
+    tools:context=".Create_An_Account_And_Sign_In.Info_Activity">
+
+    <!-- Mom Data -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Mom_data"
+        style="@style/Scroll_Style"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:layout_marginHorizontal="@dimen/_23sdp"
+        android:gravity="center"
+
+        android:paddingVertical="@dimen/_23sdp"
+
+        android:theme="@style/Scroll_Style"
+
+
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498"
+        tools:visibility="gone">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            style="@style/No_Name_Style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_23sdp"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/Mom_R_BTN2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_weight="1"
+                android:layoutDirection="rtl"
+                android:onClick="Which_Radio_BTN_Checked"
+                android:text="أم"
+                android:textSize="@dimen/_14sdp"
+                tools:ignore="HardcodedText" />
+
+            <RadioButton
+                android:id="@+id/Doctor_R_BTN2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layoutDirection="rtl"
+                android:onClick="Which_Radio_BTN_Checked"
+                android:text="طبيب"
+                android:textSize="@dimen/_14sdp"
+                tools:ignore="HardcodedText" />
+
+        </RadioGroup>
+
+        <!-- Save BTN -->
+        <EditText
+            android:id="@+id/Mom_Name"
+            style="@style/EditTextStyle2"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_38sdp"
+
+            android:layout_gravity="center"
+
+            android:layout_marginHorizontal="@dimen/_23sdp"
+            android:layout_marginTop="@dimen/_23sdp"
+
+            android:hint="الاسم"
+            android:layoutDirection="rtl"
+
+            android:textAlignment="center"
+
+            android:textSize="@dimen/_15sdp"
+            android:theme="@style/EditTextStyle2"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+            tools:ignore="Autofill,HardcodedText,TextFields" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/Save_BTN"
+            style="@style/EditTextStyle2"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_38sdp"
+            android:layout_marginTop="@dimen/_23sdp"
+            android:text="حفظ"
+
+            android:textSize="@dimen/_15sdp"
+            android:theme="@style/EditTextStyle2"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Mom_Name"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="HardcodedText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Doctor Data -->
+    <ScrollView
+        android:id="@+id/Doctor_Data"
+        style="@style/Scroll_Style"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+        android:layout_marginVertical="@dimen/_23sdp"
+
+        android:gravity="center"
+        android:theme="@style/Scroll_Style"
+
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:visibility="gone">
+
+        <LinearLayout
+            style="@style/No_Name_Style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/_38sdp"
+            android:theme="@style/No_Name_Style">
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_23sdp"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/Mom_R_BTN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:onClick="Which_Radio_BTN_Checked"
+                    android:text="أم"
+                    android:textSize="@dimen/_14sdp"
+                    tools:ignore="HardcodedText" />
+
+                <RadioButton
+                    android:id="@+id/Doctor_R_BTN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:onClick="Which_Radio_BTN_Checked"
+                    android:text="طبيب"
+                    android:textSize="@dimen/_14sdp"
+                    tools:ignore="HardcodedText" />
+
+            </RadioGroup>
+
+            <!-- Name Edit Text -->
+            <EditText
+                android:id="@+id/Doctor_Name"
+                style="@style/EditTextStyle2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_38sdp"
+
+                android:layout_marginHorizontal="@dimen/_23sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+
+                android:hint="الاسم"
+
+                android:layoutDirection="rtl"
+                android:textAlignment="center"
+
+                android:textSize="@dimen/_15sdp"
+
+                android:theme="@style/EditTextStyle2"
+                tools:ignore="Autofill,HardcodedText,TextFields" />
+
+            <!-- Add Workplace BTN -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/Add_Workplace_BTN"
+                style="@style/EditTextStyle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="@dimen/_38sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+
+                android:onClick="Add_Workplace_Dialog_Function"
+                android:text="إضافة مكان العمل"
+
+                android:textSize="@dimen/_15sdp"
+                android:theme="@style/EditTextStyle2"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.642"
+                tools:ignore="HardcodedText" />
+
+            <!-- Save Doctor Data BTN -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/Save_BTN2"
+                style="@style/EditTextStyle2"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_38sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:text="حفظ"
+
+                android:textSize="@dimen/_15sdp"
+                android:theme="@style/EditTextStyle2"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.642"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Workplace Data -->
+    <ScrollView
+        android:id="@+id/Workplace_Data"
+        style="@style/Scroll_Style"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_44sdp"
+        android:layout_marginBottom="@dimen/_65sdp"
+        android:paddingVertical="@dimen/_38sdp"
+        android:theme="@style/Scroll_Style"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+
+        <LinearLayout
+            android:id="@+id/Workplace_Layout"
+            style="@style/No_Name_Style"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+
+            android:gravity="center"
+            android:orientation="vertical"
+            android:theme="@style/No_Name_Style">
+
+            <Spinner
+                android:id="@+id/Workplace"
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_38sdp"
+                android:layout_marginHorizontal="@dimen/_23sdp"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:spinnerMode="dialog"
+                android:textDirection="rtl"
+                android:textSize="@dimen/_15sdp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <!-- Save Workplace Data BTN -->
+            <EditText
+                android:id="@+id/Clinic_Name"
+                style="@style/EditTextStyle2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_38sdp"
+
+                android:layout_marginHorizontal="@dimen/_23sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+
+                android:hint="اسم العيادة"
+
+                android:layoutDirection="rtl"
+                android:textAlignment="center"
+
+                android:textSize="@dimen/_15sdp"
+                android:theme="@style/EditTextStyle2"
+                tools:ignore="Autofill,HardcodedText,TextFields,TextContrastCheck" />
+
+            <EditText
+                android:id="@+id/Clinic_Address"
+                style="@style/EditTextStyle2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_38sdp"
+
+                android:layout_marginHorizontal="@dimen/_23sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+
+                android:hint="عنوان العيادة"
+
+                android:layoutDirection="rtl"
+                android:textAlignment="center"
+
+                android:textSize="@dimen/_15sdp"
+                android:theme="@style/EditTextStyle2"
+                tools:ignore="Autofill,HardcodedText,TextFields,TextContrastCheck" />
+
+            <EditText
+                android:id="@+id/Clinic_Phone_Number"
+                style="@style/EditTextStyle2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_38sdp"
+
+                android:layout_marginHorizontal="@dimen/_23sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:ems="10"
+                android:hint="رقم هاتف العيادة"
+                android:imeOptions="actionGo"
+                android:inputType="number"
+                android:layoutDirection="rtl"
+                android:textAlignment="center"
+
+                android:textSize="@dimen/_15sdp"
+                android:theme="@style/EditTextStyle2"
+                tools:ignore="Autofill,HardcodedText,TextFields" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="حدد مكان العيادة على خرائط حوحل"
+                android:layout_marginHorizontal="@dimen/_38sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layoutDirection="rtl"
+                android:textAlignment="center"
+                android:textSize="@dimen/_14sdp"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/Map_BTN"
+                style="@style/EditTextStyle2"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_38sdp"
+
+                android:layout_marginTop="@dimen/_24sdp"
+                android:text="الذهاب الى الخارطة"
+
+                android:textSize="@dimen/_15sdp"
+                android:theme="@style/EditTextStyle2"
+                tools:ignore="HardcodedText" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/Save_Workplace_Data"
+                style="@style/EditTextStyle2"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_38sdp"
+
+                android:layout_marginTop="@dimen/_24sdp"
+                android:text="حفظ"
+
+                android:textSize="@dimen/_15sdp"
+                android:theme="@style/EditTextStyle2"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

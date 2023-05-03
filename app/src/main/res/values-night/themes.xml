@@ -1,0 +1,72 @@
+<resources>
+
+    <style name="Theme.MamaBabyJourney" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="TextViewStyle">
+        <item name="android:textColor">#67FFFFFF</item>
+    </style>
+
+    <style name="EditTextStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:background">@drawable/shapes_edit_text_shape</item>
+        <item name="BG">#1EFFFFFF</item>
+        <item name="Icons_Colors">@color/white</item>
+        <item name="stroke_color">@color/white</item>
+    </style>
+
+    <style name="EditTextStyle2">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:background">@drawable/shapes_edit_text_shape</item>
+        <item name="BG">#0A000000</item>
+        <item name="Icons_Colors">@color/white</item>
+        <item name="stroke_color">#3CFFFFFF</item>
+    </style>
+
+    <style name="Map_Search_Edit_Text_Style">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="BG">#5D000000</item>
+    </style>
+
+    <style name="screen_Background">
+        <item name="android:background">@drawable/info_page_bg</item>
+        <item name="Start_Color">#eb4591</item>
+        <item name="Center_Color">#01000000</item>
+        <item name="End_Color">#03A9F4</item>
+    </style>
+
+    <style name="Icon_BG">
+        <item name="android:background">@drawable/icons_bg_shape</item>
+        <item name="BG">#1EFFFFFF</item>
+        <item name="Icons_Colors">@color/white</item>
+        <item name="stroke_color">@color/white</item>
+    </style>
+
+    <style name="Scroll_Style">
+        <item name="android:background">@drawable/shapes_scroll_shape</item>
+        <item name="BG">#1CFFFFFF</item>
+        <item name="stroke_color">#3CFFFFFF</item>
+    </style>
+
+    <style name="No_Name_Style">
+        <item name="stroke_color">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+</resources>
+
