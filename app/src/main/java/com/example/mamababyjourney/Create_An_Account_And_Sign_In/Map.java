@@ -13,23 +13,23 @@ import androidx.core.content.ContextCompat;
 import android.content.res.ColorStateList;
 import android.content.BroadcastReceiver;
 import android.location.LocationManager;
-import android.annotation.SuppressLint;
 import android.net.ConnectivityManager;
+import android.annotation.SuppressLint;
 import com.example.mamababyjourney.R;
 import android.content.IntentFilter;
 import androidx.annotation.NonNull;
-import android.location.Geocoder;
 import android.widget.SearchView;
+import android.location.Geocoder;
 import android.location.Address;
 import android.widget.TextView;
-import android.net.NetworkInfo;
 import android.content.Context;
+import android.net.NetworkInfo;
 import android.content.Intent;
 import android.graphics.Color;
-import java.io.IOException;
 import android.net.Network;
-import android.view.View;
+import java.io.IOException;
 import android.os.Bundle;
+import android.view.View;
 import java.util.List;
 
 @SuppressWarnings ( { "unused" , "ConstantConditions" , "SpellCheckingInspection" } )
