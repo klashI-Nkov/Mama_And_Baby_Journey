@@ -33,9 +33,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="@dimen/_85sdp"
-        android:layout_marginStart="@dimen/_38sdp"
-        android:layout_marginEnd="@dimen/_38sdp"
-
+        android:layout_marginHorizontal="@dimen/_38sdp"
         android:onClick="Go_to_Sing_Up"
         android:text="إنشاء حساب"
         android:textSize="@dimen/_15sdp"
@@ -55,8 +53,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="@dimen/_51sdp"
-        android:layout_marginStart="@dimen/_38sdp"
-        android:layout_marginEnd="@dimen/_38sdp"
+        android:layout_marginHorizontal="@dimen/_38sdp"
 
         android:onClick="Go_to_Sing_In"
         android:text="تسجيل الدخول"

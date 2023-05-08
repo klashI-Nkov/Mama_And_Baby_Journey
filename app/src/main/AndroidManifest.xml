@@ -22,50 +22,45 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC01PNmd-_3bqJ3nH8mDcFQfTykoKjxRFo" />
 
-
-        <activity
-            android:name=".Create_An_Account_And_Sign_In.Info_Activity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
+        <!-- First_Screen -->
         <activity
             android:name=".First_Screen"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
 
+        <!-- Sign_Up -->
         <activity
             android:name=".Create_An_Account_And_Sign_In.Sign_Up"
-            android:exported="true" />
+            android:exported="false" />
 
+        <!-- Sing_in -->
         <activity
             android:name=".Create_An_Account_And_Sign_In.Sing_in"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:exported="false"/>
 
+        <!-- Info_Activity -->
+        <activity
+        android:name=".Create_An_Account_And_Sign_In.Info_Activity"
+        android:exported="false"/>
+
+        <!-- Map -->
         <activity
             android:name=".Create_An_Account_And_Sign_In.Map"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/title_activity_maps" />
 
-
+        <!-- Font -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

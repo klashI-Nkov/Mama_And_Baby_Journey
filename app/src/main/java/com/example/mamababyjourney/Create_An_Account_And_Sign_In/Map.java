@@ -77,7 +77,10 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
     private boolean is_Internet_Connected ;
 
     // هاد المتغير وظيفة انه يكون true في حالة كان الموقع شغال و false في حالة كان طافي
-    boolean is_Location_Enabled ;
+    private boolean is_Location_Enabled ;
+
+    // هدول عشان اخزن فيهم احداثيات مكان العمل
+    private double longitude , latitude ;
 
     /*
         طبعا هاد غني عن التعريف و هو الي بربط كود الجافا بالتصميم ما بده شرح على ما اعتقد اذا حابه تعرفي عنه معلومات اكثر انسخي
@@ -132,6 +135,69 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
             }
 
         } ) ;
+
+        // هاد الفنكشن بتنفذ لما نضغط على زر الحفظ
+        binding.SaveWorkplaceOnMapBTN.setOnClickListener ( v ->
+        {
+            /*
+                هون احنا بنعرف اوجبكت من الكلاس Intent و بخليه يساوي intent
+                الشاشة الي قبلها و الي هي شاشة البيانات عشان لما نضغك على زر
+                الحفظ يرجعنا لشاشة البيانات
+             */
+            Intent intent = getIntent ( );
+
+            /*
+                هون باستعمال المتغير intent الي مربوط في intent الشاشة الي
+                قبل الشاشة الحالية استعدينا فننكشن ال putExtra و الي وظيفته
+                باختصار هي انه يرجع داتا للشاشة الي قبل
+
+                وباخد متغيرين الاول الي هو ال name و الثاني الي هو ال value
+
+                وال name بمثل اشي اسمه ال key او المفتاح وهاد بنستعمله في
+                الشاشة الي قبل الشاشة الحالية والي هي شاشة المعلومات عشان نحصل
+                ال value الي انبعثت عن طريق هاد الفنكشن
+             */
+            intent.putExtra ( "latitude" , latitude );
+            intent.putExtra ( "longitude" , longitude );
+
+            /*
+                ال setResult هي فنكشن تابعه للكلاس Activity
+                بتاخد متغيرين الاول هو ال resultCode و الثاني هو الداتا او ال
+                ؛ intent الي حطينا فيه البيانات الي بدنا نرجعها لشاشة المعلومات
+
+                هسه ال resultCode هو عبارة عن متغير بشير الى انه العمليه
+                كانت ناجحه ( هسه لتحت بقلك شو العمليه الي بقصدها ) وعشان
+                نحكي اله هاد الشي انه العمليه كانت ناجحه لازم نستدعي فنكشن
+                ال setResult عشان نحكي من خلاله انه العمليه كانت ناجحه و
+                نعطيه قيمة ال resultCode تساوي RESULT_OK وهاي ال
+                ؛RESULT_OK هي عبارة عن قيمه ثابته موجوده في كلاس ال Activity
+                 وتساوي -1 وتشير الى انه العملية كانت ناجحه
+                فلو جيتي حطيتي الماوس على ال RESULT_OK و كبستي
+                 ؛ctrl مع ضغطه على الماوس رح يدخلك على كلاس ال Activity
+                 و يعرض الك تعريف ال RESULT_OK ويفرجيكي قيمتها الي هي -1
+
+
+                هسه المقصود بالعمليه هو عملية شرح شو هي ال RESULT_OK بواسطة ال Activity الحالية و الي هي الخارطه
+
+                 وفي فنكشن ال setResult لما بدنا نرجع قيمه لل Activty الي
+                 قبل لازم نستعمل ال RESULT_OK كقيمه لل resultCode عشان
+                 في ال Activty الي قبل نقدر نحصل القيمه الي جايه من
+                 intent ال Activity الحالية والي هي الخارطه في حالتنا هون
+             */
+            setResult ( RESULT_OK , intent );
+
+            /*
+                هاد الفنكشن finish تابع لكلاس ال Activity و وظيفته انه بعد ما نبكس على زر الحفظ يحرر شاشة
+                الخارطه من الرام عشان ما يصير اشي اسمه memory leaks او resource leaks والي هم باختصار
+
+               بسببو انه الشاشه الي خلصنا منها تضل في الرام تسحب فيها طول استخدام التطبيق و تؤدي بالنهايه
+                انه الجهاز يصير يعلق
+
+                و فنكشن ال finsh كانه بتحكي للنظام انا خلص طلعت من الخارطه ما تخلي اي شي بخصها في الرام
+             */
+            finish ( );
+        });
+
     }
 
     // هاد الفنشكن مجرد ما تطلعي من الخارطه رح يتنفذ وما رح تفهمي الي جواته حتى لو قريتي الكومنتات لازم تشوقي الشرح الي في فنشكن ال Check_Location و الي في فنكشن ال Check_Internet بعدين ترجعي تقري الي جواته عشان تفهمي
@@ -309,8 +375,13 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
             */
             LatLng l_atlng = new LatLng ( latLng . latitude , latLng . longitude ) ;
 
+
             // هون و ببساطه ومن دون اطالة شرح و شرح كل شي في السطر ببساطه الي بصير انه بنحط دبوس على احداثيات المكان الي تخزنت في ال l_atlng لما المستخدم يضغط ضغطه طويله على مكان معين في الخارطه
-            mMap . addMarker ( new MarkerOptions ( ) . position ( l_atlng )) ;
+            mMap . addMarker ( new MarkerOptions ( ) . position ( l_atlng ) ) ;
+
+            //هون بخزن احداثيات مكان العمل في المتغيرات الي عرفتهم فوق قبل ال onCreate
+            latitude = latLng . latitude ;
+            longitude = latLng . longitude ;
 
             /*
                 طيب هسه نجي لهاي mMap . clear ( );  انا حاكي بدي قبل ما ينحط الدبوس على الخارطه امسح اي دبوس موجود قبله بس ليه حاكي هيك

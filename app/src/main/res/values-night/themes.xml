@@ -15,10 +15,20 @@
 
     </style>
 
+    <!-- لخلفية الشاشات -->
+    <style name="screen_Background">
+        <item name="android:background">@drawable/info_page_bg</item>
+        <item name="Start_Color">#eb4591</item>
+        <item name="Center_Color">#01000000</item>
+        <item name="End_Color">#03A9F4</item>
+    </style>
+
+    <!-- لللخط -->
     <style name="TextViewStyle">
         <item name="android:textColor">#67FFFFFF</item>
     </style>
 
+    <!-- ل ال Edit text في شاشة اللوج ان و شاشة الساين اب -->
     <style name="EditTextStyle">
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
@@ -28,6 +38,15 @@
         <item name="stroke_color">@color/white</item>
     </style>
 
+    <!-- ل ايقونات جوجل و الفيس في شاشة اللوج ان و شاشة الساين اب -->
+    <style name="Icon_BG">
+        <item name="android:background">@drawable/icons_bg_shape</item>
+        <item name="BG">#1EFFFFFF</item>
+        <item name="Icons_Colors">@color/white</item>
+        <item name="stroke_color">@color/white</item>
+    </style>
+
+    <!-- ل ال Edit text في شاشة تعبة البيانات وال 2 الي بعده كمان لشاشة البيانات -->
     <style name="EditTextStyle2">
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
@@ -37,26 +56,7 @@
         <item name="stroke_color">#3CFFFFFF</item>
     </style>
 
-    <style name="Map_Search_Edit_Text_Style">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorHint">@color/white</item>
-        <item name="BG">#5D000000</item>
-    </style>
-
-    <style name="screen_Background">
-        <item name="android:background">@drawable/info_page_bg</item>
-        <item name="Start_Color">#eb4591</item>
-        <item name="Center_Color">#01000000</item>
-        <item name="End_Color">#03A9F4</item>
-    </style>
-
-    <style name="Icon_BG">
-        <item name="android:background">@drawable/icons_bg_shape</item>
-        <item name="BG">#1EFFFFFF</item>
-        <item name="Icons_Colors">@color/white</item>
-        <item name="stroke_color">@color/white</item>
-    </style>
-
+    <!-- هاد ل الي بكون فيها ال edit text-->
     <style name="Scroll_Style">
         <item name="android:background">@drawable/shapes_scroll_shape</item>
         <item name="BG">#1CFFFFFF</item>
@@ -66,6 +66,13 @@
     <style name="No_Name_Style">
         <item name="stroke_color">@android:color/transparent</item>
         <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <!-- هاد لمربع البحث الي في الخارطة -->
+    <style name="Map_Search_Edit_Text_Style">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="BG">#5D000000</item>
     </style>
 
 </resources>

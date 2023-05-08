@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/constraint"
@@ -24,14 +23,14 @@
         android:id="@+id/Search_Edit_Text"
         style="@style/Map_Search_Edit_Text_Style"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="60dp"
+        android:layout_height="@dimen/_31sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_46sdp"
         android:background="@drawable/shapes_map_search_edit_text_shape"
         android:iconifiedByDefault="false"
-
         android:queryHint="بحث"
+
         android:theme="@style/Map_Search_Edit_Text_Style"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
@@ -39,5 +38,27 @@
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent"
         map:layout_constraintVertical_bias="0.0" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/Save_Workplace_On_Map_BTN"
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_31sdp"
+
+        android:layout_marginTop="@dimen/_543sdp"
+
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_46sdp"
+        android:background="@drawable/shapes_map_search_edit_text_shape"
+        android:text="حفظ المكان"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15sdp"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintHorizontal_bias="0.498"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        map:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
