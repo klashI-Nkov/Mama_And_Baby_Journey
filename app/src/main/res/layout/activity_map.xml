@@ -46,7 +46,6 @@
         android:layout_height="@dimen/_31sdp"
 
         android:layout_marginTop="@dimen/_543sdp"
-
         android:layout_marginStart="@dimen/_4sdp"
         android:layout_marginEnd="@dimen/_46sdp"
         android:background="@drawable/shapes_map_search_edit_text_shape"

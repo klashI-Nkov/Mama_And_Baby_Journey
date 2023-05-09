@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.498"
-        tools:visibility="gone">
+        android:visibility="invisible">
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -279,7 +279,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5"
-        tools:visibility="gone">
+        android:visibility="invisible">
 
         <LinearLayout
             android:id="@+id/Workplace_Layout"
