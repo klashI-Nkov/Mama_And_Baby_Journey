@@ -35,8 +35,9 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText,TextContrastCheck" />
 
+    <!--Name Edit Text-->
     <EditText
-        android:id="@+id/U_Email_Edit_text"
+        android:id="@+id/Name_Edit_text"
 
         android:theme="@style/EditTextStyle"
         style="@style/EditTextStyle"
@@ -51,12 +52,11 @@
         android:paddingEnd="@dimen/_10sdp"
 
         android:layoutDirection="rtl"
-        android:drawableEnd="@drawable/icons_email_icon"
 
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:textAlignment="center"
         android:textSize="@dimen/_12sdp"
-        android:hint="البريد الالكتروني"
+        android:hint="الاسم"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -64,6 +64,37 @@
         app:layout_constraintTop_toBottomOf="@+id/textView1"
         tools:ignore="Autofill,HardcodedText" />
 
+    <!--Email Edit Text-->
+    <EditText
+        android:id="@+id/U_Email_Edit_text"
+
+        android:theme="@style/EditTextStyle"
+        style="@style/EditTextStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+
+        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+
+        android:paddingStart="@dimen/_30sdp"
+        android:paddingEnd="@dimen/_10sdp"
+
+        android:drawableEnd="@drawable/icons_email_icon"
+        android:layoutDirection="rtl"
+
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textSize="@dimen/_12sdp"
+        android:hint="البريد الإلكتروني"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Name_Edit_text"
+        tools:ignore="Autofill,HardcodedText" />
+
+    <!--Password Edit Text-->
     <EditText
         android:id="@+id/U_password_edit_text"
 
@@ -73,7 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
 
-        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_marginTop="@dimen/_33sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:paddingStart="@dimen/_34sdp"
@@ -93,34 +124,7 @@
         app:layout_constraintTop_toBottomOf="@+id/U_Email_Edit_text"
         tools:ignore="Autofill,HardcodedText" />
 
-    <EditText
-        android:id="@+id/Confirm_password_edit_text"
-
-        android:theme="@style/EditTextStyle"
-        style="@style/EditTextStyle"
-
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_36sdp"
-
-        android:layout_marginTop="@dimen/_33sdp"
-        android:layout_marginHorizontal="@dimen/_23sdp"
-
-        android:paddingHorizontal="@dimen/_10sdp"
-
-        android:drawableEnd="@drawable/icons_lock_icon"
-        android:layoutDirection="rtl"
-
-        android:inputType="textPassword"
-        android:textAlignment="center"
-        android:textSize="@dimen/_12sdp"
-        android:hint="اعد كتابة كلمة المرور"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/U_password_edit_text"
-        tools:ignore="Autofill,HardcodedText" />
-
+    <!--Sing Up Button-->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sing_Up_BTN"
 
@@ -142,7 +146,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Confirm_password_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/U_password_edit_text"
         tools:ignore="HardcodedText" />
 
     <LinearLayout
