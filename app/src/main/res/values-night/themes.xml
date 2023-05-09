@@ -28,7 +28,7 @@
         <item name="android:textColor">#67FFFFFF</item>
     </style>
 
-    <!-- ل ال Edit text في شاشة اللوج ان و شاشة الساين اب -->
+    <!-- ل ال Edit text و ل Buttons في شاشة اللوج ان و شاشة الساين اب -->
     <style name="EditTextStyle">
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
@@ -46,7 +46,7 @@
         <item name="stroke_color">@color/white</item>
     </style>
 
-    <!-- ل ال Edit text في شاشة تعبة البيانات وال 2 الي بعده كمان لشاشة البيانات -->
+    <!-- ل ال Edit text و ل Buttons في شاشة تعبة البيانات وال 2 الي بعده كمان لشاشة البيانات -->
     <style name="EditTextStyle2">
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
@@ -13,6 +12,7 @@
 
     <TextView
         android:id="@+id/textView1"
+
         style="@style/TextViewStyle"
 
         android:layout_width="wrap_content"
@@ -23,84 +23,192 @@
 
         android:background="@android:color/transparent"
         android:fontFamily="@font/pacifico"
-        android:layoutDirection="rtl"
 
-        android:text="Mama Baby Journey"
+        android:layoutDirection="rtl"
         android:textAlignment="center"
         android:textSize="@dimen/_31sdp"
+        android:text="Mama Baby Journey"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText,TextContrastCheck" />
 
-    <!--Email Edit Text-->
     <EditText
         android:id="@+id/U_Email_Edit_text"
-        style="@style/EditTextStyle"
-        android:theme="@style/EditTextStyle"
 
-        android:layoutDirection="rtl"
-        android:inputType="textEmailAddress"
+        android:theme="@style/EditTextStyle"
+        style="@style/EditTextStyle"
 
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
 
-        android:layout_marginTop="@dimen/_132sdp"
+        android:layout_marginTop="@dimen/_40sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:paddingStart="@dimen/_30sdp"
         android:paddingEnd="@dimen/_10sdp"
 
+        android:layoutDirection="rtl"
         android:drawableEnd="@drawable/icons_email_icon"
-        android:hint="البريد الالكتروني"
+
+        android:inputType="textEmailAddress"
         android:textAlignment="center"
         android:textSize="@dimen/_12sdp"
+        android:hint="البريد الالكتروني"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
         tools:ignore="Autofill,HardcodedText" />
 
-    <!--Password Edit Text-->
     <EditText
         android:id="@+id/U_password_edit_text"
-        style="@style/EditTextStyle"
+
         android:theme="@style/EditTextStyle"
-        android:layoutDirection="rtl"
+        style="@style/EditTextStyle"
 
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
 
-        android:layout_marginTop="@dimen/_193sdp"
+        android:layout_marginTop="@dimen/_24sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
-
 
         android:paddingStart="@dimen/_34sdp"
         android:paddingEnd="@dimen/_9sdp"
 
         android:drawableEnd="@drawable/icons_lock_icon"
-        android:hint="كلمة المرور"
-        android:inputType="textPassword"
+        android:layoutDirection="rtl"
 
+        android:inputType="textPassword"
         android:textAlignment="center"
         android:textSize="@dimen/_12sdp"
+        android:hint="كلمة المرور"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Email_Edit_text"
         tools:ignore="Autofill,HardcodedText" />
 
-    <!--Confirm Password Edit Text-->
+    <EditText
+        android:id="@+id/Confirm_password_edit_text"
+
+        android:theme="@style/EditTextStyle"
+        style="@style/EditTextStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+
+        android:layout_marginTop="@dimen/_33sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+
+        android:paddingHorizontal="@dimen/_10sdp"
+
+        android:drawableEnd="@drawable/icons_lock_icon"
+        android:layoutDirection="rtl"
+
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textSize="@dimen/_12sdp"
+        android:hint="اعد كتابة كلمة المرور"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_password_edit_text"
+        tools:ignore="Autofill,HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sing_Up_BTN"
+
+        android:theme="@style/EditTextStyle"
+        style="@style/EditTextStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/_96sdp"
+        android:layout_marginHorizontal="@dimen/_39sdp"
+
+        android:onClick="Go_to_Info"
+
+        android:text="انشاء حساب"
+
+        android:textSize="@dimen/_15sdp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Confirm_password_edit_text"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/_74sdp"
+
+        android:background="@android:color/transparent"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sing_Up_BTN"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            style="@style/Icon_BG"
+            android:layout_width="@dimen/_42sdp"
+
+            android:layout_height="@dimen/_45sdp"
+
+            android:padding="@dimen/_8sdp"
+            android:theme="@style/Icon_BG"
+
+            app:srcCompat="@drawable/icons_google_icon"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_23sdp"
+            android:background="@android:color/transparent"
+
+            android:layoutDirection="rtl"
+            android:text=" او باستخدام"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold"
+
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            style="@style/Icon_BG"
+            android:layout_width="@dimen/_42sdp"
+
+            android:layout_height="@dimen/_45sdp"
+            android:padding="@dimen/_8sdp"
+
+            android:theme="@style/Icon_BG"
+            app:srcCompat="@drawable/icons_facebook_icon"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <!--
+    &lt;!&ndash;Confirm Password Edit Text&ndash;&gt;
     <EditText
         android:id="@+id/Confirm_password_edit_text"
         style="@style/EditTextStyle"
@@ -111,9 +219,10 @@
         android:layout_height="@dimen/_38sdp"
 
         android:layout_marginTop="@dimen/_262sdp"
-
         android:layout_marginHorizontal="@dimen/_23sdp"
         android:paddingHorizontal="@dimen/_10sdp"
+
+
 
         android:drawableEnd="@drawable/icons_lock_icon"
         android:hint="اعد كتابة كلمة المرور"
@@ -131,7 +240,7 @@
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="Autofill,HardcodedText" />
 
-    <!--Sing Up Button-->
+    &lt;!&ndash;Sing Up Button&ndash;&gt;
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sing_Up_BTN"
         style="@style/EditTextStyle"
@@ -211,6 +320,7 @@
             app:srcCompat="@drawable/icons_facebook_icon"
             tools:ignore="ContentDescription" />
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

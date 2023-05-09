@@ -29,7 +29,6 @@
         android:theme="@style/Scroll_Style"
 
 
-        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -140,24 +139,24 @@
         android:gravity="center"
         android:theme="@style/Scroll_Style"
 
-        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        tools:visibility="gone">
+        app:layout_constraintVertical_bias="0.5">
 
         <LinearLayout
             style="@style/No_Name_Style"
+            android:theme="@style/No_Name_Style"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingVertical="@dimen/_38sdp"
-            android:theme="@style/No_Name_Style">
+            android:paddingVertical="@dimen/_38sdp">
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -279,7 +278,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintVertical_bias="0.5"
+        tools:visibility="gone">
 
         <LinearLayout
             android:id="@+id/Workplace_Layout"
@@ -373,8 +373,7 @@
                 android:layout_marginTop="@dimen/_24sdp"
                 android:layoutDirection="rtl"
                 android:textAlignment="center"
-                android:textSize="@dimen/_14sdp"
-                />
+                android:textSize="@dimen/_14sdp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/Map_BTN"
