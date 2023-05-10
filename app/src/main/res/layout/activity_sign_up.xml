@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
@@ -19,7 +18,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="@dimen/_32sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:background="@android:color/transparent"
@@ -30,11 +28,12 @@
         android:textSize="@dimen/_31sdp"
         android:text="Mama Baby Journey"
 
+        tools:ignore="HardcodedText,TextContrastCheck"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText,TextContrastCheck" />
+        android:layout_marginTop="45dp" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -47,12 +46,14 @@
         android:layoutDirection="rtl"
         android:orientation="horizontal"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.19">
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/Name_Edit_text"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginTop="26dp">
 
         <TextView
             style="@style/TextViewStyle"
@@ -112,7 +113,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
 
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="30dp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:layoutDirection="rtl"
@@ -123,9 +124,9 @@
         android:hint="الاسم"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         tools:ignore="Autofill,HardcodedText" />
 
     <!--Email Edit Text-->
@@ -138,7 +139,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
 
-        android:layout_marginTop="40dp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:paddingStart="@dimen/_30sdp"
@@ -153,10 +153,11 @@
         android:hint="البريد الإلكتروني"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Name_Edit_text"
-        tools:ignore="Autofill,HardcodedText" />
+        tools:ignore="Autofill,HardcodedText"
+        android:layout_marginTop="39dp" />
 
     <!--Password Edit Text-->
     <EditText
@@ -183,10 +184,10 @@
         android:hint="كلمة المرور"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_Email_Edit_text"
-        tools:ignore="Autofill,HardcodedText" />
+        tools:ignore="Autofill,HardcodedText"/>
 
     <!--Sing Up Button-->
     <androidx.appcompat.widget.AppCompatButton
@@ -211,7 +212,7 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_password_edit_text"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"/>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -219,7 +220,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="@dimen/_74sdp"
+        android:layout_marginTop="104dp"
 
         android:background="@android:color/transparent"
         android:layoutDirection="rtl"
@@ -229,8 +230,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sing_Up_BTN"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintHorizontal_bias="0.506">
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/Google_icon"
