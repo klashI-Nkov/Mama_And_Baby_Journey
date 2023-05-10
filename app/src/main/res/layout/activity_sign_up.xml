@@ -244,6 +244,8 @@
             android:theme="@style/Icon_BG"
             style="@style/Icon_BG"
 
+            android:onClick="Sign_Up_By_Google"
+
             android:layout_width="@dimen/_42sdp"
             android:layout_height="@dimen/_45sdp"
 
@@ -277,6 +279,8 @@
 
             android:theme="@style/Icon_BG"
             style="@style/Icon_BG"
+
+            android:onClick="Sign_Up_By_Facebook"
 
             android:layout_width="@dimen/_42sdp"
             android:layout_height="@dimen/_45sdp"
