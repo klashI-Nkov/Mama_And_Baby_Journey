@@ -39,7 +39,7 @@ public class Sign_Up extends AppCompatActivity
             هون في حالة المستخدم لما يسجل باستعمال الايميل كان ام او طبيب لو ما حدد صفته يعطل زر انشاء الحساب و ما يخليه قادر يكمل للشاشه الي
             بعدها وبعرض اله مسج انه لازم يحدد صفته قبل ما يكمل اما اذا كان محدد فعادي بخليه يكمل من دون اي مشاكل
          */
-        if ( !binding . MomRBTN2 . isChecked ( ) && !binding . DoctorRBTN2 . isChecked ( ) )
+        if ( !binding . MomRBTN . isChecked ( ) && !binding . DoctorRBTN . isChecked ( ) )
         {
             binding . singUpBTN . setEnabled ( false ) ;
             Toast . makeText ( this , "يرجى تحديد صفتك قبل الانتقال الي  الصفحه التاليه" , Toast . LENGTH_LONG ) . show ( ) ;
@@ -49,7 +49,7 @@ public class Sign_Up extends AppCompatActivity
 
 
         // هون كونه بس الام مطلوب منها الاسم بس فما رح يكون في الها بيانات تعبيها لهيك حاكي اله اذا المستخدم كان دكتور انقله لشاشة البيانات عشان يعبي البيانات اللازمه
-        if ( binding . DoctorRBTN2 . isChecked ( ) )
+        if ( binding . DoctorRBTN . isChecked ( ) )
         {
             Intent intent = new Intent ( this , Info_Activity . class ) ;
             startActivity ( intent ) ;
@@ -66,13 +66,13 @@ public class Sign_Up extends AppCompatActivity
         // الشرط الي جوا الاف معناه انه روح جيب الثيم الحالي و شوف اذا هو دارك ادخل و نفذ الي جوا الاف واعطي الخط تاع ال Radio buttons الوان الثيم الدارك اذا الثيم الحالي مش دارك اعطيهم الوان الثيم الفاتح
         if ( ( getResources ( ) . getConfiguration ( ) . uiMode & Configuration . UI_MODE_NIGHT_MASK ) == Configuration . UI_MODE_NIGHT_YES )
         {
-            binding . DoctorRBTN2 . setTextColor ( getResources ( ) . getColor ( R . color . R_B_T_C_N ) ) ;
-            binding . MomRBTN2 . setTextColor ( getResources ( ) . getColor ( R . color . R_B_T_C_N ) ) ;
+            binding . DoctorRBTN . setTextColor ( getResources ( ) . getColor ( R . color . R_B_T_C_N ) ) ;
+            binding . MomRBTN . setTextColor ( getResources ( ) . getColor ( R . color . R_B_T_C_N ) ) ;
         }
         else
         {
-            binding . DoctorRBTN2 . setTextColor ( getResources ( ) . getColor ( R . color . R_B_T_C_L ) ) ;
-            binding . MomRBTN2 . setTextColor ( getResources ( ) . getColor ( R . color . R_B_T_C_L ) ) ;
+            binding . DoctorRBTN . setTextColor ( getResources ( ) . getColor ( R . color . R_B_T_C_L ) ) ;
+            binding . MomRBTN . setTextColor ( getResources ( ) . getColor ( R . color . R_B_T_C_L ) ) ;
         }
     }
 
@@ -81,7 +81,7 @@ public class Sign_Up extends AppCompatActivity
     {
 
         // هون بقله اذا المسخدم مش محدد شو صفته ادخل الاف و عطل انشاء الحساب باستخدام قوقل اما اذا حدد فعادي خليه يستعمله
-        if ( !binding . MomRBTN2 . isChecked ( ) && !binding . DoctorRBTN2 . isChecked ( ) )
+        if ( !binding . MomRBTN . isChecked ( ) && !binding . DoctorRBTN . isChecked ( ) )
         { Toast . makeText ( this , "يرجى تحديد صفتك قبل الانتقال الي  الصفحه التاليه" , Toast . LENGTH_LONG ) . show ( ) ; }
         else
         {
@@ -98,7 +98,7 @@ public class Sign_Up extends AppCompatActivity
     {
 
         // هون بقله اذا المسخدم مش محدد شو صفته ادخل الاف و عطل انشاء الحساب باستخدام فيسبوك اما اذا حدد فعادي خليه يستعمله
-        if ( !binding . MomRBTN2 . isChecked ( ) && !binding . DoctorRBTN2 . isChecked ( ) )
+        if ( !binding . MomRBTN . isChecked ( ) && !binding . DoctorRBTN . isChecked ( ) )
         { Toast . makeText ( this , "يرجى تحديد صفتك قبل الانتقال الي  الصفحه التاليه" , Toast . LENGTH_LONG ) . show ( ) ; }
         else
         {

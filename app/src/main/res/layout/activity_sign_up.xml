@@ -73,7 +73,7 @@
             tools:ignore="HardcodedText,TextContrastCheck" />
 
         <RadioButton
-            android:id="@+id/Mom_R_BTN2"
+            android:id="@+id/Mom_R_BTN"
 
             style="@style/TextViewStyle"
 
@@ -90,7 +90,7 @@
             tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck" />
 
         <RadioButton
-            android:id="@+id/Doctor_R_BTN2"
+            android:id="@+id/Doctor_R_BTN"
 
             style="@style/TextViewStyle"
 
