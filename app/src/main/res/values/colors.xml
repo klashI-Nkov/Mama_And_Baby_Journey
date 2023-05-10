@@ -10,18 +10,21 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="c10">@android:color/transparent</color>
-
     <attr name="stroke_color" format="color" />
     <attr name="BG" format="color" />
     <attr name="Icons_Colors" format="color" />
 
-    <!-- this colors below it is for info page BG -->
+    <!-- this colors below it is for info page BG for hole app -->
     <attr name="Start_Color" format="color" />
     <attr name="Center_Color" format="color" />
     <attr name="End_Color" format="color" />
 
+    <!-- this color below it is for Snack bar background in map -->
     <color name="Snack_bar_BG_Color">#292929</color>
+
+    <!-- this colors below it is for Radio Buttons Text color -->
+    <color name="R_B_T_C_L">#73000000</color>
+    <color name="R_B_T_C_N">#A2FFFFFF</color>
 
 
     <color name="c1">#fbe3b2</color>

@@ -25,7 +25,7 @@
 
     <!-- لللخط -->
     <style name="TextViewStyle">
-        <item name="android:textColor">#67FFFFFF</item>
+        <item name="android:textColor">#A2FFFFFF</item>
     </style>
 
     <!-- ل ال Edit text و ل Buttons في شاشة اللوج ان و شاشة الساين اب -->
@@ -76,4 +76,3 @@
     </style>
 
 </resources>
-

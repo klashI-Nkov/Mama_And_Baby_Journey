@@ -38,7 +38,6 @@
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        style="@style/No_Name_Style"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,6 +45,7 @@
         android:layout_marginTop="@dimen/_23sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
+        android:background="@android:color/transparent"
         android:layoutDirection="rtl"
         android:orientation="horizontal"
 
@@ -67,7 +67,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="@dimen/_20sdp"
 
-            android:textSize="25sp"
+            android:textSize="@dimen/_17sdp"
             android:text="هل انت"
 
             tools:ignore="HardcodedText,TextContrastCheck" />
@@ -91,6 +91,7 @@
 
         <RadioButton
             android:id="@+id/Doctor_R_BTN2"
+
             style="@style/TextViewStyle"
 
             android:layout_width="wrap_content"
