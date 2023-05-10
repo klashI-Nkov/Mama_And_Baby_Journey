@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
@@ -18,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_marginTop="@dimen/_34sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:background="@android:color/transparent"
@@ -28,12 +30,11 @@
         android:textSize="@dimen/_31sdp"
         android:text="Mama Baby Journey"
 
-        tools:ignore="HardcodedText,TextContrastCheck"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="45dp" />
+        tools:ignore="HardcodedText,TextContrastCheck"/>
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -41,6 +42,8 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/_23sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:layoutDirection="rtl"
@@ -50,10 +53,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView1"
-        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/Name_Edit_text"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_marginTop="26dp">
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             style="@style/TextViewStyle"
@@ -66,10 +67,10 @@
             android:layout_weight="1"
             android:layout_marginEnd="@dimen/_20sdp"
 
-            android:text="هل انت "
             android:textSize="25sp"
+            android:text="هل انت"
 
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText,TextContrastCheck" />
 
         <RadioButton
             android:id="@+id/Mom_R_BTN2"
@@ -83,10 +84,10 @@
             android:layout_weight="1"
             android:layoutDirection="rtl"
 
-            android:text="أم"
             android:textSize="@dimen/_14sdp"
+            android:text="أم"
 
-            tools:ignore="HardcodedText,TextSizeCheck" />
+            tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck" />
 
         <RadioButton
             android:id="@+id/Doctor_R_BTN2"
@@ -97,8 +98,10 @@
 
             android:layout_weight="1"
             android:layoutDirection="rtl"
-            android:text="طبيب"
+
             android:textSize="@dimen/_14sdp"
+            android:text="طبيب"
+
             tools:ignore="HardcodedText,TextSizeCheck" />
 
     </RadioGroup>
@@ -113,7 +116,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
 
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/_23sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:layoutDirection="rtl"
@@ -127,7 +130,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        tools:ignore="Autofill,HardcodedText" />
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize" />
 
     <!--Email Edit Text-->
     <EditText
@@ -139,6 +142,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
 
+        android:layout_marginTop="@dimen/_23sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:paddingStart="@dimen/_30sdp"
@@ -156,8 +160,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Name_Edit_text"
-        tools:ignore="Autofill,HardcodedText"
-        android:layout_marginTop="39dp" />
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize" />
 
     <!--Password Edit Text-->
     <EditText
@@ -169,7 +172,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
 
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="@dimen/_23sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:paddingStart="@dimen/_34sdp"
@@ -187,7 +190,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_Email_Edit_text"
-        tools:ignore="Autofill,HardcodedText"/>
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize" />
 
     <!--Sing Up Button-->
     <androidx.appcompat.widget.AppCompatButton
@@ -199,7 +202,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="@dimen/_61sdp"
         android:layout_marginHorizontal="@dimen/_39sdp"
 
         android:onClick="Go_to_Info"
@@ -212,7 +215,7 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_password_edit_text"
-        tools:ignore="HardcodedText"/>
+        tools:ignore="HardcodedText,TextSizeCheck,VisualLintButtonSize,VisualLintBounds" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -220,7 +223,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="@dimen/_80sdp"
 
         android:background="@android:color/transparent"
         android:layoutDirection="rtl"
@@ -231,46 +234,56 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sing_Up_BTN"
         app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="VisualLintBounds">
 
         <ImageView
             android:id="@+id/Google_icon"
-            style="@style/Icon_BG"
-            android:layout_width="@dimen/_42sdp"
 
+            android:theme="@style/Icon_BG"
+            style="@style/Icon_BG"
+
+            android:layout_width="@dimen/_42sdp"
             android:layout_height="@dimen/_45sdp"
 
             android:padding="@dimen/_8sdp"
-            android:theme="@style/Icon_BG"
 
             app:srcCompat="@drawable/icons_google_icon"
+
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textView4"
+
             style="@style/TextViewStyle"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_gravity="center"
             android:layout_marginHorizontal="@dimen/_23sdp"
+
             android:background="@android:color/transparent"
 
             android:layoutDirection="rtl"
-            android:text="او باستخدام"
             android:textSize="@dimen/_15sdp"
+            android:text="او باستخدام"
 
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText,TextContrastCheck,TextSizeCheck" />
 
         <ImageView
             android:id="@+id/Facebook_Icon"
-            style="@style/Icon_BG"
-            android:layout_width="@dimen/_42sdp"
-
-            android:layout_height="@dimen/_45sdp"
-            android:padding="@dimen/_8sdp"
 
             android:theme="@style/Icon_BG"
+            style="@style/Icon_BG"
+
+            android:layout_width="@dimen/_42sdp"
+            android:layout_height="@dimen/_45sdp"
+
+            android:padding="@dimen/_8sdp"
+
             app:srcCompat="@drawable/icons_facebook_icon"
+
             tools:ignore="ContentDescription" />
 
     </LinearLayout>
