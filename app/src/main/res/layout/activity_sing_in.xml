@@ -9,7 +9,7 @@
 
     android:layout_height="match_parent"
     android:theme="@style/screen_Background"
-    tools:context=".Create_An_Account_And_Sign_In.Sing_in">
+    tools:context=".Create_An_Account_And_Sign_In.Sing_in_Activity">
 
     <TextView
         android:id="@+id/textView1"

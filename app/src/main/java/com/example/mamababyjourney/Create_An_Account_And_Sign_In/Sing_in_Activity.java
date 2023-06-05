@@ -6,17 +6,18 @@ import android  . view      . WindowManager;
 import java     . util      . Objects;
 import android  . os        . Bundle;
 
-public class Sing_in extends AppCompatActivity
+public class Sing_in_Activity extends AppCompatActivity
 {
     ActivitySingInBinding binding ;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
     {
+        super . onCreate ( savedInstanceState ) ;
+
         getWindow ( ) . setFlags ( WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS , WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
         Objects . requireNonNull ( getSupportActionBar ( ) ) . hide ( ) ;
 
-        super . onCreate ( savedInstanceState ) ;
         binding = ActivitySingInBinding . inflate ( getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
     }

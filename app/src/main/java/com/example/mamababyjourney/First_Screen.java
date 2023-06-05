@@ -1,44 +1,44 @@
 package com.example.mamababyjourney;
 
-import androidx . appcompat . app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+import com.example.mamababyjourney.Create_An_Account_And_Sign_In.Sign_Up_Activity;
+import com.example.mamababyjourney.Create_An_Account_And_Sign_In.Sing_in_Activity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.content.pm.PackageManager;
-import android  . view      . WindowManager;
-import java     . util      . Objects;
-import android  . content   . Intent;
-import android  . os        . Bundle;
-import android  . view      . View;
-import com.example.mamababyjourney.Create_An_Account_And_Sign_In.Sign_Up;
-import com.example.mamababyjourney.Create_An_Account_And_Sign_In.Sing_in;
+import androidx.core.app.ActivityCompat;
+import android.view.WindowManager;
+import android.content.Intent;
+import java.util.Objects;
+import android.os.Bundle;
+import android.view.View;
 
 public class First_Screen extends AppCompatActivity
 {
-
     @Override
     protected void onCreate ( Bundle savedInstanceState )
     {
+        super . onCreate ( savedInstanceState ) ;
+
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         Objects . requireNonNull ( getSupportActionBar ( ) ) . hide ( ) ;
 
-        super . onCreate ( savedInstanceState ) ;
         setContentView ( R . layout . activity_first_screen ) ;
         Permissions ();
     }
 
     public void Go_to_Sing_In ( View view )
     {
-        Intent intent = new Intent ( this , Sing_in. class ) ;
+        Intent intent = new Intent ( this , Sing_in_Activity. class ) ;
         startActivity ( intent ) ;
     }
 
     public void Go_to_Sing_Up ( View view )
     {
-        Intent intent = new Intent ( this , Sign_Up. class ) ;
+        Intent intent = new Intent ( this , Sign_Up_Activity. class ) ;
         startActivity ( intent ) ;
     }
+
     private void Permissions ()
     {
-
 
         if
         (

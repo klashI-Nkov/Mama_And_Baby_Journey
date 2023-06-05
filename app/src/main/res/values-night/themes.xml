@@ -46,24 +46,24 @@
         <item name="stroke_color">@color/white</item>
     </style>
 
-    <!-- ل ال Edit text و ل Buttons في شاشة تعبة البيانات وال 2 الي بعده كمان لشاشة البيانات -->
+    <!-- ل ال Edit text و ال Buttons في شاشة تعبة البيانات وال 2 الي بعده كمان لشاشة البيانات -->
     <style name="EditTextStyle2">
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
         <item name="android:background">@drawable/shapes_edit_text_shape</item>
         <item name="BG">#0A000000</item>
-        <item name="Icons_Colors">@color/white</item>
         <item name="stroke_color">#3CFFFFFF</item>
     </style>
 
     <!-- هاد ل الي بكون فيها ال edit text-->
     <style name="Scroll_Style">
+        <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/shapes_scroll_shape</item>
         <item name="BG">#1CFFFFFF</item>
         <item name="stroke_color">#3CFFFFFF</item>
     </style>
 
-    <style name="No_Name_Style">
+    <style name="No_Style">
         <item name="stroke_color">@android:color/transparent</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
@@ -73,6 +73,13 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
         <item name="BG">#5D000000</item>
+    </style>
+
+    <style name="Workplace_Data_Preview_Panel_Style">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/shapes_workplace_data_preview_panel_shape</item>
+        <item name="BG">#1CFFFFFF</item>
+        <item name="stroke_color">#3CFFFFFF</item>
     </style>
 
 </resources>
