@@ -1,6 +1,8 @@
-package com.example.mamababyjourney.Create_An_Account_And_Sign_In;
+package com.example.mamababyjourney.Create_An_Account_And_Sign_In.Info;
 
 import com.example.mamababyjourney.databinding.ActivityMapBinding;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -11,6 +13,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.google.android.gms.maps.GoogleMap;
 import androidx.core.content.ContextCompat;
 import android.content.res.ColorStateList;
+import com.google.android.gms.tasks.Task;
 import android.content.BroadcastReceiver;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
@@ -18,6 +21,7 @@ import android.annotation.SuppressLint;
 import com.example.mamababyjourney.R;
 import android.content.IntentFilter;
 import androidx.annotation.NonNull;
+import android.location.Location;
 import android.widget.SearchView;
 import android.location.Geocoder;
 import android.location.Address;
@@ -36,7 +40,7 @@ import java.util.List;
 
 @SuppressLint ( "MissingPermission" )
 
-public class Map extends FragmentActivity implements OnMapReadyCallback
+public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
 {
 
 
@@ -65,22 +69,22 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
 
     // اول شي المتغيرات الي مش حاط الها شرح في كومنت بتلاقي شرحها في الفنكشن الي انا مستعملها فيه و بكون عامل هيك لانه شرحها بكون طويل شوي
 
-    private ConnectivityManager connectivity_Manager ;
+    private ConnectivityManager connectivity_Manager;
 
-    private ConnectivityManager . NetworkCallback network_Callback ;
+    private ConnectivityManager.NetworkCallback network_Callback;
 
-    private BroadcastReceiver location_Receiver = null ;
+    private BroadcastReceiver location_Receiver = null;
 
-    private LocationManager location_Manager ;
+    private LocationManager location_Manager;
 
     // هاد المتغير وظيفة انه يكون true في حالة كان النت شغال و false في حالة كان طافي
-    private boolean is_Internet_Connected ;
+    private boolean is_Internet_Connected;
 
     // هاد المتغير وظيفة انه يكون true في حالة كان الموقع شغال و false في حالة كان طافي
-    private boolean is_Location_Enabled ;
+    private boolean is_Location_Enabled;
 
     // هدول عشان اخزن فيهم احداثيات مكان العمل
-    private double longitude , latitude ;
+    private double longitude, latitude;
 
     /*
         طبعا هاد غني عن التعريف و هو الي بربط كود الجافا بالتصميم ما بده شرح على ما اعتقد اذا حابه تعرفي عنه معلومات اكثر انسخي
@@ -92,49 +96,49 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
 
         ونفس الشي ممكن تعمليه مع اي سطر في الكود ما فهمتيه من شرحي
      */
-    private ActivityMapBinding binding ;
+    private ActivityMapBinding binding;
 
-    private GoogleMap mMap ;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
     {
 
-        super . onCreate ( savedInstanceState ) ;
-        binding = ActivityMapBinding . inflate ( getLayoutInflater ( ) ) ;
-        setContentView ( binding . getRoot ( ) ) ;
+        super.onCreate ( savedInstanceState );
+        binding = ActivityMapBinding.inflate ( getLayoutInflater ( ) );
+        setContentView ( binding.getRoot ( ) );
 
         // هاد السطر عشان اخلي لون الستاتس بار الي بكون فيه الشبكه و البطاريه شفاف لكنه ما بصير شفاف بصير اسود ليه ما بعرف
-        getWindow ( ) . setStatusBarColor ( Color . TRANSPARENT ) ;
+        getWindow ( ).setStatusBarColor ( Color.TRANSPARENT );
 
         // هون استدعاء الفنكشن الي بتحقق من انه خدمة الموقع شغاله
-        Check_Location ( ) ;
+        Check_Location ( );
 
         // هون استدعاء الفنكشن الي بتحقق من انه الانترنت شغال
-        Check_Internet ( ) ;
+        Check_Internet ( );
 
         // هون استدعاء الفنكشن الي بجهز الخريطه للعرض
-        Map_Initialization ( ) ;
+        Map_Initialization ( );
 
         // وهاد الفنكشن بستدعى لما المستخدم يضغط على زر البحث في الكيبورد لما يحط اسم الموقع الي بده يبحث عنه
-        binding . SearchEditText . setOnQueryTextListener ( new SearchView . OnQueryTextListener ( )
+        binding.SearchEditText.setOnQueryTextListener ( new SearchView.OnQueryTextListener ( )
         {
             @Override
             public boolean onQueryTextSubmit ( String query )
             {
                 // هون بس يضغط يحث يستدعي الفنكشن الي مسؤول عن البحث عن المكان الي كتب اسمه في مربع البحث
-                Find_a_place ( ) ;
+                Find_a_place ( );
 
-                return false ;
+                return false;
             }
 
             @Override
             public boolean onQueryTextChange ( String newText )
             {
-                return false ;
+                return false;
             }
 
-        } ) ;
+        } );
 
         // هاد الفنكشن بتنفذ لما نضغط على زر الحفظ
         binding.SaveWorkplaceOnMapBTN.setOnClickListener ( v ->
@@ -196,7 +200,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
                 و فنكشن ال finsh كانه بتحكي للنظام انا خلص طلعت من الخارطه ما تخلي اي شي بخصها في الرام
              */
             finish ( );
-        });
+        } );
 
     }
 
@@ -204,7 +208,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onPause ( )
     {
-        super . onPause ( ) ;
+        super.onPause ( );
 
         /*
             هسه في هدول السطرين الي تحت بنعمل الغاء تسجيل ل ال network_Callback من خلال المتغير
@@ -261,8 +265,8 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
 
            الخاص بتسجيل ال network_Callback و الي موجود في فنكشن ال Check_Internet
          */
-        connectivity_Manager . unregisterNetworkCallback ( network_Callback ) ;
-        unregisterReceiver ( location_Receiver ) ;
+        connectivity_Manager.unregisterNetworkCallback ( network_Callback );
+        unregisterReceiver ( location_Receiver );
     }
 
     // هاد الفنكشن هو الي بس تشتغل الخارطه بجهزها للعرض و مستعمله في فنكشن onCreate الي بستدعى او ما تفتحي الشاشه فرح يستدعى لما تفتحي الخارطه
@@ -310,10 +314,10 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
 
             هي الشاشة الي بتعرض للمستخدم و بستعملها او بمعنى اخر الشاشات
          */
-        SupportMapFragment mapFragment = ( SupportMapFragment ) getSupportFragmentManager ( ) . findFragmentById ( R . id . map ) ;
+        SupportMapFragment mapFragment = ( SupportMapFragment ) getSupportFragmentManager ( ).findFragmentById ( R.id.map );
 
         // هون حطينا الاف عشان اذا كانت قيمة ال mapFragment  تساوي null ( لاشيء ) رح يصير خطا و يوقف التطبيق فلازم نتاكد انه مش null
-        if (mapFragment!=null)
+        if ( mapFragment != null )
 
             /*
                 هاد السطر وظيفته يحمل النا الخارطه من API الخرائط ولما حطينا قبله جملة اف
@@ -321,7 +325,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
                 لانه لو ما كانت موجوده او مش مجهزه للعرض الخارطه فيه رح يصير عنها خطا
                 و ال getMapAsync هو فنكشن من الكلاس SupportMapFragment وهو المسؤول عن تحميل الخارطه من API الخرائط
              */
-            mapFragment . getMapAsync ( this ) ;
+            mapFragment.getMapAsync ( this );
     }
 
     // هاد الفنكشن بتم استدعاؤه تلقائيا بعد ما يتنفذ الي جوا فنكشن ال Map_Initialization وبياخد اوجبكت من نوع GoogleMap
@@ -329,7 +333,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady ( @NonNull GoogleMap googleMap )
     {
         // هون بنقله والله الاوبجكت mMap الي عرفناه قبل ال onCreate من الكلاس GoogleMap خلي قيمته تساوي قيمة الاوبجكت الي اسمه googleMap
-        mMap = googleMap ;
+        mMap = googleMap;
 
         /*
             هون انا من خلال الاوبجكت الي اسمه mMap بحدد نوع او شكل الخريطه و
@@ -341,26 +345,26 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
 
             ومستعمل هاد النوع لانو بدي لما استعمل خرائط الاقمار الصناعية يظهر الي اسماء الشوراع
          */
-        mMap . setMapType ( GoogleMap . MAP_TYPE_HYBRID ) ;
+        mMap.setMapType ( GoogleMap.MAP_TYPE_HYBRID );
 
         // هون زر بظهر من زر تحديد الموقع الحالي لانه بكون مخفي من خلال تحويل قيمته الافتراضيه الي هي false الى true
-        mMap . setMyLocationEnabled ( true ) ;
+        mMap.setMyLocationEnabled ( true );
 
         // هون نفس الحكي لكن مع ازرار الكتبير و التصغير
-        mMap . getUiSettings ( ) . setZoomControlsEnabled ( true ) ;
+        mMap.getUiSettings ( ).setZoomControlsEnabled ( true );
 
         /*
             هاد الفنكشن بستدعى لما نضعط على اي مكان في الخارطه ومعطي امر جواته بمسح اي دبوس تم وضعه على الخارطه قبل
 
            في حالة المستخدم بطل بده الدبوس الي حطه باستعمال فنكشن setOnMapLongClickListener و صار بده يتحرك لمكان ثاني
          */
-        mMap . setOnMapClickListener ( latLng -> mMap . clear ( ) ) ;
+        mMap.setOnMapClickListener ( latLng -> mMap.clear ( ) );
 
         // هاد الفنكشن بستدعى لما اضل ضاغط ضغطه طويله على الخارطه
-        mMap . setOnMapLongClickListener ( latLng ->
+        mMap.setOnMapLongClickListener ( latLng ->
         {
             // هون معطي امر بمسح اي دوبس انحط على الخارطه تحت بتعرفي ليه عامل هيك
-            mMap . clear ( ) ;
+            mMap.clear ( );
 
             /*
                 هون عرفنا اوبجكت من الكلاس LatLng ومن خلال المتغير الي اسمه latlng الي بتمرر للفنكشن لما يستدعى بستدعي هدول الفنكشن
@@ -373,15 +377,15 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
 
                 و ال LatLng هي عبارة عن كلاس في API خرائط قوقل بتخلينا نقدر نحط دبوس على احداثيات مكان محدد في الخارطه
             */
-            LatLng l_atlng = new LatLng ( latLng . latitude , latLng . longitude ) ;
+            LatLng l_atlng = new LatLng ( latLng.latitude , latLng.longitude );
 
 
             // هون و ببساطه ومن دون اطالة شرح و شرح كل شي في السطر ببساطه الي بصير انه بنحط دبوس على احداثيات المكان الي تخزنت في ال l_atlng لما المستخدم يضغط ضغطه طويله على مكان معين في الخارطه
-            mMap . addMarker ( new MarkerOptions ( ) . position ( l_atlng ) ) ;
+            mMap.addMarker ( new MarkerOptions ( ).position ( l_atlng ) );
 
             //هون بخزن احداثيات مكان العمل في المتغيرات الي عرفتهم فوق قبل ال onCreate
-            latitude = latLng . latitude ;
-            longitude = latLng . longitude ;
+            latitude = latLng.latitude;
+            longitude = latLng.longitude;
 
             /*
                 طيب هسه نجي لهاي mMap . clear ( );  انا حاكي بدي قبل ما ينحط الدبوس على الخارطه امسح اي دبوس موجود قبله بس ليه حاكي هيك
@@ -405,7 +409,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
                 اكيد لا لهيك انا قايل اله بس الدكتور يضل ضاغط ضغطه طويله اول شي شوف اذا في دبوس على الخارطه و امسحه قبل ما ينحط اي دبوس ثاني بتمنى تكون وصلت
              */
 
-        } ) ;
+        } );
 
     }
 
@@ -417,13 +421,13 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
             عباره عن اشي اسمه SearchView مماثل ل edit text لكنه مخصص لعمليات البحث ما في فنكشن ال get text ألي في ال edit text العادي
             في فنكنشن مشابهه و هي getQuery عشان نجيب النص الي كتبه المستخدم من مربع البحث
          */
-        String location = binding . SearchEditText . getQuery ( ) . toString ( ) ;
+        String location = binding.SearchEditText.getQuery ( ).toString ( );
 
         // هون عرفنا لست من نوع Address عشان نخزن فيها معلومات العنوان الي رح نوصل اله من خلال اسمه الي بحطه المستخدم في خانة البحث
-        List < Address > listAddress ;
+        List < Address > listAddress;
 
         // هاد الشرط الي جوا الاف بمنع انه ننفذ الي جواتها في حالة المستخدم ما كتب شي في البحث و كبس على كبسة البحث
-        if ( !location . isEmpty ( ) )
+        if ( !location.isEmpty ( ) )
         {
             /*
                 في السطر هاد Geocoder geocoder = new Geocoder ( Map . this );  الي تحت بنعرف اوجبكت من الكلاس الي اسمه Geocoder
@@ -431,10 +435,10 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
                  هو انه من خلال الاسم الي بحطه المستخدم في البحث يجيب النا احداثيات المكان الي
                  المستخدم كتب اسمه في البحث
              */
-            Geocoder geocoder = new Geocoder ( Map . this ) ;
+            Geocoder geocoder = new Geocoder ( Map_Activity.this );
 
             // هاد السطر الي تحت حطيته لحتى ازود المدة الي باخدها ال geocoder لحتى يبحث فيها عن احداثيات المكان من خلال اسمه عشان لو كان النت ضعيف ما يطلع نفس الخطا الي كان يطلع الك لما تبحثي عن مكان
-            System . setProperty ( "android . location . Geocoder . SEARCH_TIME_OUT" , "30000" ) ;
+            System.setProperty ( "android . location . Geocoder . SEARCH_TIME_OUT" , "30000" );
 
             try
             {
@@ -444,17 +448,17 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
                     بجيب النا احداثيات المكان الي انكتب اسمه في البحث و بخزنها في اللست الي اسمها listAddress طبعا في
                     حالة كان موجود المكان
                  */
-                listAddress = geocoder . getFromLocationName ( location , 1 ) ;
+                listAddress = geocoder.getFromLocationName ( location , 1 );
 
                 // هون اذا المكان الي انكتب اسمه في البحث موجود فالخارطه رح تنقلك اله مباشره من خلال الكود الي جوا الاف
-                if ( !listAddress . isEmpty ( ) )
+                if ( !listAddress.isEmpty ( ) )
                 {
                     /*
                          هون بنعرف متغير من نوع ادرس وبنخزن فيه احداثيات المكان الي جبناه من خلال هاد الفنكشن
                           ؛getFromLocationName في السطر الي قبل الاف و الي هو هاد السطر
                          listAddress = geocoder . getFromLocationName ( location , 1 ) ;
                      */
-                    Address address = listAddress . get ( 0 ) ;
+                    Address address = listAddress.get ( 0 );
 
                     /*
                         هون عشان لما تصير عملية بحث جديده ما يضل في دبوس مثبت على المكان الي انبحث عنه في
@@ -462,7 +466,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
                         نفس الغرض او الفكره من استعمالها في فنكشن ال setOnMapLongClickListener الي
                         موجود في فنكشن ال onMapReady
                      */
-                    mMap . clear () ;
+                    mMap.clear ( );
 
                     /*
                         هون عرفنا اوبجكت من الكلاس LatLng ومن خلال المتغير الي اسمه address باستعمال هدول الفنكشن
@@ -473,7 +477,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
 
                         بعد هيك بخزن هاي الاحداثيات في الاوبجكت الي اسمه latlng عشان نستعملها في الانتقال الى المكان الي المستخدم كتبه في البحث
                      */
-                    LatLng latlng = new LatLng ( address . getLatitude ( ) , address . getLongitude ( ) ) ;
+                    LatLng latlng = new LatLng ( address.getLatitude ( ) , address.getLongitude ( ) );
 
                     /*
                        هون من خلال الاوبجكت mMap الي عرفناه قبل ال onCreate من الكلاس الي اسمها GoogleMap بنستدعي الفنكشن
@@ -486,15 +490,15 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
                        هي انه من ياخد احداثيات المكان من المتغير latlng مع نسبة زوم 18 و يعطيها للفنكشن animateCamera
                        عشان ينقل المستخدم للمكان الي كتبه في البحث
                      */
-                    mMap . animateCamera ( CameraUpdateFactory . newLatLngZoom ( latlng , 18 ) ) ;
+                    mMap.animateCamera ( CameraUpdateFactory.newLatLngZoom ( latlng , 18 ) );
 
                     // هون و ببساطه ومن دون اطالة شرح و شرح كل شي في السطر ببساطه الي بصير انه بنحط دبوس على احداثيات المكان الي المستخدم كتب اسمه في البحث
-                    mMap . addMarker ( new MarkerOptions ( ) . position ( latlng ) ) ;
+                    mMap.addMarker ( new MarkerOptions ( ).position ( latlng ) );
                 }
 
                 // في حالة ما كان المكان الي انكتب اسمه في البحث موجود رح تظهر هاي المسج
                 else
-                 Snack_Bar ( "لا يوجد مكان بهذا الاسم\n\n جرب كتابة اسم مكان اخر" ) ;
+                    Snack_Bar ( "لا يوجد مكان بهذا الاسم\n\n جرب كتابة اسم مكان اخر" );
             }
 
             /*
@@ -505,8 +509,8 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
              */
             catch ( IOException e )
             {
-                e . printStackTrace ( ) ;
-                Snack_Bar ( "Search failed: " + e . getMessage ( ) ) ;
+                e.printStackTrace ( );
+                Snack_Bar ( "Search failed: " + e.getMessage ( ) );
 
             }
         }
@@ -527,7 +531,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
              ما قلنا فوق انه ال CONNECTIVITY_SERVICE بتوفر معلومات عن الحاله الحاليه للاتصال بالشبكه عشان يقدر من
              خلالها يحدد هل متصل بالنت او لا
          */
-        connectivity_Manager = ( ConnectivityManager ) getSystemService ( Context . CONNECTIVITY_SERVICE ) ;
+        connectivity_Manager = ( ConnectivityManager ) getSystemService ( Context.CONNECTIVITY_SERVICE );
 
         // في هاد السطر الي تحت هاد ال networkCallback هو المسؤول عن مراقبة التغيير في حالة الاتصال وعدم الاتصال بالانترنت وهو الي بتصرف وقتها بشو الي رح يصير
         /*
@@ -538,7 +542,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
             لما اعطيت قيمه لهاد المتغير network_Callback
             وهو المسؤول انه يتصرف بشو الي بده يصير لما يطفي او يشتغل النت
         */
-        network_Callback = new ConnectivityManager . NetworkCallback ( )
+        network_Callback = new ConnectivityManager.NetworkCallback ( )
         {
 
             // هاي الفنكشن بتستدعى اول ما يشتغل النت
@@ -550,8 +554,8 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
                      كان النت طافي و بعدها بستدعي Check_Location_And_Internet لحتى يتحقق اذا كان النت طافي او
                      شغال ويحدث الشاشة بناء على حالة النت مطفي او شغال
                  */
-                is_Internet_Connected = true ;
-                Check_Location_And_Internet ( ) ;
+                is_Internet_Connected = true;
+                Check_Location_And_Internet ( );
 
             }
 
@@ -564,11 +568,11 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
                      بس كان النت شغال و بعدها بستدعي Check_Location_And_Internet لحتى يتحقق اذا كان النت طافي او
                      شغال ويحدث الشاشة بناء على حالة النت مطفي او شغال
                  */
-                is_Internet_Connected = false ;
-                Check_Location_And_Internet ( ) ;
+                is_Internet_Connected = false;
+                Check_Location_And_Internet ( );
 
             }
-        } ;
+        };
 
         /*
           في هاد السطر
@@ -580,7 +584,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
 
            وبعدل على قيمة is_Internet_Connected حسب حالة الاتصال بالانترنت
          */
-        connectivity_Manager . registerDefaultNetworkCallback ( network_Callback ) ;
+        connectivity_Manager.registerDefaultNetworkCallback ( network_Callback );
 
         /*
             ال NetworkInfo هي كلاس الي هي بالزبط بتعطيني الصافي انه النت متصل او فاصل
@@ -593,7 +597,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
             فلهيك خليته يروح لهاد المتغير connectivity_Manager و يشوف الي شو وضع النت الحالي
             ويخزنه في هاد المتغير active_Network_Info
          */
-        NetworkInfo active_Network_Info = connectivity_Manager . getActiveNetworkInfo ( ) ;
+        NetworkInfo active_Network_Info = connectivity_Manager.getActiveNetworkInfo ( );
 
         /*
 
@@ -604,8 +608,8 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
             اجى شيك هل شغال ولا لا رح يلاقيه مش شغال حتى لو انه شغال بسبب ان قيمة هاد is_Internet_Connected بتكون
             ؛false اول ما تشتغل الشاشه لهيك انا لازم احطه قبل ما استدعي هاد الفنكشن Check_Location_And_Internet
          */
-        is_Internet_Connected = active_Network_Info != null && active_Network_Info . isConnected ( ) ;
-        Check_Location_And_Internet ( ) ;
+        is_Internet_Connected = active_Network_Info != null && active_Network_Info.isConnected ( );
+        Check_Location_And_Internet ( );
     }
 
     // للتحقق اذا كان الموقع شغال او مش شغال وبرضو لاني مستعمله في فنكشن onCreate و رح يستدعى لما تفتحي الخارطه
@@ -639,7 +643,7 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
 
             ومنها تحديدا حالة خدمة الموقع اذا شغاله او مطفية
          */
-        location_Manager = ( LocationManager ) getSystemService ( Context . LOCATION_SERVICE ) ;
+        location_Manager = ( LocationManager ) getSystemService ( Context.LOCATION_SERVICE );
 
         // هون اعطينا قيمه للاوجكت location_Receiver الي عرفناه فوق قبل فنكشن onCreate
         location_Receiver = new BroadcastReceiver ( )
@@ -653,12 +657,12 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
                 /*
                     ال GPS_PROVIDER هو عباره عن خدمه موفرها نظام الاندرويد و وظيفته يوفر معلومات عن الموقع باستعمال خدمة ال GPS في التلفون
                  */
-                is_Location_Enabled = location_Manager . isProviderEnabled ( LocationManager . GPS_PROVIDER ) ;
+                is_Location_Enabled = location_Manager.isProviderEnabled ( LocationManager.GPS_PROVIDER );
 
                 // هون شو ما كانت قيمة is_Location_Enabled كانت true او كانت false هاد الي تحت رح يتنفذ لانو قلنا انه فنكشن ال onReceive بستدعى لما ال location_Receiver يستقبل BroadcastReceiver يعني لما يصير تغيير في جالة خدمة الموقع انها اتشغلت او انطفت
-                Check_Location_And_Internet ( ) ;
+                Check_Location_And_Internet ( );
             }
-        } ;
+        };
 
         // في هاد السطر بنعرف اوبجكت من الكلاس  IntentFilter و اسمه  filter و وظيفته او لازمته انه يضل متبع مع حالة خدمة الموقع لما تطفي او تشتغل
 
@@ -674,14 +678,14 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
             لازم نعرف اوبجكت من الكلاس IntentFilter و نربط ال PROVIDERS_CHANGED_ACTION في هاد الاوبجكت الي عملناه بعدها
             بنسجله في الستتم انه والله في عندي intent متبع مع اي تغير او اي شي بصير وبخص الموقع
          */
-        IntentFilter filter = new IntentFilter ( LocationManager . PROVIDERS_CHANGED_ACTION ) ;
+        IntentFilter filter = new IntentFilter ( LocationManager.PROVIDERS_CHANGED_ACTION );
 
         /*
             في هاد السطر بنعمل تسجيل ل location_Receiver و الفلتر الخاص فيه الي متبع مع خدمة الموقع عشان يقدر يتحقق من
             الموقع اذا كان شغال او طافي عن طريق انه يستقبل التغيير في حالة خدمة الموقع و وقتها بستدعي هاد الفنكشن onReceive
             فوق وبعدل على قيمة is_Location_Enabled حسب حالة خدمة الموقع
          */
-        registerReceiver ( location_Receiver , filter ) ;
+        registerReceiver ( location_Receiver , filter );
 
         /*
             في السطر الي تحت الي هو هاد
@@ -717,10 +721,10 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
 
             networkCallback = new ConnectivityManager . NetworkCallback ()
          */
-        is_Location_Enabled = location_Manager . isProviderEnabled ( LocationManager . GPS_PROVIDER ) ;
+        is_Location_Enabled = location_Manager.isProviderEnabled ( LocationManager.GPS_PROVIDER );
 
         // هون بس بستدعي الفنكشن المسؤول عن عرض المسج اذا كان النت او الموقع واحد منهم مطفي او الاثنين مطفيين
-        Check_Location_And_Internet ( ) ;
+        Check_Location_And_Internet ( );
 
     }
 
@@ -745,12 +749,12 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
                 runOnUiThread ( ( ) ->
                 {
                     // هون بنجيب الشاشة الي فيها المسج و بنعرضها بدل الخارطه باستعمال فنشكن setContentView المسؤول عن تحديد الشاشة الي رح تنعرض للمستخدم
-                    setContentView ( R . layout . check_location_and_internet_view ) ;
+                    setContentView ( R.layout.check_location_and_internet_view );
 
                     // هون عرفنا اوبجكت من الكلاس  TextView اسمه textView عشان نقدر نحدد مين هو ال text view الي بدنا نعرض للمتستخدم فيها نص المسج
-                    TextView textView = findViewById ( R . id . textVie ) ;
-                    textView . setText ( "لا يوجد انترنت يرجى التحقق من اتصالك بالانترنت و المحاوله مره اخرى" ) ;
-                } ) ;
+                    TextView textView = findViewById ( R.id.textVie );
+                    textView.setText ( "لا يوجد انترنت يرجى التحقق من اتصالك بالانترنت و المحاوله مره اخرى" );
+                } );
             }
 
             // هون نفس الشي بس في حالة كان الموقع مطفي
@@ -758,10 +762,10 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
             {
                 runOnUiThread ( ( ) ->
                 {
-                    setContentView ( R . layout . check_location_and_internet_view ) ;
-                    TextView textView = findViewById ( R . id . textVie ) ;
-                    textView . setText ( "خدمة الموقع لديك متوقفه يرجى تشغيل خدمة الموقع للمتابعة" ) ;
-                } ) ;
+                    setContentView ( R.layout.check_location_and_internet_view );
+                    TextView textView = findViewById ( R.id.textVie );
+                    textView.setText ( "خدمة الموقع لديك متوقفه يرجى تشغيل خدمة الموقع للمتابعة" );
+                } );
             }
 
             // هون في حالة كان الموقع و النت مطفيين
@@ -769,14 +773,14 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
             {
                 runOnUiThread ( ( ) ->
                 {
-                    setContentView ( R . layout . check_location_and_internet_view ) ;
-                    TextView textView = findViewById ( R . id . textVie ) ;
-                    textView . setText ( "لا يوجد اتصال بالانترنت و خدمة الموقع لديك متوقفه يرجى التحقق من الاتصال بالانترنت و تشغيل خدمة الموقع للمتابعة" ) ;
-                } ) ;
+                    setContentView ( R.layout.check_location_and_internet_view );
+                    TextView textView = findViewById ( R.id.textVie );
+                    textView.setText ( "لا يوجد اتصال بالانترنت و خدمة الموقع لديك متوقفه يرجى التحقق من الاتصال بالانترنت و تشغيل خدمة الموقع للمتابعة" );
+                } );
             }
         }
         else
-         runOnUiThread ( ( ) -> setContentView ( binding . getRoot ( ) ) ) ;
+            runOnUiThread ( ( ) -> setContentView ( binding.getRoot ( ) ) );
     }
 
     // لعرض رسالة في حالة المستخدم بحث عن اسم موقع غير موجود وهاد الفنكشن مستعمله في فنكشن Find_a_place المسؤول عن البحث عن الاماكن من خلال الاسم ولو جيتي حطيتي مؤشر الماوس عليه و ضغطتي ctrl مع كبسه يسار على الماوس رح يوديكي على فنكشن Find_a_place
@@ -797,10 +801,10 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
             لكن انا هو مش مستعمل لا LENGTH_LONG ولا مستعمل LENGTH_SHORT حاكي اليه مباشره المده هي 5000 ملي ثانيه يعني 5
             ثواني لانه كل 1000 ملي ثانيه بتساوي ثانيه وحده
         */
-        Snackbar snackbar = Snackbar . make ( binding . constraint , Message , 7000 ) ;
+        Snackbar snackbar = Snackbar.make ( binding.constraint , Message , 7000 );
 
         // السطر الي تحت عشان اغير خلفية السناك بار
-        snackbar . getView ( ) . setBackgroundTintList ( ColorStateList . valueOf ( ContextCompat . getColor ( this , R . color . Snack_bar_BG_Color ) ) ) ;
+        snackbar.getView ( ).setBackgroundTintList ( ColorStateList.valueOf ( ContextCompat.getColor ( this , R.color.Snack_bar_BG_Color ) ) );
 
         /*
             هدول السطرين الي تحت عملناهم عشان نقدر نوصل للتكتست تاع السناك بار و عشان نعدل في لون وحجم الخط الخاص فيه
@@ -809,29 +813,23 @@ public class Map extends FragmentActivity implements OnMapReadyCallback
              عرفناه فوق من كلاس snackbar لحتى تقله getview ونصل ل اداة التكست الي مستعملها ليعرض فيها المسج ونعدل
              في حجم و لون الخط تبعها
          */
-        View snackbarView = snackbar . getView ( ) ;
-        TextView textView = snackbarView . findViewById ( com . google . android . material . R . id . snackbar_text ) ;
+        View snackbarView = snackbar.getView ( );
+        TextView textView = snackbarView.findViewById ( com.google.android.material.R.id.snackbar_text );
 
         // هاد السطر قلنا اله انه ما بدي كل المسج تظهر في سطر واحد بدي لو كانت اكثر من سطر تنعرض مثل ما هي مش كلها في سطر واحد
-        textView . setSingleLine ( false ) ;
+        textView.setSingleLine ( false );
 
         // هون غيرنا لون الخط للتكست
-        textView . setTextColor ( ContextCompat . getColor ( this , R . color . white ) ) ;
+        textView.setTextColor ( ContextCompat.getColor ( this , R.color.white ) );
 
         // هون غيرنا حجم الخط
-        textView . setTextSize ( 15 ) ;
+        textView.setTextSize ( 15 );
 
         // هون غيرنا محاذاة النص و خلينا النص يصير في النص بدل ما هو على اليمين
-        textView . setTextAlignment ( View . TEXT_ALIGNMENT_CENTER ) ;
+        textView.setTextAlignment ( View.TEXT_ALIGNMENT_CENTER );
 
         // وهاد السطر بشغل السناك بار و بعرض المسج الي بعثناها للفنكشن
-        snackbar . show ( ) ;
+        snackbar.show ( );
 
     }
-
 }
-
-
-
-
-
