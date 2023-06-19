@@ -1,7 +1,10 @@
 package com.example.mamababyjourney.Create_An_Account_And_Sign_In.Info;
 
 import com.example.mamababyjourney.databinding.ActivityDaysAndWorkingHoursBinding;
+import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import android.content.res.ColorStateList;
 import android.annotation.SuppressLint;
 import android.view.ViewTreeObserver;
 import com.example.mamababyjourney.R;
@@ -11,18 +14,14 @@ import android.widget.AdapterView;
 import android.view.MotionEvent;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.content.Intent;
-import java.util.ArrayList;
 import android.os.Bundle;
 import java.util.Objects;
 import android.view.View;
-import android.widget.Toast;
 
-import java.util.List;
-
-@SuppressWarnings ( { "ConstantConditions" , "SpellCheckingInspection" , "RedundantSuppression" } )
-
+@SuppressWarnings ( { "ConstantConditions"} )
 @SuppressLint ( "ClickableViewAccessibility" )
 
 public class Days_And_Working_Hours_Activity extends AppCompatActivity implements AdapterView . OnItemSelectedListener
@@ -33,6 +32,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
     // هاد المتغير انا مستعمله عشان اخزن فيه اسم ال spinner الي بنضعط عليه عشان نختار منه لقدام بتعرفي شو لازمته
     public static String spinner_Name = "" ;
 
+    // هاد المتغير انا مستعمله عشان امنع حدوث خطا معين
     public static boolean flag = false;
 
     /*
@@ -42,232 +42,48 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
      */
     int [ ] days_Check_Boxes_Ids =
     {
-        R.id.Wednesday_Check_Box ,
-        R.id.Saturday_Check_Box  ,
-        R.id.Thursday_Check_Box  ,
-        R.id.Tuesday_Check_Box   ,
-        R.id.Sunday_Check_Box    ,
-        R.id.Monday_Check_Box    ,
-        R.id.Friday_Check_Box
+        R . id . Wednesday_Check_Box ,
+        R . id . Saturday_Check_Box  ,
+        R . id . Thursday_Check_Box  ,
+        R . id . Tuesday_Check_Box   ,
+        R . id . Sunday_Check_Box    ,
+        R . id . Monday_Check_Box    ,
+        R . id . Friday_Check_Box
     };
-
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
     {
-        super . onCreate ( savedInstanceState ) ;
+        super . onCreate (savedInstanceState ) ;
 
-        getWindow ( ) . setFlags ( WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS , WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
-        Objects . requireNonNull ( getSupportActionBar ( ) ) . hide ( ) ;
+        getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
+        Objects . requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
 
-        binding = ActivityDaysAndWorkingHoursBinding . inflate ( getLayoutInflater ( ) ) ;
+        binding = ActivityDaysAndWorkingHoursBinding . inflate (getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
 
         Adapters_Initialization ( ) ;
 
-        Select_And_Deselect_All_Days_Buttons ( ) ;
-
         Initialization_Days_Check_Boxes_For_Edit ( ) ;
 
-        Initialization_Days_Check_Boxes_For_Select_And_Deselect_And_Add ( ) ;
-
-    }
-
-    // هاد الفنكشن بيستدعى لما نضغط على زر الحفظ الخاص بحفظ ايام و ساعات العمل
-    public void Save_Days_And_Working_Hours_BTN ( View view )
-    {
-        // هاد  الشرط عشان نتاكد انه اختار اوقات العمل ليوم واحد على الاقل و عبى كل البيانات اللازمه اله غير هيك رح يظهر اله المسج الي في ال else
-        if
-        (
-            /*
-                والشرط بقول انه اذا
-                ما كانت هاي days_And_Working_Hours ال List فاضيه
-                و ما كانت قيمة هاد is_From_Hour_Empty المتغير true
-                و ما كانت قيمة هاد is_To_Hour_Empty المتغير true
-
-                ادخل و نفذ الي داخل جملة الاف
-
-                واذا وحده منهم ما كانت مثل ما انا حاكي نفذ الي داخل ال else
-             */
-            ! Days_And_Working_Hours . days_And_Working_Hours . isEmpty () &&
-            ! Days_And_Working_Hours . is_From_Hour_Empty &&
-            ! Days_And_Working_Hours . is_To_Hour_Empty
-        )
-
-        {
-            /*
-    هون احنا بنعرف اوجبكت من الكلاس Intent و بخليه يساوي intent
-
-    الشاشة الي قبلها و الي هي شاشة بيانات مكان العمل عشان لما نضغك على زر
-
-    الحفظ يرجعنا لشاشة بيانات مكان العمل
-*/
-            Intent intent = getIntent ( ) ;
-
-            /*
-    ال setResult هي فنكشن تابعه للكلاس Activity بتاخد متغيرين الاول هو ال resultCode و الثاني هو الداتا او ال
-
-    ؛ intent الي حطينا فيه البيانات الي بدنا نرجعها لشاشة المعلومات هسه ال resultCode هو عبارة عن متغير بشير الى انه العمليه
-
-    كانت ناجحه ( هسه لتحت بقلك شو العمليه الي بقصدها ) وعشان نحكي اله هاد الشي انه العمليه كانت ناجحه لازم نستدعي فنكشن
-
-    ال setResult عشان نحكي من خلاله انه العمليه كانت ناجحه و نعطيه قيمة ال resultCode تساوي RESULT_OK وهاي ال
-
-    ؛RESULT_OK هي عبارة عن قيمه ثابته موجوده في كلاس ال Activity وتساوي -1 وتشير الى انه العملية كانت ناجحه
-
-    فلو جيتي حطيتي الماوس على ال RESULT_OK و كبستي ؛ctrl مع ضغطه على الماوس رح يدخلك على كلاس ال Activity
-
-     و يعرض الك تعريف ال RESULT_OK ويفرجيكي قيمتها الي هي -1
-
-
-    هسه العمليه الي بقصدها هي عملية شرح شو هي ال RESULT_OK بواسطة ال Activity الحالية و الي هي شاشة اضافة ايام و ساعات العمل
-
-     وفي فنكشن ال setResult لما بدنا نرجع قيمه لل Activity الي قبل لازم نستعمل ال RESULT_OK كقيمه لل resultCode عشان
-
-     في ال Activity الي قبل نقدر نحصل القيمه الي جايه من
-
-     intent ال Activity الشاشه الحالية والي هي شاشة اضافة ايام و ساعات العمل في حالتنا هون
-*/
-            setResult ( RESULT_OK , intent ) ;
-
-            /*
-    هاد الفنكشن finish تابع لكلاس ال Activity و وظيفته انه بعد ما نبكس على زر الحفظ يحرر
-
-    شاشة اضافة ايام و ساعات العمل من الرام عشان ما يصير اشي اسمه memory leaks او resource leaks والي هم باختصار
-
-    بسببو انه الشاشه الي خلصنا منها تضل في الرام تسحب فيها طول استخدام التطبيق و تؤدي بالنهايه
-
-    انه الجهاز يصير يعلق
-
-    و فنكشن ال finish كانه بتحكي للنظام انا خلص طلعت من شاشة اضافة ايام و ساعات العمل ما تخلي اي شي بخصها في الرام
-*/
-            finish ( ) ;
-
-        }
-        else
-        {
-
-            /*
-            عنا هون اوبجكت من الكلاس الي اسمها Bundle اسمه extras ولما نعرف اوبجكت من هاي الكلاس
-            بنقدر من خلال هاد الاوبجكت نصل للداتا او المسج الي جاي النا مع ال intent الي جابنا لهاي الشاشه
-         */
-            Bundle extras = getIntent ( ) . getExtras ( ) ;
-
-            Toast . makeText
-            (
-                 this ,
-
-                  /*
-                    هسه اذا كان داخل الشاشه لختى يضيف ساعات العمل لاول مره و ما اختارهم بشكل صح رح تظهر اله المسج الاول
-
-                    اما لو دخل الشاشه مشان يعدل وما ضاف بشكل صح رح تظهر اله المسج الثانيه
-
-                    وبنعرف انه داخل لحتى يضيف اول مره او داخل عشان يعدل من خلال انه نشوف القيمه الي جاي النا في المسج مع ال intent الي جابنا لهاي الشاشه
-                  */
-
-                 extras .getString ( "Action" ) . equals ( "Add" ) ?
-                 "يرجى تحديد اوقات العمل في يوم واحد على الاقل وتحديد اوقات العمل بشكل صحيح" :
-                 "يرجى تحديد اوقات العمل بشكل صحيح",
-
-                 Toast.LENGTH_SHORT
-            ) . show ( ) ;
-        }
-
-    }
-
-    // هاد الفنكشن بتنفذ لما نكبس على زر تحديد الكل او الغاء تحديد الكل في شاشة ايام و ساعات العمل
-    private void Select_And_Deselect_All_Days_Buttons ( )
-    {
-        // هاد بتنفذ لما نضغط زر الغاء تحديد الكل
-        binding . deSelectAllDaysBTN . setOnClickListener ( v ->
-        {
-
-            /*
-                هون ال for each بتلف على ال id الخاصين بال check boxes الخاصين بالايام
-
-                وبعمل الغاء تحديد لاي يوم تم اختياره و يخفي ال spinners الخاصين فيه ويجهزهم لاستقبال
-
-                قيمه جديده غير القيمه الي كانت فيهم
-            */
-            for ( int element : days_Check_Boxes_Ids )
-            {
-                /*
-                    هون معرفين متغير من نوع check box و في كل لفه
-
-                    بنخليه يصير نسخه عن ال check box الي ال for each ماشر على ال id تبعه
-                 */
-                CheckBox checkBox = findViewById ( element ) ;
-                /*
-                    هون بعد ما صار عنا نسخه من ال check box الي ال for each ماشره على ال id الخاص فيه
-
-                    بنعمل اله الغاء تحديد من خلال هاد السطر الي تحت
-                 */
-                checkBox . setChecked ( false ) ;
-            }
-
-            // هون عشان نتجنب اي خطا لانه مرات ال List بضل في داتا ف لازم عشان ناتكد انه ما ضل فيها ولا اي داتا لازم نعطيها امر clear عشان نتاكد انها صارت فاضيه تماما و ما فيها اي شي
-            Days_And_Working_Hours . days_And_Working_Hours . clear ( ) ;
-        });
-
-        // هاد بتنفذ لما نضغط زر تحديد الكل
-        binding . SelectAllDaysBTN . setOnClickListener ( v ->
-        {
-            // هون نفس الي بصير لما نكبس على زر الغاء تحديد الكل لكن الفرق انه بحدد الكل
-            for ( int element : days_Check_Boxes_Ids )
-            {
-                CheckBox checkBox = findViewById ( element ) ;
-                checkBox . setChecked ( true ) ;
-            }
-        });
-
-    }
-
-    // هاد الفنشكن بتنفذ لما نضغط على زر الرجوع الي موجود في الشاشه من تحت الي هو تاع النظام
-    @Override
-    public void onBackPressed ( )
-    {
-
-        if
-        (
-            ! Days_And_Working_Hours . days_And_Working_Hours . isEmpty () &&
-            ! Days_And_Working_Hours . is_From_Hour_Empty &&
-            ! Days_And_Working_Hours . is_To_Hour_Empty
-        )
-
-        {
-            Intent intent = getIntent ( ) ;
-            setResult ( RESULT_OK , intent ) ;
-            finish ( ) ;
-        }
-        else
-        {
-
-            Bundle extras = getIntent ( ) . getExtras ( ) ;
-
-            Toast . makeText
-            (
-                this ,
-                extras .getString ( "Action" ) . equals ( "Add" ) ?
-                "يرجى تحديد اوقات العمل في يوم واحد على الاقل وتحديد اوقات العمل بشكل صحيح" :
-                "يرجى تحديد اوقات العمل بشكل صحيح",
-                Toast.LENGTH_SHORT
-            ) . show ( ) ;
-        }
+        Initialization_Days_Check_Boxes_For_Add ( ) ;
     }
 
 
+
+    // --------------- بداية الجزء الي فيه الفنكشن الي بخصو هاد الكلاس ---------------
 
     // هاد الفنكشن المسؤول عن تجهيز حدث اختيار او الغاء اختيار اليوم لحتى يصير اكم شغله محدده ( لقدام بتعرفي شو هم الاكم شغله هدول ) في حالة اختيار او الغاء اختيار اليوم
-    public void Initialization_Days_Check_Boxes_For_Select_And_Deselect_And_Add ( )
+    private void Initialization_Days_Check_Boxes_For_Add ( )
     {
         /*
              طيب هاد الفنكشن بستدعى اول ما تفتح الشاشه لانه ببساطه مستدعيه في ال onCreate
 
              والي بعمله هو انه بقوم بتجهيز حدث اختيار و الغاء اختيار اليوم
 
-             بحيث انه بس يختار واحد من الايام يضيف اوبجكت خاص بهاد اليوم  في List of objects انا معرفها من هاي Days_And_Working_Hours الكلاس
+             بحيث انه بس يختار واحد من الايام يضيف اوبجكت خاص بهاد اليوم في List of objects انا معرفها من هاي Days_And_Working_Hours الكلاس
 
-             هاد الاوبجكت بحتوي اسم اليوم الي تم اختياره بالاضافه الى ساعات العمل في هاد اليوم الي تم اختياره
+              و اسمها days_And_Working_Hours_Objects_List و هي خاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس و هاد الاوبجكت بحتوي اسم اليوم الي تم اختياره بالاضافه الى ساعات العمل في هاد اليوم الي تم اختياره
 
              والي بصير في حالة اختيار واحد من الايام بجي بجيب التكست تاع ال check box الخاص باليوم الي تم اختياره
 
@@ -277,43 +93,28 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
              وكل هاد الحكي بيعمله من خلال استدعاء فنكشن ال Initialization_Days_Check_Boxes
 
-             وهاد الفنكشن كل الي عليه انه يمسك ال array الخاصه بال id's تبعين ال check boxes و يلف عليهم واحد واحد من خلال ال for
-              each الي موجود عندك في هاد الفنكشن
-
-
-             وغير هيك كمان الي بعمله عند الاضافه لاول مره او لو ضفنا مكان عمل و جينا بدنا نضيف مكان عمل جديد مش من المنطقي
-             انه يعرض النا ايام و ساعات العمل الي اخترناها لمكان العمل الاول
-
-             في الي بعمله هاد الفنكشن في هاي الحاله غير الي حكيت انه بعمله فوق
-
-             هو انه لما بدنا نضيف ايام و ساعات العمل لمكان عمل ثاني غير الي ضفناه اول مره
-
-             هو انه بجي و بعمل الغاء تحديد لكل ال check boxes تبعين الايام و اخفاء لكل شي اخترناه لما ضفنا ايام و ساعات العمل لمكان العمل
-
-             الاول  و هاد الشي بصير في داخل جملة ال if
+             وهاد الفنكشن كل الي عليه انه يمسك ال array الخاصه بال id's تبعين ال check boxes و يلف عليهم واحد واحد من خلال هاي
+              ؛for (  int element : days_Check_Boxes_Ids ) ال for each الي موجوده عندك في هاد الفنكشن و في كل لفه
+              هاد element المتغير بتخزن فيه id ال check box الي ال for each ماشره على ال index الي بحتوي ال id تبعه
          */
 
-
         /*
-            عنا هاي ال array من نوع Spinner بتخزن فيها spinners ساعات العمل الخاصين باليوم الي تم اختياره
+            عنا هاي spinners ال array من نوع Spinner بتخزن فيها spinners ساعات العمل الخاصين باليوم الي تم اختياره
 
-            عشان اظهرهم لما احدد اليوم تبعهم و عشان اخفيهم لما اشيل التحديد عن اليوم الخاص فيهم
+            عشان اظهرهم لما احدد اليوم تبعهم و عشان اخفيهم لما اشيل التحديد عن اليوم الخاص فيهم و اظهرهم لما بدي احدد ساعات العمل
          */
         Spinner [ ] spinners ;
 
-
-        // هاي هي ال for each الي بتلف على ال id الخاصين بال check boxes تاعين الايام وفي كل لفه بتكون قيمة ال element بتساوي قيمة ال id الي في ال index الي ماشره عليه ال for each
         for (  int element : days_Check_Boxes_Ids )
         {
             /*
-                هسه الي داخل ال switch
+                هسه الي داخل قوسين ال switch
 
                 من خلال فنكشن ال getResources بنستدعي فنكشن ال getResourceEntryName والي بتاخد منا id
 
                 معين و بترجع النا اسم الاداة الي اعطيناها ال id تبعها وفي حالتنا هون ال id مخزن في المتغير الي
 
                 اسمه element و الي ماخد قيمته من محتويات ال index الي واقفه عنده ال for each
-
 
                 و ال getResources هي فنكشن تم توارثها من الكلاس AppCompatActivity
 
@@ -334,7 +135,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
                      يعني مثلا لو جينا على هاي days_Check_Boxes_Ids ال array اخذنا اول عنصر فيها الي هو هاد
 
-                     ؛ R.id.Saturday_Check_Box والي هو نفسه id ال check box تبع يوم السبت
+                     ؛ R . id . Saturday_Check_Box والي هو نفسه id ال check box تبع يوم السبت
 
                      والي ال index تبعه 0 وهو نفس ال index الي بتبلش ال for each تشتغل من عنده في الحاله هاي رح يتخزن في
 
@@ -386,8 +187,9 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
                         4- اسم اليوم الي تحدد ال check box تبعه وهاد ضروري عشان الحذف لما نعمل الغاء تحديد لليوم
 
-                        واخر شي ال action وهاد كمان ضروري لانه فنكشن ال Initialization_Days_Check_Boxes مشترك بين فنكشنين
-                        بشتغلو نفس الشغل
+                        واخر شي ال action وهاد كمان ضروري لانه فنكشن ال Initialization_Days_Check_Boxes مشترك بين هاد الفنكشن و بين هاد
+
+                        ؛Initialization_Days_Check_Boxes_For_Edit الفنكشن والاثنين بشتغلو نفس الشغل تقريبا مع وجود بعض الاختلافات البسيطه
 
                        تقريبا و هاد ال action هو الي بحدد اي فنكشن الي استدعى فنكشن ال
 
@@ -403,7 +205,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         spinners ,
                         "السبت",
                         "Select or deselect"
-                    ) ;
+                    );
                     break ;
                 }
 
@@ -426,7 +228,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         spinners ,
                         "الاحد" ,
                         "Select or deselect"
-                    ) ;
+                    );
                     break ;
                 }
 
@@ -448,7 +250,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         spinners ,
                         "الاثنين" ,
                         "Select or deselect"
-                    ) ;
+                    );
                     break ;
                 }
 
@@ -470,7 +272,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         spinners ,
                         "الثلاثاء" ,
                         "Select or deselect"
-                    ) ;
+                    );
                     break ;
                 }
 
@@ -487,12 +289,12 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
                     Initialization_Days_Check_Boxes
                     (
-                            findViewById ( R . id . Wednesday_Work_Hours_Text_view ) ,
-                                     findViewById ( element                                 ) ,
-                            spinners ,
-                            "الاربعاء" ,
-                            "Select or deselect"
-                    ) ;
+                        findViewById ( R . id . Wednesday_Work_Hours_Text_view ) ,
+                                 findViewById ( element                                 ) ,
+                        spinners ,
+                        "الاربعاء" ,
+                        "Select or deselect"
+                    );
                     break ;
                 }
 
@@ -514,7 +316,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         spinners ,
                         "الخميس" ,
                         "Select or deselect"
-                    ) ;
+                    );
                     break ;
                 }
 
@@ -536,54 +338,20 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         spinners ,
                         "الجمعه" ,
                         "Select or deselect"
-                    ) ;
+                    );
                     break ;
                 }
             }
         }
-
-
-        Bundle extras = getIntent ( ) . getExtras ( ) ;
-
-        /*
-            هسه هون من خلال الاوبجكت extras الي عرفناه فوق من الكلاس Bundle بنشيك على المسج الي جاي النا مع
-
-            ال intent الي جابنا لهاي الشاشه اذا كانت قيمته تساوي "Add" ادخل جوا الاف وفضي هاي ال days_And_Working_Hours ال List من كل الي
-
-            فيها و الغي اي خيارات تم اختيارها من قبل عشان بدي اضيف قيم جديده غير هيك لا تعمل شي من الي داخل الاف
-
-
-
-            وشيكت على المسج اذا كانت Add او لا عشان ي منار ما بدي الي داخل الاف يتنفذ الا في حالة بدنا نضيف قيم جديده لانه احنا بندخل هاي
-
-            الشاشه للتعديل او الاضافه و كونه هاد الفنكشن مستدعيه في ال onCreate رح يتنفذ ان دحلنا لنعدل او دخلنا لنضيف لهيك لازم نشيك
-
-            على المسج اذا كانت Add يعني دخلنا لهاي الشاشه مشان نضيف وقتها نفذ الي داخل الاف
-         */
-        if ( extras . getString ( "Action" ) . equals ( "Add" ) )
-        {
-            // هون بصير بالزبط نفس الي بصير لما نضغط على زر الغاء تحديد الكل
-
-            for ( int element : days_Check_Boxes_Ids )
-            {
-                CheckBox checkBox = findViewById ( element ) ;
-                checkBox.setChecked ( false ) ;
-            }
-
-            Days_And_Working_Hours . days_And_Working_Hours . clear ( ) ;
-        }
     }
 
     // هاد الفنكشن مسؤول عن تجهيز ال check boxes و ال spinners في حالة تعديل اوقات العمل
-    public void Initialization_Days_Check_Boxes_For_Edit ( )
+    private void Initialization_Days_Check_Boxes_For_Edit ( )
     {
-
-        Bundle extras = getIntent ( ) . getExtras ( ) ;
-
         /*
-            هسه كونه انا مستدعي هاد الفنكشن في ال onCreate وكونه عنا حالتين بوصل الهم لهاي الشاشه عشان اضيف ايام و ساعات العمل
+            هسه كونه انا مستدعي هاد الفنكشن في ال onCreate وكونه عنا حالتين بوصل الهم لهاي الشاشه ايام و ساعات العمل
 
-            الاولى هي لما اجي بدي اضيف مكان عمل و بدي احط اله الساعات
+            الاولى هي لما اجي بدي اضيف مكان عمل و بدي اضيف اله ايام و ساعات العمل
 
             والثانيه هي اذا خربطت و بدي اعدل شي في ايام و ساعات العمل
 
@@ -597,15 +365,12 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
             لهيك لازم اشيك على المسج الي اجى مع ال intent الي جابنا لهاي الشاشه
 
-            وهاد الشي من خلال الاوبجكت extras الي عرفناه من الكلاس Bundle
-
-            داخل قوسين جملة ال if والي بصير انه بنشيك اذا المسج الي جاي النا مع ال intent الي جابنا لهاي الشاشه قيمته تساوي "Edit"
+           وهاد الشي بصير داخل قوسين جملة ال if والي بصير انه بنشيك اذا المسج الي جاي النا مع ال intent الي جابنا لهاي الشاشه قيمته تساوي "Edit"
 
             ادخل و نفذ الي داخل جملة ال if والي هو الي بعمله هاد الفنكشن غير هيك لا تنفذ شي من الي داخل الفنكشن
-         */
-        if ( extras . getString ( "Action" ) . equals ( "Edit" ) )
+        */
+        if ( getIntent ( ) . getExtras ( ) . getString ( "Action" ) . equals ( "Edit" ) )
         {
-
             /*
                  هون في حالة كنا بدنا نعدل الي بصير كالاتي عنا هاي spinners ال array بتخزن فيها spinners ساعات العمل لليوم الي بدنا
                  نعدل اله ساعات العمل عشان نظهرهم عشان نعدل في قيمهم
@@ -613,9 +378,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
             Spinner [ ] spinners ;
 
             /*
-                عنا هون for each ال element فيها عباره عن اوبجكت من الكلاس Days_And_Working_Hours
-
-                وهاي ال for each بتلف على List ال days_And_Working_Hours الي فيها مجموعة الاوبجكت الخاصين بكل يوم اخترناه
+                هاي ال for each بتلف على هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس الي فيها مجموعة الاوبجكت الخاصين بكل يوم اخترناه
 
                 كل واحد من هدول الاوبجكت بخص يوم من الايام الي اخترناها وكل اوبجكت فيه اسم اليوم + من الساعه الفلانيه + صباحا
 
@@ -623,32 +386,32 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
                وهي تقريبا بتشتغل نفس شغل ال for each و ال switch الي في نكشن
 
-               ال Initialization_Days_Check_Boxes_For_Select_And_Deselect_And_Add لكن هون الفرق
+               ال Initialization_Days_Check_Boxes_For_Add لكن هون الفرق
 
                انه ال case الي داخل ال switch ببتنفذ اذا كنا محددين اليوم بس يعني لو في واحد من ال case انا مش محدد اليوم الخاص فيه
 
                ما رح يتنفذ الي داخلها
 
-               والي بتعمله هاي ال for each انها لما بدنا نعدل بتجي ال for each بتمسك List ال days_And_Working_Hours
+               والي بتعمله هاي ال for each انها لما بدنا نعدل بتجي ال for each بتمسك هاي days_And_Working_Hours_Objects_List ال list
 
                وبتلف عل كل الاوبجكت الي فيها واحد واحد ليه بتعمل هيك لانه ايام و ساعات العمل الي اخترناهم عند الاضافه لاول مره اتخزنو في هاي ال List
 
                ولما بدنا نعدل بدنا يعرض النا الاختيارات الي احنا احترناها والي هي مخزنه في هاي ال List
 
-               لهيك بلف على الاوبجكت الي في List ال days_And_Working_Hours
+               لهيك بلف على الاوبجكت الي في هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس
 
-               على عكس الي بصير في فنكشن ال Initialization_Days_Check_Boxes_For_Select_And_Deselect_And_Add
+               على عكس الي بصير في فنكشن ال Initialization_Days_Check_Boxes_For_Add
 
                انه بلف على كل ال check box تاعين الايام و بعالجهم حسب المطلوب
              */
-            for ( Days_And_Working_Hours element : Days_And_Working_Hours . days_And_Working_Hours )
+            for ( Days_And_Working_Hours element : WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List )
             {
 
                 /*
-                    و هون بدل ما كنا في فنكشن ال Initialization_Days_Check_Boxes_For_Select_And_Deselect_And_Add
+                    و هون بدل ما كنا في فنكشن ال Initialization_Days_Check_Boxes_For_Add
                     بنستعمل الاسم الخاص ب check box تبع اليوم
 
-                    هون احنا بنستعمل القيمه الي مخزنه في متغير ال day الخاص بكل اوجبكت في في List ال days_And_Working_Hours
+                    هون احنا بنستعمل القيمه الي مخزنه في متغير ال day الخاص بكل اوجبكت في في هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس
 
                     يعني مثلا لو كان اول اوجبكت في هاي ال List مكتوب في ال day تبعه "السبت" وقتها رح يجي ينفذ ال case الي خاص
 
@@ -662,29 +425,29 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         /*
                            مثل ما انتي شايقه الوضع في ال cases ال 7 نفس الوضع في ال cases ال 7 في فنكشن ال
 
-                           ؛Initialization_Days_Check_Boxes_For_Select_And_Deselect_And_Add لكن الي بتخلف هو شي واحد
+                           ؛Initialization_Days_Check_Boxes_For_Add لكن الي بتخلف هو شي واحد
 
                            بس و الي هو المتغير action هون معطينه قيمه والي هي "Edit" بينما في فنكشن ال
 
-                           Initialization_Days_Check_Boxes_For_Select_And_Deselect_And_Add؛
+                           Initialization_Days_Check_Boxes_For_Add؛
 
                            اعطيناه قيمه و الي هي "Select or deselect"
 
                             هسه هون بدي اشرح الك شو لازمة المتغير الي اسمه action هسه ي منار فنكشن ال
 
-                            Initialization_Days_Check_Boxes_For_Select_And_Deselect_And_Add
+                            Initialization_Days_Check_Boxes_For_Add
 
                             وظيفته انه بجهز النا ال check boxes ال 7 الخاصين بالايام
 
-                            بحيث لو حددنا واحد من الايام يضيف النا اوبجكت خاص فيه في هاي days_And_Working_Hours ال List النا
+                            بحيث لو حددنا واحد من الايام يضيف النا اوبجكت خاص فيه في هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس
 
                             ويظهر النا spinners ساعات العمل الخاصين فيه وفي حالة شلنا التحديد عنه
 
-                            يمسح الاوبجكت الخاص فيه من هاي days_And_Working_Hours ال List
+                            يمسح الاوبجكت الخاص فيه من هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس
 
                             ويخفي النا spinners ساعات الخاصين باليوم الي حددناه
 
-                            وعشان فنكشن ال Initialization_Days_Check_Boxes_For_Select_And_Deselect_And_Add
+                            وعشان فنكشن ال Initialization_Days_Check_Boxes_For_Add
 
                              شغلته او لازمته متعلقه في تحديد و الغاء تحديد اليوم
 
@@ -695,7 +458,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
 
 
-                            اما هاد الفنكشن وظيفته هي انه بس نجي نعدل يجي على هاي days_And_Working_Hours ال List و يلف على الاوبجكت
+                            اما هاد الفنكشن وظيفته هي انه بس نجي نعدل يجي على هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس و يلف على الاوبجكت
 
                             الي داخلها ويحدد اليوم الي بخص كل اوبجكت و يظهر النا spinners ساعات الخاصين باليوم الي حددناه مع القيم الي اخترناها عشان نقدر نعدل فيها
 
@@ -713,11 +476,11 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         Initialization_Days_Check_Boxes
                         (
                             findViewById ( R . id . Saturday_Work_Hours_Text_view ) ,
-                                      findViewById ( R . id . Saturday_Check_Box            ) ,
+                                     findViewById ( R . id . Saturday_Check_Box            ) ,
                             spinners ,
                             "السبت" ,
                             "Edit"
-                        ) ;
+                        );
                         break ;
                     }
 
@@ -738,7 +501,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                             spinners ,
                             "الاحد" ,
                             "Edit"
-                        ) ;
+                        );
                         break ;
                     }
 
@@ -759,7 +522,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                             spinners ,
                             "الاثنين" ,
                             "Edit"
-                        ) ;
+                        );
                         break ;
                     }
 
@@ -776,11 +539,11 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         Initialization_Days_Check_Boxes
                         (
                             findViewById ( R . id . Tuesday_Work_Hours_Text_view ) ,
-                                      findViewById ( R . id .  Tuesday_Check_Box           ) ,
+                                     findViewById ( R . id .  Tuesday_Check_Box           ) ,
                             spinners ,
                             "الثلاثاء" ,
                             "Edit"
-                        ) ;
+                        );
                         break ;
                     }
 
@@ -797,11 +560,11 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         Initialization_Days_Check_Boxes
                         (
                             findViewById ( R . id . Wednesday_Work_Hours_Text_view ) ,
-                                      findViewById ( R . id . Wednesday_Check_Box            ) ,
+                                     findViewById ( R . id . Wednesday_Check_Box            ) ,
                             spinners ,
                             "الاربعاء" ,
                             "Edit"
-                        ) ;
+                        );
                         break ;
                     }
 
@@ -818,11 +581,11 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         Initialization_Days_Check_Boxes
                         (
                             findViewById ( R . id . Thursday_Work_Hours_Text_view ) ,
-                                      findViewById ( R . id . Thursday_Check_Box            ) ,
+                                     findViewById ( R . id . Thursday_Check_Box            ) ,
                             spinners ,
                             "الخميس" ,
                             "Edit"
-                        ) ;
+                        );
                         break ;
                     }
 
@@ -831,19 +594,19 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         spinners = new Spinner [ ]
                         {
                             findViewById ( R . id . Friday_From_Am_Or_Pm ) ,
-                            findViewById ( R . id . Friday_To_Am_Or_Pm ) ,
-                            findViewById ( R . id . Friday_From_Hour ) ,
-                            findViewById ( R . id . Friday_To_Hour )
+                            findViewById ( R . id . Friday_To_Am_Or_Pm   ) ,
+                            findViewById ( R . id . Friday_From_Hour     ) ,
+                            findViewById ( R . id . Friday_To_Hour       )
                         };
 
                         Initialization_Days_Check_Boxes
                         (
                             findViewById ( R . id . Friday_Work_Hours_Text_view ) ,
-                                      findViewById ( R . id . Friday_Check_Box            ) ,
+                                     findViewById ( R . id . Friday_Check_Box            ) ,
                             spinners ,
                             "الجمعه" ,
                             "Edit"
-                        ) ;
+                        );
                         break ;
                     }
                 }
@@ -860,7 +623,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
             الفنكشنين الي فوق والوحيد الي بدي احكي عنه و بهمني اكتر شي هو متغير ال action الي بحكي لهاد الفنكشن شو يعمل بالزبط
 
-            هلا عنا المتغير هاد في فنكشن ال Initialization_Days_Check_Boxes_For_Select_And_Deselect_And_Add
+            هلا هاد المتغير في فنكشن ال Initialization_Days_Check_Boxes_For_Add
             بنعطيه هاي القيمة "Select or deselect"
 
             اما في الفنكشن الثاني الي هو هاد Initialization_Days_Check_Boxes_For_Edit
@@ -868,7 +631,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
             هسه الي داخل جملة الاف هاد بتنفذ في حالة تم استدعاء هاد الفنكشن الي احنا فيه بواسطة هاد الفنشكن
 
-            Initialization_Days_Check_Boxes_For_Select_And_Deselect_And_Add
+            Initialization_Days_Check_Boxes_For_Add
 
            وفي هاي الحاله بتكون قيمة ال action تساوي "Select or deselect" و وقتها الفنكشن بشتغل عشان يجهز النا محتويات الشاشه لاستقبال قيم جديده
 
@@ -884,7 +647,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
             /*
                 طيب هسه هون في حالة تم استدعاء هاد الفنكشن بواسطه هاد
 
-                Initialization_Days_Check_Boxes_For_Select_And_Deselect_And_Add الفنكشن
+                Initialization_Days_Check_Boxes_For_Add الفنكشن
 
                 بتنفذ الي تحت
 
@@ -894,13 +657,13 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
                 انا بس اجي اختار ال check box تبع يوم السبت في هاي الجزئيه بالذات بيستدعي حدث تحديد ال check box الخاص بها اليوم و
 
-                يضيف اوبجكت لهاد اليوم الي اخترناه في هاي days_And_Working_Hours ال List
+                يضيف اوبجكت لهاد اليوم الي اخترناه في هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس
 
                 وكمان بظهر النا spinners ساعات العمل الخاصين فيه
 
                 اما في حالة تم الغاء تحديد يوم معين وقتها بيستدعى حدث الغاء تحديد اليوم الخاص ب check box اليوم الي تم الغاء تحديده
 
-                وبحذف النا اوبجكت اليوم الي تم الغاء تحديده من هاي days_And_Working_Hours ال List وبخفي spinners ساعات العمل الخاصين فيه
+                وبحذف النا اوبجكت اليوم الي تم الغاء تحديده من هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس وبخفي spinners ساعات العمل الخاصين فيه
              */
 
             checkBox . setOnCheckedChangeListener ( ( buttonView , isChecked ) ->
@@ -913,40 +676,52 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                     /*
                         الي بصير هون ي منار هو انه
 
-                        1- بجي على هاي days_And_Working_Hours ال List بحط فيها اوبجكت لليوم الي تم اختياره و بعطي متغير ال day
-                        لهاد الاوبجكت قيمة متغير ال day الي مبعوث هاد الفنكشن وبحط قيمة الصباحا او مساء الخاصه ب من الساعه الفلانيه و ب
+                        1- بعطي المتغيرات الي من خلالها بشيك انه حط ساعات العمل بشكل صح قيمة تساوي true ك دليل على انه الدكتور حدد واحد من الايام بس لسه ما حدد ساعات العمل تبعته صح
+
+                        2- بجي على هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس بحط فيها اوبجكت لليوم الي تم اختياره و بعطي متغير ال day
+                        لهاد الاوبجكت قيمة متغير ال day الي مبعوث لهاد الفنكشن وبحط قيمة الصباحا او مساء الخاصه ب من الساعه الفلانيه و ب
                         الى الساعه الفلانيه تساوي "ص" يعني صباحا و خليتها تساوي "ص" عشان هي القيمه الي بتكون معروضه في هدول ال
                         ؛spinner من دون دون ما نضغط على واحد منهم
 
-                        2- بظهر ال text view الي بكون مكتوب فيه ساعات العمل الي بين ال check box تبع اليوم و بين spinners ساعات
+                        3- بظهر ال text view الي بكون مكتوب فيه ساعات العمل الي بين ال check box تبع اليوم و بين spinners ساعات
                         العمل تبعين اليوم
 
-                        3- بظهر النا spinners تاعين ساعات العمل الخاصين باليوم الي اخترناه
+                        4- بظهر النا spinners تاعين ساعات العمل الخاصين باليوم الي اخترناه
                      */
 
                     Days_And_Working_Hours . is_From_Hour_Empty = true;
 
                     Days_And_Working_Hours . is_To_Hour_Empty = true ;
 
-                    Days_And_Working_Hours . days_And_Working_Hours . add ( new Days_And_Working_Hours ( day , "" , "ص" , "" , "ص" ) ) ;
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . add ( new Days_And_Working_Hours ( day , "" , "ص" , "" , "ص" ) ) ;
 
+                    //هون بظهر ال text view الي بكون مكتوب فيه ساعات العمل الي بين ال check box تبع اليوم و بين spinners ساعات العمل تبعين اليوم
                     work_Hours_Text_View . setVisibility ( View . VISIBLE ) ;
 
+                    //  هون بخفي spinners ساعات العمل الخاصين باليوم الي تم تحديده وفي كل لفه ال element بكون عباره عن ال spinner اي بدنا نظهره
                     for ( Spinner element : spinners )
                     {
-                        element.setVisibility ( View.VISIBLE ) ;
+                        element . setVisibility ( View . VISIBLE ) ;
                     }
                 }
                 else
                 {
 
                     /*
-                      هون بصير عكس الي بصير داخل الاف و هو انه اول شي شي بحذف الاوبجكت الخاص باليوم الي تم الغاء تحديده من هاي days_And_Working_Hours ال List
+                      هون بصير عكس الي بصير داخل الاف و هو انه اول بعطي المتغيرات الي من خلالها بشيك انه حط ساعات العمل
 
-                       بعدها بخفي spinners ساعات العمل و ال text view الي بكون مكتوب فيه ساعات العمل الي بين ال check box
+                      بشكل صح قيمة تساوي false غشان ااكد انه اليوم الي حدده الدكتور شال عنه التحديد و خلص ما بلزمه ثاني شي
 
-                       تبع اليوم و بين spinners ساعات العمل تبعين اليوم الخاصين باليوم الي عملنا الغاء تحديد اله و اخر
-                     */
+                      بحذف الاوبجكت الخاص باليوم الي تم الغاء تحديده من هاي days_And_Working_Hours_Objects_List ال List
+
+                      بعدها بخفي ال spinners ساعات العمل و ال text view الي بكون مكتوب فيه ساعات العمل الي بين ال check box
+
+                      تبع اليوم و بين spinners ساعات العمل تبعين اليوم الخاصين باليوم الي عملنا الغاء تحديد اله
+                    */
+
+                    Days_And_Working_Hours . is_From_Hour_Empty = false;
+
+                    Days_And_Working_Hours . is_To_Hour_Empty = false ;
 
                     // هون بنستدعي الفنكشن الي بجيب النا ال index الخاص ب اوبجكت اليوم الي بدنا نحذفه من ال List وهاد الفنكشن انا عامله في كلاس ال Days_And_Working_Hours
                     Days_And_Working_Hours . Index_Of ( day ) ;
@@ -958,15 +733,16 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
                         الي بعمله الفنكشن هو انه بخزن النا index الخاص ب اوبجكت اليوم الي بدنا نحذفه من ال List في هاد المتغير الي اسمه index
                      */
-                    Days_And_Working_Hours . days_And_Working_Hours . remove ( Days_And_Working_Hours.index ) ;
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . remove ( Days_And_Working_Hours.index ) ;
 
+                    //هون بخفي ال text view الي بكون مكتوب فيه ساعات العمل الي بين ال check box تبع اليوم و بين spinners ساعات العمل تبعين اليوم
                     work_Hours_Text_View . setVisibility ( View . GONE ) ;
 
+                    // هون بخفي spinners ساعات العمل الخاصين باليوم الي تم الغاء تحديده
                     for ( Spinner element : spinners )
                     {
-                        element.setVisibility ( View.GONE ) ;
+                        element . setVisibility ( View . GONE ) ;
                     }
-
                 }
             });
         }
@@ -977,11 +753,11 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
                 رح يتفذ الي داخل ال else و الي بصير داخل ال else هو انه اول شي
 
-                بعمل تحديد لل check box تبع اليوم الي اله اوبجكت في هاي days_And_Working_Hours ال List
+                بعمل تحديد لل check box تبع اليوم الي اله اوبجكت في هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس
 
                 ال check box تبع اليوم و بين spinners ساعات العمل تبعين اليوم الخاصين باليوم الي موجود اله اوبجكت في هاي
 
-                ؛days_And_Working_Hours ال List
+                ؛days_And_Working_Hours_Objects_List ال List
              */
 
             // هون بيختار ال check box تبع اليوم الي بدنا نعدل ساعات العمل الخاصين فيه
@@ -989,15 +765,20 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
             work_Hours_Text_View . setVisibility ( View . VISIBLE ) ;
 
+            /*
+               هاد حاطه عشان لما بدي اوصل لهاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس ما اضل
+                اقله WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List
+            */
+            WorkPlace_Data workPlace_data_Object = WorkPlace_Data . workPlace_Data_Object ;
+
             for ( Spinner element : spinners )
             {
-
                 /*
-                    هسه هاي ال for each الي بتعمله انه بتلف على ال spinners الي في array ال spinners الي بعثناها لهاد الفنكشن
+                    هسه هاي ال for each الي بتعمله انه بتلف على ال spinners الي في هاي spinners ال array الي بعثناها لهاد الفنكشن
 
                     و الي بصير فيها او الي بتعمله هو انه ي منار اول شي بتحدد index الاوبجكت الخاص باليوم الي بدنا نعدل ساعات العمل اله
 
-                    بعدها بظهر النا spinners ساعات العمل تبعين اليوم الي اله اوبجكت في هاي days_And_Working_Hours ال List
+                    بعدها بظهر النا spinners ساعات العمل تبعين اليوم الي اله اوبجكت في هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس
 
                      بعدها في عنا 4 جمل اف
 
@@ -1011,14 +792,20 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                 */
                 Days_And_Working_Hours . Index_Of ( day ) ;
 
-                element.setVisibility ( View.VISIBLE ) ;
+                element . setVisibility ( View . VISIBLE ) ;
 
                 if ( getResources ( ) . getResourceEntryName ( element . getId ( ) ) . contains ( "From_Hour" ) )
                 {
 
                     // هاد السطر بخلي ال spinner تبع من الساعه الفلانيه ياشر على الاختيار الي انا اخترته لما ضفت ساعات العمل
-                    element . setSelection ( Integer . parseInt ( Days_And_Working_Hours . days_And_Working_Hours . get ( Days_And_Working_Hours . index ) . from_Hour ) ) ;
-
+                    element . setSelection
+                    (
+                        Integer . parseInt
+                        (
+                            workPlace_data_Object . days_And_Working_Hours_Objects_List
+                            . get ( Days_And_Working_Hours . index ) . from_Hour
+                        )
+                    );
                 }
 
                 if ( getResources ( ) . getResourceEntryName ( element . getId ( ) ) . contains ( "From_Am_Or_Pm" ) )
@@ -1030,7 +817,11 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
                         الساعه الفلانيه يعرض الي ص اذا كانت القيمه ما بتساوي "ص" اعرض الي في ال spinner م
                      */
-                    if ( Days_And_Working_Hours . days_And_Working_Hours . get ( Days_And_Working_Hours . index ) . from_AM_Or_PM . equals ( "ص" ) )
+                    if
+                    (
+                        workPlace_data_Object . days_And_Working_Hours_Objects_List . get ( Days_And_Working_Hours . index )
+                        . from_AM_Or_PM . equals ( "ص" )
+                    )
                          element . setSelection ( 0 ) ;
                     else
                         element . setSelection ( 1 ) ;
@@ -1039,26 +830,207 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                 if ( getResources ( ) . getResourceEntryName ( element . getId ( ) ) . contains ( "To_Hour" ) )
                 {
                     // هاد السطر بخلي ال spinner تبع الى الساعه الفلانيه ياشر على الاختيار الي انا اخترته لما ضفت ساعات العمل
-                    element . setSelection ( Integer . parseInt ( Days_And_Working_Hours . days_And_Working_Hours . get ( Days_And_Working_Hours . index ) . to_Hour ) ) ;
+                    element . setSelection
+                    (
+                        Integer . parseInt
+                        (
+                            workPlace_data_Object . days_And_Working_Hours_Objects_List
+                            . get ( Days_And_Working_Hours . index ) . to_Hour
+                        )
+                    );
                 }
 
                 if ( getResources ( ) . getResourceEntryName ( element . getId ( ) ) . contains ( "To_Am_Or_Pm" ) )
                 {
 
                     // هون نفس الي بصير في حالة كانت ال for each ماشره على spinner الصباحا او مساء الخاص ب من الساعه الفلانيه
-                    if ( Days_And_Working_Hours . days_And_Working_Hours . get ( Days_And_Working_Hours . index ) . to_AM_Or_PM . equals ( "ص" ) )
-                    { element . setSelection ( 0 ) ; }
+                    if
+                    (
+                        workPlace_data_Object . days_And_Working_Hours_Objects_List . get ( Days_And_Working_Hours . index )
+                        . to_AM_Or_PM . equals ( "ص" )
+                    )
+                     element . setSelection ( 0 ) ;
                     else
-                    { element . setSelection ( 1 ) ; }
+                     element . setSelection ( 1 ) ;
                 }
-
             }
+        }
+    }
+
+
+    private void Snack_Bar ( String Message )
+    {
+
+        Snackbar snackbar = Snackbar . make ( binding . Constraint , Message , 7000 ) ;
+
+        snackbar . getView ( ) . setBackgroundTintList ( ColorStateList. valueOf ( ContextCompat. getColor ( this , R . color . Snack_bar_BG_Color ) ) ) ;
+
+        View snackbarView = snackbar . getView ( ) ;
+
+        TextView textView = snackbarView . findViewById ( com . google . android . material . R . id . snackbar_text ) ;
+
+        textView . setSingleLine ( false ) ;
+
+        textView . setTextColor ( ContextCompat . getColor ( this , R . color . white ) ) ;
+
+        textView . setTextSize ( 15 ) ;
+
+        textView . setTextAlignment ( View . TEXT_ALIGNMENT_CENTER ) ;
+
+        ViewGroup . MarginLayoutParams marginLayoutParams = ( ViewGroup .MarginLayoutParams ) snackbarView . getLayoutParams ( ) ;
+
+        marginLayoutParams . setMargins
+        (
+            marginLayoutParams  . leftMargin  ,
+            marginLayoutParams  . topMargin   ,
+            marginLayoutParams . rightMargin ,
+            65
+        ) ;
+
+        snackbarView . setLayoutParams ( marginLayoutParams ) ;
+
+        snackbar . show ( ) ;
+    }
+
+    // --------------- نهاية الجزء الي فيه الفنكشن الي بخصو هاد الكلاس ---------------
+
+    /**/
+
+    // --------------- بداية الجزء الي فيه الفنكشن الي بخصو الازرار في هاي الشاشه ---------------
+
+    // هاد بتفذ لما نضغط على زر الغاء تحديد الكل
+    public void DeSelect_All_Days_BTN ( View view )
+    {
+        /*
+            هون ال for each بتلف على ال id الخاصين بال check boxes الخاصين بالايام وبعمل الغاء تحديد لاي
+
+            يوم تم اختياره و يخفي ال spinners الخاصين فيه ويجهزهم لاستقبال قيمه جديده غير القيمه الي كانت فيهم و
+
+            في كل لفه ال element بتخزن فيه id الي check box الي ال for each ماشره على ال id تبعه
+        */
+        for ( int element : days_Check_Boxes_Ids )
+        {
+            /*
+                هون معرفين متغير من نوع check box و في كل لفه
+
+                بنخليه يصير نسخه عن ال check box الي ال for each ماشر على ال id تبعه
+             */
+            CheckBox checkBox = findViewById ( element ) ;
+            /*
+                هون بعد ما صار عنا نسخه من ال check box الي ال for each ماشره على ال id الخاص فيه
+
+                بنعمل اله الغاء تحديد من خلال هاد السطر الي تحت
+             */
+            checkBox . setChecked ( false ) ;
+        }
+
+        // هسه لما نعمل الغاء تحديد للكل مش من المنطقي انه الاوبجكت الخاصين بالايام الي شلنا التحديد عنها تضل في هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوبجكت الي في هاي WorkPlace_Data الكلاس
+        WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . clear ( ) ;
+    }
+
+    // هاد الفنكشن بتنفذ لما نضغط على زر تحديد الكل
+    public void SelectAllDaysBTN ( View view )
+    {
+        // هون نفس الي بصير لما نكبس على زر الغاء تحديد الكل لكن الفرق انه بحدد الكل
+        for ( int element : days_Check_Boxes_Ids )
+        {
+            CheckBox checkBox = findViewById ( element ) ;
+            checkBox . setChecked ( true ) ;
         }
 
     }
 
+    // هاد الفنكشن بيستدعى لما نضغط على زر الحفظ الخاص بحفظ ايام و ساعات العمل
+    public void Save_Days_And_Working_Hours_BTN ( View view )
+    {
+
+        // هاي ال for each وظيفتها انه تلف على كل الاوجكت الي في هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوجكت الي في هاي WorkPlace_Data الكلاس و تشيك انه ساعات العمل لكل الايام الي معمول الها اوجكت في ال list محطوطه صح
+        for ( Days_And_Working_Hours element : WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List )
+        {
+            // في كل لفه ال element بتكون قيمته تساوي الاوبجكت الي في هاي days_And_Working_Hours_Objects_List ال list الخاصه بهاد workPlace_Data_Object الاوجكت الي في هاي WorkPlace_Data الكلاس والي ال for each ماشره على ال index تبعه
+            Days_And_Working_Hours . is_From_Hour_Empty = element . from_Hour . isEmpty ( ) ;
+            Days_And_Working_Hours . is_To_Hour_Empty   = element . to_Hour   . isEmpty ( ) ;
+        }
+
+        // هاد  الشرط عشان نتاكد انه اختار اوقات العمل ليوم واحد على الاقل و عبى كل البيانات اللازمه اله غير هيك رح يظهر اله المسج الي في ال else
+        if
+        (
+            /*
+                والشرط بقول انه اذا
+                ما كانت هاي days_And_Working_Hours_Objects_List ال List الخاصه بهاد workPlace_Data_Object الاوجكت الي في هاي WorkPlace_Data الكلاس فاضيه
+                و ما كانت قيمة هاد is_From_Hour_Empty المتغير true
+                و ما كانت قيمة هاد is_To_Hour_Empty المتغير true
+
+                ادخل و نفذ الي داخل جملة الاف
+
+                واذا وحده منهم ما كانت مثل ما انا حاكي نفذ الي داخل ال else
+             */
+            ! WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . isEmpty ( ) &&
+            ! Days_And_Working_Hours . is_From_Hour_Empty &&
+            ! Days_And_Working_Hours . is_To_Hour_Empty
+        )
+        {
+            // هدول ال 3 اسطر هم نفسهم الي موجودين في فنكشن ال Save_Workplace_Data_BTN في كلاس ال Workplace_Data_Activity
+            Intent intent = getIntent ( ) ;
+            setResult ( RESULT_OK , intent ) ;
+            finish ( ) ;
+        }
+        else
+        {
+            /*
+                هسه هون داخل قوسين فنكشن ال Snack_Bar
+
+                بشيك على المسج الي جاي مع ال intent الي جابنا لهاي الشاشه اذا كان دخل
+
+                هاي الشاشه عشان يضيف ايام و ساعات العمل لاول مره رح تكون قيمة المسج
+
+                تساوي "Add" ورح يطبع اله اول مسج
+
+                غير هيك رح تكون قيمة المسج تساوي "Edit" و رح يطبع اله الجمله الثانيه
+             */
+            Snack_Bar
+            (
+                getIntent ( ) . getExtras ( ) . getString ( "Action" ) . equals ( "Add" ) ?
+                "يرجى تحديد اوقات العمل في يوم واحد على الاقل وتحديد اوقات العمل بشكل صحيح" :
+                "يرجى تعديل اوقات العمل بشكل صحيح"
+            );
+        }
+    }
 
 
+    // هاد الفنشكن بتنفذ لما نضغط على زر الرجوع الي موجود في الشاشه من تحت الي هو تاع النظام
+    @Override
+    public void onBackPressed ( )
+    {
+
+        // هون بصير نفس الي بصير داخل ال else الي في فنكشن ال Save_Days_And_Working_Hours_BTN
+
+        Snack_Bar
+        (
+            getIntent ( ) . getExtras ( ) . getString ( "Action" ) . equals ( "Add" ) ?
+
+            "لايمكنك الرجوع للخلف\n\n" +
+            "يجب تحديد اوقات العمل في يوم واحد على الاقل وتحديد اوقات العمل بشكل صحيح ثم الضغط على زر الحفظ"
+            :
+            "لايمكنك الرجوع للخلف\n\n اذا كنت لم تقم باي تعديل يمكنك الضغط على زر الحفظ للرجوع الى الشاشة السابقه \n\n" +
+            "لكن اذا قمت باي تعديل يجيب ان تقوم بتعديل اوقات العمل بالشكل الصحيح ثم قم بالضغط على زر الحفظ"
+        );
+    }
+
+    // --------------- نهاية الجزء الي فيه الفنكشن الي بخصو الازرار في هاي الشاشه ---------------
+
+
+    /* */
+
+
+
+    // --------------- بداية الجزء الي فيه الفنكشن الي بخصو ال Spinners تبعين ساعات العمل ---------------
+
+    /**/
+
+    // هدول ال 3 فنكشن هم نفسهم الي في كلاس ال Workplace_Data_Activity لكن في فرق كبير بينهم و بين الي هون ادخلي و وشوفي شو الفرق بس يجي دورهم لتشوفي شو جواتهم
+
+    /**/
 
     // هاد الفنكشن وظيفته انه يجهز الي spinners ساعات العمل كلهم مع كل الاحداث الي بتخصهم
     private void Adapters_Initialization ( )
@@ -1087,6 +1059,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
             R . id . Friday_From_Hour    , R . id . Friday_From_Am_Or_Pm    , R . id . Friday_To_Hour    , R . id . Friday_To_Am_Or_Pm
         };
 
+        // في هاي ال for each في كل لفه ال element بتكون قيمةه تساوي ال id تبع ال spinner الي for each ماشره عليه
         for ( int element : sp_ID )
         {
             // هسه اول شي بصير داخل ال for each انه بنخزن ال spinner الي ال for each ماشره على ال id تبعه في المتغير الي اسمه spinner
@@ -1134,13 +1107,14 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                 ) ;
             }
 
+            // اذا في اسطر ما في شرح قبلها معناتها انا بكون شارحها في فنكشن ال Adapter_Initialization في كلاس ال Workplace_Data_Activity
+
+
             // فيي هاد السطر بعطيه شكل النص تبع القائمه الي رح تظهر النا لما نضغط على واحد من ال spinners بغض النظر شو هو ال spinner
             adapter . setDropDownViewResource ( R . layout . spinner_drop_down_items_text ) ;
 
-            // في هاد السطر بنربط ال array الي فيها الداتا الي رح تظهر لما نضغط على واحد من ال spinners ب ال spinner
             spinner . setAdapter ( adapter ) ;
 
-            // في هاد السطر بنعمل تهيئه لحدث اختيار اشي من اي واحد من ال spinners
             spinner . setOnItemSelectedListener ( this ) ;
 
             // في هاد السطر احنا بنجهز حدث لمس اي واحد من ال spinners
@@ -1211,7 +1185,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
            وبحتاج اسم ال spinner الي تم الضغط عليه لانه ي منار
 
-           قلنا قبل انه كل يوم بتم اختياره  بنعمل اله اوبجكت في هاي days_And_Working_Hours ال List
+           قلنا قبل انه كل يوم بتم اختياره  بنعمل اله اوبجكت في هاي days_And_Working_Hours_Objects_List ال List
 
            وقلنا كل اوبجكت في هاي ال List في اله 5 متغيرات والي هن
 
@@ -1256,9 +1230,9 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
              لما قلت اله flag = true
          */
 
-        String day = !spinner_Name.isEmpty () ? spinner_Name.substring ( 0 , spinner_Name.indexOf ( "_" ) ) : "" ;
+        String day = ! spinner_Name . isEmpty ( ) ? spinner_Name . substring ( 0 , spinner_Name . indexOf ( "_" ) ) : "" ;
 
-        if ( flag)
+        if ( flag )
         {
             // طيب هسه عنا هون ال Switch داخله 7 cases كل واحد منهم بخص واحد من الايام
             switch ( day )
@@ -1276,54 +1250,53 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
                          المتغير الثاني هو عباره عن القيمه الي اخترناها من ال spinner الي ضغطنا عليه
                      */
-                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) );
+                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) ) ;
                     break ;
                 }
 
                 case "Sunday" :
                 {
                     Days_And_Working_Hours . Index_Of ( "الاحد" ) ;
-                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) );
+                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) ) ;
                     break ;
                 }
 
                 case "Monday" :
                 {
                     Days_And_Working_Hours . Index_Of ( "الاثنين" ) ;
-                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) );
+                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) ) ;
                     break ;
                 }
 
                 case "Tuesday" :
                 {
                     Days_And_Working_Hours . Index_Of ( "الثلاثاء" ) ;
-                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) );
+                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) ) ;
                     break ;
                 }
 
                 case "Wednesday" :
                 {
                     Days_And_Working_Hours . Index_Of ( "الاربعاء" ) ;
-                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) );
+                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) ) ;
                     break ;
                 }
 
                 case "Thursday" :
                 {
                     Days_And_Working_Hours . Index_Of ( "الخميس" ) ;
-                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) );
+                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) ) ;
                     break ;
                 }
 
                 case "Friday" :
                 {
                     Days_And_Working_Hours . Index_Of ( "الجمعه" ) ;
-                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) );
+                    Days_And_Working_Hours . Add_Work_Hours ( position , parent . getItemAtPosition ( position ) . toString ( ) ) ;
                     break ;
                 }
             }
         }
-
     }
 
     // هاد كمان تابع اله لكن هاد بتنفذ لما ما نختار اشي
@@ -1333,10 +1306,12 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
     }
 
+
+    // --------------- نهاية الجزء الي فيه الفنكشن الي بخصو ال Spinners تبعين ساعات العمل ---------------
+
 }
 
 
-@SuppressWarnings ( { "SpellCheckingInspection" , "RedundantSuppression" } )
 
 class Days_And_Working_Hours
 {
@@ -1361,10 +1336,6 @@ class Days_And_Working_Hours
         5- قيمة الصباحا او مساء الخاصه ب الى الساعه الفلانيه الي بنختارها من spinner تبع الصباحا او مساء الخاص ب الى الساعه الفلانيه
      */
 
-
-    // و هاي هي ال List الي هي سبب عمل هاي الكلاس
-    public static List < Days_And_Working_Hours > days_And_Working_Hours = new ArrayList < > ( ) ;
-
     // هاد المتغير بنحتاجه عشان نخزن في index اليوم بدنا نعرف ال index تبعه
     public static int index ;
 
@@ -1372,7 +1343,7 @@ class Days_And_Working_Hours
     public static boolean is_From_Hour_Empty , is_To_Hour_Empty ;
 
 
-    // هدول ال 5 هم نفسهم الي ذكرتهم لما حكيت انه كل اوبجكت في هاي days_And_Working_Hours ال List اله 5 متغيرات
+    // هدول ال 5 هم نفسهم الي ذكرتهم لما حكيت انه كل اوبجكت في هاي days_And_Working_Hours_Objects_List ال List اله 5 متغيرات
     public String from_AM_Or_PM ;
     public String to_AM_Or_PM   ;
     public String from_Hour     ;
@@ -1395,9 +1366,9 @@ class Days_And_Working_Hours
         /*
             هاد الفنكشن بستقبل منا متغير من نوع string اسمه day
 
-            جوا هاد الفنكشن عنا for each بتلف على كل الاوبجكت في هاي days_And_Working_Hours ال List
+            جوا هاد الفنكشن عنا for each بتلف على كل الاوبجكت في هاي days_And_Working_Hours_Objects_List ال List
          */
-        for ( Days_And_Working_Hours element : days_And_Working_Hours )
+        for ( Days_And_Working_Hours element : WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List )
         {
             /*
                 هون بنشيك على قيمة متغير ال day الخاص بالاوبجكت الي ال for each ماشره على ال index تبعه
@@ -1407,7 +1378,7 @@ class Days_And_Working_Hours
             if ( element . day . equals ( day ) )
             {
                 // كل الي بعمله هون هو انه بجيب index الاوبجكت الي قيمة متغير ال day تبعه تساوي قيمة متغير ال day الي مبعوث للفنكشن و بخزنه في المتغير الي في هاي الكلاس و الي اسمه index
-                index = days_And_Working_Hours . indexOf ( element ) ;
+                index = WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . indexOf ( element ) ;
                 break ;
             }
         }
@@ -1415,7 +1386,7 @@ class Days_And_Working_Hours
 
 
 
-    // هسه عنا 5 فنكشن تحت اول 4 بشتغلو نفس الشغل بالزبط لكن الفرق الوحيد بينهم انه كل واحد فيهم بستقبل قيمة واحد من المتغيرات الي بتكون موجوده داخل هاي days_And_Working_Hours ال List
+    // هسه عنا 5 فنكشن تحت اول 4 بشتغلو نفس الشغل بالزبط لكن الفرق الوحيد بينهم انه كل واحد فيهم بستقبل قيمة واحد من المتغيرات الي بتخص ساعات العمل الي بتكون موجوده داخل هاي days_And_Working_Hours_Objects_List ال List
 
 
 
@@ -1444,7 +1415,7 @@ class Days_And_Working_Hours
 
              ال index الفلاني مخزن فيه مثلا 5 و لما جيت انا قلت اله new Days_And_Working_Hours زي كاني قلت اله بدل 5 حط 6
          */
-        days_And_Working_Hours . set
+        WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . set
         (
             // هون بنجيب قيمة ال index من المتغير index الي موجود في هاد الكلاس لانه index الاوبجكت الي بدنا نبدله ب اوبجكت ثاني موجود فيه
             index ,
@@ -1453,7 +1424,7 @@ class Days_And_Working_Hours
                 هسه هون انا بقوم بنسخ داتا الاوبجكت القديم للاوبجكت الجديد و بحط فوق هاي الداتا القيمه الي جايه لهاد الفنكشن في هاد from_Hour المتغير
 
                 { 1-
-                    هاد السطر days_And_Working_Hours . get ( index ) . day
+                    هاد السطر days_And_Working_Hours_Objects_List . get ( index ) . day
 
                     بقول جيب الي القيمه المخزنه في متغير ال day الخاص بالاوبجكت الي ال index تبعه كذا و حطها كقيمة
                     لهاد لمتغير ال day الخاص بالاوبجكت الجديد الي بدي احطه محل الاوبجكت الموجود في ال index كذا
@@ -1462,21 +1433,21 @@ class Days_And_Working_Hours
                 السطر الثاني بحط القيمه الي جايه لهاد الفنكشن في المتغير from_Hour كقيمة لمتغير ال from_Hour الخاص بالاوبجكت الجديد
 
                 { 3-
-                    هاد السطر days_And_Working_Hours . get ( index ) . from_AM_Or_PM
+                    هاد السطر days_And_Working_Hours_Objects_List . get ( index ) . from_AM_Or_PM
 
                    بقول جيب الي القيمه المخزنه في متغير ال from_AM_Or_PM الخاص بالاوبجكت الي ال index تبعه كذا و حطها كقيمة
                    لهاد لمتغير ال from_AM_Or_PM الخاص بالاوبجكت الجديد الي بدي احطه محل الاوبجكت الموجود في ال index كذا
                 }
 
                 { 3-
-                    هاد السطر days_And_Working_Hours . get ( index ) . to_Hour
+                    هاد السطر days_And_Working_Hours_Objects_List . get ( index ) . to_Hour
 
                     بقول جيب الي القيمه المخزنه في متغير ال to_Hour الخاص بالاوبجكت الي ال index تبعه كذا و حطها كقيمة
                     لهاد لمتغير ال to_Hour الخاص بالاوبجكت الجديد الي بدي احطه محل الاوبجكت الموجود في ال index كذا
                 }
 
                 { 4-
-                     هاد السطر days_And_Working_Hours . get ( index ) . to_AM_Or_PM
+                     هاد السطر days_And_Working_Hours_Objects_List . get ( index ) . to_AM_Or_PM
 
                     بقول جيب الي القيمه المخزنه في متغير ال to_AM_Or_PM الخاص بالاوبجكت الي ال index تبعه كذا و حطها كقيمة
                     لهاد لمتغير ال to_AM_Or_PM الخاص بالاوبجكت الجديد الي بدي احطه محل الاوبجكت الموجود في ال index كذا
@@ -1484,11 +1455,11 @@ class Days_And_Working_Hours
              */
             new Days_And_Working_Hours
             (
-                days_And_Working_Hours . get ( index ) . day ,
+                WorkPlace_Data . workPlace_Data_Object. days_And_Working_Hours_Objects_List . get ( index ) . day ,
                 from_Hour ,
-                days_And_Working_Hours . get ( index ) . from_AM_Or_PM ,
-                days_And_Working_Hours       . get ( index ) . to_Hour ,
-                days_And_Working_Hours   . get ( index ) . to_AM_Or_PM
+                WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_AM_Or_PM ,
+                WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_Hour ,
+                WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_AM_Or_PM
             )
         ) ;
     }
@@ -1497,16 +1468,16 @@ class Days_And_Working_Hours
     public static void Set_From_AM_Or_PM ( String from_AM_Or_PM )
     {
         // هون تقريبا نفس الفنكشن الي قبل لكن هاد الفنشكن بستقبل قيمة متغير ال from_AM_Or_PM
-        days_And_Working_Hours . set
+        WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . set
         (
             index ,
             new Days_And_Working_Hours
             (
-                days_And_Working_Hours . get ( index ) . day ,
-                days_And_Working_Hours . get ( index ) . from_Hour ,
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . day ,
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_Hour ,
                 from_AM_Or_PM ,
-                days_And_Working_Hours . get ( index ) . to_Hour ,
-                days_And_Working_Hours . get ( index ) . to_AM_Or_PM
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_Hour ,
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_AM_Or_PM
             )
         ) ;
     }
@@ -1517,16 +1488,16 @@ class Days_And_Working_Hours
         // وهاد برضو نفس الشي لكن
         is_To_Hour_Empty = to_Hour . isEmpty ( ) ;
 
-        days_And_Working_Hours . set
+        WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . set
         (
             index ,
             new Days_And_Working_Hours
             (
-                days_And_Working_Hours . get ( index ) . day ,
-                days_And_Working_Hours . get ( index ) . from_Hour ,
-                days_And_Working_Hours . get ( index ) . from_AM_Or_PM ,
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . day ,
+                    WorkPlace_Data . workPlace_Data_Object. days_And_Working_Hours_Objects_List . get ( index ) . from_Hour ,
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_AM_Or_PM ,
                 to_Hour ,
-                days_And_Working_Hours . get ( index ) . to_AM_Or_PM
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_AM_Or_PM
             )
         ) ;
     }
@@ -1534,15 +1505,15 @@ class Days_And_Working_Hours
     // هاد الفنكشن وظيفته انه يستقبل منا القيمه الي بنحددها من خلال spinner صباحا او مساء الخاص ب الى الساعه الفلانيه ويضيفها في اوبجكت جديد بحتوي بقية القيم الموجوده في الاوبجكت الحالي
     public static void Set_To_AM_Or_PM ( String to_AM_Or_PM )
     {
-        days_And_Working_Hours . set
+        WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . set
         (
             index ,
             new Days_And_Working_Hours
             (
-                days_And_Working_Hours . get ( index ) . day ,
-                days_And_Working_Hours . get ( index ) . from_Hour ,
-                days_And_Working_Hours . get ( index ) . from_AM_Or_PM ,
-                days_And_Working_Hours . get ( index ) . to_Hour ,
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . day ,
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_Hour ,
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_AM_Or_PM ,
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_Hour ,
                 to_AM_Or_PM
             )
         ) ;
@@ -1587,14 +1558,14 @@ class Days_And_Working_Hours
 
                 القيمه الي اخترناها من spinner الخاص ب من الساعه الفلانيه على اوبجكت اليوم الخاص فيه في هاي
 
-                ؛days_And_Working_Hours ال List
+                ؛days_And_Working_Hours_Objects_List ال List
 
 
                غير هيك رح يكون ال spinner الي ضغطنا عليه تبع الى الساعه الفلانيه و رح يستدعي هاد Set_To_Hour من كلاس ال
 
                ؛Days_And_Working_Hours و الي بضيف القيمه الي اخترناها من spinner الخاص ب الى الساعه الفلانيه على اوبجكت اليوم الخاص فيه في هاي
 
-                ؛days_And_Working_Hours ال List
+                ؛days_And_Working_Hours_Objects_List ال List
              */
             if ( Days_And_Working_Hours_Activity . spinner_Name . contains ( "From_Hour" ) )
                 Days_And_Working_Hours . Set_From_Hour ( val ) ;
@@ -1619,7 +1590,7 @@ class Days_And_Working_Hours
 
                 النا القيمه الي اخترناها من spinner صباحا او مساء تبع من الساعه الفلانيه على اوبجكت اليوم الخاص فيه في هاي
 
-                ؛days_And_Working_Hours ال List
+                ؛days_And_Working_Hours_Objects_List ال List
 
 
 
@@ -1627,7 +1598,7 @@ class Days_And_Working_Hours
 
                 النا القيمه الي اخترناها من spinner صباحا او مساء تبع الى الساعه الفلانيه على اوبجكت اليوم الخاص فيه في هاي
 
-                ؛days_And_Working_Hours ال List
+                ؛days_And_Working_Hours_Objects_List ال List
 
              */
             if ( Days_And_Working_Hours_Activity . spinner_Name . contains ( "From_Am_Or_Pm" ) )
