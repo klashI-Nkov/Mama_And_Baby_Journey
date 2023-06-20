@@ -3,14 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
 
+    android:id="@+id/Constraint"
+
     android:orientation="vertical"
     android:gravity="center"
 
-    style="@style/screen_Background"
-    android:layout_width="match_parent"
-
-    android:layout_height="match_parent"
     android:theme="@style/screen_Background"
+    style="@style/screen_Background"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
 
     tools:context=".Create_An_Account_And_Sign_In.Info.Workplace_Data_Activity">
 
@@ -50,11 +52,11 @@
                 android:textSize="@dimen/_18sdp"
                 android:text="اضف بيانات مكان العمل"
 
-                tools:ignore="HardcodedText,TextContrastCheck" />
+                tools:ignore="HardcodedText,TextContrastCheck"/>
 
             <!-- ال spinner الخاص باختيار مكان العمل -->
             <Spinner
-                android:id="@+id/Workplace_Sp"
+                android:id="@+id/Workplace_Type_Sp"
 
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_38sdp"
@@ -69,7 +71,7 @@
                 android:textDirection="rtl"
                 android:textSize="@dimen/_15sdp"
 
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck"/>
 
             <!-- ال Edit Text الخاص باسم مكان العمل -->
             <EditText
@@ -92,7 +94,7 @@
                 android:imeOptions="actionNext"
 
                 tools:ignore="Autofill,HardcodedText,LabelFor,TextContrastCheck,SpeakableTextPresentCheck"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
             <!-- ال Edit Text الخاص بعنوان مكان العمل -->
             <EditText
@@ -114,7 +116,7 @@
                 android:imeOptions="actionNext"
 
                 tools:ignore="Autofill,HardcodedText,LabelFor,TextContrastCheck,SpeakableTextPresentCheck"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
             <!-- ال Edit Text الخاص ب رقم الهاتف -->
             <EditText
@@ -129,14 +131,14 @@
                 android:layout_marginTop="@dimen/_24sdp"
                 android:layout_marginHorizontal="@dimen/_23sdp"
 
-                android:inputType="phone"
+                android:inputType="number"
                 android:textAlignment="center"
                 android:textSize="@dimen/_15sdp"
 
                 android:imeOptions="actionDone"
 
-                tools:ignore="Autofill,HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck"
-                android:visibility="gone" />
+                tools:ignore="Autofill,HardcodedText,LabelFor,SpeakableTextPresentCheck,SpeakableTextPresentCheck,TextContrastCheck,TextFields,TouchTargetSizeCheck"
+                android:visibility="gone"/>
 
             <!-- ال Text View الخاص باحداثيات مكان العمل على الخارطه -->
             <TextView
@@ -174,7 +176,7 @@
                 android:onClick="Go_To_Map_BTN"
 
                 tools:ignore="HardcodedText"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
             <!-- ال Text View الخاص بعرض ايام و ساعات العمل -->
             <TextView
@@ -213,7 +215,7 @@
                 android:onClick="Add_Days_And_Working_Hours_BTN"
 
                 tools:ignore="HardcodedText"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
             <!-- زر حفظ بيانات مكان العمل -->
             <androidx.appcompat.widget.AppCompatButton
@@ -233,7 +235,7 @@
 
                 android:onClick="Save_Workplace_Data_BTN"
 
-                tools:ignore="HardcodedText,TouchTargetSizeCheck" />
+                tools:ignore="HardcodedText,TouchTargetSizeCheck"/>
 
         </LinearLayout>
 

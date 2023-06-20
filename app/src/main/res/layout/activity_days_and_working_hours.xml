@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
 
+    android:id="@+id/Constraint"
+
     android:orientation="vertical"
     android:gravity="center"
 
@@ -78,11 +80,13 @@
 
                     android:text="تحديد الكل "
 
+                    android:onClick="SelectAllDaysBTN"
+
                     tools:ignore="HardcodedText,TextContrastCheck" />
 
                 <!-- زر الغاء تحديد الكل -->
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/deSelect_all_days_BTN"
+                    android:id="@+id/DeSelect_all_days_BTN"
 
                     android:theme="@style/EditTextStyle2"
                     style="@style/EditTextStyle2"
@@ -93,6 +97,8 @@
                     android:layout_weight="1"
 
                     android:text="الغاء تحديد الكل"
+
+                    android:onClick="DeSelect_All_Days_BTN"
 
                     tools:ignore="HardcodedText,TextContrastCheck" />
 
@@ -1141,6 +1147,7 @@
                 android:textSize="@dimen/_15sdp"
                 android:text="حفظ"
                 android:onClick="Save_Days_And_Working_Hours_BTN"
+
                 tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
 
         </LinearLayout>

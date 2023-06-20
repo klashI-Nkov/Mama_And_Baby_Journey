@@ -17,6 +17,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MamaBabyJourney"
         tools:targetApi="31">
+        <activity
+            android:name=".Create_An_Account_And_Sign_In.Info.Days_And_Working_Hours_Activity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".Create_An_Account_And_Sign_In.Info.Workplace_Data_Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -26,33 +37,31 @@
         <activity
             android:name=".First_Screen"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <!-- Sign_Up -->
         <activity
-            android:name=".Create_An_Account_And_Sign_In.Sign_Up"
+            android:name=".Create_An_Account_And_Sign_In.Sign_Up_Activity"
             android:exported="false" />
 
         <!-- Sing_in -->
         <activity
-            android:name=".Create_An_Account_And_Sign_In.Sing_in"
-            android:exported="false"/>
+            android:name=".Create_An_Account_And_Sign_In.Sing_in_Activity"
+            android:exported="false" />
 
         <!-- Info_Activity -->
         <activity
-        android:name=".Create_An_Account_And_Sign_In.Info_Activity"
-        android:exported="false"/>
+            android:name=".Create_An_Account_And_Sign_In.Info.Doctor_Data_Activity"
+            android:exported="true" />
 
         <!-- Map -->
         <activity
-            android:name=".Create_An_Account_And_Sign_In.Map"
+            android:name=".Create_An_Account_And_Sign_In.Info.Map_Activity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
 

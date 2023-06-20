@@ -9,7 +9,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Create_An_Account_And_Sign_In.Sign_Up">
+    tools:context=".Create_An_Account_And_Sign_In.Sign_Up_Activity">
 
     <TextView
         android:id="@+id/textView1"
@@ -70,7 +70,7 @@
             android:textSize="@dimen/_17sdp"
             android:text="هل انت"
 
-            tools:ignore="HardcodedText,TextContrastCheck" />
+            tools:ignore="HardcodedText,TextContrastCheck"/>
 
         <RadioButton
             android:id="@+id/Mom_R_BTN"
@@ -87,7 +87,7 @@
             android:textSize="@dimen/_14sdp"
             android:text="أم"
 
-            tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck" />
+            tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck"/>
 
         <RadioButton
             android:id="@+id/Doctor_R_BTN"
@@ -103,7 +103,7 @@
             android:textSize="@dimen/_14sdp"
             android:text="طبيب"
 
-            tools:ignore="HardcodedText,TextSizeCheck" />
+            tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck"/>
 
     </RadioGroup>
 
@@ -131,7 +131,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize" />
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize,TextContrastCheck"/>
 
     <!--Email Edit Text-->
     <EditText
@@ -161,7 +161,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Name_Edit_text"
-        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize" />
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize,TextContrastCheck"/>
 
     <!--Password Edit Text-->
     <EditText
@@ -191,7 +191,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_Email_Edit_text"
-        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize" />
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize,TextContrastCheck"/>
 
     <!--Sing Up Button-->
     <androidx.appcompat.widget.AppCompatButton
@@ -206,17 +206,14 @@
         android:layout_marginTop="@dimen/_61sdp"
         android:layout_marginHorizontal="@dimen/_39sdp"
 
-        android:onClick="Go_to_Info"
-
         android:text="انشاء حساب"
-
         android:textSize="@dimen/_15sdp"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_password_edit_text"
-        tools:ignore="HardcodedText,TextSizeCheck,VisualLintButtonSize,VisualLintBounds" />
+        tools:ignore="HardcodedText,TextSizeCheck,VisualLintButtonSize,VisualLintBounds"/>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -244,8 +241,6 @@
             android:theme="@style/Icon_BG"
             style="@style/Icon_BG"
 
-            android:onClick="Sign_Up_By_Google"
-
             android:layout_width="@dimen/_42sdp"
             android:layout_height="@dimen/_45sdp"
 
@@ -253,7 +248,7 @@
 
             app:srcCompat="@drawable/icons_google_icon"
 
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck"/>
 
         <TextView
             android:id="@+id/textView4"
@@ -272,15 +267,13 @@
             android:textSize="@dimen/_15sdp"
             android:text="او باستخدام"
 
-            tools:ignore="HardcodedText,TextContrastCheck,TextSizeCheck" />
+            tools:ignore="HardcodedText,TextContrastCheck,TextSizeCheck"/>
 
         <ImageView
             android:id="@+id/Facebook_Icon"
 
             android:theme="@style/Icon_BG"
             style="@style/Icon_BG"
-
-            android:onClick="Sign_Up_By_Facebook"
 
             android:layout_width="@dimen/_42sdp"
             android:layout_height="@dimen/_45sdp"
@@ -289,7 +282,7 @@
 
             app:srcCompat="@drawable/icons_facebook_icon"
 
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck"/>
 
     </LinearLayout>
 

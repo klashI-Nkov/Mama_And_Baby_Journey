@@ -18,11 +18,11 @@ public class First_Screen extends AppCompatActivity
     {
         super . onCreate ( savedInstanceState ) ;
 
-        getWindow().setFlags( WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow ( ) . setFlags( WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS , WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS) ;
         Objects . requireNonNull ( getSupportActionBar ( ) ) . hide ( ) ;
 
         setContentView ( R . layout . activity_first_screen ) ;
-        Permissions ();
+        Permissions ( ) ;
     }
 
     public void Go_to_Sing_In ( View view )
@@ -37,7 +37,7 @@ public class First_Screen extends AppCompatActivity
         startActivity ( intent ) ;
     }
 
-    private void Permissions ()
+    private void Permissions ( )
     {
 
         if
@@ -46,9 +46,10 @@ public class First_Screen extends AppCompatActivity
             ActivityCompat.checkSelfPermission ( this , android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED
         )
         {
-            ActivityCompat.requestPermissions ( this , new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION } , 1 );
-            ActivityCompat.requestPermissions ( this , new String[]{ android.Manifest.permission.ACCESS_COARSE_LOCATION } , 1 );
+            ActivityCompat . requestPermissions ( this , new String [ ] { android . Manifest . permission . ACCESS_FINE_LOCATION } , 1 ) ;
+            ActivityCompat . requestPermissions ( this , new String [ ] { android . Manifest . permission . ACCESS_COARSE_LOCATION } , 1 ) ;
         }
 
     }
 }
+

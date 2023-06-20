@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/Workplace_Data_Preview_panel"
+
+        android:theme="@style/Workplace_Data_Preview_Panel_Style"
+        style="@style/Workplace_Data_Preview_Panel_Style"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="@dimen/_23sdp"
+        android:layout_marginBottom="@dimen/_23sdp"
+        android:paddingVertical="@dimen/_38sdp"
+
+        android:orientation="vertical">
+
+        <TextView
+            android:tag="Workplace Num"
+
+            android:theme="@style/No_Style"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginHorizontal="@dimen/_23sdp"
+
+            android:textAlignment="center"
+            android:textSize="@dimen/_18sdp"
+
+            tools:ignore="HardcodedText,TextContrastCheck"/>
+
+        <!-- ال Text Text الخاص باسم مكان العمل -->
+        <TextView
+            android:tag="Name Text View"
+
+            android:theme="@style/No_Style"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginHorizontal="@dimen/_23sdp"
+
+            android:textAlignment="center"
+            android:textSize="@dimen/_14sdp"
+
+            tools:ignore="HardcodedText,TextContrastCheck"/>
+
+        <!-- ال Text Text الخاص بعنوان مكان العمل -->
+        <TextView
+            android:tag="Address Text View"
+
+            android:theme="@style/No_Style"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginHorizontal="@dimen/_23sdp"
+
+            android:textAlignment="center"
+            android:textSize="@dimen/_14sdp"
+
+            tools:ignore="HardcodedText,TextContrastCheck"/>
+
+        <!-- ال Text Text الخاص ب رقم الهاتف -->
+        <TextView
+            android:tag="Phone Number Text View"
+
+            android:theme="@style/No_Style"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginHorizontal="@dimen/_23sdp"
+
+            android:textAlignment="center"
+            android:textSize="@dimen/_14sdp"
+
+            android:layoutDirection="ltr"
+
+            tools:ignore="HardcodedText,TextContrastCheck"/>
+
+        <!-- ال Text View الخاص باحداثيات مكان العمل على الخارطه -->
+        <TextView
+            android:tag="WorkPlace Location coordinates Text View"
+
+            android:theme="@style/No_Style"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginHorizontal="@dimen/_23sdp"
+
+            android:textAlignment="center"
+            android:textSize="@dimen/_14sdp"
+
+            tools:ignore="HardcodedText,TextContrastCheck"/>
+
+        <!-- ال Text View الخاص بعرض ايام و ساعات العمل -->
+        <TextView
+            android:tag="Days And Working Hours Text View"
+            android:theme="@style/No_Style"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginHorizontal="@dimen/_23sdp"
+
+            android:textAlignment="center"
+            android:textSize="@dimen/_11sdp"
+
+            tools:ignore="HardcodedText,TextContrastCheck"/>
+
+        <!-- Edit Workplace Data BTN -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:tag="Edit Workplace Data BTN"
+
+            android:theme="@style/EditTextStyle2"
+            style="@style/EditTextStyle2"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+
+            android:textSize="@dimen/_17sdp"
+
+            tools:ignore="HardcodedText,TextContrastCheck,SpeakableTextPresentCheck"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+

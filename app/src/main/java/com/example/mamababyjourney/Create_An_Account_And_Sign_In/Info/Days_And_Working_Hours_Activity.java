@@ -656,7 +656,18 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
                     Days_And_Working_Hours . is_To_Hour_Empty = true ;
 
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . add ( new Days_And_Working_Hours ( day , "" , "ص" , "" , "ص" ) ) ;
+                    Days_And_Working_Hours days_And_Working_Hours_Object = new Days_And_Working_Hours ( ) ;
+
+                    days_And_Working_Hours_Object . from_AM_Or_PM = "ص" ;
+                    days_And_Working_Hours_Object . to_AM_Or_PM   = "ص" ;
+                    days_And_Working_Hours_Object . from_Hour     = ""  ;
+                    days_And_Working_Hours_Object . to_Hour       = ""  ;
+                    days_And_Working_Hours_Object . day           = day ;
+
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . add ( days_And_Working_Hours_Object ) ;
+
+                    Days_And_Working_Hours . Index_Of ( day ) ;
+
 
                     //هون بظهر ال text view الي بكون مكتوب فيه ساعات العمل الي بين ال check box تبع اليوم و بين spinners ساعات العمل تبعين اليوم
                     work_Hours_Text_View . setVisibility ( View . VISIBLE ) ;
@@ -851,7 +862,9 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
     // --------------- نهاية الجزء الي فيه الفنكشن الي بخصو هاد الكلاس ---------------
 
+
     /**/
+
 
     // --------------- بداية الجزء الي فيه الفنكشن الي بخصو الازرار في هاي الشاشه ---------------
 
@@ -963,7 +976,9 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
     // --------------- نهاية الجزء الي فيه الفنكشن الي بخصو الازرار في هاي الشاشه ---------------
 
+
     /**/
+
 
     // --------------- بداية الجزء الي فيه الفنكشن الي بخصو ال Spinners تبعين ساعات العمل ---------------
 
@@ -1178,9 +1193,6 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
              لما قلت اله flag = true
          */
 
-        Log . d ( "Test" , spinner_Name ) ;
-
-
         if ( flag )
         {
             /*
@@ -1252,6 +1264,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                 }
             }
         }
+
     }
 
     // هاد كمان تابع اله لكن هاد بتنفذ لما ما نختار اشي
@@ -1260,7 +1273,6 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
     {
 
     }
-
 
     // --------------- نهاية الجزء الي فيه الفنكشن الي بخصو ال Spinners تبعين ساعات العمل ---------------
 
@@ -1304,15 +1316,6 @@ class Days_And_Working_Hours
     public String to_Hour       ;
     public String day           ;
 
-    // هاد ال constructor الخاص بالكلاس وظيفته انه لما اضيف اوبجكت ليوم معين يستقبل مني القيم الخاص بهاد الاوبجكت
-    public Days_And_Working_Hours ( String day , String from_Hour , String from_AM_Or_PM , String to_Hour , String to_AM_Or_PM )
-    {
-        this . from_AM_Or_PM = from_AM_Or_PM ;
-        this . to_AM_Or_PM   = to_AM_Or_PM   ;
-        this . from_Hour     = from_Hour     ;
-        this . to_Hour       = to_Hour       ;
-        this . day           = day           ;
-    }
 
     // هاد الفنكشن هو الي بخزن index اليوم الي بدنا نعرف ال index تبعه في المتغير الي اسمه index فيي هاي الكلاس
     public static void Index_Of ( String day )
@@ -1338,140 +1341,6 @@ class Days_And_Working_Hours
         }
     }
 
-
-
-    // هسه عنا 5 فنكشن تحت اول 4 بشتغلو نفس الشغل بالزبط لكن الفرق الوحيد بينهم انه كل واحد فيهم بستقبل قيمة واحد من المتغيرات الي بتخص ساعات العمل الي بتكون موجوده داخل هاي days_And_Working_Hours_Objects_List ال List
-
-
-
-
-    // هاد الفنكشن وظيفته انه يستقبل منا القيمه الي بنحددها من خلال spinner من الساعه الفلانيه ويضيفها في اوبجكت جديد بحتوي بقية القيم الموجوده في الاوبجكت الحالي
-    public static void Set_From_Hour ( String from_Hour )
-    {
-
-        // هون بنشيك اذا كانت ال from_Hour الي جايه لهاد الفنكشن فاضيه خزن في هاد is_From_Hour_Empty المتغير true اذا مش فاضيه خزن false
-        is_From_Hour_Empty = from_Hour . isEmpty ( ) ;
-
-        /*
-            هون احنا بنضيف القيمه الي استقبله هاد الفنكشن في هاد from_Hour المتغير على اوبجكت جديد مع القيم الي كانت في الاوبجكت القيدم
-            الي موجود في ال index كذا
-
-            بعدها بنحط هاد الاوبجكت مكان الاوبجكت الحالي و الي ال index تبعه كذا
-
-            و فنكشن ال set بياخد منا متغييرن الاول هو ال index الي بدنا نضيف الداتا فيه
-
-            والثاني هو الداتا الي بدنا نضيفها في هاد ال index و في حالتنا الداتا هي عباره عن اوبجكت لهيك قلت اله هيك
-            new Days_And_Working_Hours
-
-            لاني انا بتعامل مع اوبجكت من هاي الكلاس ولما اعمل set انا بعدل على محتويات index معين مش بضيف عنصر جديد
-
-            فلما اقول اله هيك new Days_And_Working_Hours زي كانه ي منار
-
-             ال index الفلاني مخزن فيه مثلا 5 و لما جيت انا قلت اله new Days_And_Working_Hours زي كاني قلت اله بدل 5 حط 6
-         */
-        WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . set
-        (
-            // هون بنجيب قيمة ال index من المتغير index الي موجود في هاد الكلاس لانه index الاوبجكت الي بدنا نبدله ب اوبجكت ثاني موجود فيه
-            index ,
-
-            /*
-                هسه هون انا بقوم بنسخ داتا الاوبجكت القديم للاوبجكت الجديد و بحط فوق هاي الداتا القيمه الي جايه لهاد الفنكشن في هاد from_Hour المتغير
-
-                { 1-
-                    هاد السطر days_And_Working_Hours_Objects_List . get ( index ) . day
-
-                    بقول جيب الي القيمه المخزنه في متغير ال day الخاص بالاوبجكت الي ال index تبعه كذا و حطها كقيمة
-                    لهاد لمتغير ال day الخاص بالاوبجكت الجديد الي بدي احطه محل الاوبجكت الموجود في ال index كذا
-                }
-
-                السطر الثاني بحط القيمه الي جايه لهاد الفنكشن في المتغير from_Hour كقيمة لمتغير ال from_Hour الخاص بالاوبجكت الجديد
-
-                { 3-
-                    هاد السطر days_And_Working_Hours_Objects_List . get ( index ) . from_AM_Or_PM
-
-                   بقول جيب الي القيمه المخزنه في متغير ال from_AM_Or_PM الخاص بالاوبجكت الي ال index تبعه كذا و حطها كقيمة
-                   لهاد لمتغير ال from_AM_Or_PM الخاص بالاوبجكت الجديد الي بدي احطه محل الاوبجكت الموجود في ال index كذا
-                }
-
-                { 3-
-                    هاد السطر days_And_Working_Hours_Objects_List . get ( index ) . to_Hour
-
-                    بقول جيب الي القيمه المخزنه في متغير ال to_Hour الخاص بالاوبجكت الي ال index تبعه كذا و حطها كقيمة
-                    لهاد لمتغير ال to_Hour الخاص بالاوبجكت الجديد الي بدي احطه محل الاوبجكت الموجود في ال index كذا
-                }
-
-                { 4-
-                     هاد السطر days_And_Working_Hours_Objects_List . get ( index ) . to_AM_Or_PM
-
-                    بقول جيب الي القيمه المخزنه في متغير ال to_AM_Or_PM الخاص بالاوبجكت الي ال index تبعه كذا و حطها كقيمة
-                    لهاد لمتغير ال to_AM_Or_PM الخاص بالاوبجكت الجديد الي بدي احطه محل الاوبجكت الموجود في ال index كذا
-                }
-             */
-            new Days_And_Working_Hours
-            (
-                WorkPlace_Data . workPlace_Data_Object. days_And_Working_Hours_Objects_List . get ( index ) . day ,
-                from_Hour ,
-                WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_AM_Or_PM ,
-                WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_Hour ,
-                WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_AM_Or_PM
-            )
-        ) ;
-    }
-
-    // هاد الفنكشن وظيفته انه يستقبل منا القيمه الي بنحددها من خلال spinner صباحا او مساء الخاص ب من الساعه الفلانيه ويضيفها في اوبجكت جديد بحتوي بقية القيم الموجوده في الاوبجكت الحالي
-    public static void Set_From_AM_Or_PM ( String from_AM_Or_PM )
-    {
-        // هون تقريبا نفس الفنكشن الي قبل لكن هاد الفنشكن بستقبل قيمة متغير ال from_AM_Or_PM
-        WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . set
-        (
-            index ,
-            new Days_And_Working_Hours
-            (
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . day ,
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_Hour ,
-                from_AM_Or_PM ,
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_Hour ,
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_AM_Or_PM
-            )
-        ) ;
-    }
-
-    // هاد الفنكشن وظيفته انه يستقبل منا القيمه الي بنحددها من خلال spinner الى الساعه الفلانيه ويضيفها في اوبجكت جديد بحتوي بقية القيم الموجوده في الاوبجكت الحالي
-    public static void Set_To_Hour ( String to_Hour )
-    {
-        // وهاد برضو نفس الشي لكن
-        is_To_Hour_Empty = to_Hour . isEmpty ( ) ;
-
-        WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . set
-        (
-            index ,
-            new Days_And_Working_Hours
-            (
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . day ,
-                    WorkPlace_Data . workPlace_Data_Object. days_And_Working_Hours_Objects_List . get ( index ) . from_Hour ,
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_AM_Or_PM ,
-                to_Hour ,
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_AM_Or_PM
-            )
-        ) ;
-    }
-
-    // هاد الفنكشن وظيفته انه يستقبل منا القيمه الي بنحددها من خلال spinner صباحا او مساء الخاص ب الى الساعه الفلانيه ويضيفها في اوبجكت جديد بحتوي بقية القيم الموجوده في الاوبجكت الحالي
-    public static void Set_To_AM_Or_PM ( String to_AM_Or_PM )
-    {
-        WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . set
-        (
-            index ,
-            new Days_And_Working_Hours
-            (
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . day ,
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_Hour ,
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_AM_Or_PM ,
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_Hour ,
-                to_AM_Or_PM
-            )
-        ) ;
-    }
 
     // هاد الفنكشن المسؤول عن تخزين ساعات العمل و مستدعيه في فنكشن ال onItemSelected في الكلاس الي فوق
     public static void Add_Work_Hours ( int position , String val )
@@ -1522,9 +1391,18 @@ class Days_And_Working_Hours
                 ؛days_And_Working_Hours_Objects_List ال List
              */
             if ( Days_And_Working_Hours_Activity . spinner_Name . contains ( "From_Hour" ) )
-                Days_And_Working_Hours . Set_From_Hour ( val ) ;
+                // Days_And_Working_Hours . Set_From_Hour ( val ) ;
+            {
+                is_From_Hour_Empty = val . isEmpty ( ) ;
+
+                WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_Hour = val ;
+            }
             else
-                Days_And_Working_Hours . Set_To_Hour   ( val   ) ;
+            {
+                is_To_Hour_Empty = val . isEmpty ( ) ;
+
+                WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_Hour = val ;
+            }
         }
 
 
@@ -1556,9 +1434,9 @@ class Days_And_Working_Hours
 
              */
             if ( Days_And_Working_Hours_Activity . spinner_Name . contains ( "From_Am_Or_Pm" ) )
-                Days_And_Working_Hours . Set_From_AM_Or_PM ( val ) ;
+                WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_AM_Or_PM = val ;
             else
-                Days_And_Working_Hours . Set_To_AM_Or_PM   ( val       ) ;
+            WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . to_AM_Or_PM = val ;
         }
 
         /*
