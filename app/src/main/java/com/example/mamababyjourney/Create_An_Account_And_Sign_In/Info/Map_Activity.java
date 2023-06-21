@@ -36,7 +36,7 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.List;
 
-@SuppressWarnings ( { "unused" , "ConstantConditions" , "SpellCheckingInspection" } )
+@SuppressWarnings ( { "unused" , "deprecation" , "ConstantConditions" , "SpellCheckingInspection" } )
 
 @SuppressLint ( "MissingPermission" )
 

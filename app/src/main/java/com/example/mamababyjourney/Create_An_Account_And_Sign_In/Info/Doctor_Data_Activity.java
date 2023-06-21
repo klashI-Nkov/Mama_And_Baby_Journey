@@ -19,7 +19,7 @@ import android.view.View;
 import android.os.Bundle;
 import java.util.List;
 
-@SuppressWarnings ( { "deprecation" , "ConstantConditions" } )
+@SuppressWarnings ( { "deprecation" , "ConstantConditions" , "SpellCheckingInspection" } )
 @SuppressLint ( {"InflateParams" , "SetTextI18n" } )
 public class Doctor_Data_Activity extends AppCompatActivity
 {
@@ -42,8 +42,6 @@ public class Doctor_Data_Activity extends AppCompatActivity
         عمل جديد رح تزيد قيمته في الفاير بيس بعدها تزيد قيمته هون في التطبيق
     */
     public static int id = 1 ;
-
-
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -402,6 +400,7 @@ public class Doctor_Data_Activity extends AppCompatActivity
 
 }
 
+@SuppressWarnings ( "SpellCheckingInspection" )
 class Firebase_Functions_Class
 {
 

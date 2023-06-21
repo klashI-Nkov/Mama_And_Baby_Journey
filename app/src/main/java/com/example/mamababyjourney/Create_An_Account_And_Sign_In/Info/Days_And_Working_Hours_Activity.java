@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import android.content.res.ColorStateList;
 import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.ViewTreeObserver;
 import com.example.mamababyjourney.R;
 import android.widget.ArrayAdapter;
@@ -22,13 +21,11 @@ import android.os.Bundle;
 import java.util.Objects;
 import android.view.View;
 
-@SuppressWarnings ( { "ConstantConditions"} )
+@SuppressWarnings ( { "ConstantConditions" , "SpellCheckingInspection" } )
 @SuppressLint ( "ClickableViewAccessibility" )
 
 public class Days_And_Working_Hours_Activity extends AppCompatActivity implements AdapterView . OnItemSelectedListener
 {
-
-    int x ;
 
     ActivityDaysAndWorkingHoursBinding binding ;
 
@@ -1280,6 +1277,8 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
 }
 
+
+@SuppressWarnings ( { "RedundantSuppression" , "SpellCheckingInspection" , "SuspiciousIndentation" } )
 
 class Days_And_Working_Hours
 {

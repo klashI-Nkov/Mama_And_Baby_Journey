@@ -211,6 +211,8 @@
         android:text="انشاء حساب"
         android:textSize="@dimen/_15sdp"
 
+        android:onClick="Sing_Up_BTN"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintEnd_toEndOf="parent"

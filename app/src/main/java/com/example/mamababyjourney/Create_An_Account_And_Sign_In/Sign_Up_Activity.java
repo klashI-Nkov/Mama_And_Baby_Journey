@@ -2,30 +2,25 @@ package com.example.mamababyjourney.Create_An_Account_And_Sign_In;
 
 import com.example.mamababyjourney.Create_An_Account_And_Sign_In.Info.Doctor_Data_Activity;
 import com.example.mamababyjourney.databinding.ActivitySignUpBinding;
+import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.core.content.ContextCompat;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.annotation.SuppressLint;
 import com.example.mamababyjourney.R;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.content.Intent;
+import android.view.MotionEvent;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.content.Intent;
+import android.view.View;
 import java.util.Objects;
 import android.os.Bundle;
 
-@SuppressWarnings ( { "StatementWithEmptyBody" , "deprecation" } )
-@SuppressLint ( { "WrongConstant" , "ShowToast", "ClickableViewAccessibility" , "SuspiciousIndentation" } )
-
+@SuppressWarnings ( { "RedundantSuppression" , "SpellCheckingInspection" , "deprecation" } )
+@SuppressLint ( "ClickableViewAccessibility" )
 public class Sign_Up_Activity extends AppCompatActivity
 {
 
@@ -65,8 +60,6 @@ public class Sign_Up_Activity extends AppCompatActivity
         }
     }
 
-
-
     /*
         هاد الفنكشن صح انه جديد لكن هو وحده الجديد اما الاكواد الي جواته قديمه والجديد في الموضوع انه الاكواد الي داخله
         كانت تتنفذ عند حدث الضغط الخاص بالشي الي انا كاتب اله الكود
@@ -89,24 +82,9 @@ public class Sign_Up_Activity extends AppCompatActivity
             {
                 // هون بقله اذا المسخدم مش محدد شو صفته ادخل الاف و عطل انشاء الحساب باستخدام قوقل اما اذا حدد فعادي خليه يستعمله
                 if ( !binding.MomRBTN.isChecked ( ) && !binding.DoctorRBTN.isChecked ( ) )
-                 Snack_Bar ( "يرجى تحديد صفتك قبل الانتقال الي  الصفحه التاليه" );
-                else
-                {
-
-                }
+                 Snack_Bar ( "يرجى تحديد صفتك قبل المتابعه" ) ;
             }
             return false ;
-        } );
-
-        // هاد بتنفذ عند لمس ال Radio Button تاع الدكتورو ظيفته انه يفعل زر انشاء الحساب بعد ما تعطل لما الدكتور كبس عليه بدون ما يحدد صفته
-        binding . DoctorRBTN . setOnTouchListener ( ( v , event ) ->
-        {
-            if ( event . getAction ( ) == MotionEvent.ACTION_DOWN )
-            {
-                binding . DoctorRBTN . setChecked ( true ) ;
-                binding . singUpBTN . setEnabled ( true ) ;
-            }
-            return false;
         } );
 
         // هاد مربوط مع ايقونة التسجيل بواسطة قوقل و ظيفته انه يفعل زر انشاء الحساب بعد ما تعطل لما الام او الدكتور كبسو عليه بدون ما يحددو الصفه
@@ -116,7 +94,7 @@ public class Sign_Up_Activity extends AppCompatActivity
             {
                 // هون بقله اذا المسخدم مش محدد شو صفته ادخل الاف و عطل انشاء الحساب باستخدام قوقل اما اذا حدد فعادي خليه يستعمله
                 if ( ! binding . MomRBTN . isChecked ( ) && ! binding . DoctorRBTN . isChecked ( ) )
-                    Snack_Bar ( "يرجى تحديد صفتك قبل الانتقال الي  الصفحه التاليه" );
+                    Snack_Bar ( "يرجى تحديد صفتك قبل المتابعه" ) ;
                 else
                 {
 
@@ -125,44 +103,25 @@ public class Sign_Up_Activity extends AppCompatActivity
             return false;
         } );
 
-        // هاد بتنفذ عند لمس زر انشاء الحساب و وظفيته انه ينقل المستخدم للشاشه الي بعد شاشة انشاء الحساب
-        binding . singUpBTN . setOnTouchListener ( ( v , event ) ->
+    }
+
+    // هاد بتنفذ عند لما نكبس على زر انشاء الحساب و وظفيته انه ينقل المستخدم للشاشه الي بعد شاشة انشاء الحساب
+    public void Sing_Up_BTN ( View view )
+    {
+        /*
+            هون في حالة المستخدم لما يسجل باستعمال الايميل كان ام او طبيب لو ما حدد صفته رح بعرض اله
+
+            مسج انه لازم يحدد صفته قبل ما يكمل اما اذا كان محدد فعادي بخليه يكمل من دون اي مشاكل
+        */
+        if ( ! binding . MomRBTN . isChecked ( ) && ! binding . DoctorRBTN . isChecked ( ) )
+            Snack_Bar ( "يرجى تحديد صفتك قبل المتابعه" ) ;
+
+        // هون كونه بس الام مطلوب منها الاسم بس فما رح يكون في الها بيانات تعبيها لهيك حاكي اله اذا المستخدم كان دكتور انقله لشاشة البيانات عشان يعبي البيانات اللازمه
+        if ( binding . DoctorRBTN . isChecked ( ) )
         {
-            if ( event . getAction ( ) == MotionEvent.ACTION_DOWN )
-            {
-                /*
-                    هون في حالة المستخدم لما يسجل باستعمال الايميل كان ام او طبيب لو ما حدد صفته يعطل زر انشاء الحساب و ما يخليه قادر يكمل للشاشه الي
-                    بعدها وبعرض اله مسج انه لازم يحدد صفته قبل ما يكمل اما اذا كان محدد فعادي بخليه يكمل من دون اي مشاكل
-                */
-                if ( ! binding . MomRBTN . isChecked ( ) && ! binding . DoctorRBTN . isChecked ( ) )
-                {
-                    binding . singUpBTN . setEnabled ( false ) ;
-                    Snack_Bar ( "يرجى تحديد صفتك قبل الانتقال الي  الصفحه التاليه" );
-                }
-                else
-                binding . singUpBTN . setEnabled ( true ) ;
-
-                // هون كونه بس الام مطلوب منها الاسم بس فما رح يكون في الها بيانات تعبيها لهيك حاكي اله اذا المستخدم كان دكتور انقله لشاشة البيانات عشان يعبي البيانات اللازمه
-                if ( binding . DoctorRBTN . isChecked ( ) )
-                {
-                    Intent intent = new Intent ( this , Doctor_Data_Activity . class ) ;
-                    startActivity ( intent ) ;
-                }
-            }
-            return false;
-        } );
-
-        // هاد بتنفذ عند لمس ال Radio Button تاع الام و ظيفته انه يفعل زر انشاء الحساب بعد ما تعطل لما الام كبست عليه بدون من تحدد صفتها
-        binding . MomRBTN . setOnTouchListener ( ( v , event ) ->
-        {
-            if ( event . getAction ( ) == MotionEvent.ACTION_DOWN )
-            {
-                binding . MomRBTN . setChecked ( true ) ;
-                binding . singUpBTN . setEnabled ( true ) ;
-            }
-            return false;
-        } );
-
+            Intent intent = new Intent ( this , Doctor_Data_Activity . class ) ;
+            startActivity ( intent ) ;
+        }
     }
 
     private void Snack_Bar ( String Message )
@@ -197,6 +156,4 @@ public class Sign_Up_Activity extends AppCompatActivity
 
         snackbar . show ( ) ;
     }
-
-
 }

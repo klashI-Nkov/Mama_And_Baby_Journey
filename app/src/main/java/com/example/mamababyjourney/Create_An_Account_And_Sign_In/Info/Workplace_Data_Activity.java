@@ -23,8 +23,9 @@ import java.util.Objects;
 import java.util.List;
 import java.util.Map;
 
-@SuppressLint ( {"SetTextI18n" } )
-@SuppressWarnings ( { "deprecation" , "ConstantConditions" , "unchecked" } )
+@SuppressLint ( { "SetTextI18n" , "SuspiciousIndentation" } )
+@SuppressWarnings ( { "deprecation" , "ConstantConditions" , "unchecked" , "SpellCheckingInspection" } )
+
 public class Workplace_Data_Activity extends AppCompatActivity implements AdapterView . OnItemSelectedListener
 {
 
@@ -945,7 +946,8 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
 }
 
 
-@SuppressWarnings ( { "unused" , "SpellCheckingInspection" } )
+@SuppressLint ( "SuspiciousIndentation" )
+@SuppressWarnings ( "unused" )
 class WorkPlace_Data
 {
 
