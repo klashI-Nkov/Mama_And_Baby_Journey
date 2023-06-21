@@ -28,6 +28,8 @@ import android.view.View;
 public class Days_And_Working_Hours_Activity extends AppCompatActivity implements AdapterView . OnItemSelectedListener
 {
 
+    int x ;
+
     ActivityDaysAndWorkingHoursBinding binding ;
 
     // هاد المتغير انا مستعمله عشان اخزن فيه اسم ال spinner الي بنضعط عليه عشان نختار منه لقدام بتعرفي شو لازمته
