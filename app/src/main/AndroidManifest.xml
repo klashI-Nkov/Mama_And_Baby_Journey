@@ -17,10 +17,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MamaBabyJourney"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC01PNmd-_3bqJ3nH8mDcFQfTykoKjxRFo" />
+
+        <!-- Days And Working Hours Activity -->
         <activity
             android:name=".Create_An_Account_And_Sign_In.Info.Days_And_Working_Hours_Activity"
             android:exported="false"/>
 
+        <!-- Workplace Data Activity -->
         <activity
             android:name=".Create_An_Account_And_Sign_In.Info.Workplace_Data_Activity"
             android:exported="false">
@@ -28,10 +35,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC01PNmd-_3bqJ3nH8mDcFQfTykoKjxRFo" />
 
         <!-- First_Screen -->
         <activity
@@ -54,7 +57,7 @@
             android:name=".Create_An_Account_And_Sign_In.Sing_in_Activity"
             android:exported="false" />
 
-        <!-- Info_Activity -->
+        <!-- Doctor Data Activity -->
         <activity
             android:name=".Create_An_Account_And_Sign_In.Info.Doctor_Data_Activity"
             android:exported="true" />

@@ -1346,7 +1346,7 @@ class Days_And_Working_Hours
     public static void Add_Work_Hours ( int position , String val )
     {
 
-        // ملاحظه متغير ال spinner_Name و متغير ال flag هدول انا معرفهم في الكلاس الي فوق والي هي هاي Days_And_Working_Hours_Activity لهيك اذا انك ملاحظه اني كاتب اسم هاي الكلاس قبلهم
+        // ملاحظه متغير ال spinner_Name و متغير ال flag هدول انا معرفهم في الكلاس الي فوق والي هي هاي Days_And_Working_Hours_Activity لهيك اذا انك ملاحظه اني كاتب اسم هاي Days_And_Working_Hours_Activity الكلاس قبلهم
 
         /*
             طيب ي منار في هاد الفنكشن عنا جملتين if الاولى بتتفذ اذا كان ال spinner الي ضغطت عليه بخص من الساعه الفلانيه او بخص الى الساعه الفلانيه
@@ -1377,21 +1377,41 @@ class Days_And_Working_Hours
             /*
                 هسه اذا كان اسم ال spinner بحتوي هاد المقطع "From_Hour" معناته ال spinner الي ضغطنا عليه هو spinner خاص ب من الساعه
 
-                الفلانيه وقتها رح يدخل جوا الاف و يستدعي فنكشن Set_From_Hour من كلاس ال Days_And_Working_Hours و الي بضيف
+                الفلانيه وقتها رح يدخل جوا الاف ويشيك اذا القيمه الي جايه لهاد الفنكشن من ال spinner تبع من الساعه الفلانيه في المتغير val فاضيه ولا لا اذا كانت فاضيه رح يحط في هاد is_From_Hour_Empty
 
-                القيمه الي اخترناها من spinner الخاص ب من الساعه الفلانيه على اوبجكت اليوم الخاص فيه في هاي
+                المتغير true كدليل على انه القيمه الي بدها تنحط في متغير ال from_Hour الخاص ب اوبجكت اليوم الي حددنا قيمة من الساعه الفلانيه اله و الي موجود في
 
-                ؛days_And_Working_Hours_Objects_List ال List
+                هاي days_And_Working_Hours_Objects_List ال List الخاصه بهاد workPlace_Data_Object الاوبجكت والي موجود في هاد WorkPlace_Data الكلاس قيمه غير صحيحه و ما
+
+                 بزبط تنحط في هاد from_Hour المتغير الخاص ب اوبجكت اليوم الي حددنا قيمة من الساعه الفلانيه اله و الي موجود في
+
+                هاي days_And_Working_Hours_Objects_List ال List الخاصه بهاد workPlace_Data_Object الاوبجكت والي موجود في هاد WorkPlace_Data الكلاس
 
 
-               غير هيك رح يكون ال spinner الي ضغطنا عليه تبع الى الساعه الفلانيه و رح يستدعي هاد Set_To_Hour من كلاس ال
 
-               ؛Days_And_Working_Hours و الي بضيف القيمه الي اخترناها من spinner الخاص ب الى الساعه الفلانيه على اوبجكت اليوم الخاص فيه في هاي
+                 اما اذا ما كانت فاضيه رح يحط في هاد is_From_Hour_Empty
 
-                ؛days_And_Working_Hours_Objects_List ال List
+                المتغير false كدليل على انه القيمه الي بدها تنحط في متغير ال from_Hour الخاص ب اوبجكت اليوم الي حددنا قيمة من الساعه الفلانيه اله و الي موجود في
+
+                هاي days_And_Working_Hours_Objects_List ال List الخاصه بهاد workPlace_Data_Object الاوبجكت والي موجود في هاد WorkPlace_Data الكلاس قيمه صحيحه
+
+                وبزبط تنحط في هاد from_Hour المتغير الخاص ب اوبجكت اليوم الي حددنا قيمة من الساعه الفلانيه اله و الي موجود في
+
+                هاي days_And_Working_Hours_Objects_List ال List الخاصه بهاد workPlace_Data_Object الاوبجكت والي موجود في هاد WorkPlace_Data الكلاس يحط القيمه الي اخترناها من spinner الخاص ب من الساعه الفلانيه والي جايه لهاد الفنكين في المتغير الي اسمه val
+
+
+                 بعدها بحط في هاد from_Hour المتغير تبع من الساعه الفلانيه الخاص ب اوبجكت اليوم الي حددنا اله قيمة من الساعه الفلانيه اله و الي موجود في
+
+                هاي days_And_Working_Hours_Objects_List ال List الخاصه بهاد workPlace_Data_Object الاوبجكت والي موجوده في هاد WorkPlace_Data الكلاس
+
+                القيمه الي جايه لهاد الفنكشن من ال spinner تبع من الساعه الفلانيه في المتغير val
+
+
+
+                غير هيك رح يكون ال spinner الي ضغطنا عليه تبع الى الساعه الفلانيه و رح يدخل جوا ال else ويعمل نفس الي بعمله لو كان ال spinner الي ضغطنا عليها تبع الى الساعه
+                الفلانيه ورح يتعامل مع متغير ال to_Hour و متغير ال is_To_Hour_Empty
              */
             if ( Days_And_Working_Hours_Activity . spinner_Name . contains ( "From_Hour" ) )
-                // Days_And_Working_Hours . Set_From_Hour ( val ) ;
             {
                 is_From_Hour_Empty = val . isEmpty ( ) ;
 
@@ -1418,20 +1438,18 @@ class Days_And_Working_Hours
             /*
                 هون داخل قوسين الاف بشيك اذا كان ال spinner الي ضغطنا عليه هو spinner صباحا او مساء تبع من الساعه الفلانيه
 
-                اذا كان هيك رح يستدعي النا فنشكن ال  Set_From_AM_Or_PM من كلاس ال Days_And_Working_Hours والي بضيف
+                اذا كان هيك رح بحط في هاد from_AM_Or_PM المتغير تبع صباحا او مساء تبع من الساعه الفلانيه الخاص ب اوبجكت اليوم الي حددنا اله قيمة صباحا او مساء تبع من الساعه الفلانيه اله و الي موجود في
 
-                النا القيمه الي اخترناها من spinner صباحا او مساء تبع من الساعه الفلانيه على اوبجكت اليوم الخاص فيه في هاي
+                هاي days_And_Working_Hours_Objects_List ال List الخاصه بهاد workPlace_Data_Object الاوبجكت والي موجوده في هاد WorkPlace_Data الكلاس
 
-                ؛days_And_Working_Hours_Objects_List ال List
+                القيمه الي جايه لهاد الفنكشن من ال spinner تبع صباحا او مساء تبع من الساعه الفلانيه الفلانيه في المتغير val
 
 
+                غير هيك رح يدخل جوا ال else و يعمل نفس الي بعمله في داخل الاف لكن رح يكون ال spinner الي ضغطنا عليه تبع صباحا او مساء تبع الى الساعه الفلانيه ورح يتعامل
 
-                غير هيك رح يستدعي النا فنشكن ال  Set_To_AM_Or_PM من كلاس ال Days_And_Working_Hours والي بضيف
+                مع متغير ال to_AM_Or_PM ع صباحا او مساء تبع الى الساعه الفلانيه الخاص ب اوبجكت اليوم الي حددنا اله قيمة صباحا او مساء تبع من الساعه الفلانيه اله و الي موجود في
 
-                النا القيمه الي اخترناها من spinner صباحا او مساء تبع الى الساعه الفلانيه على اوبجكت اليوم الخاص فيه في هاي
-
-                ؛days_And_Working_Hours_Objects_List ال List
-
+                هاي days_And_Working_Hours_Objects_List ال List الخاصه بهاد workPlace_Data_Object الاوبجكت والي موجوده في هاد WorkPlace_Data الكلاس
              */
             if ( Days_And_Working_Hours_Activity . spinner_Name . contains ( "From_Am_Or_Pm" ) )
                 WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . get ( index ) . from_AM_Or_PM = val ;

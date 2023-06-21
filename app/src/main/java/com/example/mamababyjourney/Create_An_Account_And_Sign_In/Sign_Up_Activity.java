@@ -3,20 +3,28 @@ package com.example.mamababyjourney.Create_An_Account_And_Sign_In;
 import com.example.mamababyjourney.Create_An_Account_And_Sign_In.Info.Doctor_Data_Activity;
 import com.example.mamababyjourney.databinding.ActivitySignUpBinding;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.annotation.SuppressLint;
 import com.example.mamababyjourney.R;
+import com.google.android.material.snackbar.Snackbar;
+
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.content.Intent;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Objects;
 import android.os.Bundle;
 
-@SuppressWarnings ( { "StatementWithEmptyBody" , "CommentedOutCode" , "deprecation" } )
-@SuppressLint ( { "WrongConstant" , "ShowToast", "ClickableViewAccessibility" } )
+@SuppressWarnings ( { "StatementWithEmptyBody" , "deprecation" } )
+@SuppressLint ( { "WrongConstant" , "ShowToast", "ClickableViewAccessibility" , "SuspiciousIndentation" } )
 
 public class Sign_Up_Activity extends AppCompatActivity
 {
@@ -81,7 +89,7 @@ public class Sign_Up_Activity extends AppCompatActivity
             {
                 // هون بقله اذا المسخدم مش محدد شو صفته ادخل الاف و عطل انشاء الحساب باستخدام قوقل اما اذا حدد فعادي خليه يستعمله
                 if ( !binding.MomRBTN.isChecked ( ) && !binding.DoctorRBTN.isChecked ( ) )
-                 Toast.makeText ( this , "يرجى تحديد صفتك قبل الانتقال الي  الصفحه التاليه" , Toast.LENGTH_LONG ).show ( ) ;
+                 Snack_Bar ( "يرجى تحديد صفتك قبل الانتقال الي  الصفحه التاليه" );
                 else
                 {
 
@@ -108,7 +116,7 @@ public class Sign_Up_Activity extends AppCompatActivity
             {
                 // هون بقله اذا المسخدم مش محدد شو صفته ادخل الاف و عطل انشاء الحساب باستخدام قوقل اما اذا حدد فعادي خليه يستعمله
                 if ( ! binding . MomRBTN . isChecked ( ) && ! binding . DoctorRBTN . isChecked ( ) )
-                Toast . makeText ( this , "يرجى تحديد صفتك قبل الانتقال الي  الصفحه التاليه" , Toast . LENGTH_LONG ) . show ( ) ;
+                    Snack_Bar ( "يرجى تحديد صفتك قبل الانتقال الي  الصفحه التاليه" );
                 else
                 {
 
@@ -129,7 +137,7 @@ public class Sign_Up_Activity extends AppCompatActivity
                 if ( ! binding . MomRBTN . isChecked ( ) && ! binding . DoctorRBTN . isChecked ( ) )
                 {
                     binding . singUpBTN . setEnabled ( false ) ;
-                    Toast . makeText ( this , "يرجى تحديد صفتك قبل الانتقال الي  الصفحه التاليه" , Toast . LENGTH_LONG ) . show ( ) ;
+                    Snack_Bar ( "يرجى تحديد صفتك قبل الانتقال الي  الصفحه التاليه" );
                 }
                 else
                 binding . singUpBTN . setEnabled ( true ) ;
@@ -155,6 +163,39 @@ public class Sign_Up_Activity extends AppCompatActivity
             return false;
         } );
 
+    }
+
+    private void Snack_Bar ( String Message )
+    {
+
+        Snackbar snackbar = Snackbar . make ( binding . Constraint , Message , 7000 ) ;
+
+        snackbar . getView ( ) . setBackgroundTintList ( ColorStateList . valueOf ( ContextCompat. getColor ( this , R . color . Snack_bar_BG_Color ) ) ) ;
+
+        View snackbarView = snackbar . getView ( ) ;
+        TextView textView = snackbarView . findViewById ( com . google . android . material . R . id . snackbar_text ) ;
+
+        textView . setSingleLine ( false ) ;
+
+        textView . setTextColor ( ContextCompat . getColor ( this , R . color . white ) ) ;
+
+        textView . setTextSize ( 15 ) ;
+
+        textView . setTextAlignment ( View . TEXT_ALIGNMENT_CENTER ) ;
+
+        ViewGroup . MarginLayoutParams marginLayoutParams = ( ViewGroup.MarginLayoutParams ) snackbarView . getLayoutParams ( ) ;
+
+        marginLayoutParams . setMargins
+        (
+            marginLayoutParams  . leftMargin  ,
+            marginLayoutParams  . topMargin   ,
+            marginLayoutParams . rightMargin ,
+            65
+        ) ;
+
+        snackbarView . setLayoutParams ( marginLayoutParams ) ;
+
+        snackbar . show ( ) ;
     }
 
 

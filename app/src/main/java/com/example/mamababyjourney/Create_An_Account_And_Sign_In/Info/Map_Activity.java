@@ -309,7 +309,12 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
 
            في حالة المستخدم بطل بده الدبوس الي حطه باستعمال فنكشن setOnMapLongClickListener و صار بده يتحرك لمكان ثاني
          */
-        mMap . setOnMapClickListener ( latLng -> mMap . clear ( ) ) ;
+        mMap . setOnMapClickListener ( latLng ->
+        {
+            mMap . clear ( ) ;
+            longitude = 0 ;
+            latitude  = 0 ;
+        }) ;
 
         // هاد الفنكشن بستدعى لما اضل ضاغط ضغطه طويله على الخارطه
         mMap . setOnMapLongClickListener ( latLng ->
