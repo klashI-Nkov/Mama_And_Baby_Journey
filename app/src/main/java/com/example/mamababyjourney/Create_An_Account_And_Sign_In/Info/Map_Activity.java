@@ -59,16 +59,6 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
     // هدول عشان اخزن فيهم احداثيات مكان العمل
     private double longitude = 0 , latitude = 0 ;
 
-    /*
-        طبعا هاد غني عن التعريف و هو الي بربط كود الجافا بالتصميم ما بده شرح على ما اعتقد اذا حابه تعرفي عنه معلومات اكثر انسخي
-        السطر كامل و روحي ل chat gpt  واكتبي اله بالحرف الواحد
-
-        شرح لكل شي في هذا السطر بالتفصيل الممل و ماذا يفعل هذا السطر بالتفصيل الممل بعدها حطي السطر
-
-        هيك بتحكي اليه بالحرف الواحد اذا حابه تعرفي معلومات اكثر عنه
-
-        ونفس الشي ممكن تعمليه مع اي سطر في الكود ما فهمتيه من شرحي
-     */
     private ActivityMapBinding binding ;
 
     private GoogleMap mMap ;
