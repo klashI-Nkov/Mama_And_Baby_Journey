@@ -46,12 +46,12 @@ public class Doctor_Data_Activity extends AppCompatActivity
     @Override
     protected void onCreate ( Bundle savedInstanceState )
     {
-        super . onCreate (savedInstanceState ) ;
+        super . onCreate ( savedInstanceState ) ;
 
         getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS , WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
         Objects . requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
 
-        binding = ActivityDoctorDataBinding . inflate (getLayoutInflater ( ) ) ;
+        binding = ActivityDoctorDataBinding . inflate ( getLayoutInflater ( ) ) ;
 
         setContentView ( binding . getRoot ( ) ) ;
 
@@ -119,7 +119,7 @@ public class Doctor_Data_Activity extends AppCompatActivity
          */
         intent . putExtra ("Action" ,"Add" ) ;
 
-        startActivityForResult (intent ,1 ) ;
+        startActivityForResult ( intent ,1 ) ;
     }
 
     // --------------- نهاية الجزء الي فيه الفنكشن الي بخصو الازرار في هاي الشاشه ---------------
@@ -214,11 +214,11 @@ public class Doctor_Data_Activity extends AppCompatActivity
 
                         بعد ما اضيف اللوحه الي عملتها بحيث يكونو تحتها والي بعمله هدول السطرين الي تحت انهم بحذفو هدول الازرار
                     */
-                    parlLayout . removeView (save_Doctor_Data_BTN ) ;
                     parlLayout . removeView (add_Workplace_BTN    ) ;
+                    parlLayout . removeView (save_Doctor_Data_BTN ) ;
 
                     // هون بستدعي الفنكشن الي بعبي الي بيانات مكان العمل في اللوحه
-                    WorkPlace_Preview_panel_Initialization (childLayout ,data ) ;
+                    WorkPlace_Preview_panel_Initialization ( childLayout , data ) ;
 
                     // هون بعطي اللوحه tag يعتبر مثل ال id عشان اقدر اوصل الها لما احتاجها
                     childLayout . setTag ( "WorkPlace Number " + id ) ;
@@ -232,7 +232,7 @@ public class Doctor_Data_Activity extends AppCompatActivity
                          اما اذا كان في اكثر من لوحه وحده ادخل جوا ال else
                     */
                     if ( views . size ( ) == 1 )
-                        parlLayout . addView (childLayout ) ;
+                        parlLayout . addView ( childLayout ) ;
                     else
                     {
 
@@ -243,7 +243,7 @@ public class Doctor_Data_Activity extends AppCompatActivity
 
                             بصير عشان ي منار يجو مرتبين يعني اول شي بجي عندك لوحة مكان العمل 1 بعدها لوحة مكان العمل 2 و هيك للاخر
                          */
-                        for ( View element : views)
+                        for ( View element : views )
                         {
                             parlLayout . removeView (element ) ;
                             parlLayout . addView    (element ) ;
@@ -257,7 +257,7 @@ public class Doctor_Data_Activity extends AppCompatActivity
                     // و اخر شي بصير هاد السطر الي بغير ال text الي في زر اضافة مكان العمل من "اضافة مكان العمل" ل "اضافة مكان عمل اخر" عشان افهم الدكتور انه لسه عنده امكانيه انه يضيف مكان عمل ثاني غير المكان الي اضافه اول مره
                     binding . AddWorkplaceBTN . setText ( "اضافة مكان عمل اخر" ) ;
 
-                    Firebase_Functions_Class . Add_workPlace_Data_Object (WorkPlace_Data . workPlace_Data_Object ,id ) ;
+                    Firebase_Functions_Class . Add_workPlace_Data_Object ( WorkPlace_Data . workPlace_Data_Object ,id ) ;
 
                     break ;
                 }
@@ -327,9 +327,9 @@ public class Doctor_Data_Activity extends AppCompatActivity
     private void WorkPlace_Preview_panel_Initialization (View childLayout ,Intent data )
     {
 
-        WorkPlace_Data workPlace_data_Object = WorkPlace_Data . workPlace_Data_Object ;
+        WorkPlace_Data workPlace_Data_Object = WorkPlace_Data . workPlace_Data_Object ;
 
-        String workPlace_Type = workPlace_data_Object . workPlace_Type ;
+        String workPlace_Type = workPlace_Data_Object . workPlace_Type ;
 
 
         /*
@@ -346,11 +346,11 @@ public class Doctor_Data_Activity extends AppCompatActivity
 
         // هون بحط اسم العياده او المشفى الخ...
         textView = childLayout . findViewWithTag ("Name Text View" ) ;
-        textView . setText ( "اسم " + workPlace_Type + " : " + workPlace_data_Object . workPlace_Name ) ;
+        textView . setText ( "اسم " + workPlace_Type + " : " + workPlace_Data_Object . workPlace_Name ) ;
 
         // هون بحط عنوان العياده او المشفى الخ...
         textView = childLayout . findViewWithTag ("Address Text View" ) ;
-        textView . setText ( "عنوان " + workPlace_Type + " : " + workPlace_data_Object . workPlace_Address ) ;
+        textView . setText ( "عنوان " + workPlace_Type + " : " + workPlace_Data_Object . workPlace_Address ) ;
 
         // هون بحط رقم الهاتف
         textView = childLayout . findViewWithTag ("Phone Number Text View" ) ;
@@ -359,15 +359,15 @@ public class Doctor_Data_Activity extends AppCompatActivity
             // هون بصير نفس الي بصير في ال Case رقم ال 2 في فنكشن ال onActivityResult
             workPlace_Type . equals ( "العيادة" ) ?
 
-            "رقم هاتف العيادة" + " : " + workPlace_data_Object . phoneNumber
+            "رقم هاتف العيادة" + " : " + workPlace_Data_Object . phoneNumber
             :
-            "رقم الهاتف"       + " : " + workPlace_data_Object . phoneNumber
+            "رقم الهاتف"       + " : " + workPlace_Data_Object . phoneNumber
         );
 
 
         // هون بحط احداثيات مكان العمل
         textView = childLayout . findViewWithTag ("WorkPlace Location coordinates Text View" ) ;
-        textView . setText ( "احداثيات مكان " + workPlace_Type + " التي حددتها هي" + "\n\n" + workPlace_data_Object . latitude + " , " + workPlace_data_Object . longitude ) ;
+        textView . setText ( "احداثيات مكان " + workPlace_Type + " التي حددتها هي" + "\n\n" + workPlace_Data_Object . latitude + " , " + workPlace_Data_Object . longitude ) ;
 
 
         // هون بحط ايام و ساعات العمل
@@ -377,22 +377,20 @@ public class Doctor_Data_Activity extends AppCompatActivity
         AppCompatButton button = childLayout . findViewWithTag ("Edit Workplace Data BTN" ) ;
         button . setTag ( "Edit Workplace Data BTN " + id ) ;
 
-
         button . setText ( "تعديل بيانات " + workPlace_Type ) ;
 
         button . setOnClickListener ( V ->
         {
 
             int id = Integer . parseInt
-            (button . getTag ( ) . toString ( ) . substring ( button . getTag ( ) . toString ( ) . length ( ) - 1 ) ) ;
+            ( button . getTag ( ) . toString ( ) . substring ( button . getTag ( ) . toString ( ) . length ( ) - 1 ) ) ;
 
             Intent intent = new Intent (this , Workplace_Data_Activity . class ) ;
             intent . putExtra ("Action" ,"Edit" ) ;
             intent . putExtra ("Id"     ,id     ) ;
 
-            startActivityForResult (intent ,2 ) ;
+            startActivityForResult ( intent ,2 ) ;
         });
-
     }
 
 
@@ -429,7 +427,7 @@ class Firebase_Functions_Class
 
         HashMap < String , Object > data = new HashMap < > ( ) ;
         data . put ( "workPlace Data Object Number " + id , workPlace_Data_Object ) ;
-        db . collection ( "A" ) . document ( "C" ) . update ( data ) ;
+        db . collection ("A" ) . document ("C" ) . update ( data ) ;
     }
 
     // هاد انا مستدعيه في فنكشن ال onCreate وكل الي بعمله هو انه اول ما تفتح الشاشه الي احنا فيها يفضي الفاير بيس من اي بيانات لاي مكان عمل تمت اضافته
@@ -450,7 +448,7 @@ class Firebase_Functions_Class
         FirebaseFirestore db = FirebaseFirestore . getInstance ( ) ;
 
         HashMap < String , Object > id = new HashMap < > ( ) ;
-        id . put ( "id" , ++ Doctor_Data_Activity .id ) ;
-        db . collection ( "A" ) . document ( "C" ) . update ( id ) ;
+        id . put ( "id" , ++ Doctor_Data_Activity . id  ) ;
+        db . collection ("A" ) . document ("C" ) . update (id ) ;
     }
 }
