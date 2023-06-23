@@ -52,10 +52,10 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
     {
         super . onCreate ( savedInstanceState ) ;
 
-        getWindow ( ) . setFlags ( WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
-        Objects . requireNonNull ( getSupportActionBar ( ) ) . hide ( ) ;
+        getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
+        Objects . requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
 
-        binding = ActivityDaysAndWorkingHoursBinding . inflate ( getLayoutInflater ( ) ) ;
+        binding = ActivityDaysAndWorkingHoursBinding . inflate (getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
 
         Adapters_Initialization ( ) ;
@@ -189,7 +189,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                     Initialization_Days_Check_Boxes
                     (
                         findViewById ( R . id . Saturday_Work_Hours_Text_view ) ,
-                         findViewById ( element                                ) ,
+                                 findViewById ( element                                ) ,
                         spinners ,
                         "السبت",
                         "Select or deselect"
@@ -322,7 +322,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                     Initialization_Days_Check_Boxes
                     (
                         findViewById ( R . id . Friday_Work_Hours_Text_view ) ,
-                         findViewById ( element                              ) ,
+                                 findViewById ( element                              ) ,
                         spinners ,
                         "الجمعه" ,
                         "Select or deselect"
@@ -651,9 +651,8 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         4- بظهر النا spinners تاعين ساعات العمل الخاصين باليوم الي اخترناه
                      */
 
-                    Days_And_Working_Hours . is_From_Hour_Empty = true;
-
-                    Days_And_Working_Hours . is_To_Hour_Empty = true ;
+                    Days_And_Working_Hours . is_From_Hour_Empty = true ;
+                    Days_And_Working_Hours . is_To_Hour_Empty   = true ;
 
                     Days_And_Working_Hours days_And_Working_Hours_Object = new Days_And_Working_Hours ( ) ;
 
@@ -702,7 +701,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
                         الي بعمله الفنكشن هو انه بخزن النا index الخاص ب اوبجكت اليوم الي بدنا نحذفه من ال List في هاد المتغير الي اسمه index
                      */
-                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . remove ( Days_And_Working_Hours . index ) ;
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List . remove (Days_And_Working_Hours . index ) ;
 
                     //هون بخفي ال text view الي بكون مكتوب فيه ساعات العمل الي بين ال check box تبع اليوم و بين spinners ساعات العمل تبعين اليوم
                     work_Hours_Text_View . setVisibility ( View . GONE ) ;
