@@ -54,7 +54,7 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
         getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
         Objects . requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
 
-        binding = ActivityWorkplaceDataBinding . inflate (getLayoutInflater ( ) ) ;
+        binding = ActivityWorkplaceDataBinding . inflate ( getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
 
         /*
@@ -94,8 +94,8 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
 
                 بعدها بستدعي الفنكشن الي بجيب الي بيانات مكان العمل الي بدي اعدل في بياناته من الفايربيس
             */
-            id = getIntent ( ) . getExtras ( ) . getInt ( "Id" ) ;
-            Get_workPlace_Data_Object (  id );
+            id = getIntent ( ) . getExtras ( ) . getInt ("Id" ) ;
+            Get_workPlace_Data_Object (id ) ;
         }
 
         Adapter_Initialization ( ) ;
@@ -574,13 +574,13 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
             // هاي ال array انا مخزن فيها ال id الخاصين بمكونات الشاشه عشان اظهرها لحتى اعرض فيها الداتا الي اجت من الفايربيس
             View [ ] screen_Components =
             {
-                findViewById ( R . id . Days_And_Working_Hours_Text_View ) ,
-                findViewById ( R . id . Add_Days_And_Working_Hours_BTN   ) ,
-                findViewById ( R . id . WorkPlace_location_coordinates   ) ,
-                findViewById ( R . id . WorkPlace_Address                ) ,
-                findViewById ( R . id . WorkPlace_Name                   ) ,
-                findViewById ( R . id . Phone_Number                     ) ,
-                findViewById ( R . id . Go_to_Map_BTN                    )
+                findViewById (R . id . Days_And_Working_Hours_Text_View ) ,
+                findViewById (R . id . Add_Days_And_Working_Hours_BTN   ) ,
+                findViewById (R . id . WorkPlace_location_coordinates   ) ,
+                findViewById (R . id . WorkPlace_Address                ) ,
+                findViewById (R . id . WorkPlace_Name                   ) ,
+                findViewById (R . id . Phone_Number                     ) ,
+                findViewById (R . id . Go_to_Map_BTN                    )
             };
 
             // هاد نفس الي في فنكشن ال onActivityResult في ال case رقم 2
