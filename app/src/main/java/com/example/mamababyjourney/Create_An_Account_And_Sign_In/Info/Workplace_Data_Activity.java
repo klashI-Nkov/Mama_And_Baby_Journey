@@ -338,10 +338,6 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
                 case 2 :
                 {
 
-                    /*
-                        هون بعرف اوبجكت من هاي WorkPlace_Data الكلاس و بخليه يساوي قيمة الاوبجكت الي في هاي WorkPlace_Data الكلاس و الي اسمه
-                        workPlace_data_Object عشان لما بدي اوصل لواحد من متغيرات الاوبجكت اضل ال قله WorkPlace_Data . workPlace_Data_Object
-                    */
                     WorkPlace_Data workPlace_data_Object = WorkPlace_Data . workPlace_Data_Object ;
 
                     // هون اول شي بعمله بغير ال النص الي معروض في ال text view الي بنعرض فيه ايام و ساعات العمل من "قم باضافة ايام و ساعات العمل" ل "ايام و ساعات العمل"

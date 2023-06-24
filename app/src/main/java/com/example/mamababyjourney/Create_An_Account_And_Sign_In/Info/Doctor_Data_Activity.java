@@ -267,12 +267,19 @@ public class Doctor_Data_Activity extends AppCompatActivity
                 {
                     int id = data . getExtras ( ) . getInt ( "Id" ) ;
 
+                    /*
+                        هون بعرف اوبجكت من هاي WorkPlace_Data الكلاس و بخليه يساوي قيمة الاوبجكت الي في هاي WorkPlace_Data الكلاس و الي اسمه
+
+                        ؛workPlace_data_Object عشان لما بدي اوصل لواحد من متغيرات الاوبجكت اضل ال قله WorkPlace_Data . workPlace_Data_Object
+                    */
                     WorkPlace_Data workPlace_data_Object = WorkPlace_Data . workPlace_Data_Object ;
 
+                    // هون بعرف هاد workPlace_Type المتغير و بخيله يساوي هاد workPlace_Type المتغير الخاص بهاد workPlace_data_Object الاوبجكت الي في هاي الكلاس
                     String workPlace_Type = workPlace_data_Object . workPlace_Type ;
 
                     TextView textView ;
-                    View childLayout = binding . par . findViewWithTag ("WorkPlace Number " + ( id ) ) ;
+
+                    View childLayout = binding . par . findViewWithTag ("WorkPlace Number " +  id  ) ;
 
                     // هون بحط اسم العياده او المشفى الخ...
                     textView = childLayout . findViewWithTag ("Name Text View" ) ;

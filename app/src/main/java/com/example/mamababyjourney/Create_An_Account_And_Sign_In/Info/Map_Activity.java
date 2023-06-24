@@ -59,9 +59,9 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
     // هدول عشان اخزن فيهم احداثيات مكان العمل
     private double longitude = 0 , latitude = 0 ;
 
-    private ActivityMapBinding binding ;
-
     private GoogleMap mMap ;
+
+    private ActivityMapBinding binding ;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -132,8 +132,8 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
 
                 كنا بنرسل داتا للخارطه اما في هاد الفنكشن احنا بنرجع داتا لكلاس Workplace_Data_Activity
              */
-            intent . putExtra ( "latitude" , latitude ) ;
-            intent . putExtra ( "longitude" , longitude ) ;
+            intent . putExtra ( "longitude" ,longitude ) ;
+            intent . putExtra ( "latitude"  ,latitude  ) ;
 
             setResult ( RESULT_OK , intent ) ;
             finish ( ) ;
@@ -274,7 +274,7 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
         if (  latitude != 0  &&  longitude != 0  )
         {
             LatLng loc = new LatLng ( latitude , longitude ) ;
-            mMap . addMarker ( new MarkerOptions ( ) . position ( loc ) ) ;
+            mMap . addMarker  ( new MarkerOptions ( ) . position ( loc ) ) ;
             mMap . moveCamera ( CameraUpdateFactory . newLatLngZoom ( loc , 17 ) ) ;
         }
         else
@@ -286,7 +286,6 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
             {
                 if ( location != null )
                 {
-
                     LatLng Locat = new LatLng ( location . getLatitude ( ) , location . getLongitude ( ) ) ;
                     mMap . moveCamera ( CameraUpdateFactory . newLatLngZoom ( Locat , 17 ) ) ;
                 }

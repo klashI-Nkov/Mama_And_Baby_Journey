@@ -101,7 +101,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
          */
         Spinner [ ] spinners ;
 
-        for (  int element : days_Check_Boxes_Ids )
+        for ( int element : days_Check_Boxes_Ids )
         {
             /*
                 هسه الي داخل قوسين ال switch
@@ -758,7 +758,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
 
                 element . setVisibility ( View . VISIBLE ) ;
 
-                if ( getResources ( ) . getResourceEntryName ( element . getId ( ) ) . contains ( "From_Hour" ) )
+                if ( getResources ( ) . getResourceEntryName (element . getId ( ) ) . contains ( "From_Hour" ) )
                 {
 
                     // هاد السطر بخلي ال spinner تبع من الساعه الفلانيه ياشر على الاختيار الي انا اخترته لما ضفت ساعات العمل
@@ -771,7 +771,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                     );
                 }
 
-                if ( getResources ( ) . getResourceEntryName ( element . getId ( ) ) . contains ( "From_Am_Or_Pm" ) )
+                if ( getResources ( ) . getResourceEntryName (element . getId ( ) ) . contains ( "From_Am_Or_Pm" ) )
                 {
                     /*
                         هسه كونه صباحا او مساء ما باخد غير قيمتين ف الي بعمله هون هو اني بشيك اذا كان قيمة صباحا او مساء
@@ -790,7 +790,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                         element . setSelection ( 1 ) ;
                 }
 
-                if ( getResources ( ) . getResourceEntryName ( element . getId ( ) ) . contains ( "To_Hour" ) )
+                if ( getResources ( ) . getResourceEntryName (element . getId ( ) ) . contains ( "To_Hour" ) )
                 {
                     // هاد السطر بخلي ال spinner تبع الى الساعه الفلانيه ياشر على الاختيار الي انا اخترته لما ضفت ساعات العمل
                     element . setSelection
@@ -802,7 +802,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                     );
                 }
 
-                if ( getResources ( ) . getResourceEntryName ( element . getId ( ) ) . contains ( "To_Am_Or_Pm" ) )
+                if ( getResources ( ) . getResourceEntryName (element . getId ( ) ) . contains ( "To_Am_Or_Pm" ) )
                 {
 
                     // هون نفس الي بصير في حالة كانت ال for each ماشره على spinner الصباحا او مساء الخاص ب من الساعه الفلانيه
