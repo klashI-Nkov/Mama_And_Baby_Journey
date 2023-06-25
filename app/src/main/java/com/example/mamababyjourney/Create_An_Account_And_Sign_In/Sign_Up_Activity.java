@@ -2,6 +2,7 @@ package com.example.mamababyjourney.Create_An_Account_And_Sign_In;
 
 import com.example.mamababyjourney.Create_An_Account_And_Sign_In.Info.Doctor_Data_Activity;
 import com.example.mamababyjourney.databinding.ActivitySignUpBinding;
+import com.example.mamababyjourney.mother_section.Mother_Activity;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -120,6 +121,13 @@ public class Sign_Up_Activity extends AppCompatActivity
         if ( binding . DoctorRBTN . isChecked ( ) )
         {
             Intent intent = new Intent ( this , Doctor_Data_Activity . class ) ;
+            startActivity ( intent ) ;
+        }
+
+        else if ( binding . MomRBTN . isChecked ( ) )
+        {
+            Intent intent = new Intent (this , Mother_Activity. class ) ;
+
             startActivity ( intent ) ;
         }
     }

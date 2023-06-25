@@ -17,10 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MamaBabyJourney"
         tools:targetApi="31">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC01PNmd-_3bqJ3nH8mDcFQfTykoKjxRFo" />
+
+
+        <activity
+            android:name="com.example.mamababyjourney.mother_section.Mother_Activity"
+            android:exported="true"
+            android:label="@string/title_activity_mother"
+            android:theme="@style/Theme.MamaBabyJourney.NoActionBar" />
 
         <!-- Days And Working Hours Activity -->
         <activity

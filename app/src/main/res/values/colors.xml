@@ -26,6 +26,10 @@
     <color name="R_B_T_C_L">#73000000</color>
     <color name="R_B_T_C_N">#A2FFFFFF</color>
 
+    <!-- this colors below it is for drawer background color -->
+    <color name="Drawer_Background_Color_L">#0D0E0E0E</color>
+    <color name="Drawer_Background_Color_N">#1CFFFFFF</color>
+
 
     <color name="c1">#fbe3b2</color>
     <color name="c2">#f5e3d9</color>
