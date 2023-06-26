@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -17,21 +18,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MamaBabyJourney"
         tools:targetApi="31">
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC01PNmd-_3bqJ3nH8mDcFQfTykoKjxRFo" />
 
-
         <activity
             android:name="com.example.mamababyjourney.mother_section.Mother_Activity"
             android:exported="true"
-            android:label="@string/title_activity_mother"
-            android:theme="@style/Theme.MamaBabyJourney.NoActionBar" />
+            android:label="@string/title_activity_mother" />
 
         <!-- Days And Working Hours Activity -->
         <activity
             android:name=".Create_An_Account_And_Sign_In.Info.Days_And_Working_Hours_Activity"
-            android:exported="false"/>
+            android:exported="false" />
 
         <!-- Workplace Data Activity -->
         <activity
@@ -78,7 +78,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>

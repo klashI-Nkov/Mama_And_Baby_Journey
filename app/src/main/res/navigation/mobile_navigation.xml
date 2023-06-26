@@ -18,10 +18,11 @@
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_doctors_and_clinics" />
 
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.mamababyjourney.mother_section.screens.Advices"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_advices" />
+    <activity
+        android:id="@+id/f"
+        android:name="com.example.mamababyjourney.mother_section.screens.kids_page.Kids_Home"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/activity_kids_home"
+    />
 
 </navigation>

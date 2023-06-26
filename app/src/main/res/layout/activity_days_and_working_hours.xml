@@ -52,7 +52,7 @@
                 android:textSize="@dimen/_18sdp"
                 android:text="ايام و ساعات العمل"
 
-                tools:ignore="HardcodedText,TextContrastCheck,TextSizeCheck" />
+                tools:ignore="HardcodedText,TextContrastCheck,TextSizeCheck"/>
 
             <!-- ازرار تحديد الكل و الغاء تحديد الكل -->
             <LinearLayout
@@ -82,7 +82,7 @@
 
                     android:onClick="SelectAllDaysBTN"
 
-                    tools:ignore="HardcodedText,TextContrastCheck" />
+                    tools:ignore="HardcodedText,TextContrastCheck"/>
 
                 <!-- زر الغاء تحديد الكل -->
                 <androidx.appcompat.widget.AppCompatButton
@@ -100,7 +100,7 @@
 
                     android:onClick="DeSelect_All_Days_BTN"
 
-                    tools:ignore="HardcodedText,TextContrastCheck" />
+                    tools:ignore="HardcodedText,TextContrastCheck"/>
 
             </LinearLayout>
 
@@ -128,7 +128,7 @@
 
                         android:layout_weight="1"
                         android:text="السبت"
-                        tools:ignore="HardcodedText,TextContrastCheck" />
+                        tools:ignore="HardcodedText,TextContrastCheck"/>
 
                     <!-- Work Hours Text view -->
                     <TextView
@@ -146,7 +146,7 @@
 
 
                         tools:ignore="HardcodedText"
-                        android:visibility="gone" />
+                        android:visibility="gone"/>
 
                     <!-- من الساعة -->
                     <TableRow
@@ -171,7 +171,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -187,7 +187,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -214,7 +214,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -231,7 +231,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -250,7 +250,7 @@
 
                         android:layout_weight="1"
 
-                        android:background="?attr/stroke_color" />
+                        android:background="?attr/stroke_color"/>
 
                 </TableLayout>
 
@@ -273,7 +273,7 @@
                         android:layout_weight="1"
                         android:text="الأحد"
 
-                        tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
+                        tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck"/>
 
                     <!-- Work Hours Text view -->
                     <TextView
@@ -291,7 +291,7 @@
 
 
                         tools:ignore="HardcodedText"
-                        android:visibility="gone" />
+                        android:visibility="gone"/>
 
                     <!-- من الساعة -->
                     <TableRow
@@ -316,7 +316,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -332,7 +332,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -359,7 +359,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -376,7 +376,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -395,7 +395,7 @@
 
                         android:layout_weight="1"
 
-                        android:background="?attr/stroke_color" />
+                        android:background="?attr/stroke_color"/>
 
                 </TableLayout>
 
@@ -418,7 +418,7 @@
                         android:layout_weight="1"
                         android:text="الاثنين"
 
-                        tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
+                        tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck"/>
 
                     <!-- Work Hours Text view -->
                     <TextView
@@ -436,7 +436,7 @@
 
 
                         tools:ignore="HardcodedText"
-                        android:visibility="gone" />
+                        android:visibility="gone"/>
 
                     <!-- من الساعة -->
                     <TableRow
@@ -461,7 +461,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -478,7 +478,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -505,7 +505,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -522,7 +522,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -541,7 +541,7 @@
 
                         android:layout_weight="1"
 
-                        android:background="?attr/stroke_color" />
+                        android:background="?attr/stroke_color"/>
 
                 </TableLayout>
 
@@ -564,7 +564,7 @@
                         android:layout_weight="1"
                         android:text="الثلاثاء"
 
-                        tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
+                        tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck"/>
 
                     <!-- Work Hours Text view -->
                     <TextView
@@ -582,7 +582,7 @@
 
 
                         tools:ignore="HardcodedText"
-                        android:visibility="gone" />
+                        android:visibility="gone"/>
 
                     <!-- من الساعة -->
                     <TableRow
@@ -607,7 +607,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -624,7 +624,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -651,7 +651,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -668,7 +668,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -687,7 +687,7 @@
 
                         android:layout_weight="1"
 
-                        android:background="?attr/stroke_color" />
+                        android:background="?attr/stroke_color"/>
 
                 </TableLayout>
 
@@ -710,7 +710,7 @@
                         android:layout_weight="1"
                         android:text="الأربعاء"
 
-                        tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
+                        tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck"/>
 
                     <!-- Work Hours Text view -->
                     <TextView
@@ -728,7 +728,7 @@
 
 
                         tools:ignore="HardcodedText"
-                        android:visibility="gone" />
+                        android:visibility="gone"/>
 
                     <!-- من الساعة -->
                     <TableRow
@@ -753,7 +753,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -770,7 +770,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -797,7 +797,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -814,7 +814,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -833,7 +833,7 @@
 
                         android:layout_weight="1"
 
-                        android:background="?attr/stroke_color" />
+                        android:background="?attr/stroke_color"/>
 
                 </TableLayout>
 
@@ -856,7 +856,7 @@
                         android:layout_weight="1"
                         android:text="الخميس"
 
-                        tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
+                        tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck"/>
 
                     <!-- Work Hours Text view -->
                     <TextView
@@ -874,7 +874,7 @@
 
 
                         tools:ignore="HardcodedText"
-                        android:visibility="gone" />
+                        android:visibility="gone"/>
 
                     <!-- من الساعة -->
                     <TableRow
@@ -899,7 +899,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -916,7 +916,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TooManyViews,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -943,7 +943,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -960,7 +960,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -979,7 +979,7 @@
 
                         android:layout_weight="1"
 
-                        android:background="?attr/stroke_color" />
+                        android:background="?attr/stroke_color"/>
 
                 </TableLayout>
 
@@ -1002,7 +1002,7 @@
                         android:layout_weight="1"
                         android:text="الجمعه"
 
-                        tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck,VisualLintButtonSize" />
+                        tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck,VisualLintButtonSize"/>
 
                     <!-- Work Hours Text view -->
                     <TextView
@@ -1020,7 +1020,7 @@
 
 
                         tools:ignore="HardcodedText"
-                        android:visibility="gone" />
+                        android:visibility="gone"/>
 
                     <!-- من الساعة -->
                     <TableRow
@@ -1045,7 +1045,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -1062,7 +1062,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -1089,7 +1089,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <!-- AM Or PM -->
                         <Spinner
@@ -1106,7 +1106,7 @@
                             android:spinnerMode="dialog"
 
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                     </TableRow>
 
@@ -1125,7 +1125,7 @@
 
                         android:layout_weight="1"
 
-                        android:background="?attr/stroke_color" />
+                        android:background="?attr/stroke_color"/>
 
                 </TableLayout>
 
@@ -1148,7 +1148,7 @@
                 android:text="حفظ"
                 android:onClick="Save_Days_And_Working_Hours_BTN"
 
-                tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck" />
+                tools:ignore="HardcodedText,TextContrastCheck,TouchTargetSizeCheck"/>
 
         </LinearLayout>
 

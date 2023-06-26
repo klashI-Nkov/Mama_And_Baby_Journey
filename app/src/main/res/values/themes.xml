@@ -47,6 +47,7 @@
     </style>
 
 
+
     <!-- ل ال Edit text و ال Buttons في شاشة تعبة البيانات وال 2 الي بعده كمان لشاشة البيانات -->
     <style name="EditTextStyle2">
         <item name="android:textColor">#73000000</item>
@@ -68,6 +69,8 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+
+
     <!-- هاد لمربع البحث الي في الخارطة -->
     <style name="Map_Search_Edit_Text_Style">
         <item name="android:textColor">@color/white</item>
@@ -80,16 +83,6 @@
         <item name="android:background">@drawable/shapes_workplace_data_preview_panel_shape</item>
         <item name="BG">#0D0E0E0E</item>
         <item name="stroke_color">#140E0E0E</item>
-    </style>
-
-    <style name="Drawer_Style">
-        <item name="android:textColor">#73000000</item>
-        <item name="android:background">#0D0E0E0E</item>
-    </style>
-
-    <style name="Theme.MamaBabyJourney.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>

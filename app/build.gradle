@@ -86,6 +86,7 @@ dependencies
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
 
     testImplementation 'junit:junit:4.13.2'

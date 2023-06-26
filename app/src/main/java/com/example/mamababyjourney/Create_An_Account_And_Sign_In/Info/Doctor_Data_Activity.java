@@ -48,7 +48,7 @@ public class Doctor_Data_Activity extends AppCompatActivity
     {
         super . onCreate ( savedInstanceState ) ;
 
-        getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS , WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
+        getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
         Objects . requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
 
         binding = ActivityDoctorDataBinding . inflate ( getLayoutInflater ( ) ) ;
