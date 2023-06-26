@@ -85,5 +85,10 @@
         <item name="stroke_color">#140E0E0E</item>
     </style>
 
+    <style name="Theme.MamaBabyJourney.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>
 

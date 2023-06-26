@@ -26,6 +26,7 @@
         <activity
             android:name="com.example.mamababyjourney.mother_section.Mother_Activity"
             android:exported="true"
+            android:theme="@style/Theme.MamaBabyJourney.NoActionBar"
             android:label="@string/title_activity_mother" />
 
         <!-- Days And Working Hours Activity -->

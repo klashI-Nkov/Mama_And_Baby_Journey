@@ -32,8 +32,8 @@ public class Sign_Up_Activity extends AppCompatActivity
     {
         super . onCreate ( savedInstanceState ) ;
 
-        getWindow ( ) . setFlags ( WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS , WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
-        Objects . requireNonNull ( getSupportActionBar ( ) ) . hide ( ) ;
+        getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
+        Objects . requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
 
         binding = ActivitySignUpBinding . inflate ( getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
