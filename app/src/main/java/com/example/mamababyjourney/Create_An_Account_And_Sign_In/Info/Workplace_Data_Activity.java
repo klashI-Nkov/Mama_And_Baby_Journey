@@ -1,6 +1,6 @@
 package com.example.mamababyjourney.Create_An_Account_And_Sign_In.Info;
 
-import com.example.mamababyjourney.databinding.ActivityWorkplaceDataBinding;
+import com.example.mamababyjourney.databinding.ActivityCreateAnAccountAndSignInInfoWorkplaceDataActivityBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,7 +29,7 @@ import java.util.Map;
 public class Workplace_Data_Activity extends AppCompatActivity implements AdapterView . OnItemSelectedListener
 {
 
-    ActivityWorkplaceDataBinding binding ;
+    ActivityCreateAnAccountAndSignInInfoWorkplaceDataActivityBinding binding ;
 
     // هذول بستقبلو قيمة احداثيات مكان العمل من الخارطه بس الدكتور يحدد مكان العمل على الخارطه
     private double longitude , latitude ;
@@ -54,7 +54,7 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
         getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
         Objects . requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
 
-        binding = ActivityWorkplaceDataBinding . inflate ( getLayoutInflater ( ) ) ;
+        binding = ActivityCreateAnAccountAndSignInInfoWorkplaceDataActivityBinding . inflate ( getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
 
         /*
@@ -738,10 +738,10 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
     {
         // هون احنا بنحدد العناصر الي رح تنعرض النا لما نضغط على ال spinner
         ArrayAdapter < CharSequence > adapter = ArrayAdapter . createFromResource
-        ( this , R . array . Workplace_Locations , R . layout . spinner_drop_down_items_text ) ;
+        ( this , R . array . Workplace_Locations , R . layout .layouts_spinner_drop_down_items_text_layout ) ;
 
         // فيي هاد السطر بعطيه شكل النص تبع القائمه الي رح تظهر النا لما نضغط على ال spinner
-        adapter . setDropDownViewResource ( R . layout . spinner_drop_down_items_text ) ;
+        adapter . setDropDownViewResource ( R . layout .layouts_spinner_drop_down_items_text_layout ) ;
 
         // في هاد السطر بنربط ال array الي فيها الداتا الي رح تظهر لما نضغط على ال spinner
         binding . WorkplaceTypeSp . setAdapter ( adapter ) ;

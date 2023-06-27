@@ -1,6 +1,6 @@
 package com.example.mamababyjourney.Create_An_Account_And_Sign_In.Info;
 
-import com.example.mamababyjourney.databinding.ActivityDaysAndWorkingHoursBinding;
+import com.example.mamababyjourney.databinding.ActivityCreateAnAccountAndSignInInfoDaysAndWorkingHoursActivityBinding;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -27,7 +27,7 @@ import android.view.View;
 public class Days_And_Working_Hours_Activity extends AppCompatActivity implements AdapterView . OnItemSelectedListener
 {
 
-    ActivityDaysAndWorkingHoursBinding binding ;
+    ActivityCreateAnAccountAndSignInInfoDaysAndWorkingHoursActivityBinding binding ;
 
     // هاد المتغير انا مستعمله عشان اخزن فيه اسم ال spinner الي بنضعط عليه عشان نختار منه لقدام بتعرفي شو لازمته
     public static String spinner_Name = "" ;
@@ -55,7 +55,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
         getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
         Objects . requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
 
-        binding = ActivityDaysAndWorkingHoursBinding . inflate (getLayoutInflater ( ) ) ;
+        binding = ActivityCreateAnAccountAndSignInInfoDaysAndWorkingHoursActivityBinding . inflate (getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
 
         Adapters_Initialization ( ) ;
@@ -1031,7 +1031,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                 (
                     this ,
                     R . array . work_Hours_From ,
-                    R . layout . spinner_drop_down_items_text
+                    R . layout .layouts_spinner_drop_down_items_text_layout
                 ) ;
             }
 
@@ -1042,7 +1042,7 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                 (
                     this ,
                     R . array . work_Hours_To ,
-                    R . layout . spinner_drop_down_items_text
+                    R . layout .layouts_spinner_drop_down_items_text_layout
                 ) ;
             }
 
@@ -1053,13 +1053,13 @@ public class Days_And_Working_Hours_Activity extends AppCompatActivity implement
                 (
                     this ,
                     R . array . AM_Or_PM ,
-                    R . layout . spinner_drop_down_items_text
+                    R . layout .layouts_spinner_drop_down_items_text_layout
                 ) ;
             }
 
             // اذا في اسطر ما في شرح قبلها معناتها انا بكون شارحها في فنكشن ال Adapter_Initialization في كلاس ال Workplace_Data_Activity
 
-            adapter . setDropDownViewResource ( R . layout . spinner_drop_down_items_text ) ;
+            adapter . setDropDownViewResource ( R . layout .layouts_spinner_drop_down_items_text_layout ) ;
 
             spinner . setAdapter ( adapter ) ;
 

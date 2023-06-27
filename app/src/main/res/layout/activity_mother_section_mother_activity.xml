@@ -3,16 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:id="@+id/drawer_layout"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
+
     android:layoutDirection="rtl">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@android:color/transparent"/>
 
     <include
         android:id="@+id/app_bar_mother"
-        layout="@layout/app_bar_mother"
+        layout="@layout/layouts_mother_section_app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
@@ -22,7 +31,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_mother"
-        app:menu="@menu/activity_mother_drawer" />
+        app:headerLayout="@layout/layouts_mother_section_nav_header_layout"
+        app:menu="@menu/activity_mother_section_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

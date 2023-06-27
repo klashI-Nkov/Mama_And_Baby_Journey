@@ -3,11 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:showIn="@layout/app_bar_mother"
+
+    tools:showIn="@layout/layouts_mother_section_app_bar_layout"
+
     android:theme="@style/screen_Background"
     style="@style/screen_Background"
+
     android:layoutDirection="rtl">
 
     <fragment
@@ -19,6 +23,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/mobile_navigation" />
+        app:navGraph="@navigation/mother_section_mobile_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

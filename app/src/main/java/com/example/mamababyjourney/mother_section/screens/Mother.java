@@ -8,18 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.mamababyjourney.databinding.FragmentMotherSectionAdvicesFragmentBinding;
+import com.example.mamababyjourney.databinding.FragmentMotherSectionMotherFragmentBinding;
 
-
-public class Advices extends Fragment
+public class Mother extends Fragment
 {
 
-    private FragmentMotherSectionAdvicesFragmentBinding binding;
+    private FragmentMotherSectionMotherFragmentBinding binding;
 
     public View onCreateView ( @NonNull LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState )
     {
-        binding = FragmentMotherSectionAdvicesFragmentBinding.inflate ( inflater , container , false );
-        return binding.getRoot ( );
+        binding = FragmentMotherSectionMotherFragmentBinding . inflate ( inflater , container ,false ) ;
+        return binding . getRoot ( ) ;
     }
-
 }

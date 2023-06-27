@@ -1,6 +1,6 @@
 package com.example.mamababyjourney.Create_An_Account_And_Sign_In.Info;
 
-import com.example.mamababyjourney.databinding.ActivityMapBinding;
+import com.example.mamababyjourney.databinding.ActivityCreateAnAccountAndSignInInfoMapBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -61,7 +61,7 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap ;
 
-    private ActivityMapBinding binding ;
+    private ActivityCreateAnAccountAndSignInInfoMapBinding binding ;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -69,7 +69,7 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
 
         super . onCreate ( savedInstanceState ) ;
 
-        binding = ActivityMapBinding . inflate ( getLayoutInflater ( ) ) ;
+        binding = ActivityCreateAnAccountAndSignInInfoMapBinding . inflate ( getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
 
         // هاد السطر عشان اخلي لون الستاتس بار الي بكون فيه الشبكه و البطاريه شفاف لكنه ما بصير شفاف بصير اسود ليه ما بعرف
@@ -792,7 +792,7 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
                 runOnUiThread ( ( ) ->
                 {
                     // هون بنجيب الشاشة الي فيها المسج و بنعرضها بدل الخارطه باستعمال فنشكن setContentView المسؤول عن تحديد الشاشة الي رح تنعرض للمستخدم
-                    setContentView ( R . layout . check_location_and_internet_view ) ;
+                    setContentView ( R . layout .layouts_create_an_account_and_sign_in_info_check_location_and_internet_layout ) ;
 
                     // هون عرفنا اوبجكت من الكلاس  TextView اسمه textView عشان نقدر نحدد مين هو ال text view الي بدنا نعرض للمتستخدم فيها نص المسج
                     TextView textView = findViewById ( R . id . textVie ) ;
@@ -805,7 +805,7 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
             {
                 runOnUiThread ( ( ) ->
                 {
-                    setContentView ( R . layout . check_location_and_internet_view ) ;
+                    setContentView ( R . layout .layouts_create_an_account_and_sign_in_info_check_location_and_internet_layout ) ;
                     TextView textView = findViewById ( R . id . textVie ) ;
                     textView . setText ( "خدمة الموقع لديك متوقفه يرجى تشغيل خدمة الموقع للمتابعة" ) ;
                 });
@@ -816,7 +816,7 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
             {
                 runOnUiThread ( ( ) ->
                 {
-                    setContentView ( R . layout . check_location_and_internet_view ) ;
+                    setContentView ( R . layout .layouts_create_an_account_and_sign_in_info_check_location_and_internet_layout ) ;
                     TextView textView = findViewById ( R . id . textVie ) ;
                     textView . setText ( "لا يوجد اتصال بالانترنت و خدمة الموقع لديك متوقفه يرجى التحقق من الاتصال بالانترنت و تشغيل خدمة الموقع للمتابعة" ) ;
                 });

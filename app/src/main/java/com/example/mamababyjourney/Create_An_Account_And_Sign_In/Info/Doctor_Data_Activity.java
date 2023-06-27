@@ -1,6 +1,6 @@
 package com.example.mamababyjourney.Create_An_Account_And_Sign_In.Info;
 
-import com.example.mamababyjourney.databinding.ActivityDoctorDataBinding;
+import com.example.mamababyjourney.databinding.ActivityCreateAnAccountAndSignInInfoDoctorDataActivityBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +24,7 @@ import java.util.List;
 public class Doctor_Data_Activity extends AppCompatActivity
 {
 
-    ActivityDoctorDataBinding binding;
+    ActivityCreateAnAccountAndSignInInfoDoctorDataActivityBinding binding;
 
     /*
         هاد المتغير انا مستعمله عشان اعطي id للوحات اماكن العمل الي بتنضاف عشان
@@ -51,7 +51,7 @@ public class Doctor_Data_Activity extends AppCompatActivity
         getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS , WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
         Objects . requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
 
-        binding = ActivityDoctorDataBinding . inflate ( getLayoutInflater ( ) ) ;
+        binding = ActivityCreateAnAccountAndSignInInfoDoctorDataActivityBinding . inflate ( getLayoutInflater ( ) ) ;
 
         setContentView ( binding . getRoot ( ) ) ;
 
@@ -207,7 +207,7 @@ public class Doctor_Data_Activity extends AppCompatActivity
 
                         بدي اضيف لوحه بجيب النسخه الي انا عاملها و بعمل منها نسخه جديده وهاد السطر الي بعمل هاد الشي
                     */
-                    View childLayout = getLayoutInflater ( ) . inflate (R . layout . work_place_layout ,null ) ;
+                    View childLayout = getLayoutInflater ( ) . inflate (R . layout .layouts_create_an_account_and_sign_in_info_workplace_preview_panel_layout ,null ) ;
 
                     /*
                         هسه قبل ما اضيف اللوحه عشان اخلي زر الحفظ و زر اضافة مكان العمل تحت اللوحه لازم احذفهم من الشاشه عشان اضيفهم

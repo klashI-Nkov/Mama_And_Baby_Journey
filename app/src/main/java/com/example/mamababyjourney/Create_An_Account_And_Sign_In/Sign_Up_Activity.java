@@ -1,7 +1,7 @@
 package com.example.mamababyjourney.Create_An_Account_And_Sign_In;
 
 import com.example.mamababyjourney.Create_An_Account_And_Sign_In.Info.Doctor_Data_Activity;
-import com.example.mamababyjourney.databinding.ActivitySignUpBinding;
+import com.example.mamababyjourney.databinding.ActivityCreateAnAccountAndSignInSignUpActivityBinding;
 import com.example.mamababyjourney.mother_section.Mother_Activity;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +25,7 @@ import android.os.Bundle;
 public class Sign_Up_Activity extends AppCompatActivity
 {
 
-    ActivitySignUpBinding binding ;
+    ActivityCreateAnAccountAndSignInSignUpActivityBinding binding ;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -35,7 +35,7 @@ public class Sign_Up_Activity extends AppCompatActivity
         getWindow ( ) . setFlags ( WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS , WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
         Objects . requireNonNull ( getSupportActionBar ( ) ) . hide ( ) ;
 
-        binding = ActivitySignUpBinding . inflate ( getLayoutInflater ( ) ) ;
+        binding = ActivityCreateAnAccountAndSignInSignUpActivityBinding . inflate ( getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
 
         Buttons ( ) ;

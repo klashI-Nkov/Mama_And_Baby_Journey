@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+
+    android:theme="@style/screen_Background"
+    style="@style/screen_Background"
+    tools:context=".mother_section.screens.kids_page.Kids"
+
+    tools:ignore="HardcodedText">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@android:color/transparent"/>
+
+    <androidx.gridlayout.widget.GridLayout
+        android:theme="@style/No_Style"
+        style="@style/No_Style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:columnCount="2">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            app:layout_gravity="center_horizontal"
+            android:layout_width="@dimen/_107sdp"
+            android:layout_height="@dimen/_107sdp"
+            app:layout_columnWeight="1"
+            android:src="@drawable/hg"
+            />
+
+    </androidx.gridlayout.widget.GridLayout>
+
+</LinearLayout>

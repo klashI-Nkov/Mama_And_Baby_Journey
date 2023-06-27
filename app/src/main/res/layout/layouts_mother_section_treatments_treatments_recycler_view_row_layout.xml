@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_marginHorizontal="@dimen/_15sdp"
+    android:layout_marginBottom="@dimen/_15sdp"
+
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layoutDirection="rtl"
+    android:theme="@style/Scroll_Style"
+    style="@style/Scroll_Style">
+
+    <LinearLayout
+        android:theme="@style/No_Style"
+        style="@style/No_Style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingVertical="@dimen/_23sdp"
+
+        android:orientation="vertical"
+        android:layoutDirection="rtl">
+
+        <TextView
+            android:id="@+id/Age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:textAlignment="viewStart"
+            android:singleLine="false"
+            android:textSize="@dimen/_13sdp"
+            android:text="العمر : "
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/Vaccination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textSize="@dimen/_10sdp"
+            android:text="Measles + OPV مطعوم الحصبة + شلل الأطفال الفموي"
+            tools:ignore="HardcodedText"/>
+
+    </LinearLayout>
+
+</LinearLayout>

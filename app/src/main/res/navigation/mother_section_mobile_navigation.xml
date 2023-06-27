@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Mother_mobile_navigation"
+    app:startDestination="@+id/Kids">
+
+    <fragment
+        android:id="@+id/Mother"
+        android:name="com.example.mamababyjourney.mother_section.screens.Mother"
+        android:label="الام"
+        tools:layout="@layout/fragment_mother_section_mother_fragment" />
+
+    <fragment
+        android:id="@+id/Doctors_And_Clinics"
+        android:name="com.example.mamababyjourney.mother_section.screens.Doctors_And_Clinics"
+        android:label="العيادات و الأطباء"
+        tools:layout="@layout/fragment_mother_section_doctors_and_clinics_fragment" />
+
+    <fragment
+        android:id="@+id/Advices"
+        android:name="com.example.mamababyjourney.mother_section.screens.Advices"
+        android:label="نصائح"
+        tools:layout="@layout/fragment_mother_section_advices_fragment" />
+
+    <fragment
+        android:id="@+id/Dates"
+        android:name="com.example.mamababyjourney.mother_section.screens.Dates"
+        android:label="المواعيد"
+        tools:layout="@layout/fragment_mother_section_dates_fragment" />
+
+    <fragment
+        android:id="@+id/Kids"
+        android:name="com.example.mamababyjourney.mother_section.screens.kids_page.Kids"
+        android:label="الأطفال"
+        tools:layout="@layout/fragment_mother_section_kids_kids_fragment" />
+
+</navigation>
