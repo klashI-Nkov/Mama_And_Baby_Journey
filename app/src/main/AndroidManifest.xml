@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="com. google. android. providers.gsf. permission. READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com. google. android. providers.gsf. permission. READ_GSERVICES" />
 
     <application
         android:allowBackup="true"
@@ -17,68 +17,68 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MamaBabyJourney"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC01PNmd-_3bqJ3nH8mDcFQfTykoKjxRFo" />
 
-        <!-- First_Screen -->
+
         <activity
-            android:name=".First_Screen"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-
-        <!-- Sign_Up -->
-        <activity
-            android:name=".Create_An_Account_And_Sign_In.Sign_Up_Activity"
-            android:exported="false"/>
-
-        <!-- Sing_in -->
-        <activity
-            android:name=".Create_An_Account_And_Sign_In.Sing_in_Activity"
-            android:exported="false"/>
-
-        <!-- Doctor Data Activity -->
-        <activity
-            android:name=".Create_An_Account_And_Sign_In.Info.Doctor_Data_Activity"
-            android:exported="false"/>
-
-        <!-- Workplace Data Activity -->
-        <activity
-            android:name=".Create_An_Account_And_Sign_In.Info.Workplace_Data_Activity"
-            android:exported="false"/>
-
-        <!-- Map -->
-        <activity
-            android:name=".Create_An_Account_And_Sign_In.Info.Map_Activity"
-            android:exported="false"/>
+            android:name="com.example.mamababyjourney.mother_section.Mother_Activity"
+            android:exported="true"
+            android:label="@string/title_activity_mother"
+            android:theme="@style/Theme.MamaBabyJourney.NoActionBar" />
 
         <!-- Days And Working Hours Activity -->
         <activity
             android:name=".Create_An_Account_And_Sign_In.Info.Days_And_Working_Hours_Activity"
             android:exported="false"/>
 
-        <!-- Treatments Table Activity -->
+        <!-- Workplace Data Activity -->
         <activity
-            android:name=".mother_section.screens.treatments.Treatments_Table_Activity"
-            android:exported="true"/>
+            android:name=".Create_An_Account_And_Sign_In.Info.Workplace_Data_Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
 
-        <!-- Mother Activity -->
+        <!-- First_Screen -->
         <activity
-            android:name=".mother_section.Mother_Activity"
-            android:exported="true"
-            android:theme="@style/Theme.MamaBabyJourney.NoActionBar"/>
+            android:name=".First_Screen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <!-- Map API Key -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC01PNmd-_3bqJ3nH8mDcFQfTykoKjxRFo"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Sign_Up -->
+        <activity
+            android:name=".Create_An_Account_And_Sign_In.Sign_Up_Activity"
+            android:exported="false" />
+
+        <!-- Sing_in -->
+        <activity
+            android:name=".Create_An_Account_And_Sign_In.Sing_in_Activity"
+            android:exported="false" />
+
+        <!-- Doctor Data Activity -->
+        <activity
+            android:name=".Create_An_Account_And_Sign_In.Info.Doctor_Data_Activity"
+            android:exported="true" />
+
+        <!-- Map -->
+        <activity
+            android:name=".Create_An_Account_And_Sign_In.Info.Map_Activity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
 
         <!-- Font -->
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts"/>
+            android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

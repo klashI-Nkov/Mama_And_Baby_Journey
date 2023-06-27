@@ -18,9 +18,8 @@ public class First_Screen extends AppCompatActivity
     {
         super . onCreate ( savedInstanceState ) ;
 
-        getWindow ( ) . setFlags( WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS , WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS) ;
-        Objects . requireNonNull ( getSupportActionBar ( ) ) . hide ( ) ;
-
+        getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
+        Objects . requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
         setContentView ( R . layout . activity_first_screen ) ;
         Permissions ( ) ;
     }
