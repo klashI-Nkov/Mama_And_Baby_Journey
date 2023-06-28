@@ -1,11 +1,13 @@
 package com.example.mamababyjourney.mother_section.screens.treatments;
 
-import com.example.mamababyjourney.databinding.ActivityMotherSectionTreatmentsTreatmentsTableActivityBinding;
+import com.example.mamababyjourney.databinding.ActivityMotherSectionTreatmentsTreatmentsProgramActivityBinding;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.mamababyjourney.R;
 import androidx.annotation.NonNull;
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -17,9 +19,11 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.List;
 
-public class Treatments_Table_Activity extends AppCompatActivity
+public class Treatments_Program_Activity extends AppCompatActivity
 {
-    ActivityMotherSectionTreatmentsTreatmentsTableActivityBinding binding ;
+    ActivityMotherSectionTreatmentsTreatmentsProgramActivityBinding binding ;
+
+    Recycler_View_Adapter adapter ;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -29,12 +33,12 @@ public class Treatments_Table_Activity extends AppCompatActivity
         getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
         Objects. requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
 
-        binding = ActivityMotherSectionTreatmentsTreatmentsTableActivityBinding . inflate ( getLayoutInflater ( ) ) ;
+        binding = ActivityMotherSectionTreatmentsTreatmentsProgramActivityBinding . inflate ( getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
 
         Recycler_View_Initialization ( ) ;
 
-        Recycler_View_Adapter adapter = new Recycler_View_Adapter ( Recycler_View_Class . recycler_View_Class_Object_List ,this ) ;
+        adapter = new Recycler_View_Adapter ( Recycler_View_Class . recycler_View_Class_Object_List ,this ) ;
 
         binding . RecyclerView . setAdapter ( adapter ) ;
         binding . RecyclerView . setLayoutManager ( new LinearLayoutManager (this ) ) ;
@@ -51,11 +55,16 @@ public class Treatments_Table_Activity extends AppCompatActivity
             Recycler_View_Class . recycler_View_Class_Object_List . add ( new Recycler_View_Class (treatments[ i ] ,age[ i ] ) ) ;
         }
     }
+
+    @Override
+    protected void onPause ( )
+    {
+        super.onPause ( );
+        adapter .ClearData ( ) ;
+    }
 }
 
-/**
- * @noinspection unused
- */
+@SuppressWarnings ( "unused" )
 class Recycler_View_Class
 {
     static List < Recycler_View_Class > recycler_View_Class_Object_List = new ArrayList < > ( ) ;
@@ -89,10 +98,13 @@ class Recycler_View_Adapter extends RecyclerView . Adapter < Recycler_View_Adapt
     public Recycler_View_Adapter . View_Holder onCreateViewHolder ( @NonNull ViewGroup parent , int viewType )
     {
         LayoutInflater inflater = LayoutInflater . from ( context ) ;
-        View view = inflater . inflate (R . layout . layouts_mother_section_treatments_treatments_recycler_view_row_layout ,parent ,false ) ;
+        View view = inflater . inflate (R . layout .layouts_mother_section_treatments_treatments_program_recycler_view_row_layout ,parent ,false ) ;
         return new Recycler_View_Adapter . View_Holder ( view ) ;
     }
-
+    public void ClearData ( )
+    {
+        recycler_View_Class_Object_List . clear ( ) ;
+    }
     @Override
     public void onBindViewHolder ( @NonNull View_Holder holder , int index )
     {

@@ -15,26 +15,41 @@
 
     tools:ignore="HardcodedText">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:background="@android:color/transparent"/>
-
-    <androidx.gridlayout.widget.GridLayout
+    <ScrollView
         android:theme="@style/No_Style"
         style="@style/No_Style"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:columnCount="2">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_70sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:layout_weight="1"
+        tools:ignore="InefficientWeight">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            app:layout_gravity="center_horizontal"
-            android:layout_width="@dimen/_107sdp"
-            android:layout_height="@dimen/_107sdp"
-            app:layout_columnWeight="1"
-            android:src="@drawable/hg"
-            />
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/Gird_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:columnCount="2">
 
-    </androidx.gridlayout.widget.GridLayout>
+        </androidx.gridlayout.widget.GridLayout>
+
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/Add_Child_BTN"
+
+        android:theme="@style/Icon_BG"
+        style="@style/Icon_BG"
+
+        android:layout_width="@dimen/_42sdp"
+        android:layout_height="@dimen/_45sdp"
+
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_50sdp"
+        android:padding="@dimen/_8sdp"
+
+        app:srcCompat="@drawable/icons_add_icon"
+        tools:ignore="ContentDescription" />
 
 </LinearLayout>

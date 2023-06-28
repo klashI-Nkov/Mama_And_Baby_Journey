@@ -12,7 +12,7 @@
     android:theme="@style/screen_Background"
     style="@style/screen_Background"
 
-    tools:context=".mother_section.screens.treatments.Treatments_Table_Activity">
+    tools:context=".mother_section.screens.treatments.Treatments_Program_Activity">
 
     <TextView
         android:id="@+id/textView"

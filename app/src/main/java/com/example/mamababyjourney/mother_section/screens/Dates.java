@@ -13,7 +13,6 @@ import com.example.mamababyjourney.databinding.FragmentMotherSectionDatesFragmen
 
 public class Dates extends Fragment
 {
-
     private FragmentMotherSectionDatesFragmentBinding binding;
 
     public View onCreateView ( @NonNull LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState )

@@ -130,10 +130,10 @@
         android:hint="الاسم"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize,TextContrastCheck"/>
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize,TextContrastCheck" />
+
 
     <!--Email Edit Text-->
     <EditText
