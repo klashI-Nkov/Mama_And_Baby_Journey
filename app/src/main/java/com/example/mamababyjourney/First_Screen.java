@@ -1,7 +1,7 @@
 package com.example.mamababyjourney;
 
-import com.example.mamababyjourney.Create_An_Account_And_Sign_In.Sign_Up_Activity;
-import com.example.mamababyjourney.Create_An_Account_And_Sign_In.Sing_in_Activity;
+import com.example.mamababyjourney.sign_up_and_sign_in_folder.Sign_Up_Activity;
+import com.example.mamababyjourney.sign_up_and_sign_in_folder.Sing_in_Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;

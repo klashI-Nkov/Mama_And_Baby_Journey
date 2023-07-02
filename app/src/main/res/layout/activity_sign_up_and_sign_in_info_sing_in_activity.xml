@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/Constraint"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:layoutDirection="rtl"
+
+    android:theme="@style/screen_Background"
+    style="@style/screen_Background"
+    tools:context=".sign_up_and_sign_in_folder.Sing_in_Activity">
+
+    <TextView
+        android:id="@+id/textView1"
+
+        style="@style/TextViewStyle"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+
+        android:background="@android:color/transparent"
+
+        android:fontFamily="@font/pacifico"
+
+        android:textAlignment="center"
+        android:textSize="@dimen/_31sdp"
+        android:text="Mama Baby Journey"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText,TextContrastCheck"/>
+
+    <!--Email Edit Text-->
+    <EditText
+        android:id="@+id/Email_Edit_text"
+
+        android:theme="@style/EditTextStyle"
+        style="@style/EditTextStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_39sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_145sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+
+        android:drawableEnd="@drawable/icons_email_icon"
+
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textSize="@dimen/_12sdp"
+        android:hint="البريد الالكتروني"
+
+        android:imeOptions="actionNext"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="Autofill,HardcodedText,TextContrastCheck"/>
+
+    <!--Password Edit Text-->
+    <EditText
+        android:id="@+id/password_edit_text"
+
+        android:theme="@style/EditTextStyle"
+        style="@style/EditTextStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_39sdp"
+        android:layout_marginTop="@dimen/_228sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+
+        android:drawableEnd="@drawable/icons_lock_icon"
+
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textSize="@dimen/_12sdp"
+        android:hint="كلمة المرور"
+
+        android:imeOptions="actionDone"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="Autofill,HardcodedText,TextContrastCheck"/>
+
+    <TextView
+        android:id="@+id/textView5"
+
+        style="@style/TextViewStyle"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_283sdp"
+        android:layout_marginEnd="@dimen/_27sdp"
+
+        android:background="@android:color/transparent"
+
+        android:textStyle="bold"
+        android:textSize="@dimen/_15sdp"
+        android:text="نسيت كلمة السر ؟"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText,TouchTargetSizeCheck"/>
+
+    <!--Sing In Button-->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sing_In_BTN"
+
+        android:theme="@style/EditTextStyle"
+        style="@style/EditTextStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_358sdp"
+        android:layout_marginHorizontal="@dimen/_39sdp"
+
+        android:textSize="@dimen/_15sdp"
+        android:text="تسجيل الدخول"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_500sdp"
+        android:orientation="horizontal"
+
+        android:background="@android:color/transparent"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/imageView5"
+
+            android:theme="@style/Icon_BG"
+            style="@style/Icon_BG"
+
+            android:layout_width="@dimen/_42sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:padding="@dimen/_8sdp"
+
+            app:srcCompat="@drawable/icons_google_icon"
+            tools:ignore="ContentDescription,ImageContrastCheck"/>
+
+        <TextView
+            android:id="@+id/textView4"
+
+            style="@style/TextViewStyle"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_23sdp"
+
+            android:background="@android:color/transparent"
+
+            android:textStyle="bold"
+            android:textSize="@dimen/_15sdp"
+            android:text="او باستخدام"
+
+            tools:ignore="HardcodedText"/>
+
+        <ImageView
+            android:id="@+id/imageView4"
+
+            android:theme="@style/Icon_BG"
+            style="@style/Icon_BG"
+
+            android:layout_width="@dimen/_42sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:padding="@dimen/_8sdp"
+
+            app:srcCompat="@drawable/icons_facebook_icon"
+            tools:ignore="ContentDescription,ImageContrastCheck"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

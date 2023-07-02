@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layoutDirection="rtl"
+    android:theme="@style/screen_Background"
+    style="@style/screen_Background">
+
+    <fragment
+        android:id="@+id/child_activity_nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph="@navigation/mother_section_kids_page_child_activity_mobile_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:defaultNavHost="true"
+        tools:ignore="FragmentTagUsage" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+
+        android:theme="@style/No_Style"
+        style="@style/No_Style"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/mother_section_mother_kids_page_child_activity_bottom_nav_menu"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:theme="@style/No_Style"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_32sdp"
+        android:background="?android:attr/windowBackground"/>
+
+</LinearLayout>

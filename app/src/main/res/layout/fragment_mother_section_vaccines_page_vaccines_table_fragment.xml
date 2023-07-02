@@ -1,0 +1,1013 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:gravity="center"
+
+    android:theme="@style/screen_Background"
+    style="@style/screen_Background"
+
+    tools:context=".mother_section.screens_folder.vaccines_page.Vaccines_Table">
+
+    <ScrollView
+        android:theme="@style/Scroll_Style"
+        style="@style/Scroll_Style"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_35sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+
+        android:paddingVertical="@dimen/_30sdp">
+
+        <LinearLayout
+            android:theme="@style/No_Style"
+            style="@style/No_Style"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_23sdp"
+                android:theme="@style/No_Style"
+                style="@style/No_Style"
+                android:layoutDirection="rtl"
+                tools:ignore="HardcodedText , TooManyViews">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+
+                        android:text="مظعوم السل"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center"
+
+                        android:text="لم ياخذ بعد"/>
+
+                    <View
+                        android:theme="@style/EditTextStyle2"
+                        style="@style/EditTextStyle2"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+
+
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:layout_weight="1"
+
+                        android:background="?attr/stroke_color"/>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+
+                        android:text="مطعوم شلل الاطفال العضلي"/>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="الجرعة الاولى"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="الجرعة الثانية"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="الجرعة الثالثة"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="لم تاخذ بعد"/>
+
+                    </TableRow>
+
+                    <View
+                        android:theme="@style/EditTextStyle2"
+                        style="@style/EditTextStyle2"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+
+
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:layout_weight="1"
+
+                        android:background="?attr/stroke_color"/>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+
+                        android:text="مطعوم شلل الاطفال الفموي"/>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+
+                            android:text="الجرعة الاولى"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+
+                            android:text="الجرعة الثانية"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:text="الجرعة الثالثة"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                    </TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center"
+
+                        android:text="الجرعة المدعمه"/>
+
+                    <!-- تاريخ الجرعة المدعمه -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center"
+
+                        android:text="لم تاخذ بعد"/>
+
+                    <View
+                        android:theme="@style/EditTextStyle2"
+                        style="@style/EditTextStyle2"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+
+
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:layout_weight="1"
+
+                        android:background="?attr/stroke_color"/>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+
+                        android:text="مطعوم الخانوق والسعال الديكي و الكزاز"/>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+
+                            android:text="الجرعة الاولى"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+
+                            android:text="الجرعة الثانية"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:text="الجرعة الثالثة"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                    </TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center"
+
+                        android:text="الجرعة المدعمه"/>
+
+                    <!-- تاريخ الجرعة المدعمه -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center"
+
+                        android:text="لم تاخذ بعد"/>
+
+                    <View
+                        android:theme="@style/EditTextStyle2"
+                        style="@style/EditTextStyle2"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+
+
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:layout_weight="1"
+
+                        android:background="?attr/stroke_color"/>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+
+                        android:text="مطعوم المستدمية النزليه ( السحايا )"/>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="الجرعة الاولى"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="الجرعة الثانية"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="الجرعة الثالثة"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="لم تاخذ بعد"/>
+
+                    </TableRow>
+
+                    <View
+                        android:theme="@style/EditTextStyle2"
+                        style="@style/EditTextStyle2"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+
+
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:layout_weight="1"
+
+                        android:background="?attr/stroke_color"/>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+
+                        android:text="مطعوم التهاب الكبد الوبائي"/>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="الجرعة الاولى"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="الجرعة الثانية"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="الجرعة الثالثة"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="لم تاخذ بعد"/>
+
+                    </TableRow>
+
+                    <View
+                        android:theme="@style/EditTextStyle2"
+                        style="@style/EditTextStyle2"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+
+
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:layout_weight="1"
+
+                        android:background="?attr/stroke_color"/>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+
+                        android:text="مطعوم الحصبه"/>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="الجرعة الاولى"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="الجرعة الثانية"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="لم تاخذ بعد"/>
+
+                    </TableRow>
+
+                    <View
+                        android:theme="@style/EditTextStyle2"
+                        style="@style/EditTextStyle2"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+
+
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:layout_weight="1"
+
+                        android:background="?attr/stroke_color"/>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+
+                        android:text="MMR الحصبه الالمانيه و النكاف"/>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="الجرعة الاولى"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="الجرعة الثانية"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="لم تاخذ بعد"/>
+
+                    </TableRow>
+
+                    <View
+                        android:theme="@style/EditTextStyle2"
+                        style="@style/EditTextStyle2"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+
+
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:layout_weight="1"
+
+                        android:background="?attr/stroke_color"/>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+
+                        android:text="روتا فيروس"/>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="الجرعة الاولى"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="الجرعة الثانية"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="الجرعة الثالثة"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="لم تاخذ بعد"/>
+
+                    </TableRow>
+
+                    <View
+                        android:theme="@style/EditTextStyle2"
+                        style="@style/EditTextStyle2"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+
+
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:layout_weight="1"
+
+                        android:background="?attr/stroke_color"/>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+
+                        android:text="المطعوم السداسي hexaxim"/>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="الجرعة الاولى"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="الجرعة الثانية"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginTop="@dimen/_20sdp"
+
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="لم تاخذ بعد"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:layout_weight="1"
+
+                            android:text="لم تاخذ بعد"/>
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </TableLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

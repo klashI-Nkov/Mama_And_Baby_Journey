@@ -14,14 +14,9 @@
 
     android:layoutDirection="rtl">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:background="@android:color/transparent"/>
-
     <include
-        android:id="@+id/app_bar_mother"
-        layout="@layout/layouts_mother_section_app_bar_layout"
+        android:id="@+id/Mother_Activity_App_bar"
+        layout="@layout/layouts_mother_section_mother_activity_app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
@@ -31,7 +26,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/layouts_mother_section_nav_header_layout"
-        app:menu="@menu/activity_mother_section_drawer" />
+        app:headerLayout="@layout/layouts_mother_section_mother_activity_nav_header_layout"
+        app:menu="@menu/mother_section_mother_activity_drawer_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

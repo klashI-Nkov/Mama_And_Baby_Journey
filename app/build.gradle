@@ -16,6 +16,7 @@ android
     {
         applicationId "com.example.mamababyjourney"
         minSdk 24
+        //noinspection OldTargetApi
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -43,14 +44,6 @@ android
         viewBinding true
     }
 
-   /* allprojects
-    {
-        tasks.withType(JavaCompile)
-        {
-            options.compilerArgs << "-Xlint:deprecation"
-        }
-    }*/
-
     sourceSets
     {
         main
@@ -76,6 +69,10 @@ dependencies
     // هاي المكتيه خاصه بالفاير ستور في الفاير بيس
     implementation 'com.google.firebase:firebase-firestore-ktx:24.6.1'
 
+    // هدول المكتبتين للفايرستورج الي بتخزن فيها الصور
+    implementation 'com.google.firebase:firebase-storage:20.2.1'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.2.1'
+
     // هاي المكتبه خاصه بالموقع و خدماته
     implementation 'com.google.android.gms:play-services-location:21.0.1'
 
@@ -84,16 +81,16 @@ dependencies
 
     //هاي المكتبه خاصه بوحدة قياس انا مستعملها
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
+    //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-ui:2.5.3'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
 
     implementation 'com.github.krokyze:ucropnedit:2.2.6-2'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
-    implementation 'com.google.firebase:firebase-storage:20.2.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.google.firebase:firebase-storage-ktx:20.2.1'
 
 
     testImplementation 'junit:junit:4.13.2'

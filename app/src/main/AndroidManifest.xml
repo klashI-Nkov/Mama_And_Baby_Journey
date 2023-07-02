@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="com. google. android. providers.gsf. permission. READ_GSERVICES"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
 
     <application
         android:allowBackup="true"
@@ -24,39 +24,38 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
         <!-- Sign_Up Activity -->
         <activity
-            android:name=".Create_An_Account_And_Sign_In.Sign_Up_Activity"
+            android:name=".sign_up_and_sign_in_folder.Sign_Up_Activity"
             android:exported="false"/>
 
         <!-- Sing_in Activity -->
         <activity
-            android:name=".Create_An_Account_And_Sign_In.Sing_in_Activity"
+            android:name=".sign_up_and_sign_in_folder.Sing_in_Activity"
             android:exported="false"/>
 
         <!-- Doctor Data Activity -->
         <activity
-            android:name=".Create_An_Account_And_Sign_In.Info.Doctor_Data_Activity"
-            android:exported="true"/>
+            android:name=".sign_up_and_sign_in_folder.Info_page.Doctor_Data_Activity"
+            android:exported="false"/>
 
         <!-- Workplace Data Activity -->
         <activity
-            android:name=".Create_An_Account_And_Sign_In.Info.Workplace_Data_Activity"
+            android:name=".sign_up_and_sign_in_folder.Info_page.Workplace_Data_Activity"
             android:exported="false"/>
 
         <!-- Map -->
         <activity
-            android:name=".Create_An_Account_And_Sign_In.Info.Map_Activity"
+            android:name=".sign_up_and_sign_in_folder.Info_page.Map_Activity"
             android:exported="false"/>
 
         <!-- Days And Working Hours Activity -->
         <activity
-            android:name=".Create_An_Account_And_Sign_In.Info.Days_And_Working_Hours_Activity"
+            android:name=".sign_up_and_sign_in_folder.Info_page.Days_And_Working_Hours_Activity"
             android:exported="false"/>
 
         <!-- Mother Data Activity -->
@@ -65,21 +64,20 @@
             android:exported="true"
             android:theme="@style/Theme.MamaBabyJourney.NoActionBar"/>
 
-        <!-- Treatments Table Activity -->
+        <!-- vaccines Program Activity -->
         <activity
-            android:name=".mother_section.screens.treatments.Treatments_Program_Activity"
-            android:exported="false"/>
+            android:name=".mother_section.screens_folder.vaccines_page.Vaccines_Program_Activity"
+            android:exported="true"/>
 
         <!-- Add Child Activity -->
         <activity
-            android:name=".mother_section.screens.kids_page.Add_Child_Activity"
-            android:exported="true"/>
+            android:name=".mother_section.screens_folder.kids_page.Add_Child_Activity"
+            android:exported="false"/>
 
         <!-- Child Activity -->
         <activity
-            android:name=".mother_section.screens.kids_page.Child_Activity"
-            android:exported="false"
-            android:theme="@style/Theme.MamaBabyJourney.NoActionBar"/>
+            android:name=".mother_section.screens_folder.kids_page.Child_Activity"
+            android:exported="true"/>
 
         <!-- Map API Key -->
         <meta-data

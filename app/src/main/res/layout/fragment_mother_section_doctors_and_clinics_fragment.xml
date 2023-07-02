@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mother_section.screens.Doctors_And_Clinics">
+    tools:context=".mother_section.screens_folder.Doctors_And_Clinics">
 
     <TextView
         android:layout_width="wrap_content"

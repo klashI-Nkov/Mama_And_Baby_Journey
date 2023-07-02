@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/Constraint"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:layoutDirection="rtl"
+
+    android:theme="@style/screen_Background"
+    style="@style/screen_Background"
+
+    tools:context=".sign_up_and_sign_in_folder.Sign_Up_Activity">
+
+    <TextView
+        android:id="@+id/textView1"
+
+        style="@style/TextViewStyle"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_34sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/pacifico"
+
+        android:textAlignment="center"
+        android:textSize="@dimen/_31sdp"
+        android:text="Mama Baby Journey"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,TextContrastCheck"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/_23sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+
+        android:background="@android:color/transparent"
+        android:orientation="horizontal"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        app:layout_constraintBottom_toTopOf="@+id/Name_Edit_text"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            style="@style/TextViewStyle"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20sdp"
+
+            android:background="@android:color/transparent"
+
+            android:layout_weight="1"
+
+            android:textSize="@dimen/_17sdp"
+            android:text="هل انت"
+
+            tools:ignore="HardcodedText,TextContrastCheck"/>
+
+        <RadioButton
+            android:id="@+id/Mom_R_BTN"
+
+            style="@style/TextViewStyle"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20sdp"
+
+            android:layout_weight="1"
+
+            android:textSize="@dimen/_14sdp"
+            android:text="أم"
+
+            tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck"/>
+
+        <RadioButton
+            android:id="@+id/Doctor_R_BTN"
+
+            style="@style/TextViewStyle"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+
+            android:textSize="@dimen/_14sdp"
+            android:text="طبيب"
+
+            tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck"/>
+
+    </RadioGroup>
+
+    <!--Name Edit Text-->
+    <EditText
+        android:id="@+id/Name_Edit_text"
+
+        android:theme="@style/EditTextStyle"
+        style="@style/EditTextStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:layout_marginTop="@dimen/_23sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textSize="@dimen/_12sdp"
+        android:hint="الاسم"
+
+        android:imeOptions="actionNext"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize,TextContrastCheck"/>
+
+    <!--Password Edit Text-->
+    <EditText
+        android:id="@+id/U_Email_Edit_text"
+
+        android:theme="@style/EditTextStyle"
+        style="@style/EditTextStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:layout_marginTop="28dp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+        android:paddingStart="@dimen/_30sdp"
+        android:paddingEnd="@dimen/_10sdp"
+
+        android:drawableEnd="@drawable/icons_email_icon"
+
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textSize="@dimen/_12sdp"
+        android:hint="البريد الإلكتروني"
+
+        android:imeOptions="actionNext"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Name_Edit_text"
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize,TextContrastCheck"/>
+
+    <EditText
+        android:id="@+id/U_password_edit_text"
+
+        android:theme="@style/EditTextStyle"
+        style="@style/EditTextStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:layout_marginTop="@dimen/_23sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+        android:paddingStart="@dimen/_34sdp"
+        android:paddingEnd="@dimen/_9sdp"
+
+        android:drawableEnd="@drawable/icons_lock_icon"
+
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textSize="@dimen/_12sdp"
+        android:hint="كلمة المرور"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Email_Edit_text"
+        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize,TextContrastCheck"/>
+
+    <!--Sing Up Button-->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sing_Up_BTN"
+
+        android:theme="@style/EditTextStyle"
+        style="@style/EditTextStyle"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_61sdp"
+        android:layout_marginHorizontal="@dimen/_39sdp"
+
+        android:text="انشاء حساب"
+        android:textSize="@dimen/_15sdp"
+
+        android:onClick="Sing_Up_BTN"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_password_edit_text"
+        tools:ignore="HardcodedText,TextSizeCheck,VisualLintButtonSize,VisualLintBounds"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_80sdp"
+
+        android:background="@android:color/transparent"
+        android:orientation="horizontal"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sing_Up_BTN"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="VisualLintBounds">
+
+        <ImageView
+            android:id="@+id/Google_icon"
+
+            android:theme="@style/Icon_BG"
+            style="@style/Icon_BG"
+
+            android:layout_width="@dimen/_42sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:padding="@dimen/_8sdp"
+
+            app:srcCompat="@drawable/icons_google_icon"
+
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck"/>
+
+        <TextView
+            android:id="@+id/textView4"
+
+            style="@style/TextViewStyle"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_23sdp"
+
+            android:layout_gravity="center"
+
+            android:background="@android:color/transparent"
+
+            android:textSize="@dimen/_15sdp"
+            android:text="او باستخدام"
+
+            tools:ignore="HardcodedText,TextContrastCheck,TextSizeCheck"/>
+
+        <ImageView
+            android:id="@+id/Facebook_Icon"
+
+            android:theme="@style/Icon_BG"
+            style="@style/Icon_BG"
+
+            android:layout_width="@dimen/_42sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:padding="@dimen/_8sdp"
+
+            app:srcCompat="@drawable/icons_facebook_icon"
+
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

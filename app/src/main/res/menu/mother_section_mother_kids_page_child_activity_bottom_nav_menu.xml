@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="HardcodedText">
+
+    <item
+        android:id="@+id/Treatments_Table"
+        android:icon="@drawable/icons_vaccination_table_icon"
+        android:title="جدول التطعيم"/>
+
+    <item
+        android:id="@+id/Child_Treatment_Record"
+        android:icon="@drawable/icons_child_treatment_record_icon"
+        android:title="سجل علاج الطفل"/>
+
+</menu>

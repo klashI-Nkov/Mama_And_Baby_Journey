@@ -19,12 +19,4 @@
     <attr name="Center_Color" format="color" />
     <attr name="End_Color" format="color" />
 
-    <!-- this color below it is for Snack bar background in map -->
-    <color name="Snack_bar_BG_Color">#292929</color>
-
-    <!-- this colors below it is for Radio Buttons Text color -->
-    <color name="R_B_T_C_L">#73000000</color>
-    <color name="R_B_T_C_N">#A2FFFFFF</color>
-
-
 </resources>

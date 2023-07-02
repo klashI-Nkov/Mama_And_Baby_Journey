@@ -24,7 +24,6 @@
         tools:ignore="ContentDescription" />
 
     <androidx.appcompat.widget.AppCompatButton
-
         android:id="@+id/Sing_Up_BTN"
         style="@style/EditTextStyle"
         android:theme="@style/EditTextStyle"

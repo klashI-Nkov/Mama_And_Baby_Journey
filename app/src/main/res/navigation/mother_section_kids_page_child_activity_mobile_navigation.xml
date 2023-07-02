@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mother_section_kids_page_child_activity_mobile_navigation"
+    app:startDestination="@+id/Treatments_Table">
+
+    <fragment
+        android:id="@+id/Treatments_Table"
+        android:name="com.example.mamababyjourney.mother_section.screens_folder.vaccines_page.Vaccines_Table"
+        android:label="جدول التطعيم"
+        tools:layout="@layout/fragment_mother_section_vaccines_page_vaccines_table_fragment"/>
+
+    <fragment
+        android:id="@+id/Child_Treatment_Record"
+        android:name="com.example.mamababyjourney.mother_section.screens_folder.kids_page.Child_Treatment_Record"
+        android:label="سجل علاج الطفل"
+        tools:layout="@layout/fragment_mother_section_kids_page_child_treatment_record_fragment"/>
+
+</navigation>

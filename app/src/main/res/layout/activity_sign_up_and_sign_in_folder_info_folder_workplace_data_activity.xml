@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/Constraint"
+
+    android:orientation="vertical"
+    android:gravity="center"
+
+    android:theme="@style/screen_Background"
+    style="@style/screen_Background"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".sign_up_and_sign_in_folder.Info_page.Workplace_Data_Activity">
+
+    <ScrollView
+        android:theme="@style/Scroll_Style"
+        style="@style/Scroll_Style"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/_44sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+        android:layout_marginBottom="@dimen/_65sdp"
+
+        android:paddingVertical="@dimen/_38sdp">
+
+        <LinearLayout
+            android:theme="@style/No_Style"
+            style="@style/No_Style"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layoutDirection="rtl"
+
+            android:orientation="vertical">
+
+            <!-- ال Text View الخاص بعنوان الشاشة -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="@dimen/_23sdp"
+
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/_18sdp"
+                android:text="اضف بيانات مكان العمل"
+
+                tools:ignore="HardcodedText,TextContrastCheck"/>
+
+            <!-- ال spinner الخاص باختيار مكان العمل -->
+            <Spinner
+                android:id="@+id/Workplace_Type_Sp"
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_38sdp"
+
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginHorizontal="@dimen/_23sdp"
+
+                android:paddingHorizontal="@dimen/_10sdp"
+
+                android:spinnerMode="dialog"
+
+                android:textDirection="rtl"
+                android:textSize="@dimen/_15sdp"
+
+                tools:ignore="SpeakableTextPresentCheck"/>
+
+            <!-- ال Edit Text الخاص باسم مكان العمل -->
+            <EditText
+                android:id="@+id/WorkPlace_Name"
+
+                android:theme="@style/EditTextStyle2"
+                style="@style/EditTextStyle2"
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_38sdp"
+
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginHorizontal="@dimen/_23sdp"
+
+                android:textAlignment="center"
+
+                android:inputType="text"
+                android:textSize="@dimen/_15sdp"
+
+                android:imeOptions="actionNext"
+
+                tools:ignore="Autofill,HardcodedText,LabelFor,TextContrastCheck,SpeakableTextPresentCheck"
+                android:visibility="gone"/>
+
+            <!-- ال Edit Text الخاص بعنوان مكان العمل -->
+            <EditText
+                android:id="@+id/WorkPlace_Address"
+
+                android:theme="@style/EditTextStyle2"
+                style="@style/EditTextStyle2"
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_38sdp"
+
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginHorizontal="@dimen/_23sdp"
+
+                android:inputType="text"
+                android:textAlignment="center"
+                android:textSize="@dimen/_15sdp"
+
+                android:imeOptions="actionNext"
+
+                tools:ignore="Autofill,HardcodedText,LabelFor,TextContrastCheck,SpeakableTextPresentCheck"
+                android:visibility="gone"/>
+
+            <!-- ال Edit Text الخاص ب رقم الهاتف -->
+            <EditText
+                android:id="@+id/Phone_Number"
+
+                android:theme="@style/EditTextStyle2"
+                style="@style/EditTextStyle2"
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_38sdp"
+
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginHorizontal="@dimen/_23sdp"
+
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textSize="@dimen/_15sdp"
+
+                android:imeOptions="actionDone"
+
+                tools:ignore="Autofill,HardcodedText,LabelFor,SpeakableTextPresentCheck,SpeakableTextPresentCheck,TextContrastCheck,TextFields,TouchTargetSizeCheck"
+                android:visibility="gone"/>
+
+            <!-- ال Text View الخاص باحداثيات مكان العمل على الخارطه -->
+            <TextView
+                android:id="@+id/WorkPlace_location_coordinates"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginHorizontal="@dimen/_23sdp"
+
+                android:singleLine="false"
+                android:textAlignment="center"
+                android:textSize="@dimen/_13sdp"
+
+                tools:ignore="HardcodedText,TextContrastCheck"
+                android:visibility="gone" />
+
+            <!-- زر الذهاب الى الخارطه -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/Go_to_Map_BTN"
+
+                android:theme="@style/EditTextStyle2"
+                style="@style/EditTextStyle2"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginHorizontal="@dimen/_38sdp"
+
+                android:textSize="@dimen/_15sdp"
+                android:text="الذهاب الى الخارطة"
+
+                android:onClick="Go_To_Map_BTN"
+
+                tools:ignore="HardcodedText"
+                android:visibility="gone"/>
+
+            <!-- ال Text View الخاص بعرض ايام و ساعات العمل -->
+            <TextView
+                android:id="@+id/Days_And_Working_Hours_Text_View"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginHorizontal="@dimen/_23sdp"
+
+                android:singleLine="false"
+                android:textAlignment="center"
+                android:textSize="@dimen/_12sdp"
+                android:text="قم باضافة ايام و ساعات العمل"
+
+                tools:ignore="HardcodedText,TextContrastCheck"
+                android:visibility="gone" />
+
+            <!-- زر اضافة ايام و ساعات العمل -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/Add_Days_And_Working_Hours_BTN"
+
+                android:theme="@style/EditTextStyle2"
+                style="@style/EditTextStyle2"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginHorizontal="@dimen/_38sdp"
+
+                android:textSize="@dimen/_15sdp"
+                android:text="اضافة ايام و ساعات العمل"
+
+                android:onClick="Add_Days_And_Working_Hours_BTN"
+
+                tools:ignore="HardcodedText"
+                android:visibility="gone"/>
+
+            <!-- زر حفظ بيانات مكان العمل -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/Save_Workplace_Data_BTN"
+
+                android:theme="@style/EditTextStyle2"
+                style="@style/EditTextStyle2"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginHorizontal="@dimen/_38sdp"
+
+                android:textSize="@dimen/_15sdp"
+                android:text="حفظ"
+
+                android:onClick="Save_Workplace_Data_BTN"
+
+                tools:ignore="HardcodedText,TouchTargetSizeCheck"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
