@@ -32,8 +32,8 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/Mothers_Advice_BTN"
 
-            android:theme="@style/Right_Button_Style"
-            style="@style/Right_Button_Style"
+            android:theme="@style/Mothers_Advice_BTN_Style"
+            style="@style/Mothers_Advice_BTN_Style"
 
             android:layout_width="@dimen/_130sdp"
             android:layout_height="wrap_content"
@@ -55,8 +55,8 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/Baby_Advice_BTN"
 
-            android:theme="@style/Left_Button_Style"
-            style="@style/Left_Button_Style"
+            android:theme="@style/Baby_Advice_BTN_Style"
+            style="@style/Baby_Advice_BTN_Style"
 
             android:layout_width="@dimen/_130sdp"
             android:layout_height="wrap_content"
