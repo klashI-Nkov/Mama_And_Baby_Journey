@@ -7,12 +7,12 @@
     android:layout_height="match_parent"
 
     android:layoutDirection="rtl"
+
     android:theme="@style/screen_Background"
     style="@style/screen_Background"
 
     tools:context=".mother_section.screens_folder.Advices"
     tools:ignore="HardcodedText">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:theme="@style/Buttons_Container_Style"
