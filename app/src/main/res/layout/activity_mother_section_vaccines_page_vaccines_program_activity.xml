@@ -15,7 +15,7 @@
     tools:context=".mother_section.screens_folder.vaccines_page.Vaccines_Program_Activity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/Screen_Title"
 
         android:theme="@style/TextViewStyle2"
         style="@style/TextViewStyle2"

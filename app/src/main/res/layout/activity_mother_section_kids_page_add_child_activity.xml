@@ -17,7 +17,7 @@
     tools:context=".mother_section.screens_folder.kids_page.Add_Child_Activity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/Screen_Title"
 
         android:theme="@style/TextViewStyle2"
         style="@style/TextViewStyle2"
@@ -41,7 +41,7 @@
         tools:ignore="HardcodedText" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/image_view"
+        android:id="@+id/child_image_view"
 
         android:theme="@style/No_Style"
         style="@style/No_Style"

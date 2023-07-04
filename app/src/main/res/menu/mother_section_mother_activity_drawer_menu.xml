@@ -10,22 +10,27 @@
 
         <item
             android:id="@+id/Mother"
+            android:icon="@drawable/icons_mother_icon"
             android:title="الام" />
 
         <item
             android:id="@+id/Doctors_And_Clinics"
+            android:icon="@drawable/icons_doctors_and_clinics_icon"
             android:title="العيادات و الأطباء" />
 
         <item
             android:id="@+id/Advices"
+            android:icon="@drawable/icons_advice_icon"
             android:title="نصائح" />
 
         <item
             android:id="@+id/Dates"
+            android:icon="@drawable/icons_dates_icon"
             android:title="المواعيد" />
 
         <item
             android:id="@+id/Kids"
+            android:icon="@drawable/icons_baby_icon"
             android:title="الأطفال" />
 
     </group>

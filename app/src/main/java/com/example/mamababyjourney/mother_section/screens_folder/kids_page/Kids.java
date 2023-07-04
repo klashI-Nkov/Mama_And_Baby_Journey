@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment;
 import com.example.mamababyjourney.R;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.ViewGroup;
 import android.content.Intent;
@@ -26,11 +28,11 @@ public class Kids extends Fragment
 
     public View onCreateView ( @NonNull LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState )
     {
-        binding = FragmentMotherSectionKidsPageKidsFragmentBinding . inflate (inflater ,container ,false ) ;
+        binding = FragmentMotherSectionKidsPageKidsFragmentBinding.inflate ( inflater , container , false );
 
-        Add_Treatments_Program_Button ( ) ;
+        Add_Treatments_Program_Button ( );
 
-        binding . AddChildBTN . setOnClickListener ( view ->
+        binding.AddChildBTN.setOnClickListener ( view ->
         {
             Intent intent = new Intent (requireContext ( ) ,Add_Child_Activity . class ) ;
             startActivityForResult (intent ,1 ) ;
@@ -43,18 +45,23 @@ public class Kids extends Fragment
     private void Add_Treatments_Program_Button ( )
     {
         // هون انا بجي ال layout الي مستعمله كنموذج وبخزنها في المتغير الي عنا هون
-        View childLayout = getLayoutInflater ( ) . inflate (R . layout .layouts_mother_section_vaccines_page_vaccines_program_grid_layout_item_layout ,null ) ;
+        View childLayout = getLayoutInflater ( ) . inflate (R . layout . layouts_mother_section_grid_layout_item_layout ,null ) ;
 
-        // هدول السطرين عباره عن اني اوصل لمكونات ال layout الي مستعملها كنموذج عشان اغير قيمهم
-        CircleImageView circleImageView = childLayout . findViewById (R . id . image_view ) ;
+        // هسه ال layout الي انا مستعملها كنمذوج لصور الاطفال فيها نوعين من الصور وحده بتجي دائريه و الثانيه عادي هون انافي اول سطرين مظهر الدائريه عشان استعملها و السطرين الثانين مخفي العاديه عشان ما بدي اياها
+        CircleImageView circleImageView = childLayout . findViewById (R . id . circle_image_view ) ;
+        circleImageView . setVisibility ( View . VISIBLE ) ;
 
+        ImageView image_view = childLayout . findViewById (R . id . image_view ) ;
+        image_view . setVisibility ( View . GONE ) ;
+
+        // هون انا جايب من ال layout ال textview الي بدي اعرض فيه اسم الطفل
         TextView textView = childLayout . findViewById (R . id . Title ) ;
 
         // هون بجيب  ال GridLayout الي بدي اضيف فيها الزر وبخزنها في هاد المتغير الي عنا تحت
         GridLayout . LayoutParams params = new GridLayout . LayoutParams ( ) ;
 
         // هون بحدد الصوره الي بدي اياها و النص الي بدي اياه للزر
-        circleImageView . setImageResource ( R . drawable .images_treatments_program ) ;
+        circleImageView . setImageResource ( R . drawable . images_treatments_program ) ;
         textView . setText ( "برنامج التطعيم" ) ;
 
         // هون بحدد قياسات و ابعاد الزر
@@ -66,7 +73,7 @@ public class Kids extends Fragment
         {
             Intent intent = new Intent (requireContext ( ) , Vaccines_Program_Activity. class ) ;
             startActivityForResult (intent , 1 ) ;
-        } ) ;
+        });
 
         // وهون اخر سطر انا بضيف الزر على ال GridLayout الي حددتها فوق
         binding . GirdLayout . addView (childLayout ,params ) ;
@@ -79,9 +86,12 @@ public class Kids extends Fragment
         if ( resultCode == RESULT_OK && data != null )
         {
             // هون بصير تفس الي بصير في هاد الفنكشن Add_Treatments_Program_Button لكن الفرق انه لما نضغط على الزر رح يودينا على الصفحه الي فيها بينات الطفل الي ضغطنا على الزر تبعه
-            View childLayout = getLayoutInflater ( ) . inflate ( R . layout .layouts_mother_section_vaccines_page_vaccines_program_grid_layout_item_layout , null ) ;
+            View childLayout = getLayoutInflater ( ) . inflate ( R . layout .layouts_mother_section_grid_layout_item_layout , null ) ;
 
-            CircleImageView circleImageView = childLayout . findViewById ( R . id . image_view ) ;
+            CircleImageView circleImageView = childLayout . findViewById (R . id . circle_image_view ) ;
+            circleImageView . setVisibility ( View . VISIBLE ) ;
+            ImageView image_view = childLayout . findViewById (R . id . image_view ) ;
+            image_view . setVisibility ( View . GONE ) ;
 
             TextView textView = childLayout . findViewById ( R . id . Title ) ;
 

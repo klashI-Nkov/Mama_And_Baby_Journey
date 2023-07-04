@@ -65,7 +65,7 @@ public class Add_Child_Activity extends AppCompatActivity
         {
             // هون بجيب الصوره الي اختارها من الاستديو و بخزنها في المتغير الي اسمه uri وبعدها بحطها بدل الصوره الي بتكون قبل ما نختار الصوره
             uri = data . getData ( ) ;
-            binding . imageView . setImageURI ( uri ) ;
+            binding . childImageView . setImageURI ( uri ) ;
         }
     }
 

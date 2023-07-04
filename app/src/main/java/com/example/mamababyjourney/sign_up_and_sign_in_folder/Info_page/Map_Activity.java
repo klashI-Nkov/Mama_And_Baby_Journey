@@ -794,10 +794,10 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
                 runOnUiThread ( ( ) ->
                 {
                     // هون بنجيب الشاشة الي فيها المسج و بنعرضها بدل الخارطه باستعمال فنشكن setContentView المسؤول عن تحديد الشاشة الي رح تنعرض للمستخدم
-                    setContentView ( R . layout .layouts_sign_up_and_sign_in_folder_info_folder_check_location_and_internet_layout ) ;
+                    setContentView ( R . layout . layouts_sign_up_and_sign_in_folder_info_folder_check_location_and_internet_layout ) ;
 
                     // هون عرفنا اوبجكت من الكلاس  TextView اسمه textView عشان نقدر نحدد مين هو ال text view الي بدنا نعرض للمتستخدم فيها نص المسج
-                    TextView textView = findViewById ( R . id . textVie ) ;
+                    TextView textView = findViewById ( R . id . Message ) ;
                     textView . setText ( "لا يوجد انترنت يرجى التحقق من اتصالك بالانترنت و المحاوله مره اخرى" ) ;
                 });
             }
@@ -807,8 +807,8 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
             {
                 runOnUiThread ( ( ) ->
                 {
-                    setContentView ( R . layout .layouts_sign_up_and_sign_in_folder_info_folder_check_location_and_internet_layout ) ;
-                    TextView textView = findViewById ( R . id . textVie ) ;
+                    setContentView ( R . layout . layouts_sign_up_and_sign_in_folder_info_folder_check_location_and_internet_layout ) ;
+                    TextView textView = findViewById ( R . id . Message ) ;
                     textView . setText ( "خدمة الموقع لديك متوقفه يرجى تشغيل خدمة الموقع للمتابعة" ) ;
                 });
             }
@@ -818,8 +818,8 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
             {
                 runOnUiThread ( ( ) ->
                 {
-                    setContentView ( R . layout .layouts_sign_up_and_sign_in_folder_info_folder_check_location_and_internet_layout ) ;
-                    TextView textView = findViewById ( R . id . textVie ) ;
+                    setContentView ( R . layout . layouts_sign_up_and_sign_in_folder_info_folder_check_location_and_internet_layout ) ;
+                    TextView textView = findViewById ( R . id . Message ) ;
                     textView . setText ( "لا يوجد اتصال بالانترنت و خدمة الموقع لديك متوقفه يرجى التحقق من الاتصال بالانترنت و تشغيل خدمة الموقع للمتابعة" ) ;
                 });
             }

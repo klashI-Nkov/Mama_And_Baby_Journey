@@ -8,7 +8,7 @@
     android:background="#99000000">
 
     <TextView
-        android:id="@+id/textVie"
+        android:id="@+id/Message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
