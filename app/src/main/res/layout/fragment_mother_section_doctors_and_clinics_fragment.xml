@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mother_section.screens_folder.Doctors_And_Clinics">
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:gravity="center"
+
+    android:theme="@style/screen_Background"
+    style="@style/screen_Background"
+
+    tools:context=".mother_section.screens_folder.Doctors_And_Clinics"
+
+    tools:ignore="HardcodedText">
 
     <TextView
+        android:theme="@style/No_Style"
+        style="@style/No_Style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Doctors And Clinics Fragment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        tools:ignore="HardcodedText"/>
+        android:text="Doctors And Clinics Fragment"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

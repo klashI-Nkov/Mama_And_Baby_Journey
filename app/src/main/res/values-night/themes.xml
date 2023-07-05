@@ -69,6 +69,7 @@
 
     <style name="No_Style">
         <item name="stroke_color">@android:color/transparent</item>
+        <item name="cardBackgroundColor">@android:color/transparent</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
 

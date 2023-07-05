@@ -2,13 +2,28 @@ package com.example.mamababyjourney.sign_up_and_sign_in_folder;
 
 import com.example.mamababyjourney.R;
 import com.example.mamababyjourney.databinding.ActivitySignUpAndSignInInfoSingInActivityBinding;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -16,9 +31,12 @@ import java.util.Objects;
 import android.os.Bundle;
 import android.widget.TextView;
 
+@SuppressWarnings ( { "ConstantConditions" , "FieldMayBeFinal" } )
+@SuppressLint ( "ClickableViewAccessibility" )
 public class Sing_in_Activity extends AppCompatActivity
 {
     ActivitySignUpAndSignInInfoSingInActivityBinding binding ;
+    GoogleSignInClient mClient ;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -30,7 +48,73 @@ public class Sing_in_Activity extends AppCompatActivity
 
         binding = ActivitySignUpAndSignInInfoSingInActivityBinding . inflate ( getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
+
+        Buttons ( ) ;
     }
+
+    public void sing_In_BTN ( View view )
+    {
+
+
+    }
+
+    private void Buttons ( )
+    {
+
+        // هاد مربوط مع ايقونة التسجيل بواسطة فيسبوك و ظيفته انه يفعل زر انشاء الحساب بعد ما تعطل لما الام او الدكتور كبسو عليه بدون ما يحددو الصفه
+        binding . FacebookIcon . setOnTouchListener ( ( v , event ) ->
+        {
+            if ( event . getAction ( ) == MotionEvent . ACTION_DOWN )
+            {
+
+            }
+            return false ;
+        });
+
+        // هاد مربوط مع ايقونة التسجيل بواسطة قوقل و ظيفته انه يفعل زر انشاء الحساب بعد ما تعطل لما الام او الدكتور كبسو عليه بدون ما يحددو الصفه
+        binding . GoogleIcon . setOnTouchListener ( ( v , event ) ->
+        {
+            if ( event . getAction ( ) == MotionEvent . ACTION_DOWN )
+            {
+                GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestIdToken ( getString ( R. string . default_web_client_id ) ) . requestEmail ( ) . build ( ) ;
+                mClient = GoogleSignIn . getClient (this ,googleSignInOptions ) ;
+
+                // login
+                Intent intent = mClient . getSignInIntent ( ) ;
+                activityResultLauncher . launch (intent ) ;
+            }
+            return false ;
+        });
+
+    }
+
+    private ActivityResultLauncher < Intent > activityResultLauncher = registerForActivityResult (new ActivityResultContracts . StartActivityForResult ( ) ,result ->
+    {
+        if ( result . getResultCode ( ) == Activity . RESULT_OK )
+        {
+            Intent data = result . getData ( ) ;
+            Task < GoogleSignInAccount > task = GoogleSignIn . getSignedInAccountFromIntent (data ) ;
+
+            try
+            {
+                GoogleSignInAccount account = task . getResult ( ApiException . class ) ;
+
+                // auth
+                AuthCredential credential = GoogleAuthProvider . getCredential (account . getIdToken ( ) ,null ) ;
+                FirebaseAuth . getInstance ( ) . signInWithCredential (credential ) . addOnCompleteListener (this ,Task ->
+                {
+                    if ( Task . isSuccessful ( ) )
+                    {
+                        Snack_Bar (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getDisplayName ( ) ) ;
+                    }
+                });
+            }
+            catch ( ApiException a )
+            {
+                throw new RuntimeException ( a ) ;
+            }
+        }
+    });
 
     /*
       هاد الفنكشن مستعمله عشان اعرض مسج معين و مستعمله في معظم كلاسات التطبيق

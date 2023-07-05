@@ -14,20 +14,28 @@
       },
       "oauth_client": [
         {
-          "client_id": "1044332068566-pm56pgbtc6qcjv0bi31hihm63423llr7.apps.googleusercontent.com",
+          "client_id": "1044332068566-3mhhipet05d8h84c1pj73r2ph4s51g99.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mamababyjourney",
+            "certificate_hash": "da2ec9bdfbe2ebfe4b8ab8fc859af7ebb46ba286"
+          }
+        },
+        {
+          "client_id": "1044332068566-fct8a8o2bgqo0iv3qr91r215lp0m8n5q.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAtEiYtdN_-kaFd0_pnBJHL6DviXfQjAEo"
+          "current_key": "AIzaSyB7Uv7zRUnNvfy-7MnWtiYrXT6sJgDCvnA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1044332068566-pm56pgbtc6qcjv0bi31hihm63423llr7.apps.googleusercontent.com",
+              "client_id": "1044332068566-fct8a8o2bgqo0iv3qr91r215lp0m8n5q.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

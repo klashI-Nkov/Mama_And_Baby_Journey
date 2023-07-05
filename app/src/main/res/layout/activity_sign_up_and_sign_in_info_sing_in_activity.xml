@@ -140,6 +140,8 @@
         android:textSize="@dimen/_15sdp"
         android:text="تسجيل الدخول"
 
+        android:onClick="sing_In_BTN"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -163,7 +165,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/Google_icon"
 
             android:theme="@style/Icon_BG"
             style="@style/Icon_BG"
@@ -194,7 +196,7 @@
             tools:ignore="HardcodedText"/>
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/Facebook_Icon"
 
             android:theme="@style/Icon_BG"
             style="@style/Icon_BG"

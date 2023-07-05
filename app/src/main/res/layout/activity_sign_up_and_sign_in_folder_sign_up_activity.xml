@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,6 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
+    android:gravity="center_horizontal"        android:orientation="vertical"
     android:layoutDirection="rtl"
 
     android:theme="@style/screen_Background"
@@ -17,14 +18,11 @@
     tools:context=".sign_up_and_sign_in_folder.Sign_Up_Activity">
 
     <TextView
-        android:id="@+id/textView1"
-
         style="@style/TextViewStyle"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_34sdp"
-        android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:background="@android:color/transparent"
         android:fontFamily="@font/pacifico"
@@ -33,11 +31,7 @@
         android:textSize="@dimen/_31sdp"
         android:text="Mama Baby Journey"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText,TextContrastCheck"/>
+        tools:ignore="HardcodedText,TextContrastCheck" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -46,16 +40,10 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="@dimen/_23sdp"
-        android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:background="@android:color/transparent"
         android:orientation="horizontal"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1"
-        app:layout_constraintBottom_toTopOf="@+id/Name_Edit_text"
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
@@ -72,7 +60,7 @@
             android:textSize="@dimen/_17sdp"
             android:text="هل انت"
 
-            tools:ignore="HardcodedText,TextContrastCheck"/>
+            tools:ignore="HardcodedText,TextContrastCheck" />
 
         <RadioButton
             android:id="@+id/Mom_R_BTN"
@@ -88,7 +76,7 @@
             android:textSize="@dimen/_14sdp"
             android:text="أم"
 
-            tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck"/>
+            tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck" />
 
         <RadioButton
             android:id="@+id/Doctor_R_BTN"
@@ -103,11 +91,11 @@
             android:textSize="@dimen/_14sdp"
             android:text="طبيب"
 
-            tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck"/>
+            tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck" />
 
     </RadioGroup>
 
-    <!--Name Edit Text-->
+    <!-- Name Edit Text -->
     <EditText
         android:id="@+id/Name_Edit_text"
 
@@ -126,12 +114,9 @@
 
         android:imeOptions="actionNext"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize,TextContrastCheck"/>
+        tools:ignore="Autofill,HardcodedText"/>
 
-    <!--Password Edit Text-->
+    <!-- Email Edit Text -->
     <EditText
         android:id="@+id/U_Email_Edit_text"
 
@@ -140,7 +125,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="@dimen/_33sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
         android:paddingStart="@dimen/_30sdp"
         android:paddingEnd="@dimen/_10sdp"
@@ -154,11 +139,9 @@
 
         android:imeOptions="actionNext"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Name_Edit_text"
-        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize,TextContrastCheck"/>
+        tools:ignore="Autofill,HardcodedText"/>
 
+    <!-- Password Edit Text -->
     <EditText
         android:id="@+id/U_password_edit_text"
 
@@ -167,7 +150,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
-        android:layout_marginTop="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_33sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
         android:paddingStart="@dimen/_34sdp"
         android:paddingEnd="@dimen/_9sdp"
@@ -179,13 +162,9 @@
         android:textSize="@dimen/_12sdp"
         android:hint="كلمة المرور"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/U_Email_Edit_text"
-        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize,TextContrastCheck"/>
+        tools:ignore="Autofill,HardcodedText"/>
 
-    <!--Sing Up Button-->
+    <!-- Sing Up Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sing_Up_BTN"
 
@@ -194,84 +173,74 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_61sdp"
+        android:layout_marginTop="@dimen/_40sdp"
         android:layout_marginHorizontal="@dimen/_39sdp"
 
         android:text="انشاء حساب"
         android:textSize="@dimen/_15sdp"
 
         android:onClick="Sing_Up_BTN"
+        tools:ignore="HardcodedText,TextSizeCheck,VisualLintButtonSize,VisualLintBounds" />
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/U_password_edit_text"
-        tools:ignore="HardcodedText,TextSizeCheck,VisualLintButtonSize,VisualLintBounds"/>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <TextView
+        style="@style/TextViewStyle"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_80sdp"
+        android:layout_marginTop="@dimen/_40sdp"
 
         android:background="@android:color/transparent"
+
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:text="ـــــــــــــــــــــ او ـــــــــــــــــــــ"
+
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:theme="@style/EditTextStyle"
+        style="@style/EditTextStyle"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:paddingVertical="@dimen/_10sdp"
+
         android:orientation="horizontal"
+        android:gravity="center"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sing_Up_BTN"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="VisualLintBounds">
+        android:onClick="Sing_Up_By_Google"
 
-        <ImageView
-            android:id="@+id/Google_icon"
-
-            android:theme="@style/Icon_BG"
-            style="@style/Icon_BG"
-
-            android:layout_width="@dimen/_42sdp"
-            android:layout_height="@dimen/_45sdp"
-            android:padding="@dimen/_8sdp"
-
-            app:srcCompat="@drawable/icons_google_icon"
-
-            tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck"/>
+        tools:ignore="UseCompoundDrawables">
 
         <TextView
-            android:id="@+id/textView4"
-
+            android:theme="@style/No_Style"
             style="@style/TextViewStyle"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_23sdp"
 
-            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_10sdp"
 
-            android:background="@android:color/transparent"
+            android:textAlignment="center"
 
-            android:textSize="@dimen/_15sdp"
-            android:text="او باستخدام"
+            android:textSize="@dimen/_14sdp"
+            android:text="إنشاء حساب باستخدام جوجل "
 
-            tools:ignore="HardcodedText,TextContrastCheck,TextSizeCheck"/>
+            tools:ignore="HardcodedText" />
 
         <ImageView
-            android:id="@+id/Facebook_Icon"
+            android:theme="@style/No_Style"
+            style="@style/No_Style"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
 
-            android:theme="@style/Icon_BG"
-            style="@style/Icon_BG"
 
-            android:layout_width="@dimen/_42sdp"
-            android:layout_height="@dimen/_45sdp"
-            android:padding="@dimen/_8sdp"
-
-            app:srcCompat="@drawable/icons_facebook_icon"
-
-            tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck"/>
+            android:src="@drawable/g_logo"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

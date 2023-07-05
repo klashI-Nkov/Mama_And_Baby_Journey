@@ -3,37 +3,50 @@ package com.example.mamababyjourney.sign_up_and_sign_in_folder;
 import com.example.mamababyjourney.databinding.ActivitySignUpAndSignInFolderSignUpActivityBinding;
 import com.example.mamababyjourney.sign_up_and_sign_in_folder.Info_page.Doctor_Data_Activity;
 import com.example.mamababyjourney.mother_section.Mother_Activity;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import androidx.activity.result.contract.ActivityResultContracts;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.common.api.ApiException;
+import androidx.activity.result.ActivityResultLauncher;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.GoogleAuthProvider;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FirebaseAuth;
 import androidx.core.content.ContextCompat;
-import android.content.res.ColorStateList;
-import android.content.res.Configuration;
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
+import com.google.android.gms.tasks.Task;
+import android.content.res.Configuration;
 import com.example.mamababyjourney.R;
-import androidx.annotation.NonNull;
 import android.app.ProgressDialog;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.WindowManager;
 import android.view.MotionEvent;
 import android.widget.TextView;
+import android.graphics.Color;
 import android.view.ViewGroup;
 import android.content.Intent;
-import android.view.View;
-import java.util.HashMap;
+import android.app.Activity;
 import java.util.Objects;
 import android.os.Bundle;
+import android.view.View;
+import java.util.HashMap;
 
-
-@SuppressWarnings ( { "FieldCanBeLocal" , "FieldMayBeFinal" , "SameParameterValue" , "IfStatementWithIdenticalBranches" } )
+@SuppressWarnings ( { "FieldMayBeFinal" , "ConstantConditions" , "IfStatementWithIdenticalBranches" , "CommentedOutCode" } )
 @SuppressLint ( "ClickableViewAccessibility" )
 public class Sign_Up_Activity extends AppCompatActivity
 {
 
     ActivitySignUpAndSignInFolderSignUpActivityBinding binding ;
 
-    private String id = "1" ;
+    private int mother_Id = 1 ;
+
+    Intent intent ;
+
+    GoogleSignInClient mClient ;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -46,12 +59,10 @@ public class Sign_Up_Activity extends AppCompatActivity
         binding = ActivitySignUpAndSignInFolderSignUpActivityBinding . inflate ( getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
 
-        Buttons ( ) ;
         Theme ( ) ;
-
     }
 
-    // هاد الفنكشن وهاد onConfigurationChanged عملتهم عشان اغير لون التكست لل Radio buttons حسب الثيم لانه حاولت اطبق عليهم ستايل يغيير لون الخط حسب الثيم ما زبط فانجبرت استعمل هاي الطريقه
+    //هاد الفنكشن عملته عشان اغير لون خط ال Radio buttons حسب الثيم
     public void Theme ( )
     {
 
@@ -75,118 +86,116 @@ public class Sign_Up_Activity extends AppCompatActivity
         }
     }
 
-    @Override
-    public void onConfigurationChanged ( @NonNull Configuration newConfig )
+    // هاد بتنفذ لما اضغط على انشاء حساب باستخدام جوجل
+    public void Sing_Up_By_Google ( View view)
     {
-        super . onConfigurationChanged ( newConfig ) ;
-        int color ;
-        // الشرط الي جوا الاف معناه انه روح جيب الثيم الحالي و شوف اذا هو دارك ادخل و نفذ الي جوا الاف واعطي الخط تاع ال Radio buttons الوان الثيم الدارك اذا الثيم الحالي مش دارك اعطيهم الوان الثيم الفاتح
-        if ( ( getResources ( ) . getConfiguration ( ) . uiMode & Configuration . UI_MODE_NIGHT_MASK ) == Configuration . UI_MODE_NIGHT_YES )
+        // هون بقله اذا المسخدم حدد الصفه نفذ الي جوا الاف لو ما حدد اعرض اله المسج الي تحت
+        if ( binding.MomRBTN.isChecked ( ) || binding.DoctorRBTN.isChecked ( ) )
         {
-            color = Color.parseColor ( "#A2FFFFFF" ) ;
-            binding . DoctorRBTN . setTextColor ( color ) ;
-            binding . MomRBTN    . setTextColor ( color ) ;
+            GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestIdToken ( getString (R . string . default_web_client_id ) ) . requestEmail ( ) . build ( ) ;
+            mClient = GoogleSignIn . getClient (this ,googleSignInOptions ) ;
+
+            // login
+            Intent intent = mClient . getSignInIntent ( ) ;
+            activityResultLauncher . launch (intent ) ;
         }
         else
-        {
-            color = Color.parseColor ( "#73000000" ) ;
-            binding . DoctorRBTN . setTextColor ( color ) ;
-            binding . MomRBTN    . setTextColor ( color ) ;
-        }
+            Snack_Bar ( "يرجى تحديد صفتك قبل المتابعه" ) ;
     }
 
-    /*
-        هاد الفنكشن صح انه جديد لكن هو وحده الجديد اما الاكواد الي جواته قديمه والجديد في الموضوع انه الاكواد الي داخله
-        كانت تتنفذ عند حدث الضغط الخاص بالشي الي انا كاتب اله الكود
-
-        والي عملته هلا اني خليتها تتنفذ عند حدث اللمس للشي الي انا كاتب الكود عشانه
-
-        اول شي اسرع في الاستجابه و تاني شي اقل في الكود
-
-        ثالث شي الخاصيه الي سالتي عنها الصبح كانت المشكله لما كانت تتنفذ عند الضغط على ال Radio Buttons تاعين الام و الدكتور
-
-        الي كان يصير مرات ما كانت تشتغل و ما تتنفذ وبس استعملت حدث اللمس زبطت مباشره
-     */
-    private void Buttons ( )
+    private ActivityResultLauncher < Intent > activityResultLauncher = registerForActivityResult (new ActivityResultContracts . StartActivityForResult ( ) ,result ->
     {
-
-        // هاد مربوط مع ايقونة التسجيل بواسطة فيسبوك و ظيفته انه يفعل زر انشاء الحساب بعد ما تعطل لما الام او الدكتور كبسو عليه بدون ما يحددو الصفه
-        binding . FacebookIcon . setOnTouchListener ( ( v , event ) ->
+        if ( result . getResultCode ( ) == Activity . RESULT_OK )
         {
-            if ( event . getAction ( ) == MotionEvent.ACTION_DOWN )
-            {
-                // هون بقله اذا المسخدم مش محدد شو صفته ادخل الاف و عطل انشاء الحساب باستخدام قوقل اما اذا حدد فعادي خليه يستعمله
-                if ( !binding.MomRBTN.isChecked ( ) && !binding.DoctorRBTN.isChecked ( ) )
-                 Snack_Bar ( "يرجى تحديد صفتك قبل المتابعه" ) ;
-            }
-            return false ;
-        } );
+            Intent data = result . getData ( ) ;
+            Task < GoogleSignInAccount > task = GoogleSignIn . getSignedInAccountFromIntent (data ) ;
 
-        // هاد مربوط مع ايقونة التسجيل بواسطة قوقل و ظيفته انه يفعل زر انشاء الحساب بعد ما تعطل لما الام او الدكتور كبسو عليه بدون ما يحددو الصفه
-        binding . GoogleIcon . setOnTouchListener ( ( v , event ) ->
-        {
-            if ( event . getAction ( ) == MotionEvent.ACTION_DOWN )
+            try
             {
-                // هون بقله اذا المسخدم مش محدد شو صفته ادخل الاف و عطل انشاء الحساب باستخدام قوقل اما اذا حدد فعادي خليه يستعمله
-                if ( ! binding . MomRBTN . isChecked ( ) && ! binding . DoctorRBTN . isChecked ( ) )
-                    Snack_Bar ( "يرجى تحديد صفتك قبل المتابعه" ) ;
-                else
+                GoogleSignInAccount account = task . getResult ( ApiException . class ) ;
+
+                // auth
+                AuthCredential credential = GoogleAuthProvider . getCredential (account . getIdToken ( ) ,null ) ;
+
+                FirebaseAuth . getInstance ( ) . signInWithCredential (credential ) . addOnCompleteListener (this ,Task ->
                 {
-
-                }
+                    if ( Task . isSuccessful ( ) )
+                    {
+                        Snack_Bar (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getDisplayName ( ) ) ;
+                    }
+                });
             }
-            return false;
-        } );
-
-    }
+            catch ( ApiException a )
+            {
+                throw new RuntimeException ( a ) ;
+            }
+        }
+    });
 
     // هاد بتنفذ عند لما نكبس على زر انشاء الحساب و وظفيته انه ينقل المستخدم للشاشه الي بعد شاشة انشاء الحساب
     public void Sing_Up_BTN ( View view )
     {
         /*
-            هون في حالة المستخدم لما يسجل باستعمال الايميل كان ام او طبيب لو ما حدد صفته رح بعرض اله
-
-            مسج انه لازم يحدد صفته قبل ما يكمل اما اذا كان محدد فعادي بخليه يكمل من دون اي مشاكل
+            هدول ال 3 متغيرات
+            الاول بخزن فيه الباس الي بتنكتب في ال edit text تبع الباس
+            الثاني بخزن فيه الايميل الي بنكتب في ال edit text تبع الايميل
+            الثالث بخزن فيه الاسم الي بنكتب في ال edit text تبع الاسم
         */
-        if ( ! binding . MomRBTN . isChecked ( ) && ! binding . DoctorRBTN . isChecked ( ) )
-            Snack_Bar ( "يرجى تحديد صفتك قبل المتابعه" ) ;
+        String password = binding . UPasswordEditText . getText ( ) . toString ( ) ;
+        String email    = binding . UEmailEditText    . getText ( ) . toString ( ) ;
+        String name     = binding . NameEditText      . getText ( ) . toString ( ) ;
 
-        // هون كونه بس الام مطلوب منها الاسم بس فما رح يكون في الها بيانات تعبيها لهيك حاكي اله اذا المستخدم كان دكتور انقله لشاشة البيانات عشان يعبي البيانات اللازمه
-        if ( binding . DoctorRBTN . isChecked ( ) )
-        {
-            Intent intent = new Intent ( this , Doctor_Data_Activity . class ) ;
-            startActivity ( intent ) ;
-        }
+        /*
+            هدول ال 4 متغيرات عشان اتحقق من اكم شغله و كل واحد مبين من اسمه لشو هو
 
-        else if ( binding . MomRBTN . isChecked ( ) )
+            الاول في حالة انكتب الايميل صح رح يتخزن فيه true غير هيك بتخزن فيه false
+
+            الثاني في حالة كان طول الباس مش اقل من 6 خانات رح يتخزن فيه true غير هيك بتخزن فيه false
+
+            الثالث في حالة ما كان في اي واحد من الحقول فاضي رح يتخزن فيه true غير هيك بتخزن فيه false
+
+            الرابع في حالة كل المتغيرات ال 3 الي قبله مخزن فيهم true رح يتخزن فيه true لو واحد من ال 3 متغيرات مخزن فيه false رح يتخزن فيه false
+        */
+        boolean email_Format_Is_Correct = email . contains ( "@" ) && email . contains ( "." ) ;
+
+        boolean password_Length_Is_Correct = password . length ( ) >= 6 ;
+
+        boolean all_Fields_Are_Filled_In = ! password . isEmpty ( ) && ! email . isEmpty ( ) && ! name . isEmpty ( ) ;
+
+        boolean is_All_Done = all_Fields_Are_Filled_In && email_Format_Is_Correct && password_Length_Is_Correct ;
+
+
+        // هون في حالة المستخدم حدد صفته رح ينفذ الي جوا الاف ولو ما حدد رح بعرض اله مسج انه لازم يحدد صفته قبل ما يكمل قبل ما يكمل
+        if ( binding . MomRBTN . isChecked ( ) || binding . DoctorRBTN . isChecked ( ) )
         {
-            if ( ! binding . NameEditText . getText ( ) . toString ( ) . isEmpty ( ) )
+            // هون اذا كل الحقول معبية رح يدخل ينفذ الي جوا الاف ولو كان واحد من الحقول فاضي رح يعرض اله المسج الي تحت
+            if ( all_Fields_Are_Filled_In )
             {
-                // هون انا بمعل زي ما تقولي مسج بتظهر للمستخدم بتقله الرجاء الانتظار يعني يستنى لحد ما تتخزن الداتا في الفاير بيس
-                final ProgressDialog progressDialog = new ProgressDialog (this ) ;
-                progressDialog . setMessage ( "يرجى الانتظار" ) ;
-                progressDialog . show ( ) ;
 
-                FirebaseFirestore db = FirebaseFirestore . getInstance ( ) ;
+                // هون في حالة كان طول الباس اقل من 6 خانات رح يعرض اله المسج الي تحت
+                if ( ! password_Length_Is_Correct )
+                    Snack_Bar ( "يجب ان لا يقل طول كلمة المرور عن 6 خانات" ) ;
 
-                HashMap < String , Object > data = new HashMap < > ( ) ;
-                data . put ( "Name", binding . NameEditText . getText ( ) + "" ) ;
 
-                db . collection ("mothers" ) . document (id ) . set ( data ) . addOnCompleteListener ( task ->
-                {
-                    if ( task . isComplete ( ) )
-                    {
-                        Intent intent = new Intent (this ,Mother_Activity . class ) ;
-                        intent . putExtra ("Id" ,id ) ;
-                        progressDialog . dismiss ( ) ;
-                        Update_Id ( ) ;
-                        startActivity ( intent ) ;
-                    }
-                });
+                // هون في حالة كان الايميل مش مكتوب صح رح يعرض اله المسج الي تحت
+                if ( ! email_Format_Is_Correct )
+                    Snack_Bar ( "صيغية الايميل الذي ادخلته غير صحيحه يرجى كتابة الايميل بشكل صحيح" ) ;
+
+
+                /*
+                   هون اذا كل شي اموره تمام انه عبى كل الحقول و كتب الايميل صح و طول الباس مش اقل من
+
+                   6 بستدعي الفنكشن الي بعمل الي حساب وبضيف البيانات في الفايرستور وببعثله الايميل و الباس
+                */
+                if ( is_All_Done )
+                    Create_Account_With_Email ( binding . UEmailEditText . getText ( ) . toString ( ) , binding . UPasswordEditText . getText ( ) . toString ( ) ) ;
             }
             else
-                Snack_Bar ( "يرجى كتابة الاسم قبل المتابعة" ) ;
+                Snack_Bar ( "يرجى تعبئة جميع الحقول قبل المتابعة" ) ;
         }
+        else
+            Snack_Bar ( "يرجى تحديد صفتك قبل المتابعه" ) ;
+
     }
 
     private void Snack_Bar ( String Message )
@@ -229,7 +238,72 @@ public class Sign_Up_Activity extends AppCompatActivity
         FirebaseFirestore db = FirebaseFirestore . getInstance ( ) ;
 
         HashMap < String , Object > id = new HashMap < > ( ) ;
-        id . put ( "Mother Id" , ++ Doctor_Data_Activity . id  ) ;
-        db . collection ("id's" ) . document ("id" ) . update (id ) ;
+        id . put ( "mother Id" , ++mother_Id  ) ;
+        db . collection ("ID's" ) . document ("id's" ) . update (id ) ;
+    }
+
+    private void Create_Account_With_Email ( String email , String password )
+    {
+        // هون انا بمعل زي ما تقولي مسج بتظهر للمستخدم بتقله الرجاء الانتظار يعني يستنى لحد ما تتخزن الداتا في الفاير بيس
+        final ProgressDialog progressDialog = new ProgressDialog (this ) ;
+        progressDialog . setMessage ( "يرجى الانتظار" ) ;
+        progressDialog . show ( ) ;
+
+        FirebaseAuth firebaseAuth = FirebaseAuth . getInstance ( ) ;
+
+        firebaseAuth . createUserWithEmailAndPassword (email ,password ) . addOnCompleteListener (this ,Task ->
+        {
+            if ( Task . isComplete ( ) )
+            {
+                // هاد بتنفذ لما يكون الي بعمل الحساب دكتور
+                if ( binding . DoctorRBTN . isChecked ( ) )
+                {
+                    intent = new Intent ( this , Doctor_Data_Activity . class ) ;
+                }
+
+                // هاد بتنفذ لما يكون الي بعمل الحساب ام
+                if ( binding . MomRBTN . isChecked ( ) )
+                {
+                     intent = new Intent (this , Mother_Activity . class ) ;
+
+                    FirebaseFirestore db = FirebaseFirestore . getInstance ( ) ;
+
+                    HashMap < String, Object > data = new HashMap <> ( ) ;
+                    data . put ( "Name" , binding . NameEditText . getText ( ) + "" ) ;
+
+                    db . collection ("mothers" ) . document (mother_Id + "" ) . set ( data ) ;
+
+                    intent . putExtra ("Id" ,mother_Id ) ;
+
+                    Update_Id ( ) ;
+                }
+
+                progressDialog . dismiss ( ) ;
+
+                Snack_Bar ( "Authentication done and the user name is : " + firebaseAuth . getCurrentUser ( ) . getDisplayName () ) ;
+
+                startActivity (intent ) ;
+            }
+            else
+            {
+                progressDialog . dismiss ( ) ;
+                Snack_Bar ("Authentication filed" + Task . getException ( ) ) ;
+            }
+        } ) ;
+
+
+
+        /*FirebaseAuth . getInstance ( ) . fetchSignInMethodsForEmail (email ) . addOnCompleteListener (task ->
+        {
+                if ( task . getResult ( ) . getSignInMethods ( ) . isEmpty ( ) )
+                {
+
+                }
+                else
+                {
+                    //progressDialog . dismiss ( ) ;
+                    Snack_Bar ("هذا الايميل مستخدم يرجى اختيار ايميل اخر" ) ;
+                }
+        } ) ;*/
     }
 }

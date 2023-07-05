@@ -31,12 +31,12 @@
         <!-- Sign_Up Activity -->
         <activity
             android:name=".sign_up_and_sign_in_folder.Sign_Up_Activity"
-            android:exported="false"/>
+            android:exported="true"/>
 
         <!-- Sing_in Activity -->
         <activity
             android:name=".sign_up_and_sign_in_folder.Sing_in_Activity"
-            android:exported="false"/>
+            android:exported="true"/>
 
         <!-- Doctor Data Activity -->
         <activity
@@ -61,13 +61,13 @@
         <!-- Mother Data Activity -->
         <activity
             android:name=".mother_section.Mother_Activity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.MamaBabyJourney.NoActionBar"/>
 
         <!-- vaccines Program Activity -->
         <activity
             android:name=".mother_section.screens_folder.vaccines_page.Vaccines_Program_Activity"
-            android:exported="true"/>
+            android:exported="false"/>
 
         <!-- Add Child Activity -->
         <activity
@@ -77,7 +77,7 @@
         <!-- Child Activity -->
         <activity
             android:name=".mother_section.screens_folder.kids_page.Child_Activity"
-            android:exported="true"/>
+            android:exported="false"/>
 
         <!-- Map API Key -->
         <meta-data
