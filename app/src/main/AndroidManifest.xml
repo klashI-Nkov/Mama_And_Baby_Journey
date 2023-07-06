@@ -72,7 +72,8 @@
         <!-- Add Child Activity -->
         <activity
             android:name=".mother_section.screens_folder.kids_page.Add_Child_Activity"
-            android:exported="false"/>
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
 
         <!-- Child Activity -->
         <activity

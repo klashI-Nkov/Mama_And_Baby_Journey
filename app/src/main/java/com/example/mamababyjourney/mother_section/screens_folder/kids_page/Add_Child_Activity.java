@@ -1,7 +1,6 @@
 package com.example.mamababyjourney.mother_section.screens_folder.kids_page;
 
 import com.example.mamababyjourney.databinding.ActivityMotherSectionKidsPageAddChildActivityBinding;
-import com.example.mamababyjourney.mother_section.Mother_Activity;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.StorageReference;
@@ -14,14 +13,15 @@ import android.content.res.ColorStateList;
 import android.annotation.SuppressLint;
 import com.example.mamababyjourney.R;
 import androidx.annotation.Nullable;
-
-import android.graphics.Color;
 import android.provider.MediaStore;
 import android.app.ProgressDialog;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.view.ViewGroup;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import java.util.HashMap;
@@ -29,8 +29,8 @@ import java.util.Objects;
 import android.net.Uri;
 
 @SuppressLint ( { "InflateParams" , "IntentReset" } )
-@SuppressWarnings ( { "deprecation" , "SameParameterValue" , "SpellCheckingInspection" } )
-public class Add_Child_Activity extends AppCompatActivity
+@SuppressWarnings ( { "deprecation" , "SameParameterValue" , "SpellCheckingInspection" , "CodeBlock2Expr" } )
+public class Add_Child_Activity extends AppCompatActivity implements AdapterView. OnItemSelectedListener
 {
     ActivityMotherSectionKidsPageAddChildActivityBinding binding ;
 
@@ -55,19 +55,10 @@ public class Add_Child_Activity extends AppCompatActivity
             intent . setType ( "image/*" ) ;
             startActivityForResult (intent ,1 ) ;
         });
+
+        Adapter_Initialization ( ) ;
     }
 
-    public void onActivityResult ( int requestCode , int resultCode , @Nullable Intent data )
-    {
-        super . onActivityResult (requestCode ,resultCode ,data ) ;
-
-        if ( resultCode == RESULT_OK && requestCode == 1 && data != null )
-        {
-            // هون بجيب الصوره الي اختارها من الاستديو و بخزنها في المتغير الي اسمه uri وبعدها بحطها بدل الصوره الي بتكون قبل ما نختار الصوره
-            uri = data . getData ( ) ;
-            binding . childImageView . setImageURI ( uri ) ;
-        }
-    }
 
     public void Save_BTN ( View view )
     {
@@ -78,42 +69,6 @@ public class Add_Child_Activity extends AppCompatActivity
             Snack_Bar ( "يجب كتابة الاسم و اختيار صوره قبل الضغظ على زر الحفظ" ) ;
     }
 
-    private void Snack_Bar ( String Message )
-    {
-
-        Snackbar snackbar = Snackbar . make (binding . Constraint ,Message ,7000 ) ;
-
-        int color = Color.parseColor ( "#292929" ) ;
-
-        snackbar . getView ( ) . setBackgroundTintList ( ColorStateList . valueOf (color ) ) ;
-
-        View snackbarView = snackbar . getView ( ) ;
-        TextView textView = snackbarView . findViewById (com . google . android . material . R . id . snackbar_text ) ;
-
-        textView . setSingleLine ( false ) ;
-
-        textView . setTextColor ( ContextCompat . getColor (this ,R . color . white ) ) ;
-
-        textView . setTextSize ( 15 ) ;
-
-        textView . setTextAlignment ( View . TEXT_ALIGNMENT_CENTER ) ;
-
-        ViewGroup . MarginLayoutParams marginLayoutParams = ( ViewGroup . MarginLayoutParams ) snackbarView . getLayoutParams ( ) ;
-
-        marginLayoutParams . setMargins
-        (
-            marginLayoutParams . leftMargin ,
-            marginLayoutParams . topMargin ,
-            marginLayoutParams . rightMargin ,
-            65
-        );
-
-        snackbarView . setLayoutParams ( marginLayoutParams ) ;
-
-        snackbar . show ( ) ;
-    }
-
-    @SuppressWarnings ( "CodeBlock2Expr" )
     private void Add_Chile_Data ( Uri uri )
     {
 
@@ -123,7 +78,7 @@ public class Add_Child_Activity extends AppCompatActivity
 
         // هون انا بروح على الفايرستورج و بعمل مجلد اسمه بكون قيمة ال id تبع الام واسم الصوره بكون هو اسم الطفل الي حطيناه
         StorageReference imageRef = FirebaseStorage . getInstance ( ) . getReference ( ) . child
-        (Mother_Activity . id + "/" + binding . NameEditText . getText ( ) . toString ( ) ) ;
+        ("Mother_Activity . id" + "/" + binding . NameEditText . getText ( ) . toString ( ) ) ;
 
         // هون بعمل مهمة رفع ملف وبحط المهمه امر برفع الصوره الي اجت لهاد الفنكشن في المتغير الي اسمه Uri
         UploadTask uploadTask = imageRef . putFile (uri ) ;
@@ -167,5 +122,91 @@ public class Add_Child_Activity extends AppCompatActivity
                 );
             }
         );
+    }
+
+
+
+
+
+
+    public void onActivityResult ( int requestCode , int resultCode , @Nullable Intent data )
+    {
+        super . onActivityResult (requestCode ,resultCode ,data ) ;
+
+        if ( resultCode == RESULT_OK && requestCode == 1 && data != null )
+        {
+            // هون بجيب الصوره الي اختارها من الاستديو و بخزنها في المتغير الي اسمه uri وبعدها بحطها بدل الصوره الي بتكون قبل ما نختار الصوره
+            uri = data . getData ( ) ;
+            binding . childImageView . setImageURI ( uri ) ;
+        }
+    }
+
+
+    private void Snack_Bar ( String Message )
+    {
+
+        Snackbar snackbar = Snackbar . make (binding . Constraint ,Message ,7000 ) ;
+
+        int color = Color.parseColor ( "#292929" ) ;
+
+        snackbar . getView ( ) . setBackgroundTintList ( ColorStateList . valueOf (color ) ) ;
+
+        View snackbarView = snackbar . getView ( ) ;
+        TextView textView = snackbarView . findViewById (com . google . android . material . R . id . snackbar_text ) ;
+
+        textView . setSingleLine ( false ) ;
+
+        textView . setTextColor ( ContextCompat . getColor (this ,R . color . white ) ) ;
+
+        textView . setTextSize ( 15 ) ;
+
+        textView . setTextAlignment ( View . TEXT_ALIGNMENT_CENTER ) ;
+
+        ViewGroup . MarginLayoutParams marginLayoutParams = ( ViewGroup . MarginLayoutParams ) snackbarView . getLayoutParams ( ) ;
+
+        marginLayoutParams . setMargins
+                (
+                        marginLayoutParams . leftMargin ,
+                        marginLayoutParams . topMargin ,
+                        marginLayoutParams . rightMargin ,
+                        65
+                );
+
+        snackbarView . setLayoutParams ( marginLayoutParams ) ;
+
+        snackbar . show ( ) ;
+    }
+
+
+
+
+
+    //هاد الفنكشن مستدعيه في ال onCreate و وظيفته هي انه يجهز القائمه الي الدكتور بختار منها مكان العمل
+    private void Adapter_Initialization ( )
+    {
+        // هون احنا بنحدد العناصر الي رح تنعرض النا لما نضغط على ال spinner
+        ArrayAdapter < CharSequence > adapter = ArrayAdapter . createFromResource
+                ( this , R . array . Gender , R . layout .layouts_spinner_drop_down_items_text_layout ) ;
+
+        // فيي هاد السطر بعطيه شكل النص تبع القائمه الي رح تظهر النا لما نضغط على ال spinner
+        adapter . setDropDownViewResource ( R . layout .layouts_spinner_drop_down_items_text_layout ) ;
+
+        // في هاد السطر بنربط ال array الي فيها الداتا الي رح تظهر لما نضغط على ال spinner
+        binding . GenderSp . setAdapter ( adapter ) ;
+
+        // في هاد السطر بنعمل تهيئه لحدث اختيار عنصر من ال spinner
+        binding . GenderSp . setOnItemSelectedListener ( this ) ;
+    }
+
+    @Override
+    public void onItemSelected ( AdapterView < ? > adapterView , View view , int i , long l )
+    {
+
+    }
+
+    @Override
+    public void onNothingSelected ( AdapterView < ? > adapterView )
+    {
+
     }
 }

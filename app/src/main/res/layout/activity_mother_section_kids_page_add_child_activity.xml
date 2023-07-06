@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,6 +13,8 @@
     style="@style/screen_Background"
 
     android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
 
     tools:context=".mother_section.screens_folder.kids_page.Add_Child_Activity">
 
@@ -32,32 +34,104 @@
 
         android:textSize="@dimen/_18sdp"
         android:text="اضافة طفل جديد"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="HardcodedText" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/child_image_view"
+        tools:ignore="HardcodedText"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:theme="@style/No_Style"
         style="@style/No_Style"
+        android:layout_width="@dimen/_119sdp"
+        android:layout_height="@dimen/_119sdp"
+        android:layout_marginTop="@dimen/_30sdp">
 
-        android:layout_width="@dimen/_107sdp"
-        android:layout_height="@dimen/_107sdp"
-        android:layout_marginTop="@dimen/_18sdp"
 
-        android:src="@drawable/images_baby"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/child_image_view"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.207" />
+            android:theme="@style/No_Style"
+            style="@style/No_Style"
 
+            android:layout_width="@dimen/_107sdp"
+            android:layout_height="@dimen/_107sdp"
+
+            android:src="@drawable/images_baby"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"/>
+
+        <ImageButton
+            android:id="@+id/Pick_Image_BTN"
+
+            android:theme="@style/Icon_BG"
+            style="@style/Icon_BG"
+
+            android:layout_width="@dimen/_42sdp"
+            android:layout_height="@dimen/_45sdp"
+
+            android:padding="@dimen/_8sdp"
+
+            app:srcCompat="@drawable/images_pick_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.02"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription"
+            android:scaleType="fitCenter"
+            app:layout_constraintVertical_bias="0.98"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:theme="@style/No_Style"
+        style="@style/No_Style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginHorizontal="@dimen/_23sdp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/Name_Edit_text"
+
+            android:theme="@style/EditTextStyle"
+            style="@style/EditTextStyle"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+
+            android:layout_weight="1"
+            android:gravity="center"
+
+            android:inputType="text"
+            android:textSize="@dimen/_12sdp"
+            android:hint="الاسم"
+
+            android:imeOptions="actionDone"
+
+            tools:ignore="Autofill,HardcodedText"/>
+
+        <Spinner
+            android:id="@+id/Gender_Sp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_38sdp"
+
+            android:paddingHorizontal="@dimen/_10sdp"
+
+            android:layout_weight="1"
+
+            android:spinnerMode="dialog"
+
+            android:textSize="@dimen/_15sdp"
+
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Save_BTN"
@@ -67,6 +141,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
+        android:layout_marginTop="@dimen/_14sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:textSize="@dimen/_12sdp"
@@ -74,58 +149,6 @@
 
         android:onClick="Save_BTN"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.616"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"/>
 
-    <EditText
-        android:id="@+id/Name_Edit_text"
-
-        android:theme="@style/EditTextStyle"
-        style="@style/EditTextStyle"
-
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_36sdp"
-        android:layout_marginHorizontal="@dimen/_23sdp"
-
-        android:inputType="text"
-        android:textAlignment="center"
-        android:textSize="@dimen/_12sdp"
-        android:hint="الاسم"
-
-        android:imeOptions="actionDone"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="Autofill,HardcodedText,TouchTargetSizeCheck,TextSizeCheck,VisualLintTextFieldSize,TextContrastCheck"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.482" />
-
-    <ImageButton
-        android:id="@+id/Pick_Image_BTN"
-
-        android:theme="@style/Icon_BG"
-        style="@style/Icon_BG"
-
-        android:layout_width="@dimen/_42sdp"
-        android:layout_height="@dimen/_45sdp"
-
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginBottom="@dimen/_50sdp"
-        android:padding="@dimen/_8sdp"
-
-        app:srcCompat="@drawable/images_pick_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.37"
-        tools:ignore="ContentDescription"
-        android:scaleType="fitCenter" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

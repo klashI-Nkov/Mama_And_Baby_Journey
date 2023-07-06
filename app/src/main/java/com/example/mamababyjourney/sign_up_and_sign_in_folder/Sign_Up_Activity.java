@@ -4,27 +4,26 @@ import com.example.mamababyjourney.databinding.ActivitySignUpAndSignInFolderSign
 import com.example.mamababyjourney.sign_up_and_sign_in_folder.Info_page.Doctor_Data_Activity;
 import com.example.mamababyjourney.mother_section.Mother_Activity;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import androidx.activity.result.contract.ActivityResultContracts;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.common.api.ApiException;
 import androidx.activity.result.ActivityResultLauncher;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.GoogleAuthProvider;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import androidx.core.content.ContextCompat;
-import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import com.google.android.gms.tasks.Task;
 import android.content.res.Configuration;
+import android.annotation.SuppressLint;
 import com.example.mamababyjourney.R;
 import android.app.ProgressDialog;
 import android.view.WindowManager;
-import android.view.MotionEvent;
 import android.widget.TextView;
 import android.graphics.Color;
 import android.view.ViewGroup;
@@ -35,18 +34,22 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.HashMap;
 
-@SuppressWarnings ( { "FieldMayBeFinal" , "ConstantConditions" , "IfStatementWithIdenticalBranches" , "CommentedOutCode" } )
+@SuppressWarnings ( { "FieldMayBeFinal" , "ConstantConditions" , "IfStatementWithIdenticalBranches" } )
 @SuppressLint ( "ClickableViewAccessibility" )
 public class Sign_Up_Activity extends AppCompatActivity
 {
 
     ActivitySignUpAndSignInFolderSignUpActivityBinding binding ;
 
-    private int mother_Id = 1 ;
-
     Intent intent ;
 
-    GoogleSignInClient mClient ;
+    /*
+        هدول ال 3 متغيرات
+        الاول بخزن فيه الباس الي بتنكتب في ال edit text تبع الباس
+        الثاني بخزن فيه الايميل الي بنكتب في ال edit text تبع الايميل
+        الثالث بخزن فيه الاسم الي بنكتب في ال edit text تبع الاسم
+    */
+    String password , email , name ;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -93,10 +96,10 @@ public class Sign_Up_Activity extends AppCompatActivity
         if ( binding.MomRBTN.isChecked ( ) || binding.DoctorRBTN.isChecked ( ) )
         {
             GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestIdToken ( getString (R . string . default_web_client_id ) ) . requestEmail ( ) . build ( ) ;
-            mClient = GoogleSignIn . getClient (this ,googleSignInOptions ) ;
+            GoogleSignInClient mClient = GoogleSignIn . getClient (this ,googleSignInOptions ) ;
 
             // login
-            Intent intent = mClient . getSignInIntent ( ) ;
+            intent = mClient . getSignInIntent ( ) ;
             activityResultLauncher . launch (intent ) ;
         }
         else
@@ -105,10 +108,14 @@ public class Sign_Up_Activity extends AppCompatActivity
 
     private ActivityResultLauncher < Intent > activityResultLauncher = registerForActivityResult (new ActivityResultContracts . StartActivityForResult ( ) ,result ->
     {
+        final ProgressDialog progressDialog = new ProgressDialog (this ) ;
+        progressDialog . setMessage ( "يرجى الانتظار" ) ;
+        progressDialog . show ( ) ;
+
         if ( result . getResultCode ( ) == Activity . RESULT_OK )
         {
-            Intent data = result . getData ( ) ;
-            Task < GoogleSignInAccount > task = GoogleSignIn . getSignedInAccountFromIntent (data ) ;
+            intent = result . getData ( ) ;
+            Task < GoogleSignInAccount > task = GoogleSignIn . getSignedInAccountFromIntent (intent ) ;
 
             try
             {
@@ -117,10 +124,44 @@ public class Sign_Up_Activity extends AppCompatActivity
                 // auth
                 AuthCredential credential = GoogleAuthProvider . getCredential (account . getIdToken ( ) ,null ) ;
 
-                FirebaseAuth . getInstance ( ) . signInWithCredential (credential ) . addOnCompleteListener (this ,Task ->
+                FirebaseAuth . getInstance ( ) . signInWithCredential (credential ) . addOnCompleteListener (this ,authResultTask ->
                 {
-                    if ( Task . isSuccessful ( ) )
+                    if ( authResultTask . isSuccessful ( ) )
                     {
+                        email = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ;
+                        name = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getDisplayName ( ) ;
+
+                        // هاد بتنفذ لما يكون الي بعمل الحساب دكتور
+                        if ( binding . DoctorRBTN . isChecked ( ) )
+                        {
+                            intent = new Intent (this , Doctor_Data_Activity . class ) ;
+
+                            HashMap < String , Object > data = new HashMap < > ( ) ;
+                            data . put ( "name" , name ) ;
+                            data . put ( "صفة المستخدم" , binding . DoctorRBTN . getText ( ) );
+
+                            FirebaseFirestore . getInstance ( ) . collection ("Doctors" ) . document (email ) . set ( data ) ;
+
+                            intent . putExtra ("doctor Document Id" ,email ) ;
+                        }
+
+                        // هاد بتنفذ لما يكون الي بعمل الحساب ام
+                        if ( binding . MomRBTN . isChecked ( ) )
+                        {
+                            intent = new Intent (this ,Mother_Activity . class ) ;
+
+                            HashMap < String , Object > data = new HashMap < > ( ) ;
+                            data . put ( "name" , name ) ;
+                            data . put ( "صفة المستخدم" , binding . MomRBTN . getText ( ) );
+
+                            FirebaseFirestore . getInstance ( ) . collection ("Mothers" ) . document (email ) . set ( data ) ;
+
+                            intent . putExtra ("mother Document Id" ,email ) ;
+                        }
+
+                        progressDialog . dismiss ( ) ;
+                        startActivity (intent ) ;
+
                         Snack_Bar (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getDisplayName ( ) ) ;
                     }
                 });
@@ -135,15 +176,10 @@ public class Sign_Up_Activity extends AppCompatActivity
     // هاد بتنفذ عند لما نكبس على زر انشاء الحساب و وظفيته انه ينقل المستخدم للشاشه الي بعد شاشة انشاء الحساب
     public void Sing_Up_BTN ( View view )
     {
-        /*
-            هدول ال 3 متغيرات
-            الاول بخزن فيه الباس الي بتنكتب في ال edit text تبع الباس
-            الثاني بخزن فيه الايميل الي بنكتب في ال edit text تبع الايميل
-            الثالث بخزن فيه الاسم الي بنكتب في ال edit text تبع الاسم
-        */
-        String password = binding . UPasswordEditText . getText ( ) . toString ( ) ;
-        String email    = binding . UEmailEditText    . getText ( ) . toString ( ) ;
-        String name     = binding . NameEditText      . getText ( ) . toString ( ) ;
+
+        password = binding . UPasswordEditText . getText ( ) . toString ( ) ;
+        email    = binding . UEmailEditText    . getText ( ) . toString ( ) ;
+        name     = binding . NameEditText      . getText ( ) . toString ( ) ;
 
         /*
             هدول ال 4 متغيرات عشان اتحقق من اكم شغله و كل واحد مبين من اسمه لشو هو
@@ -188,7 +224,7 @@ public class Sign_Up_Activity extends AppCompatActivity
                    6 بستدعي الفنكشن الي بعمل الي حساب وبضيف البيانات في الفايرستور وببعثله الايميل و الباس
                 */
                 if ( is_All_Done )
-                    Create_Account_With_Email ( binding . UEmailEditText . getText ( ) . toString ( ) , binding . UPasswordEditText . getText ( ) . toString ( ) ) ;
+                    Create_Account_With_Email ( ) ;
             }
             else
                 Snack_Bar ( "يرجى تعبئة جميع الحقول قبل المتابعة" ) ;
@@ -233,77 +269,66 @@ public class Sign_Up_Activity extends AppCompatActivity
         snackbar . show ( ) ;
     }
 
-    public void Update_Id ( )
-    {
-        FirebaseFirestore db = FirebaseFirestore . getInstance ( ) ;
-
-        HashMap < String , Object > id = new HashMap < > ( ) ;
-        id . put ( "mother Id" , ++mother_Id  ) ;
-        db . collection ("ID's" ) . document ("id's" ) . update (id ) ;
-    }
-
-    private void Create_Account_With_Email ( String email , String password )
+    private void Create_Account_With_Email ( )
     {
         // هون انا بمعل زي ما تقولي مسج بتظهر للمستخدم بتقله الرجاء الانتظار يعني يستنى لحد ما تتخزن الداتا في الفاير بيس
         final ProgressDialog progressDialog = new ProgressDialog (this ) ;
         progressDialog . setMessage ( "يرجى الانتظار" ) ;
         progressDialog . show ( ) ;
 
-        FirebaseAuth firebaseAuth = FirebaseAuth . getInstance ( ) ;
-
-        firebaseAuth . createUserWithEmailAndPassword (email ,password ) . addOnCompleteListener (this ,Task ->
+        FirebaseAuth . getInstance ( ) . fetchSignInMethodsForEmail (email ) . addOnCompleteListener (task ->
         {
-            if ( Task . isComplete ( ) )
+            if ( task . getResult ( ) . getSignInMethods ( ) . isEmpty ( ) )
             {
-                // هاد بتنفذ لما يكون الي بعمل الحساب دكتور
-                if ( binding . DoctorRBTN . isChecked ( ) )
+                FirebaseAuth . getInstance ( ) . createUserWithEmailAndPassword (email ,password ) . addOnCompleteListener (this ,Task ->
                 {
-                    intent = new Intent ( this , Doctor_Data_Activity . class ) ;
-                }
+                    if ( Task . isComplete ( ) )
+                    {
+                        // هاد بتنفذ لما يكون الي بعمل الحساب دكتور
+                        if ( binding . DoctorRBTN . isChecked ( ) )
+                        {
+                            intent = new Intent ( this , Doctor_Data_Activity . class ) ;
 
-                // هاد بتنفذ لما يكون الي بعمل الحساب ام
-                if ( binding . MomRBTN . isChecked ( ) )
-                {
-                     intent = new Intent (this , Mother_Activity . class ) ;
+                            HashMap < String , Object > data = new HashMap < > ( ) ;
+                            data . put ( "name" , name ) ;
+                            data . put ( "صفة المستخدم" , binding . DoctorRBTN . getText ( ) );
 
-                    FirebaseFirestore db = FirebaseFirestore . getInstance ( ) ;
+                            FirebaseFirestore . getInstance ( ) . collection ("Doctors" ) . document (email ) . set ( data ) ;
 
-                    HashMap < String, Object > data = new HashMap <> ( ) ;
-                    data . put ( "Name" , binding . NameEditText . getText ( ) + "" ) ;
+                            intent . putExtra ("doctor Document Id" ,email ) ;
+                        }
 
-                    db . collection ("mothers" ) . document (mother_Id + "" ) . set ( data ) ;
+                        // هاد بتنفذ لما يكون الي بعمل الحساب ام
+                        if ( binding . MomRBTN . isChecked ( ) )
+                        {
+                            intent = new Intent (this , Mother_Activity . class ) ;
 
-                    intent . putExtra ("Id" ,mother_Id ) ;
+                            HashMap < String , Object > data = new HashMap < > ( ) ;
+                            data . put ( "name" , name ) ;
+                            data . put ( "صفة المستخدم" , binding . MomRBTN . getText ( ) );
 
-                    Update_Id ( ) ;
-                }
+                            FirebaseFirestore . getInstance ( ) . collection ("Mothers" ) . document (email ) . set ( data ) ;
 
-                progressDialog . dismiss ( ) ;
+                            intent . putExtra ("mother Document Id" ,email ) ;
+                        }
 
-                Snack_Bar ( "Authentication done and the user name is : " + firebaseAuth . getCurrentUser ( ) . getDisplayName () ) ;
+                        Snack_Bar ( "Authentication done and the user name is : " + FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail () ) ;
 
-                startActivity (intent ) ;
+                        progressDialog . dismiss ( ) ;
+                        startActivity (intent ) ;
+                    }
+                    else
+                    {
+                        progressDialog . dismiss ( ) ;
+                        Snack_Bar ("Authentication filed" + Task . getException ( ) ) ;
+                    }
+                });
             }
             else
             {
                 progressDialog . dismiss ( ) ;
-                Snack_Bar ("Authentication filed" + Task . getException ( ) ) ;
+                Snack_Bar ("هذا الايميل مستخدم يرجى اختيار ايميل اخر" ) ;
             }
-        } ) ;
-
-
-
-        /*FirebaseAuth . getInstance ( ) . fetchSignInMethodsForEmail (email ) . addOnCompleteListener (task ->
-        {
-                if ( task . getResult ( ) . getSignInMethods ( ) . isEmpty ( ) )
-                {
-
-                }
-                else
-                {
-                    //progressDialog . dismiss ( ) ;
-                    Snack_Bar ("هذا الايميل مستخدم يرجى اختيار ايميل اخر" ) ;
-                }
-        } ) ;*/
+        });
     }
 }

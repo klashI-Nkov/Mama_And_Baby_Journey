@@ -1,42 +1,51 @@
 package com.example.mamababyjourney.sign_up_and_sign_in_folder;
 
-import com.example.mamababyjourney.R;
-import com.example.mamababyjourney.databinding.ActivitySignUpAndSignInInfoSingInActivityBinding;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.example.mamababyjourney.databinding.ActivitySignUpAndSignInFolderSingInActivityBinding;
+import com.example.mamababyjourney.mother_section.Mother_Activity;
+import com.example.mamababyjourney.sign_up_and_sign_in_folder.Info_page.Doctor_Data_Activity;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import androidx.activity.result.contract.ActivityResultContracts;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import androidx.activity.result.ActivityResultLauncher;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.GoogleAuthProvider;
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.GoogleAuthProvider;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
+import android.app.ProgressDialog;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
+import com.google.android.gms.tasks.Task;
+import android.annotation.SuppressLint;
+import com.example.mamababyjourney.R;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import android.view.WindowManager;
+import android.widget.TextView;
+import android.content.Intent;
+import android.view.ViewGroup;
+import android.graphics.Color;
+import android.app.Activity;
+import android.view.View;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.Toast;
 
 @SuppressWarnings ( { "ConstantConditions" , "FieldMayBeFinal" } )
 @SuppressLint ( "ClickableViewAccessibility" )
 public class Sing_in_Activity extends AppCompatActivity
 {
-    ActivitySignUpAndSignInInfoSingInActivityBinding binding ;
-    GoogleSignInClient mClient ;
+    ActivitySignUpAndSignInFolderSingInActivityBinding binding ;
+
+    Intent intent ;
+
+    String password , email;
+
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -46,46 +55,78 @@ public class Sing_in_Activity extends AppCompatActivity
         getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
         Objects . requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
 
-        binding = ActivitySignUpAndSignInInfoSingInActivityBinding . inflate ( getLayoutInflater ( ) ) ;
+        binding = ActivitySignUpAndSignInFolderSingInActivityBinding . inflate ( getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
-
-        Buttons ( ) ;
     }
 
     public void sing_In_BTN ( View view )
     {
+        password = binding . passwordEditText . getText ( ) + "" ;
+        email    = binding . EmailEditText    . getText ( ) + "" ;
 
+        // هون انا بمعل زي ما تقولي مسج بتظهر للمستخدم بتقله الرجاء الانتظار يعني يستنى لحد ما تتخزن الداتا في الفاير بيس
+        final ProgressDialog progressDialog = new ProgressDialog (this ) ;
+        progressDialog . setMessage ( "يرجى الانتظار" ) ;
+        progressDialog . show ( ) ;
+
+        FirebaseAuth . getInstance ( ) . fetchSignInMethodsForEmail (email ) . addOnCompleteListener (task ->
+        {
+            if ( ! task . getResult ( ) . getSignInMethods ( ) . isEmpty ( ) )
+            {
+
+                List < String > collection_Names = Arrays  . asList ( "Doctors" , "Mothers" );
+
+
+                for ( String collection_Name : collection_Names )
+                {
+                    FirebaseFirestore . getInstance ( ) . collection ( collection_Name ) . document ( email ) . get ( ) . addOnSuccessListener ( documentSnapshot ->
+                    {
+                        if ( documentSnapshot . exists ( ) )
+                        {
+
+                            String collection = documentSnapshot . getReference ( ) . getParent ( ) . getId ( );
+
+
+                            if ( documentSnapshot . get ( "صفة المستخدم" ) . toString ( ) .equals ( "طبيب" ) )
+                            {
+                                intent = new Intent (this , Doctor_Data_Activity. class ) ;
+                            }
+
+                            if ( documentSnapshot . get ( "صفة المستخدم" ) . toString ( ) .equals ( "ام" ) )
+                            {
+                                intent = new Intent (this , Mother_Activity. class ) ;
+                            }
+
+
+                            progressDialog . dismiss ( ) ;
+
+                            startActivity ( intent ) ;
+
+                        }
+                    });
+                }
+
+
+            }
+            else
+            {
+                progressDialog . dismiss ( ) ;
+                Toast . makeText ( this , "لايوجد حساب مرتبط بهذا الايميل"  , Toast . LENGTH_LONG ) .show ( ) ;
+            }
+        });
 
     }
 
-    private void Buttons ( )
+    // هاد بتنفذ لما اضغط على تسجيل الدخول باستخدام جوجل
+    public void Sing_In_By_Google ( View view)
     {
 
-        // هاد مربوط مع ايقونة التسجيل بواسطة فيسبوك و ظيفته انه يفعل زر انشاء الحساب بعد ما تعطل لما الام او الدكتور كبسو عليه بدون ما يحددو الصفه
-        binding . FacebookIcon . setOnTouchListener ( ( v , event ) ->
-        {
-            if ( event . getAction ( ) == MotionEvent . ACTION_DOWN )
-            {
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestIdToken ( getString (R . string . default_web_client_id ) ) . requestEmail ( ) . build ( ) ;
+        GoogleSignInClient mClient = GoogleSignIn . getClient (this ,googleSignInOptions ) ;
 
-            }
-            return false ;
-        });
-
-        // هاد مربوط مع ايقونة التسجيل بواسطة قوقل و ظيفته انه يفعل زر انشاء الحساب بعد ما تعطل لما الام او الدكتور كبسو عليه بدون ما يحددو الصفه
-        binding . GoogleIcon . setOnTouchListener ( ( v , event ) ->
-        {
-            if ( event . getAction ( ) == MotionEvent . ACTION_DOWN )
-            {
-                GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestIdToken ( getString ( R. string . default_web_client_id ) ) . requestEmail ( ) . build ( ) ;
-                mClient = GoogleSignIn . getClient (this ,googleSignInOptions ) ;
-
-                // login
-                Intent intent = mClient . getSignInIntent ( ) ;
-                activityResultLauncher . launch (intent ) ;
-            }
-            return false ;
-        });
-
+        // login
+        Intent intent = mClient . getSignInIntent ( ) ;
+        activityResultLauncher . launch (intent ) ;
     }
 
     private ActivityResultLauncher < Intent > activityResultLauncher = registerForActivityResult (new ActivityResultContracts . StartActivityForResult ( ) ,result ->

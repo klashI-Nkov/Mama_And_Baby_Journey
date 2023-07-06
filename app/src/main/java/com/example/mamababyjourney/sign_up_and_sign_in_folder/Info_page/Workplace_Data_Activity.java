@@ -420,11 +420,8 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
     // هاد الفنشكن هو الي بجيب النا داتا مكان العمل الي بدي اعدل علي بياناته ومستدعيه في ال onCreate و بتنفذ لما بدي اعدل بس
     private void Get_workPlace_Data_Object ( int id )
     {
-        // هون معرفين اوبجكت من هاي FirebaseFirestore الكلاس و اسمه dp و هاي الكلاس هي المسؤوله عن اي شي بصير في قاعدة البيانات في الفايربيس
-        FirebaseFirestore db = FirebaseFirestore . getInstance ( ) ;
-
         // هون انا من خلال المتغير الي اسمه db بصل ل ال collection الي فيها ال document الي فيه الاوبجكت الي بدي اعدل على بياناته بعدها حاكي اله get يعمي جيب الي هاد الاوبجكت الي بدي اعدل علي بياناته
-        db . collection ( "A" ) . document ( "C" ) . get ( ) . addOnCompleteListener ( task ->
+        FirebaseFirestore . getInstance ( ) . collection ( "A" ) . document ( "C" ) . get ( ) . addOnCompleteListener ( task ->
         {
             // هون بشيك انه عملية جلب بيانات هاد الاوبجكت كانت ناجحه ادخل و نفذ الي جوا الاف
             if ( task . isSuccessful ( ) )
