@@ -100,7 +100,7 @@ public class Sing_in_Activity extends AppCompatActivity
 
                             progressDialog . dismiss ( ) ;
 
-                            startActivity ( intent ) ;
+                            //startActivity ( intent ) ;
 
                         }
                     });
