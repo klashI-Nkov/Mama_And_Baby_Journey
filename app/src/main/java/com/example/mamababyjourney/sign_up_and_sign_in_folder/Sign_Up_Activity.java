@@ -129,7 +129,7 @@ public class Sign_Up_Activity extends AppCompatActivity
                     if ( authResultTask . isSuccessful ( ) )
                     {
                         email = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ;
-                        name = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getDisplayName ( ) ;
+                        name = FirebaseAuth  . getInstance ( ) . getCurrentUser ( ) . getDisplayName ( ) ;
 
                         // هاد بتنفذ لما يكون الي بعمل الحساب دكتور
                         if ( binding . DoctorRBTN . isChecked ( ) )
