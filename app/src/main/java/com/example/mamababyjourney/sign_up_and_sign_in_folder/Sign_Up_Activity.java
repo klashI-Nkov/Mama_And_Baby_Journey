@@ -30,6 +30,7 @@ import com.google.firebase.storage.StorageReference;
 import android.app.ProgressDialog;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.graphics.Color;
@@ -169,7 +170,7 @@ public class Sign_Up_Activity extends AppCompatActivity
 
 
         // هون في حالة المستخدم حدد صفته رح ينفذ الي جوا الاف ولو ما حدد رح بعرض اله مسج انه لازم يحدد صفته قبل ما يكمل قبل ما يكمل
-        if ( binding . MomRBTN . isChecked ( ) || binding . DoctorRBTN . isChecked ( ) )
+        if ( binding . MomRBTN . isChecked ( ) || binding . DoctorRBTN . isChecked ( ) || binding . FDoctorRBTN . isChecked ( ) )
         {
             // هون اذا كل الحقول معبية رح يدخل ينفذ الي جوا الاف ولو كان واحد من الحقول فاضي رح يعرض اله المسج الي تحت
             if ( all_Fields_Are_Filled_In )
@@ -177,7 +178,7 @@ public class Sign_Up_Activity extends AppCompatActivity
 
                 // هون في حالة كان طول الباس اقل من 6 خانات رح يعرض اله المسج الي تحت
                 if ( ! password_Length_Is_Correct )
-                    Snack_Bar ( "يجب ان لا يقل طول كلمة المرور عن 6 خانات" ) ;
+                    Snack_Bar ( "يجب ان لا يقل طول كلمة المرور عن \u00206\u0020 خانات" ) ;
 
 
                 // هون في حالة كان الايميل مش مكتوب صح رح يعرض اله المسج الي تحت
@@ -205,7 +206,7 @@ public class Sign_Up_Activity extends AppCompatActivity
     public void Sing_Up_By_Google ( View view)
     {
         // هون بقله اذا المسخدم حدد الصفه نفذ الي جوا الاف لو ما حدد اعرض اله المسج الي تحت
-        if ( binding.MomRBTN.isChecked ( ) || binding.DoctorRBTN.isChecked ( ) )
+        if ( binding.MomRBTN.isChecked ( ) || binding.DoctorRBTN.isChecked ( ) || binding . FDoctorRBTN . isChecked ( )  )
         {
             GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestIdToken ( getString (R . string . default_web_client_id ) ) . requestEmail ( ) . build ( ) ;
 
@@ -256,7 +257,9 @@ public class Sign_Up_Activity extends AppCompatActivity
 
                         AuthCredential credential = GoogleAuthProvider . getCredential (account . getIdToken ( ) ,null ) ;
 
-                        FirebaseAuth . getInstance ( ) . signInWithCredential (credential ) . addOnCompleteListener (this ,authResultTask ->
+                        FirebaseAuth . getInstance ( )
+                        .signInWithCredential (credential )
+                        .addOnCompleteListener (this ,authResultTask ->
                         {
                             if ( authResultTask . isSuccessful ( ) )
                             {
@@ -345,7 +348,9 @@ public class Sign_Up_Activity extends AppCompatActivity
         progressDialog . show ( ) ;
 
         // اول شي بروح على الفايربيس بتاكد انه الايميل الي بده يسجل فيه المستخدم مش موجود في الفايربيس
-        FirebaseAuth . getInstance ( ) . fetchSignInMethodsForEmail (email ) . addOnCompleteListener (task ->
+        FirebaseAuth . getInstance ( )
+        .fetchSignInMethodsForEmail (email )
+        .addOnCompleteListener (task ->
         {
             // هون بشيك اذا الايميل مش موجود ادخل ونفذ الي جوا الاف غير هيك اعرض اله المسج الي تحت الي جوا ال else
             if ( task . getResult ( ) . getSignInMethods ( ) . isEmpty ( ) )
@@ -365,13 +370,13 @@ public class Sign_Up_Activity extends AppCompatActivity
                             String user_Kind = binding . DoctorRBTN . isChecked ( ) ?
                                     binding . DoctorRBTN . getText ( ) + "" : binding . FDoctorRBTN . getText ( ) + "" ;
 
-                                    /*
-                                        هون انا بستدعي الفنكشن الي بضيف الي في الفايرستور بيانات الدكتور الي انعمل اله حساب وببعث اله
+                            /*
+                                هون انا بستدعي الفنكشن الي بضيف الي في الفايرستور بيانات الدكتور الي انعمل اله حساب وببعث اله
 
-                                         1- اسم ال id الي بدي اضيفه لبيانات االمستخدم
-                                         2- اسم ال collection الي بدي اضيف فيها بيانات المستخدم
-                                         3- صفة المستخدم
-                                    */
+                                 1- اسم ال id الي بدي اضيفه لبيانات االمستخدم
+                                 2- اسم ال collection الي بدي اضيف فيها بيانات المستخدم
+                                 3- صفة المستخدم
+                            */
                             Add_Doctor_Or_Mother_Data_To_firestore ("doctor Id" ,"Doctors" ,user_Kind ) ;
                         }
 
@@ -397,7 +402,10 @@ public class Sign_Up_Activity extends AppCompatActivity
     private void Add_Doctor_Or_Mother_Data_To_firestore ( String id_Name , String collection_Name , String user_Kind )
     {
         // هسه هون الي بصير انه بروح على ال document الي مخزن فيه id الام و id الدكتور
-        FirebaseFirestore . getInstance ( ) . collection ("ID's" ) . document ("id's" ) . get ( ) . addOnCompleteListener (task ->
+        FirebaseFirestore . getInstance ( )
+        .collection ("ID's" )
+        .document ("id's" )
+        .get ( ) . addOnCompleteListener (task ->
         {
             if ( task . isSuccessful ( ) )
             {
@@ -427,7 +435,7 @@ public class Sign_Up_Activity extends AppCompatActivity
                     HashMap < String , Object > data = new HashMap < > ( ) ;
 
                     // هون بشيك اذا الصفه الي محدده هي دكتور بقله جيب الي id الدكتور و خزنه في هاد doctor_Id المتغير واذا كانت الصفه ام جيب الي id الام و خزنه في هاد mother_Id المتغير
-                    if ( user_Kind . equals ( "doctor Id" ) )
+                    if ( user_Kind . equals ( "طبيبة" ) || user_Kind . equals ( "طبيب" ) )
                     {
                         // هون انا بجيب id الدكتور و بخزنه في هاد doctor_Id المتغير
                         doctor_Id = Integer . parseInt (document . get ( id_Name ) + "" ) ;
