@@ -26,6 +26,8 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+
 import android.net.Uri;
 
 @SuppressLint ( { "InflateParams" , "IntentReset" } )
@@ -38,7 +40,7 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
     Uri uri = null ;
 
     // هاد الي بخزن فيه جنس الطفل
-    String gender ;
+    String gender , image_Url = "" ;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -87,6 +89,8 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
         data . put ( "Child Name" , binding . NameEditText . getText ( ) . toString ( ) ) ;
         data . put ( "gender" , gender ) ;
 
+        CompletableFuture<Void> uploadFuture = new CompletableFuture < > () ;
+
         // هون بشيك اذا المستخدم اختار صوره وثتها بضيف رابطها في الدكيومنت الخاص بالطفل واذا ما اختار ما يضيف اي رابط في دكيومنت الطفل
         if ( uri != null )
         {
@@ -103,63 +107,59 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
                         downloadUri ->
                         {
                             // هون انا بضيف رابط الصوره في هاي data ال HashMap عشان اضيفه مع بقية الداتا في الفايرستور
-                            data . put ( "image Url" , downloadUri . toString ( ) ) ;
-
-                            FirebaseFirestore . getInstance ( )
-                            . collection ("/Mothers/"+ FirebaseAuth. getInstance ( ) . getCurrentUser ( ) . getEmail ( ) + "/Children's" )
-                            . document (binding . NameEditText . getText ( ) . toString ( ) )
-                            . set ( data , SetOptions . merge ( ) ) . addOnCompleteListener (task ->
-                            {
-                                if ( task . isComplete ( ) )
-                                {
-                                    // هون انا ببعت الصوره الي تم اختيارها من الاستديو لشاشة الاطفال
-                                    intent . setData ( uri ) ;
-
-                                    // هون انا ببعت مسج لشاشة الاطفال انه في صورة تم اختيارها من الاستديو
-                                    intent . putExtra ("image form ?" ,"uri" ) ;
-
-                                    // هون ببعت اسم الطفل لشاشة الاطفال
-                                    intent . putExtra ("Name",binding . NameEditText . getText ( ) . toString ( ) ) ;
-
-                                    setResult (RESULT_OK ,intent ) ;
-
-                                    // هون بلغي الاشعار الي بحكي يرجى الانتظار
-                                    progressDialog . dismiss ( ) ;
-
-                                    finish ( ) ;
-                                }
-                            });
+                            image_Url = downloadUri . toString ( ) ;
+                            uploadFuture . complete ( null ) ;
                         }
                     );
                 }
             );
         }
         else
+            uploadFuture . complete ( null ) ;
+
+        uploadFuture . thenAccept ( result ->
         {
-            data . put ( "image Url" , "" ) ;
+           if ( uploadFuture . isDone ( ) )
+           {
+               data . put ( "image Url" , image_Url ) ;
 
-            FirebaseFirestore . getInstance ( )
-            . collection ("/Mothers/"+ FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) + "/Children's" )
-            . document (binding . NameEditText . getText ( ) . toString ( ) )
-            . set ( data , SetOptions . merge ( ) ) . addOnCompleteListener (task ->
-            {
-                if ( task . isComplete ( ) )
-                {
-                    // هون انا ببعت مسج لشاشة الاطفال انه مافي صورة تم اختيارها من الاستديو
-                    intent . putExtra ("image form ?" ,"Drawable" ) ;
+               FirebaseFirestore . getInstance ( )
+               . collection ("/Mothers/"+ FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) + "/Children's" )
+               . document (binding . NameEditText . getText ( ) . toString ( ) )
+               . set ( data , SetOptions . merge ( ) ) . addOnCompleteListener (task ->
+               {
+                   if ( task . isComplete ( ) )
+                   {
+                       if ( uri != null )
+                       {
+                           // هون انا ببعت الصوره الي تم اختيارها من الاستديو لشاشة الاطفال
+                           intent . setData ( uri ) ;
 
-                    // هون ببعت اسم الطفل لشاشة الاطفال
-                    intent . putExtra ("Name",binding . NameEditText . getText ( ) . toString ( ) ) ;
+                           // هون انا ببعت مسج لشاشة الاطفال انه في صورة تم اختيارها من الاستديو
+                           intent . putExtra ("image form ?" ,"uri" ) ;
+                       }
+                       else
+                       {
+                           // هون انا ببعت مسج لشاشة الاطفال انه مافي صورة تم اختيارها من الاستديو
+                           intent . putExtra ("image form ?" ,"Drawable" ) ;
+                       }
 
-                    setResult (RESULT_OK ,intent ) ;
+                       // هون ببعت اسم الطفل لشاشة الاطفال
+                       intent . putExtra ("Name",binding . NameEditText . getText ( ) . toString ( ) ) ;
 
-                    // هون بلغي الاشعار الي بحكي يرجى الانتظار
-                    progressDialog . dismiss ( ) ;
+                       intent . putExtra ( "gender" , gender ) ;
 
-                    finish ( ) ;
-                }
-            });
-        }
+                       setResult (RESULT_OK ,intent ) ;
+
+                       // هون بلغي الاشعار الي بحكي يرجى الانتظار
+                       progressDialog . dismiss ( ) ;
+
+                       finish ( ) ;
+                   }
+               });
+           }
+        });
+
     }
 
 

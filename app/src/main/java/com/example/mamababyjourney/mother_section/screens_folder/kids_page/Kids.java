@@ -27,6 +27,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.net.Uri;
 
+import java.util.concurrent.CompletableFuture;
+
 
 @SuppressLint ( { "InflateParams" , "IntentReset" , "SetTextI18n" } )
 @SuppressWarnings ( { "deprecation" , "DataFlowIssue" , "RedundantSuppression" , "ConstantConditions" } )
@@ -168,42 +170,34 @@ public class Kids extends Fragment
 
                             String image_Url = documentSnapshot . get ( "image Url" ) . toString ( ) ;
 
-                            if ( image_Url . isEmpty () || image_Url . equals ( null ) )
-                            {
-                                circleImageView . setImageResource ( R . drawable . images_baby ) ;
-                                textView . setText ( documentSnapshot . get ( "Child Name" ) + "" ) ;
+                            CompletableFuture <Void> get_image_task = new CompletableFuture < > () ;
 
-
-                                params . columnSpec = GridLayout . spec (GridLayout . UNDEFINED ,GridLayout . FILL ,1 ) ;
-                                params . setMargins (0 ,0 ,0 ,21 ) ;
-
-                                childLayout . setOnClickListener ( V ->
-                                {
-                                    Intent intent = new Intent (requireContext ( ) ,Child_Activity . class ) ;
-                                    intent . putExtra ("gender" ,documentSnapshot . get ( "gender" ) + "" ) ;
-                                    startActivity (intent ) ;
-                                });
-
-                                progressDialog . dismiss ( ) ;
-
-                                binding . GirdLayout . addView (childLayout ,params ) ;
-                            }
-                            else
+                            if ( ! image_Url . isEmpty () && ! image_Url . equals ( null ) )
                             {
                                 FirebaseStorage. getInstance ( ) . getReferenceFromUrl (image_Url ) . getDownloadUrl ( ) . addOnSuccessListener (uri ->
                                 {
+                                    Picasso . get ( ) . load (uri ) . into (circleImageView ) ;
+                                    get_image_task . complete (null ) ;
+                                });
+                            }
+                            else
+                                get_image_task . complete (null ) ;
 
-                                    Picasso. get ( ) . load (uri ) . into (circleImageView ) ;
+                            get_image_task . thenAccept (result ->
+                            {
+                                if ( get_image_task . isDone ( ) )
+                                {
+                                    if (  image_Url . isEmpty () ||  image_Url . equals ( null ) )
+                                        circleImageView . setImageResource ( R . drawable . images_baby ) ;
 
                                     textView . setText ( documentSnapshot . get ( "Child Name" ) + "" ) ;
-
 
                                     params . columnSpec = GridLayout . spec (GridLayout . UNDEFINED ,GridLayout . FILL ,1 ) ;
                                     params . setMargins (0 ,0 ,0 ,21 ) ;
 
                                     childLayout . setOnClickListener ( V ->
                                     {
-                                        Intent intent = new Intent (requireContext ( ) , Child_Activity . class ) ;
+                                        Intent intent = new Intent (requireContext ( ) ,Child_Activity . class ) ;
                                         intent . putExtra ("gender" ,documentSnapshot . get ( "gender" ) + "" ) ;
                                         startActivity (intent ) ;
                                     });
@@ -211,8 +205,8 @@ public class Kids extends Fragment
                                     progressDialog . dismiss ( ) ;
 
                                     binding . GirdLayout . addView (childLayout ,params ) ;
-                                });
-                            }
+                                }
+                            });
                         }
                     });
                 }

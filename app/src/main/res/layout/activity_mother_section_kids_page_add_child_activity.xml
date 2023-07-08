@@ -64,7 +64,7 @@
             app:layout_constraintHorizontal_bias="1.0"/>
 
         <ImageButton
-            android:id="@+id/Pick_Image_BTN"
+            android:id="@+id/Pick_Child_Image_BTN"
 
             android:theme="@style/Icon_BG"
             style="@style/Icon_BG"
@@ -118,15 +118,16 @@
         <Spinner
             android:id="@+id/Gender_Sp"
 
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_131sdp"
             android:layout_height="@dimen/_38sdp"
 
-            android:paddingHorizontal="@dimen/_10sdp"
-
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/_20sdp"
             android:layout_weight="1"
 
             android:spinnerMode="dialog"
 
+            android:textAlignment="center"
             android:textSize="@dimen/_15sdp"
 
             tools:ignore="SpeakableTextPresentCheck" />

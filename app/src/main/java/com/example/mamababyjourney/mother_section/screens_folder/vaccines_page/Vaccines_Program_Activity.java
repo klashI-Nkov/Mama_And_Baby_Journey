@@ -19,7 +19,7 @@ public class Vaccines_Program_Activity extends AppCompatActivity
     @Override
     protected void onCreate ( Bundle savedInstanceState )
     {
-        super . onCreate ( savedInstanceState ) ;
+        super . onCreate (savedInstanceState ) ;
 
         getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
         Objects. requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
@@ -29,15 +29,15 @@ public class Vaccines_Program_Activity extends AppCompatActivity
 
         Recycler_View_Initialization ( ) ;
 
-        adapter = new Recycler_View_Adapter ( Recycler_View_Class . recycler_View_Class_Object_List ,this ) ;
+        adapter = new Recycler_View_Adapter (Recycler_View_Class . recycler_View_Class_Object_List ,this ) ;
 
         binding . RecyclerView . setAdapter ( adapter ) ;
         binding . RecyclerView . setLayoutManager ( new LinearLayoutManager (this ) ) ;
     }
 
+    // هاد الفنكشن وظيفته انه يجيب الي كل مطعوم مع العمر تبعه و يحطهم في كارد لحالهم
     private void Recycler_View_Initialization ( )
     {
-
         String [ ] treatments = getResources ( ) . getStringArray ( R . array . treatments ) ;
         String [ ] age        = getResources ( ) . getStringArray ( R . array . age        ) ;
 

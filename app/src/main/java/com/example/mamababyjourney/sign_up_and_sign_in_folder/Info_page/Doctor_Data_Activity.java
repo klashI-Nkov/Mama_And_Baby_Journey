@@ -1,6 +1,11 @@
 package com.example.mamababyjourney.sign_up_and_sign_in_folder.Info_page;
 
+import com.example.mamababyjourney.Splash_Activity;
 import com.example.mamababyjourney.databinding.ActivitySignUpAndSignInFolderInfoFolderDoctorDataActivityBinding;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,6 +59,19 @@ public class Doctor_Data_Activity extends AppCompatActivity
         binding = ActivitySignUpAndSignInFolderInfoFolderDoctorDataActivityBinding . inflate ( getLayoutInflater ( ) ) ;
 
         setContentView ( binding . getRoot ( ) ) ;
+
+        binding . SingOutBTN . setOnClickListener ( view ->
+        {
+            FirebaseAuth. getInstance ( ) . signOut ( ) ;
+
+            GoogleSignInOptions gso = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestEmail ( ) . build ( ) ;
+
+            GoogleSignInClient mGoogleApiClient = GoogleSignIn . getClient(this,gso) ;
+            mGoogleApiClient . signOut (  ) ;
+
+            Intent intent = new Intent (this ,Splash_Activity . class ) ;
+            startActivity (intent ) ;
+        });
 
         Firebase_Functions_Class . Clear ( ) ;
     }
