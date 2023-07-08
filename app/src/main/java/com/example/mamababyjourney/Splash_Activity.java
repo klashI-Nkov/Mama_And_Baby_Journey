@@ -44,7 +44,7 @@ public class Splash_Activity extends AppCompatActivity
                 startActivity (intent ) ;
                 finish ( ) ;
             }
-        } , 1000 ) ;
+        } , 5000 ) ;
     }
 
 

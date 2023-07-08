@@ -3,14 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
 
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_19sdp"
-    android:paddingStart="@dimen/_15sdp"
-    android:paddingEnd="0dp"
+    android:paddingStart="0dp"
+    android:paddingEnd="@dimen/_10sdp"
 
     android:orientation="vertical"
     android:layoutDirection="rtl"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
 
     android:theme="@style/No_Style"
     style="@style/No_Style">
@@ -25,7 +27,7 @@
         android:id="@+id/Username_Tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
 
         android:textSize="@dimen/_12sdp"
         android:text="الاسم\u0020 : \u0020"
@@ -36,10 +38,20 @@
         android:id="@+id/User_Id_Tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_20sdp"
+
+        android:textSize="@dimen/_12sdp"
+        android:text="الاسم\u0020 : \u0020"
+
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/User_Email_Tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_10sdp"
 
         android:textSize="@dimen/_12sdp"
-        android:text="الرقم التعريفي\u0020 : \u0020"
 
         tools:ignore="HardcodedText" />
 

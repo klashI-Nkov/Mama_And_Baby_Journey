@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:gravity="center"
+
+    android:theme="@style/screen_Background"
+    style="@style/screen_Background"
+
+    tools:context=".Splash_Activity">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="@dimen/_225sdp"
+        android:layout_height="@dimen/_216sdp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/logo"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        style="@style/TextViewStyle"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_34sdp"
+
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/pacifico"
+
+        android:textAlignment="center"
+        android:textSize="@dimen/_23sdp"
+        android:text="Your trusted companion for maternity care"
+
+        tools:ignore="HardcodedText,TextContrastCheck" />
+
+    <TextView
+        style="@style/TextViewStyle"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14sdp"
+
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/pacifico"
+
+        android:textAlignment="center"
+        android:textSize="@dimen/_23sdp"
+        android:text="رفيقك الموثوق للرعاية الأمومية"
+
+        tools:ignore="HardcodedText,TextContrastCheck" />
+
+</LinearLayout>
