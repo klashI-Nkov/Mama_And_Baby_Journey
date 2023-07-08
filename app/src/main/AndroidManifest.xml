@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -18,25 +19,31 @@
         android:theme="@style/Theme.MamaBabyJourney"
         tools:targetApi="31">
 
-        <!-- First_Screen -->
+        <!-- Splash Screen -->
         <activity
-            android:name=".First_Screen"
+            android:name=".Splash_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
 
-        <!-- Sign_Up Activity -->
+        <!-- First Screen -->
+        <activity
+            android:name=".First_Screen"
+            android:exported="false"/>
+
+        <!-- Sign Up Activity -->
         <activity
             android:name=".sign_up_and_sign_in_folder.Sign_Up_Activity"
-            android:exported="true"/>
+            android:exported="false"/>
 
-        <!-- Sing_in Activity -->
+        <!-- Sing in Activity -->
         <activity
             android:name=".sign_up_and_sign_in_folder.Sing_in_Activity"
-            android:exported="true"/>
+            android:exported="false"/>
 
         <!-- Doctor Data Activity -->
         <activity
@@ -61,7 +68,7 @@
         <!-- Mother Activity -->
         <activity
             android:name=".mother_section.Mother_Activity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.MamaBabyJourney.NoActionBar"/>
 
         <!-- vaccines Program Activity -->
@@ -88,6 +95,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts"/>
+
     </application>
 
 </manifest>
