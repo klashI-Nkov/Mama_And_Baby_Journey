@@ -1,25 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<!--suppress CheckTagEmptyBody -->
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical"
     android:layoutDirection="rtl"
-    android:theme="@style/screen_Background"
-    style="@style/screen_Background">
+
+    android:theme="@style/No_Style"
+    style="@style/No_Style">
+
+    <LinearLayout
+        android:id="@+id/Male_Layout"
+        android:theme="@style/Male_screen_Background"
+        style="@style/Male_screen_Background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_69sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="Orientation"
+        android:visibility="gone"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Female_Layout"
+        android:theme="@style/Female_screen_Background"
+        style="@style/Female_screen_Background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_69sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="Orientation"
+        android:visibility="gone"></LinearLayout>
 
     <fragment
-        android:id="@+id/child_activity_nav_host_fragment"
+        android:id="@+id/child_Activity_nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:navGraph="@navigation/mother_section_kids_page_child_activity_mobile_navigation"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_69sdp"
         app:defaultNavHost="true"
-        tools:ignore="FragmentTagUsage" />
+        tools:ignore="FragmentTagUsage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
@@ -31,12 +70,24 @@
         android:layout_height="wrap_content"
 
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/mother_section_mother_kids_page_child_activity_bottom_nav_menu"/>
+        app:menu="@menu/mother_section_mother_kids_page_child_activity_bottom_nav_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:theme="@style/No_Style"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_32sdp"
-        android:background="?android:attr/windowBackground"/>
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,6 +23,20 @@
         <item name="End_Color">#03A9F4</item>
     </style>
 
+    <style name="Male_screen_Background">
+        <item name="android:background">@drawable/screen_background</item>
+        <item name="Start_Color">#03A9F4</item>
+        <item name="Center_Color">#01000000</item>
+        <item name="End_Color">#03A9F4</item>
+    </style>
+
+    <style name="Female_screen_Background">
+        <item name="android:background">@drawable/screen_background</item>
+        <item name="Start_Color">#eb4591</item>
+        <item name="Center_Color">#01000000</item>
+        <item name="End_Color">#eb4591</item>
+    </style>
+
     <!-- لللخط -->
     <style name="TextViewStyle">
         <item name="android:textColor">#A2FFFFFF</item>

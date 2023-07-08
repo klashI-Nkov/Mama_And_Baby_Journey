@@ -39,8 +39,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_5sdp"
 
         android:background="@android:color/transparent"
         android:orientation="horizontal"
@@ -86,6 +85,7 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20sdp"
 
             android:layout_weight="1"
 
@@ -94,7 +94,70 @@
 
             tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck" />
 
+        <RadioButton
+            android:id="@+id/F_Doctor_R_BTN"
+
+            style="@style/TextViewStyle"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+
+            android:textSize="@dimen/_14sdp"
+            android:text="طبيبة"
+
+            tools:ignore="HardcodedText,TextSizeCheck,TextContrastCheck" />
+
     </RadioGroup>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/s"
+        android:theme="@style/No_Style"
+        style="@style/No_Style"
+        android:layout_width="@dimen/_119sdp"
+        android:layout_height="@dimen/_119sdp"
+        android:visibility="gone">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_image_view"
+
+            android:theme="@style/No_Style"
+            style="@style/No_Style"
+
+            android:layout_width="@dimen/_107sdp"
+            android:layout_height="@dimen/_107sdp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
+            tools:ignore="ImageContrastCheck" />
+
+        <ImageButton
+            android:id="@+id/Pick_User_Image_BTN"
+
+            android:theme="@style/Icon_BG"
+            style="@style/Icon_BG"
+
+            android:layout_width="@dimen/_42sdp"
+            android:layout_height="@dimen/_45sdp"
+
+            android:padding="@dimen/_8sdp"
+
+            app:srcCompat="@drawable/images_pick_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.02"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck"
+            android:scaleType="fitCenter"
+            app:layout_constraintVertical_bias="0.98" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Name Edit Text -->
     <EditText
@@ -105,7 +168,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
-        android:layout_marginTop="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
 
         android:inputType="text"
@@ -115,7 +178,7 @@
 
         android:imeOptions="actionNext"
 
-        tools:ignore="Autofill,HardcodedText"/>
+        tools:ignore="Autofill,HardcodedText,TextContrastCheck,TextContrastCheck" />
 
     <!-- Email Edit Text -->
     <EditText
@@ -126,7 +189,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
-        android:layout_marginTop="@dimen/_33sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
         android:paddingStart="@dimen/_30sdp"
         android:paddingEnd="@dimen/_10sdp"
@@ -140,7 +203,7 @@
 
         android:imeOptions="actionNext"
 
-        tools:ignore="Autofill,HardcodedText"/>
+        tools:ignore="Autofill,HardcodedText,TextContrastCheck" />
 
     <!-- Password Edit Text -->
     <EditText
@@ -151,7 +214,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
-        android:layout_marginTop="@dimen/_33sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
         android:paddingStart="@dimen/_34sdp"
         android:paddingEnd="@dimen/_9sdp"
@@ -163,7 +226,7 @@
         android:textSize="@dimen/_12sdp"
         android:hint="كلمة المرور"
 
-        tools:ignore="Autofill,HardcodedText"/>
+        tools:ignore="Autofill,HardcodedText,TextContrastCheck" />
 
     <!-- Sing Up Button -->
     <androidx.appcompat.widget.AppCompatButton
@@ -174,7 +237,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_70sdp"
         android:layout_marginHorizontal="@dimen/_39sdp"
 
         android:text="انشاء حساب"
@@ -188,7 +251,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
 
         android:background="@android:color/transparent"
 
@@ -204,7 +267,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginHorizontal="@dimen/_23sdp"
         android:paddingHorizontal="@dimen/_15sdp"
         android:paddingVertical="@dimen/_10sdp"
@@ -240,7 +303,7 @@
 
 
             android:src="@drawable/g_logo"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription,ImageContrastCheck" />
 
     </LinearLayout>
 

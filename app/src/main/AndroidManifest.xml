@@ -58,10 +58,10 @@
             android:name=".sign_up_and_sign_in_folder.Info_page.Days_And_Working_Hours_Activity"
             android:exported="false"/>
 
-        <!-- Mother Data Activity -->
+        <!-- Mother Activity -->
         <activity
             android:name=".mother_section.Mother_Activity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/Theme.MamaBabyJourney.NoActionBar"/>
 
         <!-- vaccines Program Activity -->
@@ -72,8 +72,7 @@
         <!-- Add Child Activity -->
         <activity
             android:name=".mother_section.screens_folder.kids_page.Add_Child_Activity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan"/>
+            android:exported="false"/>
 
         <!-- Child Activity -->
         <activity

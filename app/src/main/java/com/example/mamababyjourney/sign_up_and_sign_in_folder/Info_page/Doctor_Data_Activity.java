@@ -412,12 +412,10 @@ class Firebase_Functions_Class
     // هاد الفنكشن بتسدعى لما بدي اضيف مكان عمل جديد عشان يضيف بياناته في الفاير بيس
     public static void Add_workPlace_Data_Object ( WorkPlace_Data workPlace_Data_Object , int id )
     {
-        FirebaseFirestore db = FirebaseFirestore . getInstance ( ) ;
-
         HashMap < String , Object > data = new HashMap < > ( ) ;
         data . put ( "workPlace Data Object Number " + id , workPlace_Data_Object ) ;
 
-        db . collection ( "A" ) . document ( "C" ) . set ( data , SetOptions . merge ( ) )
+        FirebaseFirestore . getInstance ( ) . collection ( "A" ) . document ( "C" ) . set ( data , SetOptions . merge ( ) )
         . addOnCompleteListener ( task ->
         {
             if ( task . isComplete ( ) )
@@ -430,32 +428,26 @@ class Firebase_Functions_Class
     // هاد بستدعى لما اعدل على بيانات مكان العمل عشان يحدثها في الفاير بيس
     public static void Update_workPlace_Data_Objects_List ( WorkPlace_Data workPlace_Data_Object , int id )
     {
-        FirebaseFirestore db = FirebaseFirestore . getInstance ( ) ;
-
         HashMap < String , Object > data = new HashMap < > ( ) ;
         data . put ( "workPlace Data Object Number " + id , workPlace_Data_Object ) ;
-        db . collection ("A" ) . document ("C" ) . update ( data ) ;
+        FirebaseFirestore . getInstance ( ) . collection ("A" ) . document ("C" ) . update ( data ) ;
     }
 
     // هاد انا مستدعيه في فنكشن ال onCreate وكل الي بعمله هو انه اول ما تفتح الشاشه الي احنا فيها يفضي الفاير بيس من اي بيانات لاي مكان عمل تمت اضافته
     public static void Clear ( )
     {
-        FirebaseFirestore db = FirebaseFirestore . getInstance ( ) ;
-
         HashMap < String , Object > id = new HashMap < > ( ) ;
 
         id . put ( "id" , 1 ) ;
 
-        db . collection ( "A" ) . document ( "C" ) . set ( id ) ;
+        FirebaseFirestore . getInstance ( ) . collection ( "A" ) . document ( "C" ) . set ( id ) ;
     }
 
     // وهاد الفنكشن وظيفته انه يزود الي ال id في كل مره بضيف فيها مكان عمل جديد
     public static void Update_Id ( )
     {
-        FirebaseFirestore db = FirebaseFirestore . getInstance ( ) ;
-
         HashMap < String , Object > id = new HashMap < > ( ) ;
         id . put ( "id" , ++ Doctor_Data_Activity . id  ) ;
-        db . collection ("A" ) . document ("C" ) . update (id ) ;
+        FirebaseFirestore . getInstance ( ) . collection ("A" ) . document ("C" ) . update (id ) ;
     }
 }

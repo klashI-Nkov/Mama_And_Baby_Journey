@@ -1,16 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
-    android:layout_height="176dp"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_19sdp"
+    android:paddingStart="@dimen/_15sdp"
+    android:paddingEnd="0dp"
+
     android:orientation="vertical"
-    android:gravity="bottom"
     android:layoutDirection="rtl"
+
     android:theme="@style/No_Style"
     style="@style/No_Style">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/User_Profile_Image"
+        android:layout_width="@dimen/_107sdp"
+        android:layout_height="@dimen/_107sdp"
+        android:layout_marginTop="@dimen/_32sdp"/>
+
+    <TextView
+        android:id="@+id/Username_Tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_20sdp"
+
+        android:textSize="@dimen/_12sdp"
+        android:text="الاسم\u0020 : \u0020"
+
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/User_Id_Tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+
+        android:textSize="@dimen/_12sdp"
+        android:text="الرقم التعريفي\u0020 : \u0020"
+
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>

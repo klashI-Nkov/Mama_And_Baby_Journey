@@ -1,5 +1,6 @@
 package com.example.mamababyjourney.mother_section;
 
+import com.example.mamababyjourney.First_Screen;
 import com.example.mamababyjourney.databinding.ActivityMotherSectionMotherActivityBinding;
 
 import androidx.navigation.ui.AppBarConfiguration;
@@ -9,11 +10,33 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.mamababyjourney.R;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.os.Bundle;
+import android.widget.TextView;
 
-@SuppressWarnings ( { "DataFlowIssue" , "SpellCheckingInspection" , "RedundantSuppression" } )
+import de.hdodenhof.circleimageview.CircleImageView;
+
+@SuppressWarnings ( { "DataFlowIssue" , "SpellCheckingInspection" , "RedundantSuppression" , "ConstantConditions" , "deprecation" } )
+@SuppressLint ( { "InflateParams" , "SetTextI18n" } )
 public class Mother_Activity extends AppCompatActivity
 {
     // هاد المتغير انا مستعمله عشان اعمل action bar مخصص للشاشات بدل ال action bar الي بحطه النظام
@@ -21,8 +44,7 @@ public class Mother_Activity extends AppCompatActivity
 
     private ActivityMotherSectionMotherActivityBinding binding ;
 
-    // هاد بتخزن فيه ال id الي بجيني من شاشة ال sign up
-    public static String mother_Document_Id ;
+    String image_url  ;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -34,9 +56,9 @@ public class Mother_Activity extends AppCompatActivity
 
         setContentView ( binding . getRoot ( ) ) ;
 
-        mother_Document_Id = getIntent ( ) . getExtras ( ) . getString ("mother Document Id" ) ;
-
         Mother_section_Initialization ( ) ;
+
+        Get_Mother_Data ( ) ;
     }
 
 
@@ -56,6 +78,67 @@ public class Mother_Activity extends AppCompatActivity
         NavController navController = Navigation . findNavController (this ,R . id . mother_activity_nav_host ) ;
         NavigationUI . setupActionBarWithNavController (this ,navController ,mAppBarConfiguration ) ;
         NavigationUI . setupWithNavController (binding . navView ,navController ) ;
+
+        Menu menu = binding . navView . getMenu ( ) ;
+        menu . findItem (R . id . nav_logout ) . setOnMenuItemClickListener ( menuItem ->
+        {
+            FirebaseAuth . getInstance ( ) . signOut ( ) ;
+
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder ( GoogleSignInOptions.DEFAULT_SIGN_IN ).requestEmail ( ).build ( );
+
+            GoogleSignInClient mGoogleApiClient = GoogleSignIn.getClient(this, gso);
+            mGoogleApiClient.signOut (  ) ;
+
+            Intent intent = new Intent (this , First_Screen . class ) ;
+            startActivity ( intent ) ;
+            return true;
+        });
+    }
+
+    private void Get_Mother_Data ( )
+    {
+        View childLayout = getLayoutInflater ( ) . inflate (R . layout . layouts_mother_section_mother_activity_nav_header_layout ,null ) ;
+        CircleImageView user_Profile_Image = childLayout . findViewById (R . id . User_Profile_Image ) ;
+        TextView username_Tv = childLayout . findViewById (R . id . Username_Tv ) ;
+        TextView user_Id_Tv = childLayout . findViewById (R . id . User_Id_Tv ) ;
+
+        if ( getIntent ( ) . getExtras ( ) . getString ( "action" ) . equals ( "signup" ) )
+        {
+            username_Tv . setText ( "الاسم\u0020 : \u0020" + getIntent ( ) . getExtras ( ) . getString ( "name" ) ) ;
+            user_Id_Tv  . setText ( "الرقم التعريفي\u0020 : \u0020" + getIntent ( ) . getExtras ( ) . getString ( "user Id" ) ) ;
+
+            if ( getIntent ( ) . getExtras ( ) . getString ( "image form ?" ) . equals ( "uri" ) )
+                user_Profile_Image . setImageURI ( getIntent ( ) . getData ( ) );
+            else
+                user_Profile_Image.setImageResource ( R.drawable.images_female_user_image );
+
+            binding . navView . addHeaderView ( childLayout ) ;
+        }
+        else
+        {
+            FirebaseFirestore . getInstance ( ) . collection ("Mothers" ) . document (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ) . get ( ) . addOnCompleteListener ( task ->
+            {
+                if ( task . isSuccessful ( ) )
+                {
+                    DocumentSnapshot document = task . getResult ( ) ;
+
+                    if ( document . exists ( ) )
+                    {
+                        username_Tv . setText ( "الاسم\u0020 : \u0020" + document . get ( "name" ) ) ;
+                        user_Id_Tv  . setText ( "الرقم التعريفي\u0020 : \u0020" + document . get ( "mother Id" ) ) ;
+                        image_url = document . get ( "image Url" ) + "" ;
+
+
+                            if ( image_url.isEmpty ( ) || image_url.equals ( null ) )
+                                user_Profile_Image.setImageResource ( R.drawable.images_female_user_image );
+                            else
+                                FirebaseStorage.getInstance ( ).getReferenceFromUrl ( image_url ).getDownloadUrl ( ).addOnSuccessListener ( uri -> Picasso.get ( ).load ( uri ).into ( user_Profile_Image ) );
+
+                        binding . navView . addHeaderView ( childLayout ) ;
+                    }
+                }
+            });
+        }
     }
 
     // هاد الفنكشن حاولت افهم من chat GPT متى بتنفذ و شو بعمل الكود الي جواته ما فهمت و لا عرفت لهيك انسيكي منه

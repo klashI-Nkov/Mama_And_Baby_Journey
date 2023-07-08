@@ -33,6 +33,10 @@
             android:icon="@drawable/icons_baby_icon"
             android:title="الأطفال" />
 
+        <item
+            android:id="@+id/nav_logout"
+            android:title="تسجيل الخروج" />
+
     </group>
 
 </menu>

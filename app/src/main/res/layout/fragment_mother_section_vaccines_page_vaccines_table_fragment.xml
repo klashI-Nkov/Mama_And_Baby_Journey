@@ -9,9 +9,6 @@
     android:orientation="vertical"
     android:gravity="center"
 
-    android:theme="@style/screen_Background"
-    style="@style/screen_Background"
-
     tools:context=".mother_section.screens_folder.vaccines_page.Vaccines_Table">
 
     <ScrollView
