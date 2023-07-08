@@ -1,33 +1,28 @@
 package com.example.mamababyjourney.mother_section.screens_folder;
 
-import com.example.mamababyjourney.R;
+import com.example.mamababyjourney.databinding.FragmentMotherSectionAdvicesFragmentBinding;
 import com.example.mamababyjourney.classes.Recycler_View_Adapter;
 import com.example.mamababyjourney.classes.Recycler_View_Class;
-import com.example.mamababyjourney.databinding.FragmentMotherSectionAdvicesFragmentBinding;
-import com.google.firebase.firestore.DocumentSnapshot;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import android.app.ProgressDialog;
+import com.google.firebase.firestore.DocumentSnapshot;
+import de.hdodenhof.circleimageview.CircleImageView;
+import androidx.activity.OnBackPressedCallback;
+import androidx.gridlayout.widget.GridLayout;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
-
-import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
+import com.example.mamababyjourney.R;
 import androidx.annotation.NonNull;
-import androidx.gridlayout.widget.GridLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.View;
+import android.app.ProgressDialog;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.graphics.Color;
+import android.view.ViewGroup;
+import android.os.Bundle;
+import android.view.View;
 import java.util.HashMap;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 
 @SuppressWarnings ( { "deprecation" , "InflateParams" } )
@@ -208,14 +203,14 @@ public class Advices extends Fragment
                هسه هون بدل ما انا كنت في فنكشن ال onActivityResult وفنكشن ال Add_Treatments_Program_Button في
                 ال kids fragment مستعمل الصوره الدائريه هون مستعمل الصوره العاديه فمخفي الصوره الدائري و مظهر الصوره العاديه
             */
-
             CircleImageView circleImageView = childLayout . findViewById (R . id . circle_image_view ) ;
             ImageView image_view = childLayout . findViewById (R . id . image_view ) ;
 
             circleImageView . setVisibility ( View . GONE ) ;
-            image_view . setVisibility ( View . VISIBLE ) ;
+            image_view      . setVisibility ( View . VISIBLE ) ;
 
 
+            // هون بجيب ابعاد ال GridLayout و بخزنها في هاد params المتغير
             GridLayout . LayoutParams params = new GridLayout . LayoutParams ( ) ;
 
             // هون نفس الي بصير لما اجيب ال array من ملف ال strings بشيك على اسم ال button الي مخزن في هاد button_Name المتغير اذا كان مخزن فيه اسم زر نصائح الام فحط الصوره الخاصة بنصائح الام غير هيك حط الصوره الخاصه بنصائح الطفل
@@ -226,7 +221,7 @@ public class Advices extends Fragment
             textView . setText ( title ) ;
 
             params . columnSpec = GridLayout . spec (GridLayout . UNDEFINED ,GridLayout . FILL ,1 ) ;
-            params . setMargins ( 0 ,0 , 0 ,21 ) ;
+            params . setMargins ( 0 ,0 ,0 ,21 ) ;
 
             // هون احنا بنجهز حدث الضغط على وحده من النصائح
             childLayout . setOnClickListener ( view ->
@@ -319,55 +314,55 @@ public class Advices extends Fragment
                     case "العناية بالطفل المريض" :
                     {
                         Sub_Advice
-                                (
-                                        getResources ( ) . getStringArray ( R . array . Taking_care_of_a_sick_child_titles  ) ,
-                                        getResources ( ) . getStringArray ( R . array . Taking_care_of_a_sick_child_content ) ,
-                                        title
-                                );
+                        (
+                            getResources ( ) . getStringArray ( R . array . Taking_care_of_a_sick_child_titles  ) ,
+                            getResources ( ) . getStringArray ( R . array . Taking_care_of_a_sick_child_content ) ,
+                            title
+                        );
                         break;
                     }
 
                     case "العناية باسنان الطفل" :
                     {
                         Sub_Advice
-                                (
-                                        getResources ( ) . getStringArray ( R . array . child_dental_care_titles  ) ,
-                                        getResources ( ) . getStringArray ( R . array . child_dental_care_content ) ,
-                                        title
-                                );
+                        (
+                            getResources ( ) . getStringArray ( R . array . child_dental_care_titles  ) ,
+                            getResources ( ) . getStringArray ( R . array . child_dental_care_content ) ,
+                            title
+                        );
                         break;
                     }
 
                     case "الحوادث المنزليه" :
                     {
                         Sub_Advice
-                                (
-                                        getResources ( ) . getStringArray ( R . array . home_accidents_titles  ) ,
-                                        getResources ( ) . getStringArray ( R . array . home_accidents_content ) ,
-                                        title
-                                );
+                        (
+                            getResources ( ) . getStringArray ( R . array . home_accidents_titles  ) ,
+                            getResources ( ) . getStringArray ( R . array . home_accidents_content ) ,
+                            title
+                        );
                         break;
                     }
 
                     case "تغذية الاطفال" :
                     {
                         Sub_Advice
-                                (
-                                        getResources ( ) . getStringArray ( R . array . kids_nutrition_titles ) ,
-                                        getResources ( ) . getStringArray ( R . array . kids_nutrition_content ) ,
-                                        title
-                                );
+                        (
+                            getResources ( ) . getStringArray ( R . array . kids_nutrition_titles ) ,
+                            getResources ( ) . getStringArray ( R . array . kids_nutrition_content ) ,
+                            title
+                        );
                         break;
                     }
 
                     case "تطور الطفل" :
                     {
                         Sub_Advice
-                                (
-                                        getResources ( ) . getStringArray ( R . array . child_development_titles  ) ,
-                                        getResources ( ) . getStringArray ( R . array . child_development_content ) ,
-                                        title
-                                );
+                        (
+                            getResources ( ) . getStringArray ( R . array . child_development_titles  ) ,
+                            getResources ( ) . getStringArray ( R . array . child_development_content ) ,
+                            title
+                        );
                         break;
                     }
                 }
@@ -393,6 +388,7 @@ public class Advices extends Fragment
 
     }
 
+    // هاد الفنكشن الي بعرض الي النصائح الي بكبس على الزر تبعها
     private void Sub_Advice (String [ ] advice_title , String [ ] advice_content ,String title )
     {
 

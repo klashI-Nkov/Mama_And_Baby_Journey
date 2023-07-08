@@ -10,11 +10,11 @@ import android.os.Bundle;
 
 public class Vaccines_Table extends Fragment
 {
-    private FragmentMotherSectionVaccinesPageVaccinesTableFragmentBinding binding;
+    private FragmentMotherSectionVaccinesPageVaccinesTableFragmentBinding binding ;
 
     public View onCreateView ( @NonNull LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState )
     {
-        binding = FragmentMotherSectionVaccinesPageVaccinesTableFragmentBinding.inflate ( inflater , container , false );
-        return binding.getRoot ( );
+        binding = FragmentMotherSectionVaccinesPageVaccinesTableFragmentBinding . inflate (inflater ,container ,false ) ;
+        return binding . getRoot ( ) ;
     }
 }
