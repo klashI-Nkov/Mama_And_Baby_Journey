@@ -7,13 +7,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.auth.GoogleAuthProvider;
-
-import androidx.annotation.Nullable;
+import com.google.firebase.firestore.SetOptions;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,14 +24,9 @@ import com.google.android.gms.tasks.Task;
 import android.content.res.Configuration;
 import android.annotation.SuppressLint;
 import com.example.mamababyjourney.R;
-import com.google.firebase.firestore.SetOptions;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import android.app.ProgressDialog;
-import android.net.Uri;
+import androidx.annotation.Nullable;
 import android.provider.MediaStore;
-import android.util.Log;
+import android.app.ProgressDialog;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.graphics.Color;
@@ -39,6 +35,7 @@ import android.content.Intent;
 import java.util.Objects;
 import android.os.Bundle;
 import android.view.View;
+import android.net.Uri;
 
 import java.util.HashMap;
 
@@ -65,7 +62,7 @@ public class Sign_Up_Activity extends AppCompatActivity
         الثالث بخزن فيه الاسم الي بنكتب في ال edit text تبع الاسم
         الرابع بحط فيه رابط الصوره الي بحطها المستخدم
     */
-    private String password , email , name ;
+    private String password , email , name;
 
     private int doctor_Id , mother_Id ;
 
@@ -85,6 +82,7 @@ public class Sign_Up_Activity extends AppCompatActivity
         progressDialog = new ProgressDialog (this ) ;
         progressDialog . setMessage ( "يرجى الانتظار" ) ;
 
+        // هاد بتنفذ لما اضغط على ال Radio button الي مكتوب فيه ام
         binding . MomRBTN . setOnTouchListener ( ( view , motionEvent ) ->
         {
             binding . userImageView . setImageResource ( R . drawable . images_female_user_image );
@@ -92,6 +90,7 @@ public class Sign_Up_Activity extends AppCompatActivity
             return false;
         } );
 
+        // هاد بتنفذ لما اضغط على ال Radio button الي مكتوب فيه طبيب
         binding . DoctorRBTN . setOnTouchListener ( ( view , motionEvent ) ->
         {
             binding . userImageView . setImageResource ( R . drawable . images_male_user_image );
@@ -99,6 +98,7 @@ public class Sign_Up_Activity extends AppCompatActivity
             return false;
         });
 
+        // هاد بتنفذ لما اضغط على ال Radio button الي مكتوب فيه طبيبه
         binding . FDoctorRBTN . setOnTouchListener ( ( view , motionEvent ) ->
         {
             binding . userImageView . setImageResource ( R . drawable . images_female_user_image );
@@ -106,6 +106,7 @@ public class Sign_Up_Activity extends AppCompatActivity
             return false;
         });
 
+        // هاد بتنفذ لما اضغط على صورة الكاميرا الي جنب الصوره الشخصيه
         binding . PickUserImageBTN . setOnClickListener ( view ->
         {
             @SuppressLint ( "IntentReset" ) Intent intent = new Intent (Intent . ACTION_PICK ,MediaStore. Images . Media . EXTERNAL_CONTENT_URI ) ;
@@ -206,7 +207,7 @@ public class Sign_Up_Activity extends AppCompatActivity
     public void Sing_Up_By_Google ( View view)
     {
         // هون بقله اذا المسخدم حدد الصفه نفذ الي جوا الاف لو ما حدد اعرض اله المسج الي تحت
-        if ( binding.MomRBTN.isChecked ( ) || binding.DoctorRBTN.isChecked ( ) || binding . FDoctorRBTN . isChecked ( )  )
+        if ( binding . MomRBTN . isChecked ( ) || binding . DoctorRBTN . isChecked ( ) || binding . FDoctorRBTN . isChecked ( )  )
         {
             GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestIdToken ( getString (R . string . default_web_client_id ) ) . requestEmail ( ) . build ( ) ;
 
@@ -221,7 +222,6 @@ public class Sign_Up_Activity extends AppCompatActivity
             Snack_Bar ( "يرجى تحديد صفتك قبل المتابعه" ) ;
     }
 
-    // Done
     public void onActivityResult ( int requestCode , int resultCode , @Nullable Intent data )
     {
         super . onActivityResult (requestCode ,resultCode ,data ) ;
@@ -264,7 +264,7 @@ public class Sign_Up_Activity extends AppCompatActivity
                             if ( authResultTask . isSuccessful ( ) )
                             {
                                 email = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ;
-                                name = FirebaseAuth  . getInstance ( ) . getCurrentUser ( ) . getDisplayName ( ) ;
+                                name  = FirebaseAuth  . getInstance ( ) . getCurrentUser ( ) . getDisplayName ( ) ;
 
                                 // هاد بتنفذ في حالة كان الي بعمل الحساب دكتور
                                 if ( binding . DoctorRBTN . isChecked ( ) || binding . FDoctorRBTN . isChecked ( ) )
@@ -276,14 +276,22 @@ public class Sign_Up_Activity extends AppCompatActivity
                                     String user_Kind = binding . DoctorRBTN . isChecked ( ) ?
                                            binding . DoctorRBTN . getText ( ) + "" : binding . FDoctorRBTN . getText ( ) + "" ;
 
+                                    // هون اذا ما تم اختيار صوره من الاستديو مباشره بستعمل الصوره الي على الايميل
+                                    if ( uri == null )
+                                    uri = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getPhotoUrl ( ) ;
+
                                     /*
                                         هون انا بستدعي الفنكشن الي بضيف الي في الفايرستور بيانات الدكتور الي انعمل اله حساب وببعث اله
 
                                          1- اسم ال id الي بدي اضيفه لبيانات االمستخدم
                                          2- اسم ال collection الي بدي اضيف فيها بيانات المستخدم
                                          3- صفة المستخدم
+
+                                         4- نوع طريقة انشاء الحساب عشان اخزنها مع بيانات الدكتور مشان ي منار لو ما كان مختار صوره من الاستديو وعامل
+                                         حساب باستخدام جوجل من خلال هاد المتغير اعرف انه مستخدم حساب جوجل لعمل حساب و مش مختار صوره من
+                                         الاستديو عشان بس يعمل تسجيل دخول المره الجاي استعمل صورة ايميله بدل الصوره الافتراضيه
                                     */
-                                    Add_Doctor_Or_Mother_Data_To_firestore ("doctor Id" ,"Doctors" ,user_Kind ) ;
+                                    Add_Doctor_Or_Mother_Data_To_firestore ("doctor Id" ,"Doctors" ,user_Kind , "Sing Up By Google" ) ;
                                 }
 
                                 // هاد بتنفذ في حالة كان الي بعمل الحساب ام والي بصير جواته نفس الي بصير في حالة كان الي بعمل الحساب الام
@@ -291,7 +299,11 @@ public class Sign_Up_Activity extends AppCompatActivity
                                 {
                                     intent = new Intent (Sign_Up_Activity . this ,Mother_Activity . class ) ;
 
-                                    Add_Doctor_Or_Mother_Data_To_firestore ("mother Id" ,"Mothers" ,binding . MomRBTN . getText ( ) + "" ) ;
+                                    // هون اذا ما تم اختيار صوره من الاستديو مباشره بستعمل الصوره الي على الايميل
+                                    if ( uri == null )
+                                    uri = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getPhotoUrl ( ) ;
+
+                                    Add_Doctor_Or_Mother_Data_To_firestore ("mother Id" ,"Mothers" ,binding . MomRBTN . getText ( ) + "" , "Sing Up By Google" ) ;
                                 }
                             }
                         });
@@ -377,7 +389,7 @@ public class Sign_Up_Activity extends AppCompatActivity
                                  2- اسم ال collection الي بدي اضيف فيها بيانات المستخدم
                                  3- صفة المستخدم
                             */
-                            Add_Doctor_Or_Mother_Data_To_firestore ("doctor Id" ,"Doctors" ,user_Kind ) ;
+                            Add_Doctor_Or_Mother_Data_To_firestore ("doctor Id" ,"Doctors" ,user_Kind ,"Sing Up By Email" ) ;
                         }
 
                         // هاد بتنفذ في حالة كان الي بعمل الحساب ام والي بصير جواته نفس الي بصير في حالة كان الي بعمل الحساب الام
@@ -385,7 +397,7 @@ public class Sign_Up_Activity extends AppCompatActivity
                         {
                             intent = new Intent (Sign_Up_Activity . this ,Mother_Activity . class ) ;
 
-                            Add_Doctor_Or_Mother_Data_To_firestore ("mother Id" ,"Mothers" ,binding . MomRBTN . getText ( ) + "" ) ;
+                            Add_Doctor_Or_Mother_Data_To_firestore ("mother Id" ,"Mothers" ,binding . MomRBTN . getText ( ) + "" ,"Sing Up By Email" ) ;
                         }
                     }
                 });
@@ -399,7 +411,7 @@ public class Sign_Up_Activity extends AppCompatActivity
     }
 
     // هاد الفنكشن الي بضيف الي داتا السمتخدم في الفاير ستور
-    private void Add_Doctor_Or_Mother_Data_To_firestore ( String id_Name , String collection_Name , String user_Kind )
+    private void Add_Doctor_Or_Mother_Data_To_firestore ( String id_Name , String collection_Name , String user_Kind , String signUp_Method )
     {
         // هسه هون الي بصير انه بروح على ال document الي مخزن فيه id الام و id الدكتور
         FirebaseFirestore . getInstance ( )
@@ -428,8 +440,11 @@ public class Sign_Up_Activity extends AppCompatActivity
                     // هون انا ببعت مع ال intent مسج بوضح انا في اي شاشة كنت قبل ما انتقل للشاشة الي رح توديني الها شاشة انشاء الحساب
                     intent . putExtra ( "action" , "signup" ) ;
 
-                    // هون انا ببعت اسم المستخدم للشاشه الي رح توديني الها شاشة انشاء الحسا
+                    // هون انا ببعت اسم المستخدم للشاشه الي رح توديني الها شاشة انشاء الحساب
                     intent . putExtra ( "name" , name ) ;
+
+                    // هون انا ببعت ايميل المستخدم للشاشه الي رح توديني الها شاشة انشاء الحساب
+                    intent . putExtra ( "email" , email ) ;
 
                     // هون انا بعمل HashMap عشان احط فيها داتا المستخدم الي انعمل اله حساب
                     HashMap < String , Object > data = new HashMap < > ( ) ;
@@ -476,6 +491,8 @@ public class Sign_Up_Activity extends AppCompatActivity
                     data . put ( "name" , name ) ;
                     data . put ( "صفة المستخدم" , user_Kind ) ;
                     data . put ( "image Url" , "" ) ;
+                    data . put ( "signUp Method" , signUp_Method ) ;
+                    data . put ( "email" , email ) ;
 
 
                     // هون لما استعدينا الفنكشن الي احنا فيه حسب صفة المستخدم حددنا اسم ال collection الي بدي اضيف فيها الداتا و الي بعثنها اسمها لهاد الفنكشن في هاد collection_Name المتغير
@@ -504,20 +521,19 @@ public class Sign_Up_Activity extends AppCompatActivity
     {
 
         // هون انا بروح على الفايرستورج و بعمل مجلد اسمه images واسم الصوره بكون user number + اال id تبع المستخدم
-        StorageReference imageRef = FirebaseStorage.getInstance ( ).getReference ( ).child ( "images" + "/user number " + user_Id );
+        StorageReference imageRef = FirebaseStorage . getInstance ( ) . getReference ( ) . child ( "images" + "/user number " + user_Id ) ;
 
         // هون بعد ما تنرفع الصوره على الفايرستورج بخزن الرابط تبعها في هاد image_Url المتغير
-        imageRef.putFile ( uri ).addOnSuccessListener (taskSnapshot ->
+        imageRef . putFile (uri ).addOnSuccessListener (taskSnapshot ->
 
-        imageRef.getDownloadUrl ( ).addOnSuccessListener ( downloadUri ->
+        imageRef . getDownloadUrl ( ) . addOnSuccessListener (downloadUri ->
         {
             // هون انا بعمل HashMap وبحط فيها داتا المستخدم الي انعمل اله حساب
             HashMap < String , Object > data = new HashMap < > ( ) ;
-            data . put ( "image Url" , downloadUri.toString ( ) ) ;
-
+            data . put ( "image Url" , downloadUri . toString ( ) ) ;
 
             // هون لما استعدينا الفنكشن الي احنا فيه حسب صفة المستخدم حددنا اسم ال collection الي بدي اضيف فيها الداتا و الي بعثنها اسمها لهاد الفنكشن في هاد collection_Name المتغير
             FirebaseFirestore . getInstance ( ) . collection (collection_Name ) . document (email ) . set ( data , SetOptions . merge ( ) ) ;
-        }) );
+        } ));
     }
 }
