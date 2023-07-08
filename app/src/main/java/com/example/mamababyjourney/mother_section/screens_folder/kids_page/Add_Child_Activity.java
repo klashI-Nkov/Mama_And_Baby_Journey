@@ -1,13 +1,13 @@
 package com.example.mamababyjourney.mother_section.screens_folder.kids_page;
 
 import com.example.mamababyjourney.databinding.ActivityMotherSectionKidsPageAddChildActivityBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.FirebaseStorage;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.firestore.SetOptions;
-import com.google.firebase.storage.UploadTask;
 import androidx.core.content.ContextCompat;
 import android.content.res.ColorStateList;
 import android.annotation.SuppressLint;
@@ -29,13 +29,16 @@ import java.util.Objects;
 import android.net.Uri;
 
 @SuppressLint ( { "InflateParams" , "IntentReset" } )
-@SuppressWarnings ( { "deprecation" , "SameParameterValue" , "SpellCheckingInspection" , "CodeBlock2Expr" } )
+@SuppressWarnings ( { "deprecation" , "SameParameterValue" , "CodeBlock2Expr" , "ConstantConditions" } )
 public class Add_Child_Activity extends AppCompatActivity implements AdapterView. OnItemSelectedListener
 {
     ActivityMotherSectionKidsPageAddChildActivityBinding binding ;
 
     // هاد المتغير بخزن فيه الصوره الي بختارها من الاستديو
     Uri uri = null ;
+
+    // هاد الي بخزن فيه جنس الطفل
+    String gender ;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -49,7 +52,7 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
         setContentView ( binding . getRoot ( ) ) ;
 
         // هاد الكود بتنفذ بس تضغظ على صورة الكاميرا الي موجوده جنب الصوره والي بعمله هاد الكود الي جوا انه بفتح النا الاستديو عشان نختار صوره منه
-        binding . PickImageBTN . setOnClickListener ( view ->
+        binding . PickChildImageBTN . setOnClickListener ( view ->
         {
             Intent intent = new Intent (Intent . ACTION_PICK ,MediaStore . Images . Media . EXTERNAL_CONTENT_URI ) ;
             intent . setType ( "image/*" ) ;
@@ -63,70 +66,101 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
     public void Save_BTN ( View view )
     {
         // هون بشيك اذا كان حط الاسم و اختار الصوره اذا عمل هيك بستدعي فنكشن ال Add_Chile_Data اذا ما عمل بس شي واحد من الي حكيته بظهر اله المسج الي تحت
-        if ( uri != null && !binding . NameEditText . getText ( ) . toString ( ) . isEmpty ( ) )
-            Add_Chile_Data (uri ) ;
+        if ( !binding . NameEditText . getText ( ) . toString ( ) . isEmpty ( ) && gender != null )
+            Add_Chile_Data ( ) ;
         else
-            Snack_Bar ( "يجب كتابة الاسم و اختيار صوره قبل الضغظ على زر الحفظ" ) ;
+            Snack_Bar ( "يجب كتابة الاسم و اختيار الجنس و الصوره قبل الضغظ على زر الحفظ" ) ;
     }
 
-    private void Add_Chile_Data ( Uri uri )
+    private void Add_Chile_Data (  )
     {
 
         final ProgressDialog progressDialog = new ProgressDialog(this ) ;
         progressDialog . setMessage ( "يرجى الانتظار" ) ;
         progressDialog . show ( ) ;
 
-        // هون انا بروح على الفايرستورج و بعمل مجلد اسمه بكون قيمة ال id تبع الام واسم الصوره بكون هو اسم الطفل الي حطيناه
-        StorageReference imageRef = FirebaseStorage . getInstance ( ) . getReference ( ) . child
-        ("Mother_Activity . id" + "/" + binding . NameEditText . getText ( ) . toString ( ) ) ;
+        // هون بس يخزن بيانات الطفل برجع على شاشة الاطفال
+        Intent intent = new Intent (this ,Kids . class ) ;
 
-        // هون بعمل مهمة رفع ملف وبحط المهمه امر برفع الصوره الي اجت لهاد الفنكشن في المتغير الي اسمه Uri
-        UploadTask uploadTask = imageRef . putFile (uri ) ;
+        // هون انا بعمل HashMap و بخزن فيها اسم الطفل ورابط الصوره عشان اخزنهم مع بيانات الام في الفايرستور في دكيزمنت خاص بالطفل وبكون باسمه
+        HashMap < String , Object > data = new HashMap < > ( ) ;
+        data . put ( "Child Name" , binding . NameEditText . getText ( ) . toString ( ) ) ;
+        data . put ( "gender" , gender ) ;
 
-        uploadTask . addOnSuccessListener
-        (
-            taskSnapshot ->
-            {
-                imageRef . getDownloadUrl ( ) . addOnSuccessListener
-                (
-                    downloadUri ->
-                    {
-                        // هون بس ترفع الصوره بدخل هون وبخزن في الفايرستور الرابط الي اتخزن فيه الصوره عشان بس بدي اجيبها اوصل الها بكل سهوله من خلال الرابط تبعها
+        // هون بشيك اذا المستخدم اختار صوره وثتها بضيف رابطها في الدكيومنت الخاص بالطفل واذا ما اختار ما يضيف اي رابط في دكيومنت الطفل
+        if ( uri != null )
+        {
+            // هون انا بروح على الفايرستورج و بعمل مجلد اسمه images واسم الصوره بكون هو اسم الطفل الي حطيناه
+            StorageReference imageRef = FirebaseStorage . getInstance ( ) . getReference ( ) . child
+            ("images" + "/" + binding . NameEditText . getText ( ) . toString ( ) ) ;
 
-                        FirebaseFirestore db = FirebaseFirestore . getInstance ( ) ;
-
-                        // هون انا بعمل ماب و بخزن فيها اسم الطفل ورابط الصوره عشان اخزنهم مع بيانات الام في الفايرستور في دكيزمنت خاص بالطفل وبكون باسمه
-                        HashMap < String , Object > data = new HashMap < > ( ) ;
-                        data . put ( "Child Name" , binding . NameEditText . getText ( ) . toString ( ) );
-                        data . put ( "imageUrl" , downloadUri . toString ( ) ) ;
-
-                        db . collection ("/mothers/1/Childrns" ) . document (binding . NameEditText . getText ( ) . toString ( ) ) . set ( data , SetOptions . merge ( ) ) . addOnCompleteListener (task ->
+            imageRef . putFile (uri ) . addOnSuccessListener
+            (
+                taskSnapshot ->
+                {
+                    imageRef . getDownloadUrl ( ) . addOnSuccessListener
+                    (
+                        downloadUri ->
                         {
-                            if ( task . isComplete ( ) )
+                            // هون انا بضيف رابط الصوره في هاي data ال HashMap عشان اضيفه مع بقية الداتا في الفايرستور
+                            data . put ( "image Url" , downloadUri . toString ( ) ) ;
+
+                            FirebaseFirestore . getInstance ( )
+                            . collection ("/Mothers/"+ FirebaseAuth. getInstance ( ) . getCurrentUser ( ) . getEmail ( ) + "/Children's" )
+                            . document (binding . NameEditText . getText ( ) . toString ( ) )
+                            . set ( data , SetOptions . merge ( ) ) . addOnCompleteListener (task ->
                             {
-                                // هون بس يخزن بيانات الطفل برجع على شاشة الاطفال
-                                Intent intent = new Intent (this ,Kids . class ) ;
+                                if ( task . isComplete ( ) )
+                                {
+                                    // هون انا ببعت الصوره الي تم اختيارها من الاستديو لشاشة الاطفال
+                                    intent . setData ( uri ) ;
 
-                                intent . setData ( uri ) ;
+                                    // هون انا ببعت مسج لشاشة الاطفال انه في صورة تم اختيارها من الاستديو
+                                    intent . putExtra ("image form ?" ,"uri" ) ;
 
-                                intent . putExtra ("Name",binding . NameEditText . getText ( ) . toString ( ) ) ;
+                                    // هون ببعت اسم الطفل لشاشة الاطفال
+                                    intent . putExtra ("Name",binding . NameEditText . getText ( ) . toString ( ) ) ;
 
-                                setResult (RESULT_OK ,intent ) ;
+                                    setResult (RESULT_OK ,intent ) ;
 
-                                progressDialog . dismiss ( ) ;
+                                    // هون بلغي الاشعار الي بحكي يرجى الانتظار
+                                    progressDialog . dismiss ( ) ;
 
-                                finish ( ) ;
-                            }
-                        });
-                    }
-                );
-            }
-        );
+                                    finish ( ) ;
+                                }
+                            });
+                        }
+                    );
+                }
+            );
+        }
+        else
+        {
+            data . put ( "image Url" , "" ) ;
+
+            FirebaseFirestore . getInstance ( )
+            . collection ("/Mothers/"+ FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) + "/Children's" )
+            . document (binding . NameEditText . getText ( ) . toString ( ) )
+            . set ( data , SetOptions . merge ( ) ) . addOnCompleteListener (task ->
+            {
+                if ( task . isComplete ( ) )
+                {
+                    // هون انا ببعت مسج لشاشة الاطفال انه مافي صورة تم اختيارها من الاستديو
+                    intent . putExtra ("image form ?" ,"Drawable" ) ;
+
+                    // هون ببعت اسم الطفل لشاشة الاطفال
+                    intent . putExtra ("Name",binding . NameEditText . getText ( ) . toString ( ) ) ;
+
+                    setResult (RESULT_OK ,intent ) ;
+
+                    // هون بلغي الاشعار الي بحكي يرجى الانتظار
+                    progressDialog . dismiss ( ) ;
+
+                    finish ( ) ;
+                }
+            });
+        }
     }
-
-
-
-
 
 
     public void onActivityResult ( int requestCode , int resultCode , @Nullable Intent data )
@@ -199,9 +233,10 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
     }
 
     @Override
-    public void onItemSelected ( AdapterView < ? > adapterView , View view , int i , long l )
+    public void onItemSelected ( AdapterView < ? > parent , View view , int position , long id )
     {
-
+        if ( position != 0 )
+            gender = parent . getItemAtPosition (position ) . toString ( ) ;
     }
 
     @Override
