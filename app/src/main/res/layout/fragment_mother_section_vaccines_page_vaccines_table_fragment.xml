@@ -48,6 +48,7 @@
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_15sdp">
 
+                    <!-- اسم المطعوم -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -56,6 +57,7 @@
 
                         android:text="مطعوم السل"/>
 
+                    <!-- تاريخ الجرعه -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -89,6 +91,7 @@
                     android:gravity="center"
                     android:layout_marginBottom="@dimen/_15sdp">
 
+                    <!-- اسم المطعوم -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -97,6 +100,7 @@
 
                         android:text="مطعوم شلل الاطفال العضلي"/>
 
+                    <!-- ارقام الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -134,6 +138,7 @@
 
                     </TableRow>
 
+                    <!-- تواريخ الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -194,6 +199,7 @@
                     android:gravity="center"
                     android:layout_marginBottom="@dimen/_15sdp">
 
+                    <!-- اسم المطعوم -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -202,6 +208,7 @@
 
                         android:text="مطعوم شلل الاطفال الفموي"/>
 
+                    <!-- ارقام الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -239,6 +246,7 @@
 
                     </TableRow>
 
+                    <!-- تواريخ الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -276,6 +284,7 @@
 
                     </TableRow>
 
+                    <!-- الجرعه المدعمة -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -286,6 +295,7 @@
 
                         android:text="الجرعة المدعمه"/>
 
+                    <!-- تاريخ الجرعه المدعمة -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -319,6 +329,7 @@
                     android:gravity="center"
                     android:layout_marginBottom="@dimen/_15sdp">
 
+                    <!-- اسم المطعوم -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -327,6 +338,7 @@
 
                         android:text="مطعوم الخانوق والسعال الديكي و الكزاز"/>
 
+                    <!-- ارقام الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -364,6 +376,7 @@
 
                     </TableRow>
 
+                    <!-- تواريخ الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -401,6 +414,7 @@
 
                     </TableRow>
 
+                    <!-- الجرعه المدعمة -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -411,6 +425,7 @@
 
                         android:text="الجرعة المدعمه"/>
 
+                    <!-- تاريخ الجرعه المدعمة -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -444,6 +459,7 @@
                     android:gravity="center"
                     android:layout_marginBottom="@dimen/_15sdp">
 
+                    <!-- اسم المطعوم -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -452,6 +468,7 @@
 
                         android:text="مطعوم المستدمية النزليه ( السحايا )"/>
 
+                    <!-- ارقام الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -489,6 +506,7 @@
 
                     </TableRow>
 
+                    <!-- تواريخ الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -549,6 +567,7 @@
                     android:gravity="center"
                     android:layout_marginBottom="@dimen/_15sdp">
 
+                    <!-- اسم المطعوم -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -557,6 +576,7 @@
 
                         android:text="مطعوم التهاب الكبد الوبائي"/>
 
+                    <!-- ارقام الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -594,6 +614,7 @@
 
                     </TableRow>
 
+                    <!-- تواريخ الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -654,6 +675,7 @@
                     android:gravity="center"
                     android:layout_marginBottom="@dimen/_15sdp">
 
+                    <!-- اسم المطعوم -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -662,6 +684,7 @@
 
                         android:text="مطعوم الحصبه"/>
 
+                    <!-- ارقام الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -690,6 +713,7 @@
 
                     </TableRow>
 
+                    <!-- تواريخ الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -741,6 +765,7 @@
                     android:gravity="center"
                     android:layout_marginBottom="@dimen/_15sdp">
 
+                    <!-- اسم المطعوم -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -749,6 +774,7 @@
 
                         android:text="MMR الحصبه الالمانيه و النكاف"/>
 
+                    <!-- ارقام الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -777,6 +803,7 @@
 
                     </TableRow>
 
+                    <!-- تواريخ الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -828,6 +855,7 @@
                     android:gravity="center"
                     android:layout_marginBottom="@dimen/_15sdp">
 
+                    <!-- اسم المطعوم -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -836,6 +864,7 @@
 
                         android:text="روتا فيروس"/>
 
+                    <!-- ارقام الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -873,6 +902,7 @@
 
                     </TableRow>
 
+                    <!-- تواريخ الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -933,6 +963,7 @@
                     android:gravity="center"
                     android:layout_marginBottom="@dimen/_15sdp">
 
+                    <!-- اسم المطعوم -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -941,6 +972,7 @@
 
                         android:text="المطعوم السداسي hexaxim"/>
 
+                    <!-- ارقام الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -969,6 +1001,7 @@
 
                     </TableRow>
 
+                    <!-- تواريخ الجرعات -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -1006,3 +1039,37 @@
     </ScrollView>
 
 </LinearLayout>
+
+
+<!--
+    item
+    مطعوم السل
+    تاريخ جرعة مطعوم السل
+
+    map
+    مطعوم شلل الاطفال العضلي
+
+
+    map
+    مطعوم شلل الاطفال الفموي
+
+    map
+    مطعوم الخانوق والسعال الديكي و الكزاز
+
+    map
+    مطعوم المستدمية النزليه ( السحايا )
+
+    map
+    مطعوم التهاب الكبد الوبائي
+
+    map
+    مطعوم الحصبه
+
+    map
+    الحصبه الالمانيه و النكاف
+
+    map
+    روتا فيروس
+
+    map
+    المطعوم السداسي hexaxim-->
