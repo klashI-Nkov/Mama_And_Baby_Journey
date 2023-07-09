@@ -123,6 +123,7 @@ public class Kids extends Fragment
             {
                 Intent intent = new Intent (requireContext ( ) , Child_Activity. class ) ;
                 intent . putExtra ( "gender" , data . getExtras ( ) . getString ("gender" ) ) ;
+                intent . putExtra ( "name" , data . getExtras ( ) . getString ("Name" ) ) ;
                 startActivity (intent ) ;
             });
 
@@ -193,7 +194,8 @@ public class Kids extends Fragment
                                     childLayout . setOnClickListener ( V ->
                                     {
                                         Intent intent = new Intent (requireContext ( ) ,Child_Activity . class ) ;
-                                        intent . putExtra ("gender" ,documentSnapshot . get ( "gender" ) + "" ) ;
+                                        intent . putExtra ("gender" ,documentSnapshot . get ( "gender" ) + ""      ) ;
+                                        intent . putExtra ("name"   , documentSnapshot . get ( "Child Name" ) + "" ) ;
                                         startActivity (intent ) ;
                                     });
 

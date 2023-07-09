@@ -88,6 +88,8 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
         HashMap < String , Object > data = new HashMap < > ( ) ;
         data . put ( "Child Name" , binding . NameEditText . getText ( ) . toString ( ) ) ;
         data . put ( "gender" , gender ) ;
+        data . put ( "Child vaccines" , Add_Child_Vaccines ( ) ) ;
+
 
         CompletableFuture < Void > uploadFuture = new CompletableFuture < > () ;
 
@@ -157,6 +159,78 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
                });
            }
         });
+    }
+
+    // هاد الفنكشن بجهز الي ماب مخزن فيه المواعيد الي تم اخذ جرعات" "المطاعيم فيها
+    private HashMap < String , Object > Add_Child_Vaccines ( )
+    {
+        // ؛map مطعوم شلل الاطفال العضلي
+        HashMap < String , Object > intramuscular_Polio_Vaccine_Map = new HashMap < > ( ) ;
+        intramuscular_Polio_Vaccine_Map . put ( "الجرعه الاولى" , "لم تاخذ بعد" ) ;
+        intramuscular_Polio_Vaccine_Map . put ( "الجرعه الثانية" , "لم تاخذ بعد" ) ;
+        intramuscular_Polio_Vaccine_Map . put ( "الجرعه الثالثة" , "لم تاخذ بعد" ) ;
+
+        // ؛map مطعوم شلل الاطفال الفموي
+        HashMap < String , Object > oral_Polio_Vaccine_Map = new HashMap < > ( ) ;
+        oral_Polio_Vaccine_Map . put ( "الجرعه الاولى" , "لم تاخذ بعد" ) ;
+        oral_Polio_Vaccine_Map . put ( "الجرعه الثانية" , "لم تاخذ بعد" ) ;
+        oral_Polio_Vaccine_Map . put ( "الجرعه الثالثة" , "لم تاخذ بعد" ) ;
+        oral_Polio_Vaccine_Map . put ( "الجرعه المدعمة" , "لم تاخذ بعد" ) ;
+
+        // ؛map مطعوم الخانوق والسعال الديكي و الكزاز
+        HashMap < String , Object > diphtheria_Whooping_Cough_And_Tetanus_Vaccine_Map = new HashMap < > ( ) ;
+        diphtheria_Whooping_Cough_And_Tetanus_Vaccine_Map . put ( "الجرعه الاولى" , "لم تاخذ بعد" ) ;
+        diphtheria_Whooping_Cough_And_Tetanus_Vaccine_Map . put ( "الجرعه الثانية" , "لم تاخذ بعد" ) ;
+        diphtheria_Whooping_Cough_And_Tetanus_Vaccine_Map . put ( "الجرعه الثالثة" , "لم تاخذ بعد" ) ;
+        diphtheria_Whooping_Cough_And_Tetanus_Vaccine_Map . put ( "الجرعه المدعمة" , "لم تاخذ بعد" ) ;
+
+        // ؛map مطعوم المستدمية النزليه ( السحايا )
+        HashMap < String , Object > haemophilus_Influenzae_Vaccine_Map = new HashMap < > ( ) ;
+        haemophilus_Influenzae_Vaccine_Map . put ( "الجرعه الاولى" , "لم تاخذ بعد" ) ;
+        haemophilus_Influenzae_Vaccine_Map . put ( "الجرعه الثانية" , "لم تاخذ بعد" ) ;
+        haemophilus_Influenzae_Vaccine_Map . put ( "الجرعه الثالثة" , "لم تاخذ بعد" ) ;
+
+        // ؛map مطعوم التهاب الكبد الوبائي ( Hepatitis B )
+        HashMap < String , Object > hepatitis_B_Vaccine_Map = new HashMap < > ( ) ;
+        hepatitis_B_Vaccine_Map . put ( "الجرعه الاولى" , "لم تاخذ بعد" ) ;
+        hepatitis_B_Vaccine_Map . put ( "الجرعه الثانية" , "لم تاخذ بعد" ) ;
+        hepatitis_B_Vaccine_Map . put ( "الجرعه الثالثة" , "لم تاخذ بعد" ) ;
+
+        // ؛map مطعوم الحصبه
+        HashMap < String , Object > measles_Vaccine_Map = new HashMap < > ( ) ;
+        measles_Vaccine_Map . put ( "الجرعه الاولى" , "لم تاخذ بعد" ) ;
+        measles_Vaccine_Map . put ( "الجرعه الثانية" , "لم تاخذ بعد" ) ;
+
+        // ؛map مطعوم الحصبه الالمانيه و النكاف MMR
+        HashMap < String , Object > german_Measles_And_Mumps_MMR_Vaccine_Map = new HashMap < > ( ) ;
+        german_Measles_And_Mumps_MMR_Vaccine_Map . put ( "الجرعه الاولى" , "لم تاخذ بعد" ) ;
+        german_Measles_And_Mumps_MMR_Vaccine_Map . put ( "الجرعه الثانية" , "لم تاخذ بعد" ) ;
+
+        // ؛map مطعوم روتا فيروس
+        HashMap < String , Object > rotavirus_Vaccine_Map = new HashMap < > ( ) ;
+        rotavirus_Vaccine_Map . put ( "الجرعه الاولى" , "لم تاخذ بعد" ) ;
+        rotavirus_Vaccine_Map . put ( "الجرعه الثانية" , "لم تاخذ بعد" ) ;
+        rotavirus_Vaccine_Map . put ( "الجرعه الثالثة" , "لم تاخذ بعد" ) ;
+
+        // ؛map المطعوم السداسي hexaxim
+        HashMap < String , Object > the_Hexagonal_Vaccine_Map = new HashMap < > ( ) ;
+        the_Hexagonal_Vaccine_Map . put ( "الجرعه الاولى" , "لم تاخذ بعد" ) ;
+        the_Hexagonal_Vaccine_Map . put ( "الجرعه الثانية" , "لم تاخذ بعد" ) ;
+
+
+        HashMap < String , Object > vaccines = new HashMap < > ( ) ;
+        vaccines . put ( "مطعوم السل"                                 , "لم ياخذ بعد" ) ;
+        vaccines . put ( "مطعوم شلل الاطفال العضلي"                    , intramuscular_Polio_Vaccine_Map                   ) ;
+        vaccines . put ( "مطعوم شلل الاطفال الفموي"                    , oral_Polio_Vaccine_Map                            ) ;
+        vaccines . put ( "مطعوم الخانوق والسعال الديكي و الكزاز"      , diphtheria_Whooping_Cough_And_Tetanus_Vaccine_Map ) ;
+        vaccines . put ( "مطعوم المستدمية النزليه ( السحايا )"        , haemophilus_Influenzae_Vaccine_Map                ) ;
+        vaccines . put ( "مطعوم التهاب الكبد الوبائي ( Hepatitis B )" , hepatitis_B_Vaccine_Map                           ) ;
+        vaccines . put ( "مطعوم الحصبه"                               , measles_Vaccine_Map                               ) ;
+        vaccines . put ( "مطعوم الحصبه الالمانيه و النكاف MMR"         , german_Measles_And_Mumps_MMR_Vaccine_Map          ) ;
+        vaccines . put ( "مطعوم روتا فيروس"                           , rotavirus_Vaccine_Map                             ) ;
+        vaccines . put ( "hexaxim المطعوم السداسي"                    , the_Hexagonal_Vaccine_Map                         ) ;
+
+        return vaccines ;
     }
 
 

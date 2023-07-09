@@ -17,11 +17,13 @@ import java.util.Objects;
 public class Child_Activity extends AppCompatActivity
 {
     private ActivityMotherSectionKidsPageChildActivityBinding binding ;
-
+    public static String name ;
     @Override
     protected void onCreate ( Bundle savedInstanceState )
     {
         super.onCreate (savedInstanceState ) ;
+
+        name = getIntent ( ) . getExtras ( ) . getString ("name" ) ;
 
         getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
         Objects. requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
@@ -30,7 +32,8 @@ public class Child_Activity extends AppCompatActivity
         setContentView ( binding . getRoot ( ) ) ;
 
         AppBarConfiguration mAppBarConfiguration = new AppBarConfiguration
-        .Builder (R.id.Treatments_Table , R.id.Child_Treatment_Record ).build ( );
+        .Builder (R.id.Treatments_Table , R.id.Child_Treatment_Record ) . build ( );
+
 
 
         if ( getIntent ( ) . getExtras ( ) . getString ("gender" ) . equals ( "ذكر" ) )
