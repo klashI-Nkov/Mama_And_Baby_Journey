@@ -61,21 +61,17 @@ dependencies
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // هدول عشان انشاء الحساب و تسجيل الدخول باستخدام الايميل و باستخدام جوجل و باستخدام الفيس بوك
-    implementation 'com.google.firebase:firebase-auth:22.0.0'
-    implementation 'com.google.firebase:firebase-auth-ktx:22.0.0'
+    implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.android.gms:play-services-auth:20.6.0'
     implementation(platform("com.google.firebase:firebase-bom:32.1.1"))
-    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 
     // هاي المكتيه خاصه بالفاير ستور في الفاير بيس
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.6.1'
+    implementation 'com.google.firebase:firebase-firestore:24.6.1'
 
     // هدول المكتبتين للفايرستورج الي بتخزن فيها الصور
     implementation 'com.google.firebase:firebase-storage:20.2.1'
-    implementation 'com.google.firebase:firebase-storage-ktx:20.2.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     // هاي المكتبه خاصه بالموقع و خدماته

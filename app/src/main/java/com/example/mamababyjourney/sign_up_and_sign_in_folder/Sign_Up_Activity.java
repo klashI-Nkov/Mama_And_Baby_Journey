@@ -35,9 +35,8 @@ import android.content.Intent;
 import java.util.Objects;
 import android.os.Bundle;
 import android.view.View;
-import android.net.Uri;
-
 import java.util.HashMap;
+import android.net.Uri;
 
 @SuppressWarnings ( { "FieldMayBeFinal" , "ConstantConditions" , "IfStatementWithIdenticalBranches" , "deprecation" } )
 @SuppressLint ( { "ClickableViewAccessibility" , "IntentReset" , "SuspiciousIndentation" } )
@@ -214,7 +213,6 @@ public class Sign_Up_Activity extends AppCompatActivity
             GoogleSignInClient mClient = GoogleSignIn . getClient (this ,googleSignInOptions ) ;
 
             // هون انا بظهر المربع الي بختار منه الايميل الي بدي استعمله عشان اعمل حساب في التطبيق
-
             Intent intent = mClient . getSignInIntent ( ) ;
             startActivityForResult ( intent , 2 );
         }

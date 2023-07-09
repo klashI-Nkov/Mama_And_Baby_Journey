@@ -2,39 +2,34 @@ package com.example.mamababyjourney.mother_section.screens_folder.kids_page;
 
 import com.example.mamababyjourney.mother_section.screens_folder.vaccines_page.Vaccines_Program_Activity;
 import com.example.mamababyjourney.databinding.FragmentMotherSectionKidsPageKidsFragmentBinding;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.DocumentSnapshot;
 import de.hdodenhof.circleimageview.CircleImageView;
 import com.google.firebase.storage.FirebaseStorage;
+import java.util.concurrent.CompletableFuture;
 import static android.app.Activity.RESULT_OK;
 import androidx.gridlayout.widget.GridLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import android.annotation.SuppressLint;
 import androidx.fragment.app.Fragment;
 import com.example.mamababyjourney.R;
 import com.squareup.picasso.Picasso;
-
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-
-import android.app.ProgressDialog;
 import android.view.LayoutInflater;
+import android.app.ProgressDialog;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.ViewGroup;
 import android.content.Intent;
-import android.os.Bundle;
+import android.view.ViewGroup;
 import android.view.View;
+import android.os.Bundle;
 import android.net.Uri;
-
-import java.util.concurrent.CompletableFuture;
-
 
 @SuppressLint ( { "InflateParams" , "IntentReset" , "SetTextI18n" } )
 @SuppressWarnings ( { "deprecation" , "DataFlowIssue" , "RedundantSuppression" , "ConstantConditions" } )
 public class Kids extends Fragment
 {
-
     FragmentMotherSectionKidsPageKidsFragmentBinding binding ;
 
     public View onCreateView ( @NonNull LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState )
@@ -148,7 +143,7 @@ public class Kids extends Fragment
         {
             if ( task . isSuccessful ( ) )
             {
-                if ( !task.getResult ( ).isEmpty ( ) )
+                if ( !task . getResult ( ) . isEmpty ( ) )
                 {
                     FirebaseFirestore . getInstance ( )
                     .collection ("/Mothers/" + FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) + "/Children's" )

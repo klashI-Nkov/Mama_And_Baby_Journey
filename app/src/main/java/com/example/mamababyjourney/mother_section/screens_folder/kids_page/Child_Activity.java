@@ -48,6 +48,5 @@ public class Child_Activity extends AppCompatActivity
         NavigationUI . setupActionBarWithNavController (this ,navController ,mAppBarConfiguration );
         NavigationUI . setupWithNavController (binding.navView ,navController );
 
-
     }
 }

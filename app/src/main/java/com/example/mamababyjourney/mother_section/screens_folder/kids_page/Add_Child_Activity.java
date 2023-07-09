@@ -64,19 +64,19 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
         Adapter_Initialization ( ) ;
     }
 
-
+    // هاد الفنكشن بتنفذ لما نضغط على زر الحفظ
     public void Save_BTN ( View view )
     {
         // هون بشيك اذا كان حط الاسم و اختار الصوره اذا عمل هيك بستدعي فنكشن ال Add_Chile_Data اذا ما عمل بس شي واحد من الي حكيته بظهر اله المسج الي تحت
         if ( !binding . NameEditText . getText ( ) . toString ( ) . isEmpty ( ) && gender != null )
             Add_Chile_Data ( ) ;
         else
-            Snack_Bar ( "يجب كتابة الاسم و اختيار الجنس و الصوره قبل الضغظ على زر الحفظ" ) ;
+            Snack_Bar ( "يجب كتابة الاسم و اختيار الجنس قبل الضغظ على زر الحفظ" ) ;
     }
 
+    // هاد الي بضيف الي بيانات الطل في الفايرستور
     private void Add_Chile_Data (  )
     {
-
         final ProgressDialog progressDialog = new ProgressDialog(this ) ;
         progressDialog . setMessage ( "يرجى الانتظار" ) ;
         progressDialog . show ( ) ;
@@ -89,7 +89,7 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
         data . put ( "Child Name" , binding . NameEditText . getText ( ) . toString ( ) ) ;
         data . put ( "gender" , gender ) ;
 
-        CompletableFuture<Void> uploadFuture = new CompletableFuture < > () ;
+        CompletableFuture < Void > uploadFuture = new CompletableFuture < > () ;
 
         // هون بشيك اذا المستخدم اختار صوره وثتها بضيف رابطها في الدكيومنت الخاص بالطفل واذا ما اختار ما يضيف اي رابط في دكيومنت الطفل
         if ( uri != null )
@@ -108,6 +108,13 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
                         {
                             // هون انا بضيف رابط الصوره في هاي data ال HashMap عشان اضيفه مع بقية الداتا في الفايرستور
                             image_Url = downloadUri . toString ( ) ;
+
+                            // هون انا ببعت الصوره الي تم اختيارها من الاستديو لشاشة الاطفال
+                            intent . setData ( uri ) ;
+
+                            // هون انا ببعت مسج لشاشة الاطفال انه في صورة تم اختيارها من الاستديو
+                            intent . putExtra ("image form ?" ,"uri" ) ;
+
                             uploadFuture . complete ( null ) ;
                         }
                     );
@@ -115,7 +122,12 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
             );
         }
         else
+        {
+            // هون انا ببعت مسج لشاشة الاطفال انه مافي صورة تم اختيارها من الاستديو
+            intent . putExtra ("image form ?" ,"Drawable" ) ;
+
             uploadFuture . complete ( null ) ;
+        }
 
         uploadFuture . thenAccept ( result ->
         {
@@ -130,20 +142,6 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
                {
                    if ( task . isComplete ( ) )
                    {
-                       if ( uri != null )
-                       {
-                           // هون انا ببعت الصوره الي تم اختيارها من الاستديو لشاشة الاطفال
-                           intent . setData ( uri ) ;
-
-                           // هون انا ببعت مسج لشاشة الاطفال انه في صورة تم اختيارها من الاستديو
-                           intent . putExtra ("image form ?" ,"uri" ) ;
-                       }
-                       else
-                       {
-                           // هون انا ببعت مسج لشاشة الاطفال انه مافي صورة تم اختيارها من الاستديو
-                           intent . putExtra ("image form ?" ,"Drawable" ) ;
-                       }
-
                        // هون ببعت اسم الطفل لشاشة الاطفال
                        intent . putExtra ("Name",binding . NameEditText . getText ( ) . toString ( ) ) ;
 
@@ -159,7 +157,6 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
                });
            }
         });
-
     }
 
 
@@ -235,6 +232,7 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
     @Override
     public void onItemSelected ( AdapterView < ? > parent , View view , int position , long id )
     {
+        // هون انا بجيب الجنس الي تم اختياره من ال spinner و بخزنه في هاد gender المتغير
         if ( position != 0 )
             gender = parent . getItemAtPosition (position ) . toString ( ) ;
     }
