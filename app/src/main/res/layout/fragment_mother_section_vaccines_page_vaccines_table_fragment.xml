@@ -59,6 +59,7 @@
 
                     <!-- تاريخ الجرعه -->
                     <TextView
+                        android:id="@+id/Tuberculosis_Vaccine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
@@ -148,6 +149,7 @@
                         android:gravity="center">
 
                         <TextView
+                            android:id="@+id/Intramuscular_Polio_Vaccine1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -157,6 +159,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Intramuscular_Polio_Vaccine2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -166,6 +169,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Intramuscular_Polio_Vaccine3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -256,6 +260,7 @@
                         android:gravity="center">
 
                         <TextView
+                            android:id="@+id/Oral_Polio_Vaccine1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -265,6 +270,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Oral_Polio_Vaccine2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -274,6 +280,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Oral_Polio_Vaccine3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -297,6 +304,7 @@
 
                     <!-- تاريخ الجرعه المدعمة -->
                     <TextView
+                        android:id="@+id/Oral_Polio_Vaccine4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
@@ -386,6 +394,7 @@
                         android:gravity="center">
 
                         <TextView
+                            android:id="@+id/Diphtheria_Whooping_Cough_And_Tetanus_Vaccine1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -395,6 +404,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Diphtheria_Whooping_Cough_And_Tetanus_Vaccine2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -404,6 +414,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Diphtheria_Whooping_Cough_And_Tetanus_Vaccine3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -427,6 +438,7 @@
 
                     <!-- تاريخ الجرعه المدعمة -->
                     <TextView
+                        android:id="@+id/Diphtheria_Whooping_Cough_And_Tetanus_Vaccine4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
@@ -516,6 +528,7 @@
                         android:gravity="center">
 
                         <TextView
+                            android:id="@+id/Haemophilus_Influenzae_Vaccine1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -525,6 +538,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Haemophilus_Influenzae_Vaccine2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -534,6 +548,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Haemophilus_Influenzae_Vaccine3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -560,7 +575,7 @@
 
                 </TableLayout>
 
-                <!-- مطعوم التهاب الكبد الوبائي -->
+                <!-- مطعوم التهاب الكبد الوبائي ( Hepatitis B ) -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -574,7 +589,7 @@
 
                         android:gravity="center"
 
-                        android:text="مطعوم التهاب الكبد الوبائي"/>
+                        android:text="مطعوم التهاب الكبد الوبائي ( Hepatitis B )"/>
 
                     <!-- ارقام الجرعات -->
                     <TableRow
@@ -624,6 +639,7 @@
                         android:gravity="center">
 
                         <TextView
+                            android:id="@+id/Hepatitis_B_Vaccine1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -633,6 +649,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Hepatitis_B_Vaccine2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -642,6 +659,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Hepatitis_B_Vaccine3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -723,6 +741,7 @@
                         android:gravity="center">
 
                         <TextView
+                            android:id="@+id/Measles_Vaccine1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -732,6 +751,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Measles_Vaccine2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -758,7 +778,7 @@
 
                 </TableLayout>
 
-                <!-- الحصبه الالمانيه و النكاف -->
+                <!-- مطعوم الحصبه الالمانيه و النكاف MMR -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -772,7 +792,7 @@
 
                         android:gravity="center"
 
-                        android:text="MMR الحصبه الالمانيه و النكاف"/>
+                        android:text="MMR مطعوم الحصبه الالمانيه و النكاف"/>
 
                     <!-- ارقام الجرعات -->
                     <TableRow
@@ -813,6 +833,7 @@
                         android:gravity="center">
 
                         <TextView
+                            android:id="@+id/German_Measles_And_Mumps_MMR_Vaccine1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -822,6 +843,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/German_Measles_And_Mumps_MMR_Vaccine2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -848,7 +870,7 @@
 
                 </TableLayout>
 
-                <!-- روتا فيروس -->
+                <!-- مطعوم روتا فيروس -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -862,7 +884,7 @@
 
                         android:gravity="center"
 
-                        android:text="روتا فيروس"/>
+                        android:text="مطعوم روتا فيروس"/>
 
                     <!-- ارقام الجرعات -->
                     <TableRow
@@ -912,6 +934,7 @@
                         android:gravity="center">
 
                         <TextView
+                            android:id="@+id/Rotavirus_Vaccine1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -921,6 +944,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Rotavirus_Vaccine2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -930,6 +954,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/Rotavirus_Vaccine3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -1011,6 +1036,7 @@
                         android:gravity="center">
 
                         <TextView
+                            android:id="@+id/The_Hexagonal_Vaccine1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -1020,6 +1046,7 @@
                             android:text="لم تاخذ بعد"/>
 
                         <TextView
+                            android:id="@+id/The_Hexagonal_Vaccine2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -1042,34 +1069,15 @@
 
 
 <!--
-    item
-    مطعوم السل
-    تاريخ جرعة مطعوم السل
 
-    map
-    مطعوم شلل الاطفال العضلي
-
-
-    map
-    مطعوم شلل الاطفال الفموي
-
-    map
-    مطعوم الخانوق والسعال الديكي و الكزاز
-
-    map
-    مطعوم المستدمية النزليه ( السحايا )
-
-    map
-    مطعوم التهاب الكبد الوبائي
-
-    map
-    مطعوم الحصبه
-
-    map
-    الحصبه الالمانيه و النكاف
-
-    map
-    روتا فيروس
-
-    map
-    المطعوم السداسي hexaxim-->
+    Tuberculosis_Vaccine                               مطعوم السل
+    Intramuscular_Polio_Vaccine                        مطعوم شلل الأطفال العضلي
+    Oral_Polio_Vaccine                                 مطعوم شلل الأطفال الفموي
+    Diphtheria_Whooping_Cough_And_Tetanus_Vaccine      مطعوم الخناق والسعال الديكي والكزاز
+    Haemophilus_Influenzae_Vaccine                     مطعوم المستدمية النزلية ( السحايا )
+    Hepatitis_B_Vaccine                                ( Hepatitis B ) مطعوم التهاب الكبد الوبائي
+    Measles_Vaccine                                    مطعوم الحصبة
+    German_Measles_And_Mumps_MMR_Vaccine               MMR مطعوم الحصبة والنكاف الألماني
+    Rotavirus_Vaccine                                  مطعوم فيروس الروتا
+    The_Hexagonal_Vaccine                              hexaxim المطعوم السداسي
+-->
