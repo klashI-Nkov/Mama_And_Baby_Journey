@@ -34,7 +34,8 @@
             android:title="الأطفال" />
 
         <item
-            android:id="@+id/nav_logout"
+            android:id="@+id/Mother_Sign_Out_BTN"
+            android:icon="@drawable/icons_sign_out_icon"
             android:title="تسجيل الخروج" />
 
     </group>

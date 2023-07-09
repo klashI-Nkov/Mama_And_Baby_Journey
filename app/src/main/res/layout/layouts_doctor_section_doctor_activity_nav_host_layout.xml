@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:showIn="@layout/layouts_mother_section_mother_activity_app_bar_layout"
+    tools:showIn="@layout/layouts_doctor_section_doctor_activity_app_bar_layout"
 
     android:theme="@style/screen_Background"
     style="@style/screen_Background"
@@ -15,7 +15,7 @@
     android:layoutDirection="rtl">
 
     <fragment
-        android:id="@+id/mother_activity_nav_host"
+        android:id="@+id/doctor_activity_nav_host"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +23,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/mother_section_mother_activity_mobile_navigation"
+        app:navGraph="@navigation/doctor_section_doctor_activity_mobile_navigation"
         tools:ignore="FragmentTagUsage"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

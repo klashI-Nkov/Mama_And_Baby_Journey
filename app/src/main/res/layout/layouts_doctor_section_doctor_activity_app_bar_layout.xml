@@ -11,7 +11,7 @@
 
     android:layoutDirection="rtl"
 
-    tools:context=".mother_section.Mother_Activity">
+    tools:context=".doctor_section.Doctor_Activity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_height="wrap_content"
@@ -27,12 +27,12 @@
         tools:ignore="UnusedAttribute">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/Mother_Toolbar"
+            android:id="@+id/Doctor_Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/layouts_mother_section_mother_activity_nav_host_layout" />
+    <include layout="@layout/layouts_doctor_section_doctor_activity_nav_host_layout" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

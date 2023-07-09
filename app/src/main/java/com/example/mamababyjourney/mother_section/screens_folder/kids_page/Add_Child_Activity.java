@@ -161,7 +161,7 @@ public class Add_Child_Activity extends AppCompatActivity implements AdapterView
         });
     }
 
-    // هاد الفنكشن بجهز الي ماب مخزن فيه المواعيد الي تم اخذ جرعات" "المطاعيم فيها
+    // هاد الفنكشن بجهز الي map مخزن فيه المواعيد الي تم اخذ جرعات" "المطاعيم فيها
     private HashMap < String , Object > Add_Child_Vaccines ( )
     {
         // ؛map مطعوم شلل الاطفال العضلي

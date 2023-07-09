@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    android:id="@+id/Mother_Drawer_Layout"
+    android:id="@+id/Doctor_Drawer_Layout"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,20 +12,22 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
 
-    android:layoutDirection="rtl">
+    android:layoutDirection="rtl"
+    tools:context=".doctor_section.Doctor_Activity">
 
     <include
-        android:id="@+id/Mother_Activity_App_bar"
-        layout="@layout/layouts_mother_section_mother_activity_app_bar_layout"
+        android:id="@+id/Doctor_Activity_App_bar"
+        layout="@layout/layouts_doctor_section_doctor_activity_app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/Mother_nav_view"
+        android:id="@+id/Doctor_nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:menu="@menu/mother_section_mother_activity_drawer_menu" />
+        app:headerLayout="@layout/layouts_mother_section_mother_activity_nav_header_layout"
+        app:menu="@menu/doctor_section_doctor_activity_drawer_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -35,17 +35,6 @@
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:id="@+id/User_Id_Tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/_20sdp"
-
-        android:textSize="@dimen/_12sdp"
-        android:text="الاسم\u0020 : \u0020"
-
-        tools:ignore="HardcodedText" />
-
-    <TextView
         android:id="@+id/User_Email_Tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

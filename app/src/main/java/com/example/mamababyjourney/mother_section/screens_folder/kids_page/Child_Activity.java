@@ -34,8 +34,6 @@ public class Child_Activity extends AppCompatActivity
         AppBarConfiguration mAppBarConfiguration = new AppBarConfiguration
         .Builder (R.id.Treatments_Table , R.id.Child_Treatment_Record ) . build ( );
 
-
-
         if ( getIntent ( ) . getExtras ( ) . getString ("gender" ) . equals ( "ذكر" ) )
         {
             binding . FemaleLayout . setVisibility ( View . GONE    ) ;

@@ -41,6 +41,7 @@ public class Mother_Activity extends AppCompatActivity
     protected void onCreate ( Bundle savedInstanceState )
     {
         super . onCreate (savedInstanceState ) ;
+
         getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
 
         binding = ActivityMotherSectionMotherActivityBinding . inflate (getLayoutInflater ( ) ) ;
@@ -57,21 +58,21 @@ public class Mother_Activity extends AppCompatActivity
     private void Mother_section_Initialization ( )
     {
 
-        setSupportActionBar ( binding . MotherActivityAppBar . toolbar ) ;
+        setSupportActionBar ( binding . MotherActivityAppBar . MotherToolbar ) ;
 
         // شايفه هاد الكود الي تحت كله هاد عشان اجهز ال action bar و احدد الشاشات الي اسمائها موجوده في ال Navigation Drawer لحتى بس اضغط على اسمهم ننتقل الهم
 
         mAppBarConfiguration = new AppBarConfiguration .
         Builder (R . id . Mother , R . id . Doctors_And_Clinics , R . id . Advices , R . id . Dates , R . id . Kids )
-        . setOpenableLayout ( binding . drawerLayout ) . build ( ) ;
+        . setOpenableLayout ( binding . MotherDrawerLayout ) . build ( ) ;
 
         // هاد الكود الي تحت بجهز الي المتحكم الي وظفيته ينقلني على الشاشة الي بضغط على اسمها في ال Navigation Drawer والكود الي قوق هو الي بجهز ال action bar عشان بس اضغط على اسم وحده من الشاشات الي في ال Navigation Drawer ينعرض اسمها في ال action bar
         NavController navController = Navigation . findNavController (this ,R . id . mother_activity_nav_host ) ;
         NavigationUI . setupActionBarWithNavController (this ,navController ,mAppBarConfiguration ) ;
-        NavigationUI . setupWithNavController (binding . navView ,navController ) ;
+        NavigationUI . setupWithNavController (binding . MotherNavView ,navController ) ;
 
-        Menu menu = binding . navView . getMenu ( ) ;
-        menu . findItem (R . id . nav_logout ) . setOnMenuItemClickListener ( menuItem ->
+        Menu menu = binding . MotherNavView . getMenu ( ) ;
+        menu . findItem (R . id . Mother_Sign_Out_BTN ) . setOnMenuItemClickListener ( menuItem ->
         {
             FirebaseAuth . getInstance ( ) . signOut ( ) ;
 
@@ -103,13 +104,11 @@ public class Mother_Activity extends AppCompatActivity
 
         TextView User_Email_Tv = childLayout . findViewById (R . id . User_Email_Tv ) ;
         TextView username_Tv   = childLayout . findViewById (R . id . Username_Tv ) ;
-        TextView user_Id_Tv    = childLayout . findViewById (R . id . User_Id_Tv ) ;
 
         // هون بقله اذا دخلنا شاشة الام الي احنا فيها هلا من شاشة تسجيل الدخول نفذ الي جوا الاف غير هيك نفذ الي جوا ال else
         if ( getIntent ( ) . getExtras ( ) . getString ( "action" ) . equals ( "signup" ) )
         {
             // هون انا بجيب القيم الي اجتني من شاشة انشاء الحساب مع ال intent و بحطها في مكونات الشاشه
-            user_Id_Tv     . setText ( "الرقم التعريفي\u0020 : \u0020" + getIntent ( ) . getExtras ( ) . getString ( "user Id" ) ) ;
             username_Tv    . setText ( "الاسم\u0020 : \u0020" + getIntent ( ) . getExtras ( ) . getString ( "name" ) ) ;
             User_Email_Tv  . setText ( getIntent ( ) . getExtras ( ) . getString ( "email" ) ) ;
 
@@ -120,7 +119,7 @@ public class Mother_Activity extends AppCompatActivity
                 user_Profile_Image.setImageResource ( R . drawable . images_female_user_image ) ;
 
             // هون بضيف الهيدر تبع ال nevgation drawer عليها
-            binding . navView . addHeaderView ( childLayout ) ;
+            binding . MotherNavView . addHeaderView ( childLayout ) ;
         }
         else
         {
@@ -137,7 +136,6 @@ public class Mother_Activity extends AppCompatActivity
                     if ( document . exists ( ) )
                     {
                         // هون انا بجيب القيم الي اجتني من الفايرستور و بحطها في مكونات الشاشه
-                        user_Id_Tv    . setText ( "الرقم التعريفي\u0020 : \u0020" + document . get ( "mother Id" ) ) ;
                         username_Tv   . setText ( "الاسم\u0020 : \u0020" + document . get ( "name" ) ) ;
                         User_Email_Tv . setText ( document . get ( "email" ) + "" ) ;
 
@@ -161,7 +159,7 @@ public class Mother_Activity extends AppCompatActivity
                             // هون اذا ما كان هاد image_url المتغير فاضي يعني مخزن فيه رابط الصوره الي تم اختياره من الاستديو عند انشاء الحساب بقله جيبها من الفايرستورج و حطها كصوره للسمتخدم
                             FirebaseStorage . getInstance ( ) . getReferenceFromUrl ( image_url ) . getDownloadUrl ( ) . addOnSuccessListener ( uri -> Picasso . get ( ) . load ( uri ) . into ( user_Profile_Image ) ) ;
 
-                        binding . navView . addHeaderView ( childLayout ) ;
+                        binding . MotherNavView . addHeaderView ( childLayout ) ;
                     }
                 }
             });

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Mother_mobile_navigation"
+    app:startDestination="@+id/Today_Appointments">
+
+    <fragment
+        android:id="@+id/Today_Appointments"
+        android:name="com.example.mamababyjourney.doctor_section.screens_folder.Today_Appointments"
+        android:label="مواعيد اليوم"
+        tools:layout="@layout/fragment_doctor_section_todays__appointments_fragment"/>
+
+    <fragment
+        android:id="@+id/customers"
+        android:name="com.example.mamababyjourney.doctor_section.screens_folder.Add_New_Customer_Activity"
+        android:label="الزبائن"
+        tools:layout="@layout/fragment_doctor_section_customers_fragment"/>
+
+    <fragment
+        android:id="@+id/Add_New_Customer"
+        android:name="com.example.mamababyjourney.doctor_section.screens_folder.Add_New_Customer_Activity"
+        android:label="اضافة زبون جديد"
+        tools:layout="@layout/activity_doctor_section_add_new_customer_activity"/>
+
+
+
+</navigation>
