@@ -128,7 +128,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="الجرعة الثالثة"/>
@@ -166,7 +165,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="لم تاخذ بعد"/>
@@ -215,14 +213,18 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             android:gravity="center"
+                            android:layout_weight="1"
 
                             android:text="الجرعة الاولى"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             android:gravity="center"
+                            android:layout_weight="1"
 
                             android:text="الجرعة الثانية"/>
 
@@ -231,6 +233,7 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
+                            android:layout_weight="1"
 
                             android:text="الجرعة الثالثة"/>
 
@@ -248,7 +251,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
-                            android:layout_marginEnd="@dimen/_3sdp"
                             android:layout_weight="1"
                             android:gravity="center"
 
@@ -258,7 +260,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
-                            android:layout_marginEnd="@dimen/_3sdp"
                             android:layout_weight="1"
                             android:gravity="center"
 
@@ -268,7 +269,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
-                            android:layout_marginEnd="@dimen/_3sdp"
                             android:layout_weight="1"
                             android:gravity="center"
 
@@ -286,7 +286,6 @@
 
                         android:text="الجرعة المدعمه"/>
 
-                    <!-- تاريخ الجرعة المدعمه -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -339,14 +338,18 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             android:gravity="center"
+                            android:layout_weight="1"
 
                             android:text="الجرعة الاولى"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             android:gravity="center"
+                            android:layout_weight="1"
 
                             android:text="الجرعة الثانية"/>
 
@@ -355,6 +358,7 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
+                            android:layout_weight="1"
 
                             android:text="الجرعة الثالثة"/>
 
@@ -372,7 +376,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
-                            android:layout_marginEnd="@dimen/_3sdp"
                             android:layout_weight="1"
                             android:gravity="center"
 
@@ -382,7 +385,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
-                            android:layout_marginEnd="@dimen/_3sdp"
                             android:layout_weight="1"
                             android:gravity="center"
 
@@ -392,7 +394,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
-                            android:layout_marginEnd="@dimen/_3sdp"
                             android:layout_weight="1"
                             android:gravity="center"
 
@@ -410,7 +411,6 @@
 
                         android:text="الجرعة المدعمه"/>
 
-                    <!-- تاريخ الجرعة المدعمه -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -483,7 +483,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="الجرعة الثالثة"/>
@@ -521,7 +520,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="لم تاخذ بعد"/>
@@ -590,7 +588,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="الجرعة الثالثة"/>
@@ -628,7 +625,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="لم تاخذ بعد"/>
@@ -688,7 +684,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="الجرعة الثانية"/>
@@ -717,7 +712,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="لم تاخذ بعد"/>
@@ -777,7 +771,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="الجرعة الثانية"/>
@@ -806,7 +799,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="لم تاخذ بعد"/>
@@ -875,7 +867,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="الجرعة الثالثة"/>
@@ -913,7 +904,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="لم تاخذ بعد"/>
@@ -973,7 +963,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="الجرعة الثانية"/>
@@ -1002,7 +991,6 @@
                             android:layout_height="wrap_content"
 
                             android:gravity="center"
-
                             android:layout_weight="1"
 
                             android:text="لم تاخذ بعد"/>
