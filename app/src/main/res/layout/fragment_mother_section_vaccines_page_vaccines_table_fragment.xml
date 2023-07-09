@@ -40,6 +40,7 @@
                 android:layoutDirection="rtl"
                 tools:ignore="HardcodedText , TooManyViews">
 
+                <!-- مطعوم السل -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -53,7 +54,7 @@
 
                         android:gravity="center"
 
-                        android:text="مظعوم السل"/>
+                        android:text="مطعوم السل"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -81,6 +82,7 @@
 
                 </TableLayout>
 
+                <!-- مطعوم شلل الاطفال العضلي -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -187,6 +189,7 @@
 
                 </TableLayout>
 
+                <!-- مطعوم شلل الاطفال الفموي -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -310,6 +313,7 @@
 
                 </TableLayout>
 
+                <!-- مطعوم الخانوق والسعال الديكي و الكزاز -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -433,6 +437,7 @@
 
                 </TableLayout>
 
+                <!-- مطعوم المستدمية النزليه ( السحايا ) -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -539,6 +544,7 @@
 
                 </TableLayout>
 
+                <!-- مطعوم التهاب الكبد الوبائي -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -645,6 +651,7 @@
 
                 </TableLayout>
 
+                <!-- مطعوم الحصبه -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -733,6 +740,7 @@
 
                 </TableLayout>
 
+                <!-- الحصبه الالمانيه و النكاف -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -821,6 +829,7 @@
 
                 </TableLayout>
 
+                <!-- روتا فيروس -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -927,6 +936,7 @@
 
                 </TableLayout>
 
+                <!-- المطعوم السداسي hexaxim -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
