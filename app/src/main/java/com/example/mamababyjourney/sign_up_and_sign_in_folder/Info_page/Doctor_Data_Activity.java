@@ -77,7 +77,7 @@ public class Doctor_Data_Activity extends AppCompatActivity
     }
 
 
-    // --------------- بداية الجزء الي فيه الفنكشن الي بخصو الازرار في هاي الشاشه ---------------
+// --------------- بداية الجزء الي فيه الفنكشن الي بخصو الازرار في هاي الشاشه ---------------
 
     // هاد الفنشكن بتنفذ لما نظغط على زر اضافة مكان العمل
     public void Add_Workplace_BTN ( View view )
@@ -418,6 +418,11 @@ public class Doctor_Data_Activity extends AppCompatActivity
         });
     }
 
+    @Override
+    public void onBackPressed ( )
+    {
+
+    }
 
     // --------------- نهاية الجزء الي فيه الفنكشن الي بخصو هاد الكلاس ---------------
 

@@ -63,43 +63,46 @@ public class Splash_Activity extends AppCompatActivity
             {
                 if ( task . isSuccessful ( ) )
                 {
-                    // هون اذا كانت ال collection الي بدور عليها موجوده بقله خش ابحث عن document المستخدم فيها
-                    FirebaseFirestore . getInstance ( )
-                    .collection (collection_Name )
-                    .document   (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) )
-                    .get ( ) . addOnSuccessListener (documentSnapshot ->
+                    if ( !task . getResult ( ) . isEmpty ( ) )
                     {
-                        if ( documentSnapshot . exists ( ) )
+                        // هون اذا كانت ال collection الي بدور عليها موجوده بقله خش ابحث عن document المستخدم فيها
+                        FirebaseFirestore . getInstance ( )
+                        .collection (collection_Name )
+                        .document   (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) )
+                        .get ( ) . addOnSuccessListener (documentSnapshot ->
                         {
-                            // هون اذا كان المستخدم طبيب او طبيبه بخلي التطبيق يوديه على قسم الدكتور
-                            if ( documentSnapshot . get ( "صفة المستخدم" ) . toString ( ) . equals ( "طبيب" ) || documentSnapshot . get ( "صفة المستخدم" ) . toString ( ) . equals ( "طبيبة" ) )
+                            if ( documentSnapshot . exists ( ) )
                             {
-                                // هون بوجهو لشاشة الدكتور
-                                Intent intent = new Intent ( Splash_Activity . this ,Doctor_Data_Activity . class ) ;
+                                // هون اذا كان المستخدم طبيب او طبيبه بخلي التطبيق يوديه على قسم الدكتور
+                                if ( documentSnapshot . get ( "صفة المستخدم" ) . toString ( ) . equals ( "طبيب" ) || documentSnapshot . get ( "صفة المستخدم" ) . toString ( ) . equals ( "طبيبة" ) )
+                                {
+                                    // هون بوجهو لشاشة الدكتور
+                                    Intent intent = new Intent ( Splash_Activity . this ,Doctor_Data_Activity . class ) ;
 
-                                // هون بفهم شاشة الدكتور اني جاي من شاشة التطبيق الرئيسيه
-                                intent . putExtra ("action" ,"signing" ) ;
+                                    // هون بفهم شاشة الدكتور اني جاي من شاشة التطبيق الرئيسيه
+                                    intent . putExtra ("action" ,"signing" ) ;
 
-                                // هون بنتقل لشاشة الدكتور
-                                startActivity (intent ) ;
-                                finish ( ) ;
+                                    // هون بنتقل لشاشة الدكتور
+                                    startActivity (intent ) ;
+                                    finish ( ) ;
+                                }
+
+                                // هون اذا كان المستخدم طبيب او طبيبه بخلي التطبيق يوديه على قسم الام
+                                if ( documentSnapshot . get ( "صفة المستخدم" ) . toString ( ) . equals ( "أم" ) )
+                                {
+                                    // هون بوجهو لشاشة الام
+                                    Intent intent = new Intent (Splash_Activity  . this ,Mother_Activity . class ) ;
+
+                                    // هون بفهم شاشة الدكتور اني جاي من شاشة التطبيق الرئيسيه
+                                    intent . putExtra ("action" ,"signing" ) ;
+
+                                    // هون بنتقل لشاشة الام
+                                    startActivity (intent ) ;
+                                    finish ( ) ;
+                                }
                             }
-
-                            // هون اذا كان المستخدم طبيب او طبيبه بخلي التطبيق يوديه على قسم الام
-                            if ( documentSnapshot . get ( "صفة المستخدم" ) . toString ( ) . equals ( "أم" ) )
-                            {
-                                // هون بوجهو لشاشة الام
-                                Intent intent = new Intent (Splash_Activity  . this ,Mother_Activity . class ) ;
-
-                                // هون بفهم شاشة الدكتور اني جاي من شاشة التطبيق الرئيسيه
-                                intent . putExtra ("action" ,"signing" ) ;
-
-                                // هون بنتقل لشاشة الام
-                                startActivity (intent ) ;
-                                finish ( ) ;
-                            }
-                        }
-                    });
+                        });
+                    }
                 }
             });
         }

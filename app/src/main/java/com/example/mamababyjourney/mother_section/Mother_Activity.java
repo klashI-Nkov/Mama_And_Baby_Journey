@@ -105,50 +105,7 @@ public class Mother_Activity extends AppCompatActivity
         TextView username_Tv   = childLayout . findViewById (R . id . Username_Tv ) ;
         TextView user_Id_Tv    = childLayout . findViewById (R . id . User_Id_Tv ) ;
 
-
-        // هسه هون انا بروح على الفايرستور و بجيب المعلومات الي في documnet الام وبستعملها
-        FirebaseFirestore . getInstance ( )
-        .collection ("Mothers" )
-        .document   (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) )
-        .get ( ) . addOnCompleteListener ( task ->
-        {
-            if ( task . isSuccessful ( ) )
-            {
-                DocumentSnapshot document = task . getResult ( ) ;
-
-                if ( document . exists ( ) )
-                {
-                    // هون انا بجيب القيم الي اجتني من الفايرستور و بحطها في مكونات الشاشه
-                    user_Id_Tv    . setText ( "الرقم التعريفي\u0020 : \u0020" + document . get ( "mother Id" ) ) ;
-                    username_Tv   . setText ( "الاسم\u0020 : \u0020" + document . get ( "name" ) ) ;
-                    User_Email_Tv . setText ( document . get ( "email" ) + "" ) ;
-
-                    // هون بخزن في هاد image_url المتخير قيمته الي جبتها من الفايرستور والي هو رابط الصوره الي اختارها المستخدم من الاستديو
-                    image_url = document . get ( "image Url" ) + "" ;
-
-                    // هون بشيك اذا كان هاد image_url المتغير فاضي يعني ما تم اختيار صوره من الاستديو وقتها بنفذ الي جوا الاف عير هيك رح ينفذ الي جوا ال else
-                    if ( image_url . isEmpty ( ) || image_url . equals ( null )  )
-                    {
-                        /*
-                           هون بشيك اذا كانت الطريقه الي انعمل فيها الحساب في التطبيق باستخدام قوقل بقله جيب الي صورة الايميل
-
-                            الي تم استخدامه لعمل الحساب في التطبيق و حطه كصور للمستخدم غير هيك حط الصوره الافتراضيه
-                         */
-                        if ( document . get ( "signUp Method" ) . toString ( ) . equals ( "Sing Up By Google" ) )
-                            Picasso . get ( ) . load (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getPhotoUrl ( ) ) . into ( user_Profile_Image ) ;
-                        else
-                            user_Profile_Image . setImageResource ( R . drawable . images_female_user_image ) ;
-                    }
-                    else
-                        // هون اذا ما كان هاد image_url المتغير فاضي يعني مخزن فيه رابط الصوره الي تم اختياره من الاستديو عند انشاء الحساب بقله جيبها من الفايرستورج و حطها كصوره للسمتخدم
-                        FirebaseStorage . getInstance ( ) . getReferenceFromUrl ( image_url ) . getDownloadUrl ( ) . addOnSuccessListener ( uri -> Picasso . get ( ) . load ( uri ) . into ( user_Profile_Image ) ) ;
-
-                    binding . navView . addHeaderView ( childLayout ) ;
-                }
-            }
-        });
-
-        /*// هون بقله اذا دخلنا شاشة الام الي احنا فيها هلا من شاشة تسجيل الدخول نفذ الي جوا الاف غير هيك نفذ الي جوا ال else
+        // هون بقله اذا دخلنا شاشة الام الي احنا فيها هلا من شاشة تسجيل الدخول نفذ الي جوا الاف غير هيك نفذ الي جوا ال else
         if ( getIntent ( ) . getExtras ( ) . getString ( "action" ) . equals ( "signup" ) )
         {
             // هون انا بجيب القيم الي اجتني من شاشة انشاء الحساب مع ال intent و بحطها في مكونات الشاشه
@@ -190,11 +147,11 @@ public class Mother_Activity extends AppCompatActivity
                         // هون بشيك اذا كان هاد image_url المتغير فاضي يعني ما تم اختيار صوره من الاستديو وقتها بنفذ الي جوا الاف عير هيك رح ينفذ الي جوا ال else
                         if ( image_url . isEmpty ( ) || image_url . equals ( null )  )
                         {
-                            *//*
+                            /*
                                هون بشيك اذا كانت الطريقه الي انعمل فيها الحساب في التطبيق باستخدام قوقل بقله جيب الي صورة الايميل
 
                                 الي تم استخدامه لعمل الحساب في التطبيق و حطه كصور للمستخدم غير هيك حط الصوره الافتراضيه
-                             *//*
+                            */
                             if ( document . get ( "signUp Method" ) . toString ( ) . equals ( "Sing Up By Google" ) )
                                 Picasso . get ( ) . load (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getPhotoUrl ( ) ) . into ( user_Profile_Image ) ;
                             else
@@ -208,6 +165,12 @@ public class Mother_Activity extends AppCompatActivity
                     }
                 }
             });
-        }*/
+        }
+    }
+
+    @Override
+    public void onBackPressed ( )
+    {
+
     }
 }
