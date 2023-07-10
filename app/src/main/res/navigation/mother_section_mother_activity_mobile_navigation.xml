@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/Advices"
-        android:name="com.example.mamababyjourney.mother_section.screens_folder.Advices"
+        android:name="com.example.mamababyjourney.mother_section.screens_folder.advices_page.Advices"
         android:label="نصائح"
         tools:layout="@layout/fragment_mother_section_advices_fragment" />
 

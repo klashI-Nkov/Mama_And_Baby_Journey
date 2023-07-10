@@ -1,13 +1,9 @@
-package com.example.mamababyjourney.mother_section.screens_folder;
+package com.example.mamababyjourney.mother_section.screens_folder.advices_page;
 
 import com.example.mamababyjourney.databinding.FragmentMotherSectionAdvicesFragmentBinding;
-import com.example.mamababyjourney.classes.Recycler_View_Adapter;
-import com.example.mamababyjourney.classes.Recycler_View_Class;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.DocumentSnapshot;
 import de.hdodenhof.circleimageview.CircleImageView;
-import androidx.activity.OnBackPressedCallback;
 import androidx.gridlayout.widget.GridLayout;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
@@ -19,6 +15,7 @@ import android.app.ProgressDialog;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.Color;
+import android.content.Intent;
 import android.view.ViewGroup;
 import android.os.Bundle;
 import android.view.View;
@@ -31,18 +28,21 @@ public class Advices extends Fragment
 
     private FragmentMotherSectionAdvicesFragmentBinding binding ;
 
+    ProgressDialog progressDialog ;
+
     // هاد المتغير انا مستعمله عشان من خلاله احدد اي ثيم الي شغال وبكون true اذا كان ثيم الدارك شغال و false اذا كان ثيم اللايت شغال
     private boolean flag ;
 
     // هاد المتغير انا مستعمله عشان اخزن فيه اسم اخر button انضغط عليه
     private String button_Name  ;
 
-    Recycler_View_Adapter adapter ;
-
     // هاد الفنكشن هو بالزبط نفس فنشكن ال oncreate لكن في ال fragment بجي هيك شكله و اسمه لانه ال fragment تعتبر جزء من شاشه وليس شاشة كامله لهيك شكله و اسمه بختلف
     public View onCreateView ( @NonNull LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState )
     {
         binding = FragmentMotherSectionAdvicesFragmentBinding . inflate (inflater ,container ,false ) ;
+
+        progressDialog = new ProgressDialog ( requireContext ( ) ) ;
+        progressDialog . setMessage ( "يرجى الانتظار" ) ;
 
         Get_Button_Name ( ) ;
 
@@ -63,8 +63,6 @@ public class Advices extends Fragment
             Color (Color . parseColor (flag ? "#3CFFFFFF" : "#140E0E0E" ) ,button_Name ) ;
             Add_Items ( ) ;
         });
-
-        onBackPressed ( ) ;
 
         return binding . getRoot ( ) ;
     }
@@ -106,9 +104,6 @@ public class Advices extends Fragment
     // هاد بجيب الي اسم اخر button انضغط عليه من الفايرستور
     private void Get_Button_Name ( )
     {
-
-        final ProgressDialog progressDialog = new ProgressDialog (requireContext ( ) ) ;
-        progressDialog . setMessage ( "يرجى الانتظار" ) ;
         progressDialog . show ( ) ;
 
         /*
@@ -187,6 +182,9 @@ public class Advices extends Fragment
     */
     private void Add_Items ( )
     {
+
+        progressDialog . show ( ) ;
+
         // هون بحذف كل شي في الشاشة
         binding . GirdLayout . removeAllViews ( ) ;
 
@@ -226,200 +224,14 @@ public class Advices extends Fragment
             // هون احنا بنجهز حدث الضغط على وحده من النصائح
             childLayout . setOnClickListener ( view ->
             {
-                ProgressDialog progressDialog = new ProgressDialog ( requireContext ( ) ) ;
-                progressDialog . setMessage ( "يرجى الانتظار" ) ;
-                progressDialog . show ( ) ;
-
-                // هون عنا switch بتشيك على عنوان النصيحه و بتنفذ ال case الخاص فيها
-                switch ( title )
-                {
-                    case "سلوكيات هامة يجب مراعاتها قبل الحمل" :
-                    {
-                        // هون بستدعي الفنكشن الي بضيف الي العناوين الخاصه بالنصائح الي ضغطنا على الزر تبعهم مع محتوى كل نصيحه و بحط الي عنوان النصيحه الي ضغطنا على الزر تبعها وفي باقي ال cases بصير نفس الشي لكن كل case اله array عناوين و array محتويات مختلفين عن الي بخصو ال Case الي قبله
-                        Sub_Advice
-                        (
-                            getResources ( ) . getStringArray ( R . array . Important_behaviors_to_consider_before_pregnancy_title   ) ,
-                         getResources ( ) . getStringArray ( R . array . Important_behaviors_to_consider_before_pregnancy_content ) ,
-                            title
-                        );
-                        break;
-                    }
-
-                    case "امور يجب الانتباه إليها أثناء الحمل" :
-                    {
-                        Sub_Advice
-                        (
-                            getResources ( ) . getStringArray ( R . array . things_to_watch_out_for_during_pregnancy_title   ) ,
-                         getResources ( ) . getStringArray ( R . array . things_to_watch_out_for_during_pregnancy_content ) ,
-                            title
-                        );
-                        break;
-                    }
-
-                    case "حضري نفسك للرضاعة الطبيعية" :
-                    {
-                        Sub_Advice
-                        (
-                            getResources ( ) . getStringArray ( R . array . prepare_yourself_for_breastfeeding_titles  ) ,
-                         getResources ( ) . getStringArray ( R . array . prepare_yourself_for_breastfeeding_content ) ,
-                            title
-                        );
-                        break;
-                    }
-
-                    case "إرشادات للمرأة الحامل" :
-                    {
-                        Sub_Advice
-                        (
-                            getResources ( ) . getStringArray ( R . array . instructions_for_pregnant_women_titles  ) ,
-                         getResources ( ) . getStringArray ( R . array . instructions_for_pregnant_women_content ) ,
-                            title
-                        );
-                        break;
-                    }
-
-                    case "العناية بالطفل الوليد" :
-                    {
-                        Sub_Advice
-                        (
-                            getResources ( ) . getStringArray ( R . array . newborn_baby_care_title   ) ,
-                         getResources ( ) . getStringArray ( R . array . newborn_baby_care_content ) ,
-                            title
-                        );
-                        break;
-                    }
-
-                    case "المشاكل اثناء الحمل" :
-                    {
-                        Sub_Advice
-                        (
-                            getResources ( ) . getStringArray ( R . array . problems_during_pregnancy_titles  ) ,
-                         getResources ( ) . getStringArray ( R . array . problems_during_pregnancy_content ) ,
-                            title
-                        );
-                        break;
-                    }
-
-                    case "علامات اقتراب الولادة" :
-                    {
-                        Sub_Advice
-                        (
-                            getResources ( ) . getStringArray ( R . array . Signs_of_approaching_childbirth_title  ) ,
-                         getResources ( ) . getStringArray ( R . array . Signs_of_approaching_childbirth_content ) ,
-                            title
-                        );
-                        break;
-                    }
-
-                    case "العناية بالطفل المريض" :
-                    {
-                        Sub_Advice
-                        (
-                            getResources ( ) . getStringArray ( R . array . Taking_care_of_a_sick_child_titles  ) ,
-                            getResources ( ) . getStringArray ( R . array . Taking_care_of_a_sick_child_content ) ,
-                            title
-                        );
-                        break;
-                    }
-
-                    case "العناية باسنان الطفل" :
-                    {
-                        Sub_Advice
-                        (
-                            getResources ( ) . getStringArray ( R . array . child_dental_care_titles  ) ,
-                            getResources ( ) . getStringArray ( R . array . child_dental_care_content ) ,
-                            title
-                        );
-                        break;
-                    }
-
-                    case "الحوادث المنزليه" :
-                    {
-                        Sub_Advice
-                        (
-                            getResources ( ) . getStringArray ( R . array . home_accidents_titles  ) ,
-                            getResources ( ) . getStringArray ( R . array . home_accidents_content ) ,
-                            title
-                        );
-                        break;
-                    }
-
-                    case "تغذية الاطفال" :
-                    {
-                        Sub_Advice
-                        (
-                            getResources ( ) . getStringArray ( R . array . kids_nutrition_titles ) ,
-                            getResources ( ) . getStringArray ( R . array . kids_nutrition_content ) ,
-                            title
-                        );
-                        break;
-                    }
-
-                    case "تطور الطفل" :
-                    {
-                        Sub_Advice
-                        (
-                            getResources ( ) . getStringArray ( R . array . child_development_titles  ) ,
-                            getResources ( ) . getStringArray ( R . array . child_development_content ) ,
-                            title
-                        );
-                        break;
-                    }
-                }
-
-
-                adapter = new Recycler_View_Adapter
-                (Recycler_View_Class . recycler_View_Class_Object_List ,requireContext ( ) ) ;
-
-                binding . RecyclerView . setAdapter ( adapter ) ;
-                binding . RecyclerView . setLayoutManager ( new LinearLayoutManager (requireContext ( ) ) ) ;
-
-                // هون اول شي انا بخفي الشاشة الي فيها ازرار النصائح بعدها بظهر الشاشه الي بكون فيها النصائح الخاصه بالزر الي ضغطنا عليه
-                binding . AdviceLayout    . setVisibility ( View . GONE    ) ;
-                binding . SubAdviceLayout . setVisibility ( View . VISIBLE ) ;
-                binding . SubAdviceTitle  . setVisibility ( View . VISIBLE ) ;
-
-                progressDialog . dismiss ( ) ;
-
+                Intent intent = new Intent (requireContext ( ) ,Sub_Advices_Activity . class ) ;
+                intent . putExtra ("title" , title ) ;
+                startActivity (intent ) ;
             });
 
             binding . GirdLayout . addView (childLayout ,params ) ;
-        }
 
-    }
-
-    // هاد الفنكشن الي بعرض الي النصائح الي بكبس على الزر تبعها
-    private void Sub_Advice (String [ ] advice_title , String [ ] advice_content ,String title )
-    {
-
-        binding . SubAdviceTitle . setText ( title ) ;
-
-        for ( int i = 0  ; i < advice_title . length  ; i++ )
-        {
-            Recycler_View_Class . recycler_View_Class_Object_List .
-            add ( new Recycler_View_Class (advice_title [ i ] ,advice_content [ i ] ) ) ;
+            progressDialog . dismiss ( ) ;
         }
     }
-
-    public void onBackPressed ( )
-    {
-        OnBackPressedCallback callback = new OnBackPressedCallback ( true )
-        {
-            @Override
-            public void handleOnBackPressed ( )
-            {
-                // هون انا بس اضغط على زر الرجوع تاع النظام الي بكون في الشاشة تحت بخفي النصائح و عنوان النصيحه و بظهر الشاشة الي فيها ارزار النصائح
-                binding . SubAdviceTitle  . setVisibility ( View . GONE    ) ;
-                binding . SubAdviceLayout . setVisibility ( View . GONE    ) ;
-                binding . AdviceLayout    . setVisibility ( View . VISIBLE ) ;
-
-                // هون انا بمسح النصائح من الشاشة الي اخفيناها عشان بس اكبس على زر نصيحه ثانيه ما يظهر الي النصائح الخاصين بالزر الي كبسنا عليها اول مره
-                if ( adapter != null )
-                    adapter . ClearData ( ) ;
-            }
-        };
-
-        requireActivity ( ) . getOnBackPressedDispatcher ( ) . addCallback (requireActivity ( ) ,callback ) ;
-    }
-
 }

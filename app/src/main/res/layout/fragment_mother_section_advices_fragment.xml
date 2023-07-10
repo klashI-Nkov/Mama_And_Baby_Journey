@@ -14,7 +14,7 @@
     android:theme="@style/screen_Background"
     style="@style/screen_Background"
 
-    tools:context=".mother_section.screens_folder.Advices"
+    tools:context=".mother_section.screens_folder.advices_page.Advices"
     tools:ignore="HardcodedText">
 
     <LinearLayout
@@ -110,46 +110,6 @@
             </androidx.gridlayout.widget.GridLayout>
 
         </ScrollView>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/Sub_Advice_Title"
-
-        android:theme="@style/TextViewStyle2"
-        style="@style/TextViewStyle2"
-
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/_70sdp"
-
-        android:background="@android:color/transparent"
-        android:textAlignment="center"
-
-        android:textSize="@dimen/_18sdp"
-        tools:ignore="HardcodedText"
-        android:visibility="gone" />
-
-    <LinearLayout
-        android:id="@+id/Sub_Advice_Layout"
-        android:theme="@style/No_Style"
-        style="@style/No_Style"
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:orientation="vertical"
-        android:gravity="center"
-        android:visibility="gone">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecyclerView"
-            android:theme="@style/No_Style"
-            style="@style/No_Style"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_34sdp" />
 
     </LinearLayout>
 

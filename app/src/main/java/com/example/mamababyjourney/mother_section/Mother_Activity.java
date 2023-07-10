@@ -53,7 +53,6 @@ public class Mother_Activity extends AppCompatActivity
         Get_Mother_Data ( ) ;
     }
 
-
     // هاد الفنكشن وظفيته يجهز الي الشاشة عشان اعرض فيها ال fragment الخاصين بقسم الام
     private void Mother_section_Initialization ( )
     {
