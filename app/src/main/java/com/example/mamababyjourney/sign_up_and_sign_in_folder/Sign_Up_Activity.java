@@ -63,8 +63,6 @@ public class Sign_Up_Activity extends AppCompatActivity
     */
     private String password , email , name;
 
-    private int doctor_Id , mother_Id ;
-
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -289,7 +287,7 @@ public class Sign_Up_Activity extends AppCompatActivity
                                          حساب باستخدام جوجل من خلال هاد المتغير اعرف انه مستخدم حساب جوجل لعمل حساب و مش مختار صوره من
                                          الاستديو عشان بس يعمل تسجيل دخول المره الجاي استعمل صورة ايميله بدل الصوره الافتراضيه
                                     */
-                                    Add_Doctor_Or_Mother_Data_To_firestore ("doctor Id" ,"Doctors" ,user_Kind , "Sing Up By Google" ) ;
+                                    Add_Doctor_Or_Mother_Data_To_firestore ("Doctors" ,user_Kind , "Sing Up By Google" ) ;
                                 }
 
                                 // هاد بتنفذ في حالة كان الي بعمل الحساب ام والي بصير جواته نفس الي بصير في حالة كان الي بعمل الحساب الام
@@ -301,7 +299,7 @@ public class Sign_Up_Activity extends AppCompatActivity
                                     if ( uri == null )
                                     uri = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getPhotoUrl ( ) ;
 
-                                    Add_Doctor_Or_Mother_Data_To_firestore ("mother Id" ,"Mothers" ,binding . MomRBTN . getText ( ) + "" , "Sing Up By Google" ) ;
+                                    Add_Doctor_Or_Mother_Data_To_firestore ("Mothers" ,binding . MomRBTN . getText ( ) + "" , "Sing Up By Google" ) ;
                                 }
                             }
                         });
@@ -387,7 +385,7 @@ public class Sign_Up_Activity extends AppCompatActivity
                                  2- اسم ال collection الي بدي اضيف فيها بيانات المستخدم
                                  3- صفة المستخدم
                             */
-                            Add_Doctor_Or_Mother_Data_To_firestore ("doctor Id" ,"Doctors" ,user_Kind ,"Sing Up By Email" ) ;
+                            Add_Doctor_Or_Mother_Data_To_firestore ("Doctors" ,user_Kind ,"Sing Up By Email" ) ;
                         }
 
                         // هاد بتنفذ في حالة كان الي بعمل الحساب ام والي بصير جواته نفس الي بصير في حالة كان الي بعمل الحساب الام
@@ -395,7 +393,7 @@ public class Sign_Up_Activity extends AppCompatActivity
                         {
                             intent = new Intent (Sign_Up_Activity . this ,Mother_Activity . class ) ;
 
-                            Add_Doctor_Or_Mother_Data_To_firestore ("mother Id" ,"Mothers" ,binding . MomRBTN . getText ( ) + "" ,"Sing Up By Email" ) ;
+                            Add_Doctor_Or_Mother_Data_To_firestore ("Mothers" ,binding . MomRBTN . getText ( ) + "" ,"Sing Up By Email" ) ;
                         }
                     }
                 });
@@ -409,7 +407,7 @@ public class Sign_Up_Activity extends AppCompatActivity
     }
 
     // هاد الفنكشن الي بضيف الي داتا السمتخدم في الفاير ستور
-    private void Add_Doctor_Or_Mother_Data_To_firestore ( String id_Name , String collection_Name , String user_Kind , String signUp_Method )
+    private void Add_Doctor_Or_Mother_Data_To_firestore ( String collection_Name , String user_Kind , String signUp_Method )
     {
         // هسه هون الي بصير انه بروح على ال document الي مخزن فيه id الام و id الدكتور
         FirebaseFirestore . getInstance ( )
@@ -429,6 +427,9 @@ public class Sign_Up_Activity extends AppCompatActivity
                         // هون ببعت الصوره
                         intent . setData ( uri ) ;
 
+                        // هون بستدعي الفنكشن الي بضيف الي الصوره على الفايرستورج
+                        Add_Image_To_Firestorage (collection_Name ) ;
+
                         // هون بقله تم اختيار الصوره من الاستديو
                         intent . putExtra ("image form ?" ,"uri" ) ;
                     }
@@ -446,44 +447,6 @@ public class Sign_Up_Activity extends AppCompatActivity
 
                     // هون انا بعمل HashMap عشان احط فيها داتا المستخدم الي انعمل اله حساب
                     HashMap < String , Object > data = new HashMap < > ( ) ;
-
-                    // هون بشيك اذا الصفه الي محدده هي دكتور بقله جيب الي id الدكتور و خزنه في هاد doctor_Id المتغير واذا كانت الصفه ام جيب الي id الام و خزنه في هاد mother_Id المتغير
-                    if ( user_Kind . equals ( "طبيبة" ) || user_Kind . equals ( "طبيب" ) )
-                    {
-                        // هون انا بجيب id الدكتور و بخزنه في هاد doctor_Id المتغير
-                        doctor_Id = Integer . parseInt (document . get ( id_Name ) + "" ) ;
-
-                        // هون انا بحط ال id تبع الدكتور في هاي data ال HashMap
-                        data . put ( "doctor Id" , doctor_Id ) ;
-
-                        // هون ببعث للشاشة الي رح توديني الها شاشة انشاء الحساب id الدكتور
-                        intent . putExtra ("user Id" ,doctor_Id + "" ) ;
-
-                        // هون بشيك اذا المستخدم اختار صوره بقله ضيفها على الفايرستورج
-                        if ( uri != null )
-                        Add_Image_To_Firestorage (doctor_Id ,collection_Name ) ;
-
-                        // هون انا بستدعي الفنكشن الي بحدث الى ال id وببعث اله ال id تبع الدكتور عشان يحدثه في الفايرستور
-                        Update_Id ("doctor Id" ,doctor_Id ) ;
-                    }
-                    else
-                    {
-                        // هون انا بجيب id الام و بخزنه في هاد mother_Id المتغير
-                        mother_Id = Integer . parseInt (document . get ( id_Name ) + "" ) ;
-
-                        // هون انا بحط ال id تبع الام في هاي data ال HashMap
-                        data . put ( "mother Id" , mother_Id ) ;
-
-                        // امهون ببعث للشاشة الي رح توديني الها شاشة انشاء الحساب id ال
-                        intent . putExtra ("user Id" ,mother_Id + "" ) ;
-
-                        // هون بشيك اذا المستخدم اختار صوره بقله ضيفها على الفايرستورج
-                        if ( uri != null )
-                        Add_Image_To_Firestorage (mother_Id ,collection_Name ) ;
-
-                        // هون انا بستدعي الفنكشن الي بحدث الى ال id وببعث اله ال id تبع الام عشان يحدثه في الفايرستور
-                        Update_Id ("mother Id" ,mother_Id ) ;
-                    }
 
                     // هون بحط باقي الداتا الخاصه بالنستخدم الي انعمل اله حساب في هاي data ال HashMap
                     data . put ( "name" , name ) ;
@@ -506,20 +469,11 @@ public class Sign_Up_Activity extends AppCompatActivity
         });
     }
 
-    // هاد الفنكشن الي بحدث الي ال id بعد ما اضيف مستخدم جديد
-    private void Update_Id ( String id_Name , int user_Id )
-    {
-        HashMap < String , Object > id = new HashMap < > ( ) ;
-        id . put ( id_Name , user_Id + 1 ) ;
-        FirebaseFirestore . getInstance ( ) . collection ("ID's" ) . document ("id's" ) . update (id ) ;
-    }
-
     // هاد الي بخزن الي الصوره الي اختاره المستخدم في الفايرستورج
-    private void Add_Image_To_Firestorage ( int user_Id , String collection_Name )
+    private void Add_Image_To_Firestorage ( String collection_Name )
     {
-
         // هون انا بروح على الفايرستورج و بعمل مجلد اسمه images واسم الصوره بكون user number + اال id تبع المستخدم
-        StorageReference imageRef = FirebaseStorage . getInstance ( ) . getReference ( ) . child ( "images" + "/user number " + user_Id ) ;
+        StorageReference imageRef = FirebaseStorage . getInstance ( ) . getReference ( ) . child ( "images" + "/user image" ) ;
 
         // هون بعد ما تنرفع الصوره على الفايرستورج بخزن الرابط تبعها في هاد image_Url المتغير
         imageRef . putFile (uri ).addOnSuccessListener (taskSnapshot ->
