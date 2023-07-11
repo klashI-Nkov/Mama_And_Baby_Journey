@@ -67,22 +67,11 @@ public class customers_Fragment extends Fragment
         return binding . getRoot ( ) ;
     }
 
-    // هاد الفنكشن الي بعرض الي النصائح الي بكبس على الزر تبعها
-    private void Add_Sub_Advice ( )
-    {
-
-    }
-
     @Override
     public void onPause ( )
     {
         super.onPause ( );
         if ( adapter != null )
             adapter . ClearData ( ) ;
-    }
-
-    public void Add_Customer_BTN ( View view )
-    {
-
     }
 }
