@@ -15,7 +15,7 @@
     <fragment
         android:id="@+id/customers"
         android:name="com.example.mamababyjourney.doctor_section.screens_folder.customers_Fragment"
-        android:label="الزبائن"
+        android:label="المراجعين"
         tools:layout="@layout/fragment_doctor_section_customers_fragment"/>
 
 </navigation>

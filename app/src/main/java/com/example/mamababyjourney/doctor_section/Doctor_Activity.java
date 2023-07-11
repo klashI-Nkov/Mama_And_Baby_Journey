@@ -48,6 +48,8 @@ public class Doctor_Activity extends AppCompatActivity
         binding = ActivityDoctorSectionDoctorActivityBinding . inflate ( getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) );
 
+        Get_Doctor_Data ( ) ;
+
         Mother_section_Initialization ( ) ;
     }
 
@@ -103,7 +105,7 @@ public class Doctor_Activity extends AppCompatActivity
 
             // هسه هون انا بروح على الفايرستور و بجيب المعلومات الي في document الام وبستعملها
             FirebaseFirestore. getInstance ( )
-            .collection ("Mothers" )
+            .collection ("Doctors" )
             .document   (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) )
             .get ( ) . addOnCompleteListener ( task ->
             {

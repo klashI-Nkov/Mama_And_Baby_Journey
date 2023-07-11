@@ -16,7 +16,7 @@
         <item
             android:id="@+id/customers"
             android:icon="@drawable/icons_doctors_and_clinics_icon"
-            android:title="الزبائن"/>
+            android:title="المراجعين"/>
 
         <item
             android:id="@+id/Doctor_Sign_Out_BTN"

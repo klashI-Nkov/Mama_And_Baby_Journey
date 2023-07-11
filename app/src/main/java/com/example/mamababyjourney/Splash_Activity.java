@@ -1,5 +1,6 @@
 package com.example.mamababyjourney;
 
+import com.example.mamababyjourney.doctor_section.Doctor_Activity;
 import com.example.mamababyjourney.sign_up_and_sign_in_folder.Info_page.Doctor_Data_Activity;
 import com.example.mamababyjourney.mother_section.Mother_Activity;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -77,10 +78,8 @@ public class Splash_Activity extends AppCompatActivity
                                 if ( documentSnapshot . get ( "صفة المستخدم" ) . toString ( ) . equals ( "طبيب" ) || documentSnapshot . get ( "صفة المستخدم" ) . toString ( ) . equals ( "طبيبة" ) )
                                 {
                                     // هون بوجهو لشاشة الدكتور
-                                    Intent intent = new Intent ( Splash_Activity . this ,Doctor_Data_Activity . class ) ;
+                                    Intent intent = new Intent ( Splash_Activity . this , Doctor_Activity. class ) ;
 
-                                    // هون بفهم شاشة الدكتور اني جاي من شاشة التطبيق الرئيسيه
-                                    intent . putExtra ("action" ,"signing" ) ;
 
                                     // هون بنتقل لشاشة الدكتور
                                     startActivity (intent ) ;

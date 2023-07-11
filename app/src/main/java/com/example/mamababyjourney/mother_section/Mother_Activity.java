@@ -164,4 +164,10 @@ public class Mother_Activity extends AppCompatActivity
             });
         }
     }
+
+    @Override
+    public void onBackPressed ( )
+    {
+
+    }
 }

@@ -414,7 +414,7 @@ public class Doctor_Data_Activity extends AppCompatActivity
 
     public void Save_Doctor_Data_BTN ( View view )
     {
-        if ( binding . SaveDoctorDataBTN . getText ( ) . toString ( ) . contains ( "اخر" ) )
+        if ( binding . AddWorkplaceBTN . getText ( ) . toString ( ) . contains ( "اخر" ) )
         {
             Intent intent = new Intent (this , Doctor_Activity. class );
             startActivity ( intent ) ;
