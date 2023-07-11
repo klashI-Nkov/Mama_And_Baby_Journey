@@ -9,21 +9,13 @@
     <fragment
         android:id="@+id/Today_Appointments"
         android:name="com.example.mamababyjourney.doctor_section.screens_folder.Today_Appointments"
-        android:label="مواعيد اليوم"
-        tools:layout="@layout/fragment_doctor_section_todays__appointments_fragment"/>
+        android:label="المواعيد لليوم"
+        tools:layout="@layout/fragment_doctor_section_today_appointments_fragment"/>
 
     <fragment
         android:id="@+id/customers"
-        android:name="com.example.mamababyjourney.doctor_section.screens_folder.Add_New_Customer_Activity"
+        android:name="com.example.mamababyjourney.doctor_section.screens_folder.customers_Fragment"
         android:label="الزبائن"
         tools:layout="@layout/fragment_doctor_section_customers_fragment"/>
-
-    <fragment
-        android:id="@+id/Add_New_Customer"
-        android:name="com.example.mamababyjourney.doctor_section.screens_folder.Add_New_Customer_Activity"
-        android:label="اضافة زبون جديد"
-        tools:layout="@layout/activity_doctor_section_add_new_customer_activity"/>
-
-
 
 </navigation>

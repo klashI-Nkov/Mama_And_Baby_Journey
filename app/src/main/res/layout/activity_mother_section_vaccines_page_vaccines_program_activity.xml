@@ -33,7 +33,7 @@
         tools:ignore="HardcodedText" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecyclerView"
+        android:id="@+id/Vaccines_program_Recycler_View"
         android:theme="@style/No_Style"
         style="@style/No_Style"
         android:layout_width="match_parent"

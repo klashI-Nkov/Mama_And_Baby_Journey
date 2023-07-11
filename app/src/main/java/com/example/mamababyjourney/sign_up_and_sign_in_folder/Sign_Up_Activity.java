@@ -409,64 +409,49 @@ public class Sign_Up_Activity extends AppCompatActivity
     // هاد الفنكشن الي بضيف الي داتا السمتخدم في الفاير ستور
     private void Add_Doctor_Or_Mother_Data_To_firestore ( String collection_Name , String user_Kind , String signUp_Method )
     {
-        // هسه هون الي بصير انه بروح على ال document الي مخزن فيه id الام و id الدكتور
-        FirebaseFirestore . getInstance ( )
-        .collection ("ID's" )
-        .document ("id's" )
-        .get ( ) . addOnCompleteListener (task ->
+        // هون انا بشيك اذا المستخدم اختار صوره بقله ادخل جوا الاف و ابعت الصوره للشاشة الي رح توديني الها شاشة انشاء الحسا وقله انه الصوره تم اختيارها من الاستديو
+        if ( uri != null )
         {
-            if ( task . isSuccessful ( ) )
-            {
-                DocumentSnapshot document = task . getResult ( ) ;
+            // هون ببعت الصوره
+            intent . setData ( uri ) ;
 
-                if ( document . exists ( ) )
-                {
-                    // هون انا بشيك اذا المستخدم اختار صوره بقله ادخل جوا الاف و ابعت الصوره للشاشة الي رح توديني الها شاشة انشاء الحسا وقله انه الصوره تم اختيارها من الاستديو
-                    if ( uri != null )
-                    {
-                        // هون ببعت الصوره
-                        intent . setData ( uri ) ;
+            // هون بستدعي الفنكشن الي بضيف الي الصوره على الفايرستورج
+            Add_Image_To_Firestorage (collection_Name ) ;
 
-                        // هون بستدعي الفنكشن الي بضيف الي الصوره على الفايرستورج
-                        Add_Image_To_Firestorage (collection_Name ) ;
+            // هون بقله تم اختيار الصوره من الاستديو
+            intent . putExtra ("image form ?" ,"uri" ) ;
+        }
+        else
+            intent . putExtra ("image form ?" ,"Drawable" ) ;
 
-                        // هون بقله تم اختيار الصوره من الاستديو
-                        intent . putExtra ("image form ?" ,"uri" ) ;
-                    }
-                    else
-                        intent . putExtra ("image form ?" ,"Drawable" ) ;
+        // هون انا ببعت مع ال intent مسج بوضح انا في اي شاشة كنت قبل ما انتقل للشاشة الي رح توديني الها شاشة انشاء الحساب
+        intent . putExtra ( "action" , "signup" ) ;
 
-                    // هون انا ببعت مع ال intent مسج بوضح انا في اي شاشة كنت قبل ما انتقل للشاشة الي رح توديني الها شاشة انشاء الحساب
-                    intent . putExtra ( "action" , "signup" ) ;
+        // هون انا ببعت اسم المستخدم للشاشه الي رح توديني الها شاشة انشاء الحساب
+        intent . putExtra ( "name" , name ) ;
 
-                    // هون انا ببعت اسم المستخدم للشاشه الي رح توديني الها شاشة انشاء الحساب
-                    intent . putExtra ( "name" , name ) ;
+        // هون انا ببعت ايميل المستخدم للشاشه الي رح توديني الها شاشة انشاء الحساب
+        intent . putExtra ( "email" , email ) ;
 
-                    // هون انا ببعت ايميل المستخدم للشاشه الي رح توديني الها شاشة انشاء الحساب
-                    intent . putExtra ( "email" , email ) ;
+        // هون انا بعمل HashMap عشان احط فيها داتا المستخدم الي انعمل اله حساب
+        HashMap < String , Object > data = new HashMap < > ( ) ;
 
-                    // هون انا بعمل HashMap عشان احط فيها داتا المستخدم الي انعمل اله حساب
-                    HashMap < String , Object > data = new HashMap < > ( ) ;
-
-                    // هون بحط باقي الداتا الخاصه بالنستخدم الي انعمل اله حساب في هاي data ال HashMap
-                    data . put ( "name" , name ) ;
-                    data . put ( "صفة المستخدم" , user_Kind ) ;
-                    data . put ( "image Url" , "" ) ;
-                    data . put ( "signUp Method" , signUp_Method ) ;
-                    data . put ( "email" , email ) ;
+        // هون بحط باقي الداتا الخاصه بالنستخدم الي انعمل اله حساب في هاي data ال HashMap
+        data . put ( "name" , name ) ;
+        data . put ( "صفة المستخدم" , user_Kind ) ;
+        data . put ( "image Url" , "" ) ;
+        data . put ( "signUp Method" , signUp_Method ) ;
+        data . put ( "email" , email ) ;
 
 
-                    // هون لما استعدينا الفنكشن الي احنا فيه حسب صفة المستخدم حددنا اسم ال collection الي بدي اضيف فيها الداتا و الي بعثنها اسمها لهاد الفنكشن في هاد collection_Name المتغير
-                    FirebaseFirestore . getInstance ( ) . collection (collection_Name ) . document (email ) . set ( data ) ;
+        // هون لما استعدينا الفنكشن الي احنا فيه حسب صفة المستخدم حددنا اسم ال collection الي بدي اضيف فيها الداتا و الي بعثنها اسمها لهاد الفنكشن في هاد collection_Name المتغير
+        FirebaseFirestore . getInstance ( ) . collection (collection_Name ) . document (email ) . set ( data ) ;
 
-                    // هون انا بلغي الاشعار الي بحكي يرجى الانتظار
-                    progressDialog . dismiss ( ) ;
+        // هون انا بلغي الاشعار الي بحكي يرجى الانتظار
+        progressDialog . dismiss ( ) ;
 
-                    // وهون اخر شي انا بوجهه للشاشه المطلوبه حسب صفته
-                    startActivity (intent ) ;
-                }
-            }
-        });
+        // وهون اخر شي انا بوجهه للشاشه المطلوبه حسب صفته
+        startActivity (intent ) ;
     }
 
     // هاد الي بخزن الي الصوره الي اختاره المستخدم في الفايرستورج

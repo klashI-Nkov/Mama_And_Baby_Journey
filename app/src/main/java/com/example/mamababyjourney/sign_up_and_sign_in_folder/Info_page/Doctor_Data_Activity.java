@@ -2,6 +2,7 @@ package com.example.mamababyjourney.sign_up_and_sign_in_folder.Info_page;
 
 import com.example.mamababyjourney.Splash_Activity;
 import com.example.mamababyjourney.databinding.ActivitySignUpAndSignInFolderInfoFolderDoctorDataActivityBinding;
+import com.example.mamababyjourney.doctor_section.Doctor_Activity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -59,19 +60,6 @@ public class Doctor_Data_Activity extends AppCompatActivity
         binding = ActivitySignUpAndSignInFolderInfoFolderDoctorDataActivityBinding . inflate ( getLayoutInflater ( ) ) ;
 
         setContentView ( binding . getRoot ( ) ) ;
-
-        binding . SingOutBTN . setOnClickListener ( view ->
-        {
-            FirebaseAuth. getInstance ( ) . signOut ( ) ;
-
-            GoogleSignInOptions gso = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestEmail ( ) . build ( ) ;
-
-            GoogleSignInClient mGoogleApiClient = GoogleSignIn . getClient(this,gso) ;
-            mGoogleApiClient . signOut (  ) ;
-
-            Intent intent = new Intent (this ,Splash_Activity . class ) ;
-            startActivity (intent ) ;
-        });
 
         Firebase_Functions_Class . Clear ( ) ;
     }
@@ -424,11 +412,20 @@ public class Doctor_Data_Activity extends AppCompatActivity
 
     }
 
+    public void Save_Doctor_Data_BTN ( View view )
+    {
+        if ( binding . SaveDoctorDataBTN . getText ( ) . toString ( ) . contains ( "اخر" ) )
+        {
+            Intent intent = new Intent (this , Doctor_Activity. class );
+            startActivity ( intent ) ;
+        }
+    }
+
     // --------------- نهاية الجزء الي فيه الفنكشن الي بخصو هاد الكلاس ---------------
 
 }
 
-@SuppressWarnings ( { "SpellCheckingInspection" , "RedundantSuppression" } )
+@SuppressWarnings ( { "SpellCheckingInspection" , "RedundantSuppression" , "ConstantConditions" , "unchecked" , "UnusedAssignment" , "CollectionAddAllCanBeReplacedWithConstructor" } )
 class Firebase_Functions_Class
 {
 
@@ -438,15 +435,40 @@ class Firebase_Functions_Class
         HashMap < String , Object > data = new HashMap < > ( ) ;
         data . put ( "workPlace Data Object Number " + id , workPlace_Data_Object ) ;
 
-        FirebaseFirestore . getInstance ( ) . collection ( "A" ) . document ( "C" ) . set ( data , SetOptions . merge ( ) )
-        . addOnCompleteListener ( task ->
+        FirebaseFirestore . getInstance ( )
+        .collection ( "A" )
+        .document ( "C" ) . set ( data , SetOptions . merge ( ) ) . addOnCompleteListener ( task ->
         {
             if ( task . isComplete ( ) )
             {
+
+                HashMap < String , Object > workPlace_Data_Object_List_To_Firebase = new HashMap < > ( ) ;
+                HashMap < String , Object > s = new HashMap < > ( ) ;
+
+                if ( workPlace_Data_Object . workPlace_Type . equals ( "العيادة" ) )
+                {
+                    HashMap < String , Object > datas = new HashMap < > ( ) ;
+
+                    datas . put ( "workPlace Data Object" , workPlace_Data_Object ) ;
+
+                    FirebaseFirestore . getInstance ( )
+                            .collection ( "Doctors And clinics" )
+                            .document ( "clinics" ) . set ( datas , SetOptions . merge ( ) ) ;
+                }
+                else
+                    workPlace_Data_Object_List_To_Firebase . put ( "workPlace Data Object Number " + id , workPlace_Data_Object ) ;
+
+                if ( ! workPlace_Data_Object_List_To_Firebase . isEmpty ( ) )
+                {
+                    s.put ( FirebaseAuth.getInstance ( ).getCurrentUser ( ).getEmail ( ) , workPlace_Data_Object_List_To_Firebase );
+
+                    FirebaseFirestore.getInstance ( ).collection ( "Doctors And clinics" ).document ( "Doctors" ).set ( s , SetOptions.merge ( ) );
+                }
                 Update_Id ( ) ;
             }
         }) ;
     }
+
 
     // هاد بستدعى لما اعدل على بيانات مكان العمل عشان يحدثها في الفاير بيس
     public static void Update_workPlace_Data_Objects_List ( WorkPlace_Data workPlace_Data_Object , int id )

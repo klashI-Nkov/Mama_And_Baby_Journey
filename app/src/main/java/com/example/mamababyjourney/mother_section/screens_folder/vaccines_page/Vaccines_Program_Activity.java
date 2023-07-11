@@ -31,8 +31,8 @@ public class Vaccines_Program_Activity extends AppCompatActivity
 
         adapter = new Recycler_View_Adapter (Recycler_View_Class . recycler_View_Class_Object_List ,this ) ;
 
-        binding . RecyclerView . setAdapter ( adapter ) ;
-        binding . RecyclerView . setLayoutManager ( new LinearLayoutManager (this ) ) ;
+        binding . VaccinesProgramRecyclerView . setAdapter ( adapter ) ;
+        binding . VaccinesProgramRecyclerView . setLayoutManager ( new LinearLayoutManager (this ) ) ;
     }
 
     // هاد الفنكشن وظيفته انه يجيب الي كل مطعوم مع العمر تبعه و يحطهم في كارد لحالهم

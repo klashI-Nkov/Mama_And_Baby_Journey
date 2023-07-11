@@ -160,12 +160,13 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
         // هسه هاي الاف بتشيك انه هل الدكتور عبى كل البيانات المطلوبه اذا عبى كل البيانات رح يحفظها و يرجعه للشاشه الي قبل هاي غير هيك رح يعرض اله مسج انه لازم يعبي كل البيانات
         if
         (
-            // كل هدول الي تحت هاد الكومنت و داخل قوسين الاف عشان اتاكد انه عبى كل البيانات المطلوبه
+            /*// كل هدول الي تحت هاد الكومنت و داخل قوسين الاف عشان اتاكد انه عبى كل البيانات المطلوبه
             ! binding . WorkPlaceLocationCoordinates . getText ( ) . toString ( ) . contains ( "على" ) &&
             ! binding . DaysAndWorkingHoursTextView  . getText ( ) . toString ( ) . contains ( "قم"  ) &&
             ! binding . WorkPlaceAddress             . getText ( ) . toString ( ) . isEmpty  (       ) &&
             ! binding . WorkPlaceName                . getText ( ) . toString ( ) . isEmpty  (       ) &&
-            ! binding . PhoneNumber                  . getText ( ) . toString ( ) . isEmpty  (       )
+            ! binding . PhoneNumber                  . getText ( ) . toString ( ) . isEmpty  (       )*/
+                true
         )
         {
 

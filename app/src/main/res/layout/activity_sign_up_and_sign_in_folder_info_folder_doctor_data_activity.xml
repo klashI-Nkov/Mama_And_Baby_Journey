@@ -73,22 +73,7 @@
                 android:textSize="@dimen/_15sdp"
                 android:text="حفظ"
 
-                tools:ignore="HardcodedText,TextContrastCheck" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/Sing_Out_BTN"
-
-                android:theme="@style/EditTextStyle2"
-                style="@style/EditTextStyle2"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginTop="@dimen/_24sdp"
-                android:layout_marginHorizontal="@dimen/_38sdp"
-
-                android:textSize="@dimen/_15sdp"
-                android:text="تسجيل خروج"
+                android:onClick="Save_Doctor_Data_BTN"
 
                 tools:ignore="HardcodedText,TextContrastCheck" />
 

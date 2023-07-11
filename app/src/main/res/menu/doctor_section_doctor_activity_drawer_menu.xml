@@ -10,18 +10,13 @@
 
         <item
             android:id="@+id/Today_Appointments"
-            android:icon="@drawable/icons_mother_icon"
-            android:title="مواعيد اليوم"/>
+            android:icon="@drawable/icons_dates_icon"
+            android:title="المواعيد لليوم"/>
 
         <item
             android:id="@+id/customers"
             android:icon="@drawable/icons_doctors_and_clinics_icon"
             android:title="الزبائن"/>
-
-        <item
-            android:id="@+id/Add_New_Customer"
-            android:icon="@drawable/icons_sign_out_icon"
-            android:title="اضافة زبون جديد"/>
 
         <item
             android:id="@+id/Doctor_Sign_Out_BTN"

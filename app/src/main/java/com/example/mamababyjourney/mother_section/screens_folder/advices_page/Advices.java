@@ -1,6 +1,6 @@
 package com.example.mamababyjourney.mother_section.screens_folder.advices_page;
 
-import com.example.mamababyjourney.databinding.FragmentMotherSectionAdvicesFragmentBinding;
+import com.example.mamababyjourney.databinding.FragmentMotherSectionAdvicesPageAdvicesFragmentBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.DocumentSnapshot;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -26,7 +26,7 @@ import java.util.HashMap;
 public class Advices extends Fragment
 {
 
-    private FragmentMotherSectionAdvicesFragmentBinding binding ;
+    private FragmentMotherSectionAdvicesPageAdvicesFragmentBinding binding ;
 
     ProgressDialog progressDialog ;
 
@@ -39,7 +39,7 @@ public class Advices extends Fragment
     // هاد الفنكشن هو بالزبط نفس فنشكن ال oncreate لكن في ال fragment بجي هيك شكله و اسمه لانه ال fragment تعتبر جزء من شاشه وليس شاشة كامله لهيك شكله و اسمه بختلف
     public View onCreateView ( @NonNull LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState )
     {
-        binding = FragmentMotherSectionAdvicesFragmentBinding . inflate (inflater ,container ,false ) ;
+        binding = FragmentMotherSectionAdvicesPageAdvicesFragmentBinding . inflate (inflater ,container ,false ) ;
 
         progressDialog = new ProgressDialog ( requireContext ( ) ) ;
         progressDialog . setMessage ( "يرجى الانتظار" ) ;

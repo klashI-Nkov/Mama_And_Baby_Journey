@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/_70sdp"
         android:layout_marginBottom="@dimen/_15sdp"
         android:layout_weight="1"
-        tools:ignore="InefficientWeight">
+        tools:ignore="InefficientWeight,SpeakableTextPresentCheck">
 
         <androidx.gridlayout.widget.GridLayout
             android:id="@+id/Gird_Layout"
@@ -50,6 +50,6 @@
         android:padding="@dimen/_8sdp"
 
         app:srcCompat="@drawable/icons_add_icon"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck" />
 
 </LinearLayout>

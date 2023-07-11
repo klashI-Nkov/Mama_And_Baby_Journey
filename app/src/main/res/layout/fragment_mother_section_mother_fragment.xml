@@ -1,25 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:layoutDirection="rtl"
     android:orientation="vertical"
-    android:gravity="center"
 
     android:theme="@style/screen_Background"
     style="@style/screen_Background"
+
     tools:context=".mother_section.screens_folder.Mother"
 
     tools:ignore="HardcodedText">
 
-    <TextView
+    <!-- RecyclerView -->
+    <LinearLayout
         android:theme="@style/No_Style"
         style="@style/No_Style"
-        android:layout_width="wrap_content"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_70sdp"
+
+        android:layout_weight="1"
+
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:ignore="InefficientWeight">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Mother_Treatment_Record_Recycler_View"
+            android:theme="@style/No_Style"
+            style="@style/No_Style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/No_Treatment_Yet_Tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textSize="@dimen/_14sdp"
+            android:text="لم يتم اخذ اي علاج بعد"
+            tools:ignore="TextContrastCheck" />
+
+    </LinearLayout>
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:theme="@style/No_Style"
+        style="@style/No_Style"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mother Fragment"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_gravity="bottom"
+        android:baselineAligned="false"
+        android:paddingTop="@dimen/_12sdp">
+
+        <LinearLayout
+            android:id="@+id/Mother_Treatment_Record_BTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+
+                app:srcCompat="@drawable/images_mother_treatment_record_image"
+
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_10sdp"
+                android:text="سجل العلاج"
+                tools:ignore="TextContrastCheck"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Pregnancies_And_Births_History_BTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+
+                app:srcCompat="@drawable/images_pregnant_woman_image"
+
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck,ImageContrastCheck"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_10sdp"
+                android:text="سيرة الحمول و الولادات"
+                tools:ignore="TextContrastCheck"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:theme="@style/No_Style"
+        style="@style/No_Style"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"/>
 
 </LinearLayout>

@@ -16,11 +16,88 @@
 
     tools:ignore="HardcodedText">
 
-    <TextView
+    <!-- RecyclerView -->
+    <LinearLayout
         android:theme="@style/No_Style"
         style="@style/No_Style"
-        android:layout_width="wrap_content"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_75sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+
+        android:layout_weight="1"
+
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:ignore="InefficientWeight">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Customers_Recycler_View"
+
+            android:theme="@style/No_Style"
+            style="@style/No_Style"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/No_Customers_Yet_Tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textSize="@dimen/_14sdp"
+            android:text="لا يوجد لديك زبائن بعد"
+            tools:ignore="TextContrastCheck" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:theme="@style/No_Style"
+        style="@style/No_Style"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="customers Fragment"/>
+        android:layout_marginHorizontal="@dimen/_23sdp"
+        android:layout_marginBottom="@dimen/_40sdp"
+
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
+
+        <!-- Password Edit Text -->
+        <EditText
+            android:id="@+id/U_password_edit_text"
+
+            android:theme="@style/EditTextStyle"
+            style="@style/EditTextStyle"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+
+            android:inputType="textEmailAddress"
+            android:gravity="center"
+            android:textSize="@dimen/_12sdp"
+            android:hint="يرجى كتابة ايميل الزبون المراد اضافته"
+
+            tools:ignore="Autofill,HardcodedText,TextContrastCheck,TextFields" />
+
+        <!-- Sing Up Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sing_Up_BTN"
+
+            android:theme="@style/EditTextStyle"
+            style="@style/EditTextStyle"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_23sdp"
+            android:layout_marginHorizontal="@dimen/_39sdp"
+
+            android:text="اضافة الزبون"
+            android:textSize="@dimen/_15sdp"
+
+            tools:ignore="HardcodedText,TextSizeCheck,VisualLintButtonSize,VisualLintBounds" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.mamababyjourney.sign_up_and_sign_in_folder;
 
 import com.example.mamababyjourney.databinding.ActivitySignUpAndSignInFolderSingInActivityBinding;
+import com.example.mamababyjourney.doctor_section.Doctor_Activity;
 import com.example.mamababyjourney.sign_up_and_sign_in_folder.Info_page.Doctor_Data_Activity;
 import com.example.mamababyjourney.mother_section.Mother_Activity;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -276,10 +277,7 @@ public class Sing_in_Activity extends AppCompatActivity
                             if ( documentSnapshot . get ( "صفة المستخدم" ) . toString ( ) . equals ( "طبيب" ) || documentSnapshot . get ( "صفة المستخدم" ) . toString ( ) . equals ( "طبيبة" ) )
                             {
                                 // هون بوجهو لشاشة الدكتور
-                                Intent intent = new Intent (Sing_in_Activity . this ,Doctor_Data_Activity . class ) ;
-
-                                // هون بفهم شاشة الدكتور اني جاي من شاشة تسجيل الدخول
-                                intent . putExtra ("action" ,"signing" ) ;
+                                Intent intent = new Intent (Sing_in_Activity . this , Doctor_Activity . class ) ;
 
                                 // هون بخفي الاشعار الي بحكي يرجى الانتظار
                                 progressDialog . dismiss ( ) ;

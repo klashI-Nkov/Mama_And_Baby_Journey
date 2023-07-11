@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.view.WindowManager;
+
+import java.util.Objects;
 
 public class Sub_Advices_Activity extends AppCompatActivity
 {
@@ -20,6 +23,9 @@ public class Sub_Advices_Activity extends AppCompatActivity
     protected void onCreate ( Bundle savedInstanceState )
     {
         super . onCreate (savedInstanceState ) ;
+        getWindow ( ) . setFlags ( WindowManager. LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
+        Objects. requireNonNull (getSupportActionBar ( ) ) . hide ( ) ;
+
         binding = ActivityMotherSectionAdvicesPageSubAdvicesActivityBinding . inflate (getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
 
@@ -133,15 +139,14 @@ public class Sub_Advices_Activity extends AppCompatActivity
         adapter = new Recycler_View_Adapter
                 ( Recycler_View_Class. recycler_View_Class_Object_List ,this ) ;
 
-        binding . RecyclerView . setAdapter ( adapter ) ;
-        binding . RecyclerView . setLayoutManager ( new LinearLayoutManager (this ) ) ;
+        binding . SubAdviceRecyclerView . setAdapter ( adapter ) ;
+        binding . SubAdviceRecyclerView . setLayoutManager ( new LinearLayoutManager (this ) ) ;
     }
 
     @Override
     public void onBackPressed ( )
     {
         super.onBackPressed ( );
-
         if ( adapter != null )
             adapter . ClearData ( ) ;
     }
