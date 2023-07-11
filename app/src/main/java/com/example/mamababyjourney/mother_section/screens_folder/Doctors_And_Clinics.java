@@ -40,38 +40,26 @@ public class Doctors_And_Clinics extends Fragment
 
         for ( String name : doc_Names )
         {
-            // هون اول شي بقله دور الي على ال collection الي فيها ال document تبع المستخدم
+            // هون اذا كانت ال collection الي بدور عليها موجوده بقله خش ابحث عن document المستخدم فيها
             FirebaseFirestore . getInstance ( )
-                    .collection ("Doctors And clinics" )
-                    .get ( ) . addOnCompleteListener (task ->
-                    {
-                        if ( task . isSuccessful ( ) )
-                        {
-                            if ( !task . getResult ( ) . isEmpty ( ) )
-                            {
-                                // هون اذا كانت ال collection الي بدور عليها موجوده بقله خش ابحث عن document المستخدم فيها
-                                FirebaseFirestore . getInstance ( )
-                                        .collection ("Doctors And clinics" )
-                                        .document   ( name )
-                                        .get ( ) . addOnSuccessListener (documentSnapshot ->
-                                        {
-                                            if ( documentSnapshot . exists ( ) )
-                                            {
-                                                advice_content [0] = "الاسم : " + documentSnapshot.get("workPlace_Name");
+            .collection ("Doctors And clinics" )
+            .document   ( name )
+            .get ( ) . addOnSuccessListener (documentSnapshot ->
+            {
+                if ( documentSnapshot . exists ( ) )
+                {
+                    advice_content [0] = "الاسم : " + documentSnapshot.get("workPlace_Name");
 
-                                                Recycler_View_Class. recycler_View_Class_Object_List .
-                                                        add ( new Recycler_View_Class (advice_title [ 0 ] ,advice_content [ 0 ] ) ) ;
+                    Recycler_View_Class. recycler_View_Class_Object_List .
+                            add ( new Recycler_View_Class (advice_title [ 0 ] ,advice_content [ 0 ] ) ) ;
 
-                                                adapter = new Recycler_View_Adapter
-                                                        ( Recycler_View_Class. recycler_View_Class_Object_List ,requireContext ( ) ) ;
+                    adapter = new Recycler_View_Adapter
+                            ( Recycler_View_Class. recycler_View_Class_Object_List ,requireContext ( ) ) ;
 
-                                                binding . DoctorsAndClinicsRecyclerView . setAdapter ( adapter ) ;
-                                                binding . DoctorsAndClinicsRecyclerView . setLayoutManager ( new LinearLayoutManager (requireContext ( ) ) ) ;
-                                            }
-                                        });
-                            }
-                        }
-                    });
+                    binding . DoctorsAndClinicsRecyclerView . setAdapter ( adapter ) ;
+                    binding . DoctorsAndClinicsRecyclerView . setLayoutManager ( new LinearLayoutManager (requireContext ( ) ) ) ;
+                }
+            });
         }
 
 
