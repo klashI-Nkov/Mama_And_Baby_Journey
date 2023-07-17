@@ -1,28 +1,24 @@
 package com.example.mamababyjourney.mother_section.screens_folder;
 
-import com.example.mamababyjourney.Splash_Activity;
+import com.example.mamababyjourney.databinding.FragmentMotherSectionDoctorsAndClinicsFragmentBinding;
 import com.example.mamababyjourney.classes.Recycler_View_Adapter;
 import com.example.mamababyjourney.classes.Recycler_View_Class;
-import com.example.mamababyjourney.databinding.FragmentMotherSectionDoctorsAndClinicsFragmentBinding;
-import com.example.mamababyjourney.doctor_section.Doctor_Activity;
-import com.example.mamababyjourney.mother_section.Mother_Activity;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.os.Bundle;
 import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.Arrays;
-import java.util.List;
-
+@SuppressWarnings ( { "ConstantConditions" , "unchecked" } )
 public class Doctors_And_Clinics extends Fragment
 {
     Recycler_View_Adapter adapter ;
@@ -36,32 +32,33 @@ public class Doctors_And_Clinics extends Fragment
         String [ ] advice_title   = {""};
         String [ ] advice_content = {""};
 
-        List < String > doc_Names = Arrays. asList ( "Doctors" , "clinics" );
-
-        for ( String name : doc_Names )
+        FirebaseFirestore . getInstance ( ) . collection ("Doctors" ) . get ( ) . addOnSuccessListener ( querySnapshot ->
         {
-            // هون اذا كانت ال collection الي بدور عليها موجوده بقله خش ابحث عن document المستخدم فيها
-            FirebaseFirestore . getInstance ( )
-            .collection ("Doctors And clinics" )
-            .document   ( name )
-            .get ( ) . addOnSuccessListener (documentSnapshot ->
+            for ( DocumentSnapshot documentSnapshot : querySnapshot )
             {
-                if ( documentSnapshot . exists ( ) )
+                Log . d ( "Test" , documentSnapshot . getId () + "" ) ;
+                FirebaseFirestore . getInstance ( ) . collection ("Doctors/" + documentSnapshot . getId ( ) + "/workplaces" ) . get ( ) . addOnSuccessListener ( task ->
                 {
-                    advice_content [0] = "الاسم : " + documentSnapshot.get("workPlace_Name");
 
-                    Recycler_View_Class. recycler_View_Class_Object_List .
-                            add ( new Recycler_View_Class (advice_title [ 0 ] ,advice_content [ 0 ] ) ) ;
+                    for ( DocumentSnapshot document : task )
+                    {
+                        Log . d ( "Test" , document . getId () + "" ) ;
 
-                    adapter = new Recycler_View_Adapter
-                            ( Recycler_View_Class. recycler_View_Class_Object_List ,requireContext ( ) ) ;
+                        advice_content [ 0 ] = "الاسم : " + document.get("workPlace_Name");
 
-                    binding . DoctorsAndClinicsRecyclerView . setAdapter ( adapter ) ;
-                    binding . DoctorsAndClinicsRecyclerView . setLayoutManager ( new LinearLayoutManager (requireContext ( ) ) ) ;
-                }
-            });
-        }
 
+                        Recycler_View_Class . recycler_View_Class_Object_List .
+                                add ( new Recycler_View_Class (advice_title [ 0 ] ,advice_content [ 0 ] ) ) ;
+
+                        adapter = new Recycler_View_Adapter
+                                ( Recycler_View_Class. recycler_View_Class_Object_List ,requireContext ( ) ) ;
+
+                        binding . DoctorsAndClinicsRecyclerView . setAdapter ( adapter ) ;
+                        binding . DoctorsAndClinicsRecyclerView . setLayoutManager ( new LinearLayoutManager (requireContext ( ) ) ) ;
+                    }
+                });
+            }
+        });
 
         return binding . getRoot ( ) ;
     }

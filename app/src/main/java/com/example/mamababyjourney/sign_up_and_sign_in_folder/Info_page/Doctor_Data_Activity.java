@@ -315,7 +315,6 @@ public class Doctor_Data_Activity extends AppCompatActivity
 @SuppressWarnings ( { "ConstantConditions" } )
 class Firebase_Functions_Class
 {
-    // هاد الفنكشن بتسدعى لما بدي اضيف مكان عمل جديد عشان يضيف بياناته في الفاير بيس
     public static void Add_workPlace_Data ( )
     {
 
@@ -363,7 +362,6 @@ class Firebase_Functions_Class
         });
     }
 
-    // هاد بستدعى لما اعدل على بيانات مكان العمل عشان يحدثها في الفاير بيس
     public static void Update_workPlace_Data ( int id )
     {
         WorkPlace_Data workPlace_Data_Object = WorkPlace_Data . workPlace_Data_Object ;
@@ -387,7 +385,6 @@ class Firebase_Functions_Class
         .document   ("workPlace Number " + id ) . update ( workPlace_Data ) ;
     }
 
-    // وهاد الفنكشن وظيفته انه يزود الي ال id في كل مره بضيف فيها مكان عمل جديد
     public static void Update_Id ( )
     {
         String doctor_Document_Id = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ;

@@ -273,47 +273,17 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
 
         if ( resultCode == RESULT_OK )
         {
-            /*
-                 هون كونه بتعامل مع شاشتين الي هم شاشة الخارطه و شاشة ايام و ساعات العمل فرح يكون عندي 2 request code لهيك لازم استحدم switch
-
-                 عشان احط الكود الي بخص كل شاشه في case مختلف وحسب ال request code الي جاي لهاد الفنكشن بنفذ ال case المطلوبه
-
-                 واذا حابه تعرفي شو ال request code الي حددتهم الهم ارجعي لفنكشن ال Go_To_Map_BTN و فنكشن ال Add_Days_And_Working_Hours_BTN
-
-                 على سطر فنكشن ال startActivityForResult لحتى تعرفي انا شو معطيهم قيمه لل request code الي بخص كل وحده منهم
-             */
             switch ( requestCode )
             {
                 // هاد ال case بخص الخارطه
                 case 1 :
                 {
-                    /*
-                        هون عنا متغيرين معرفين في الكلاس الي احنا فيه هلا والي هو كلاس تعبئة بيانات مكان العمل
-
-                        المتغيرين بمثلو مكان موقع العمل الي حدده المستخدم على خط الطول و على خط العرض
-
-                        هاد latitude احداثيات خط العرض الخاصه بموقع العمل
-
-                        والتاني هاد longitude في احداثيات خط الطول الخاصه بموقع العمل
-
-                        و ال intent الي بنستخرج منه الداتا في حالتنا هون هو المتغير الي اسمه data و هو بستقبل ال intent الي رجعنا لهاي الشاشه
-                     */
                     longitude = data . getExtras ( ) . getDouble ( "longitude"  ) ;
                     latitude  = data . getExtras ( ) . getDouble ( "latitude"   ) ;
 
-                    /*
-                        هسه هدول السطرين الي تحت و السطرين الي فوق مثل ما قلت وشرحت عن هاد الفنكشن في كلاس Doctor_Data_Activity انه كل شي داخله بتنفذ
-
-                        لما نرجع من الشاشه الي انتقلنا الها عن طريق الشاشه الحاليه لذلك كل شي داخل هاي ال case و داخل ال case الي تحتها رح يتنفذ بس
-
-                        نرجع لهاي الشاشه من الشاشه الي انتقلنا الها من عن طريق هاي الشاشه
-                    */
-
-                    // هاد السطر بعدل ال text الي بكون مكتوب فيه "حدد مكان العمل على خرائط قوقل" وبحد بداله احداثيات مكان العمل الي اختاراها
                     binding . WorkPlaceLocationCoordinates . setText
                     ( "احداثيات مكان " + workPlace_Type + " التي حددتها هي" + "\n\n" + latitude + " , " + longitude ) ;
 
-                    // هاد بغير النص الي مكتوب في زر الذهاب الى الخارطه وبحط بداله النص الي مكتوب عندك تحت
                     binding . GoToMapBTN . setText ( "تعديل احداثيات مكان " + workPlace_Type ) ;
                     break ;
                 }
@@ -324,55 +294,22 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
 
                     WorkPlace_Data workPlace_data_Object = WorkPlace_Data . workPlace_Data_Object ;
 
-                    // هون اول شي بعمله بغير ال النص الي معروض في ال text view الي بنعرض فيه ايام و ساعات العمل من "قم باضافة ايام و ساعات العمل" ل "ايام و ساعات العمل"
-                    binding . DaysAndWorkingHoursTextView . setText
-                    (
-                        // هاد اول شي حيكون في النص الي بعرض في المكان الي رح يعرض لدكتور ايام و ساعات العمل الي حددها
-                        "ايام و ساعات العمل\n\n"
-                    ) ;
+                    binding . DaysAndWorkingHoursTextView . setText ( "ايام و ساعات العمل\n\n" ) ;
 
-
-                    /*
-                        عنا هون for each ال element فيها عباره عن اوبجكت من الكلاس Days_And_Working_Hours
-
-                        وهاي ال for each بتلف على List ال days_And_Working_Hours_Objects_List الي فيها
-
-                        مجموعة الاوبجكت الخاصين بكل يوم اخترناه
-
-                        هسه هاي foreach بتلف على كل عناصر ال list الخاصه بالاوبجكت الي في هاي WorkPlace_Data الكلاس والي هو
-
-                        workPlace_data_Object و الي اتخزن فيها ايام و ساعات العمل و بتحطهم في ال text view الي بنعرض فيه ايام و ساعات العمل
-
-                        مع النص الي حطيناه فوق و الي هو "ايام و ساعات العمل"
-                    */
                     for ( Days_And_Working_Hours element : workPlace_data_Object . days_And_Working_Hours_Objects_List )
                     {
                         binding . DaysAndWorkingHoursTextView . setText
                         (
-                            /*
-                               هسه هاد السطر بجيب الي ال text الي مخزن في ال textView الي بنعرض فيه ايام و ساعات العمل و الي بكون هو هاد
-
-                               ال text "ايام و ساعات العمل" في حالة كانت ال for each في اول لفه الها وفي اللفه الثانيه بكون ال text الي مخزن
-
-                               في ال textView الي بنعرض فيه ايام و ساعات العمل هو عباره عن هاد ال text "ايام و ساعات العمل" + اليوم و ساعات العمل الي مخزنه في اول اوبجكت
-
-                               في هاي days_And_Working_Hours_Objects_List ال list
-                            */
                             binding . DaysAndWorkingHoursTextView . getText ( ) +
 
-                            // بعدها هون قيمة اليوم و الي مخزنه في متغير day في الاوبجكت الي for each ماشره على ال index تبعه
                             element . day + "\n" +
 
-                            // بعدها هون قيمة من الساعه و الي مخزنه في متغير from_Hour في الاوبجكت الي for each ماشره على ال index تبعه
                             " من الساعة : " + element . from_Hour + " " +
 
-                            // بعدها هون القيمه الي بتحدد من الساعه صباحا او مساءا و الي مخزنه في متغير from_AM_Or_PM في الاوبجكت الي for each ماشره على ال index تبعه
                             element . from_AM_Or_PM +
 
-                            // بعدها هون قيمة الى الساعه و الي مخزنه في متغير to_Hour في الاوبجكت الي for each ماشره على ال index تبعه
                             " الى الساعة : " + element . to_Hour + " " +
 
-                            // بعدها هون القيمه الي بتحدد من الساعه صباحا او مساءا و الي مخزنه في متغير to_AM_Or_PM في الاوبجكت الي for each ماشره على ال index تبعه
                             element . to_AM_Or_PM
                         ) ;
 
@@ -390,7 +327,6 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
                             ) ;
                     }
 
-                    // هون بغير النص الي في زر اضافة ايام و ساعات العمل للنص الي موجود عندك تحت
                     binding . AddDaysAndWorkingHoursBTN . setText ( "تعديل ايام و ساعات العمل" ) ;
 
                     break ;
