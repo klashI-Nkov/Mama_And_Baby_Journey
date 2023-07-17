@@ -18,6 +18,8 @@ import android.annotation.SuppressLint;
 import androidx.navigation.Navigation;
 import com.example.mamababyjourney.R;
 import com.squareup.picasso.Picasso;
+
+import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.content.Intent;
@@ -69,21 +71,6 @@ public class Mother_Activity extends AppCompatActivity
         NavController navController = Navigation . findNavController (this ,R . id . mother_activity_nav_host ) ;
         NavigationUI . setupActionBarWithNavController (this ,navController ,mAppBarConfiguration ) ;
         NavigationUI . setupWithNavController (binding . MotherNavView ,navController ) ;
-
-        Menu menu = binding . MotherNavView . getMenu ( ) ;
-        menu . findItem (R . id . Mother_Sign_Out_BTN ) . setOnMenuItemClickListener ( menuItem ->
-        {
-            FirebaseAuth . getInstance ( ) . signOut ( ) ;
-
-            GoogleSignInOptions gso = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestEmail ( ) . build ( ) ;
-
-            GoogleSignInClient mGoogleApiClient = GoogleSignIn . getClient(this,gso) ;
-            mGoogleApiClient . signOut (  ) ;
-
-            Intent intent = new Intent (this ,Splash_Activity . class ) ;
-            startActivity (intent ) ;
-            return true ;
-        });
     }
 
     // هاد الفنكشن حاولت افهم من chat GPT متى بتنفذ و شو بعمل الكود الي جواته ما فهمت و لا عرفت لهيك انسيكي منه
@@ -163,6 +150,19 @@ public class Mother_Activity extends AppCompatActivity
                 }
             });
         }
+    }
+
+    public void Mother_Sign_Out_BTN ( MenuItem menuItem)
+    {
+        FirebaseAuth . getInstance ( ) . signOut ( ) ;
+
+        GoogleSignInOptions gso = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestEmail ( ) . build ( ) ;
+
+        GoogleSignInClient mGoogleApiClient = GoogleSignIn . getClient(this,gso) ;
+        mGoogleApiClient . signOut (  ) ;
+
+        Intent intent = new Intent (this ,Splash_Activity . class ) ;
+        startActivity (intent ) ;
     }
 
     @Override

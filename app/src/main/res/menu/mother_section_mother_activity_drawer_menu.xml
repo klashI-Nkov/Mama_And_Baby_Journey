@@ -36,6 +36,7 @@
         <item
             android:id="@+id/Mother_Sign_Out_BTN"
             android:icon="@drawable/icons_sign_out_icon"
+            android:onClick="Mother_Sign_Out_BTN"
             android:title="تسجيل الخروج" />
 
     </group>
