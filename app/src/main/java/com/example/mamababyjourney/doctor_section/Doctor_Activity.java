@@ -4,37 +4,34 @@ import com.example.mamababyjourney.databinding.ActivityDoctorSectionDoctorActivi
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.firebase.firestore.FirebaseFirestore;
+import de.hdodenhof.circleimageview.CircleImageView;
+import com.google.firebase.storage.FirebaseStorage;
 import com.example.mamababyjourney.Splash_Activity;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import androidx.navigation.ui.NavigationUI;
 import androidx.navigation.NavController;
+import android.annotation.SuppressLint;
 import androidx.navigation.Navigation;
 import com.example.mamababyjourney.R;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
 import com.squareup.picasso.Picasso;
-
-import android.annotation.SuppressLint;
-import android.view.View;
 import android.view.WindowManager;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
 import android.widget.TextView;
+import android.content.Intent;
+import android.view.MenuItem;
+import android.view.View;
+import android.os.Bundle;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
-@SuppressWarnings ( "ConstantConditions" )
+@SuppressWarnings ( {"ConstantConditions" , "SpellCheckingInspection" , "RedundantSuppression" , "UnnecessaryUnicodeEscape" } )
 @SuppressLint ( { "InflateParams" , "SetTextI18n" } )
 
 public class Doctor_Activity extends AppCompatActivity
 {
     private ActivityDoctorSectionDoctorActivityBinding binding ;
 
-    // هاد المتغير انا مستعمله عشان اعمل action bar مخصص للشاشات بدل ال action bar الي بحطه النظام
     private AppBarConfiguration mAppBarConfiguration ;
 
     @Override
@@ -42,11 +39,10 @@ public class Doctor_Activity extends AppCompatActivity
     {
         super.onCreate ( savedInstanceState );
 
-
         getWindow ( ) . setFlags (WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ,WindowManager . LayoutParams . FLAG_LAYOUT_NO_LIMITS ) ;
 
         binding = ActivityDoctorSectionDoctorActivityBinding . inflate ( getLayoutInflater ( ) ) ;
-        setContentView ( binding . getRoot ( ) );
+        setContentView ( binding . getRoot ( ) ) ;
 
         Get_Doctor_Data ( ) ;
 
@@ -54,7 +50,6 @@ public class Doctor_Activity extends AppCompatActivity
     }
 
 
-    // هاد الفنكشن وظفيته يجهز الي الشاشة عشان اعرض فيها ال fragment الخاصين بقسم الام
     private void Mother_section_Initialization ( )
     {
         setSupportActionBar ( binding . DoctorActivityAppBar . DoctorToolbar ) ;
@@ -68,24 +63,8 @@ public class Doctor_Activity extends AppCompatActivity
         NavController navController = Navigation. findNavController (this ,R . id . doctor_activity_nav_host ) ;
         NavigationUI. setupActionBarWithNavController (this ,navController ,mAppBarConfiguration ) ;
         NavigationUI . setupWithNavController ( binding . DoctorNavView ,navController ) ;
-
-        Menu menu = binding . DoctorNavView . getMenu ( ) ;
-        menu . findItem (R . id . Doctor_Sign_Out_BTN ) . setOnMenuItemClickListener ( menuItem ->
-        {
-            FirebaseAuth. getInstance ( ) . signOut ( ) ;
-
-            GoogleSignInOptions gso = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestEmail ( ) . build ( ) ;
-
-            GoogleSignInClient mGoogleApiClient = GoogleSignIn. getClient(this,gso) ;
-            mGoogleApiClient . signOut (  ) ;
-
-            Intent intent = new Intent (this , Splash_Activity. class ) ;
-            startActivity (intent ) ;
-            return true ;
-        });
     }
 
-    // هاد الفنكشن حاولت افهم من chat GPT متى بتنفذ و شو بعمل الكود الي جواته ما فهمت و لا عرفت لهيك انسيكي منه
     @Override
     public boolean onSupportNavigateUp ( )
     {
@@ -93,68 +72,69 @@ public class Doctor_Activity extends AppCompatActivity
         return NavigationUI . navigateUp (navController ,mAppBarConfiguration ) || super . onSupportNavigateUp ( ) ;
     }
 
-    // هاد الفنكشن الي بجيب الي بيانات الام من الفايرستور
     private void Get_Doctor_Data ( )
     {
-        // هون انا بجيب الهيدر تاع ال negation drawer عشان اعدل على قيم مكوناته
         View childLayout = getLayoutInflater ( ) . inflate (R . layout . layouts_mother_section_mother_activity_nav_header_layout ,null ) ;
+
         CircleImageView user_Profile_Image = childLayout . findViewById (R . id . User_Profile_Image ) ;
 
         TextView User_Email_Tv = childLayout . findViewById (R . id . User_Email_Tv ) ;
         TextView username_Tv   = childLayout . findViewById (R . id . Username_Tv ) ;
 
-            // هسه هون انا بروح على الفايرستور و بجيب المعلومات الي في document الام وبستعملها
-            FirebaseFirestore. getInstance ( )
-            .collection ("Doctors" )
-            .document   (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) )
-            .get ( ) . addOnCompleteListener ( task ->
+        FirebaseFirestore. getInstance ( )
+        .collection ("Doctors" )
+        .document   (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) )
+        .get ( ) . addOnCompleteListener (task ->
+        {
+            if ( task . isSuccessful ( ) )
             {
-                if ( task . isSuccessful ( ) )
+                if ( task . getResult ( ) . exists ( ) )
                 {
-                    DocumentSnapshot document = task . getResult ( ) ;
+                    username_Tv   . setText ( "الاسم\u0020 : \u0020" + task . getResult ( ) . get ( "name" ) ) ;
+                    User_Email_Tv . setText ( task . getResult ( ) . get ( "email" ) + "" ) ;
 
-                    if ( document . exists ( ) )
+                    String image_url = task . getResult ( ).get ( "image Url" ) + "" ;
+
+                    if ( image_url . isEmpty ( ) || image_url . equals ( null )  )
                     {
-                        // هون انا بجيب القيم الي اجتني من الفايرستور و بحطها في مكونات الشاشه
-                        username_Tv   . setText ( "الاسم\u0020 : \u0020" + document . get ( "name" ) ) ;
-                        User_Email_Tv . setText ( document . get ( "email" ) + "" ) ;
+                        if ( task . getResult ( ) . get ( "signUp Method" ) . toString ( ) . equals ( "Sing Up By Google" ) )
 
-                        // هون بخزن في هاد image_url المتخير قيمته الي جبتها من الفايرستور والي هو رابط الصوره الي اختارها المستخدم من الاستديو
-                        String image_url = document.get ( "image Url" ) + "";
+                             Picasso . get ( ) . load (FirebaseAuth . getInstance ( ) . getCurrentUser ( )
+                            .getPhotoUrl ( ) ) . into (user_Profile_Image ) ;
 
-                        // هون بشيك اذا كان هاد image_url المتغير فاضي يعني ما تم اختيار صوره من الاستديو وقتها بنفذ الي جوا الاف عير هيك رح ينفذ الي جوا ال else
-                        if ( image_url . isEmpty ( ) || image_url . equals ( null )  )
-                        {
-                    /*
-                       هون بشيك اذا كانت الطريقه الي انعمل فيها الحساب في التطبيق باستخدام قوقل بقله جيب الي صورة الايميل
 
-                        الي تم استخدامه لعمل الحساب في التطبيق و حطه كصور للمستخدم غير هيك حط الصوره الافتراضيه
-                    */
-                            if ( document . get ( "signUp Method" ) . toString ( ) . equals ( "Sing Up By Google" ) )
-                                Picasso . get ( ) . load (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getPhotoUrl ( ) ) . into ( user_Profile_Image ) ;
+                        else if ( task . getResult ( ) . get ( "صفة المستخدم" ) . equals ( "'طبيب" ) )
+                                user_Profile_Image . setImageResource ( R . drawable . images_male_user_image ) ;
                             else
-                            {
-                                if ( document . get ( "صفة المستخدم" ) . equals ( "'طبيب" ) )
-                                    user_Profile_Image . setImageResource ( R . drawable . images_male_user_image ) ;
-                                else
-                                    user_Profile_Image . setImageResource ( R . drawable . images_female_user_image ) ;
-
-                            }
-                        }
-                        else
-                            // هون اذا ما كان هاد image_url المتغير فاضي يعني مخزن فيه رابط الصوره الي تم اختياره من الاستديو عند انشاء الحساب بقله جيبها من الفايرستورج و حطها كصوره للسمتخدم
-                            FirebaseStorage. getInstance ( ) . getReferenceFromUrl ( image_url ) . getDownloadUrl ( ) . addOnSuccessListener ( uri -> Picasso . get ( ) . load ( uri ) . into ( user_Profile_Image ) ) ;
-
-                        binding . DoctorNavView . addHeaderView ( childLayout ) ;
+                                user_Profile_Image . setImageResource ( R . drawable . images_female_user_image ) ;
                     }
-                }
-            });
+                    else
+                        FirebaseStorage. getInstance ( ) . getReferenceFromUrl (image_url ) . getDownloadUrl ( )
+                        .addOnSuccessListener (uri -> Picasso . get ( ) . load ( uri ) . into (user_Profile_Image ) ) ;
 
+                    binding . DoctorNavView . addHeaderView (childLayout ) ;
+                }
+            }
+        });
     }
 
     @Override
     public void onBackPressed ( )
     {
+
+    }
+
+    public void Doctor_Sign_Out_BTN ( MenuItem menuItem )
+    {
+        FirebaseAuth. getInstance ( ) . signOut ( ) ;
+
+        GoogleSignInOptions gso = new GoogleSignInOptions . Builder (GoogleSignInOptions . DEFAULT_SIGN_IN ) . requestEmail ( ) . build ( ) ;
+
+        GoogleSignInClient mGoogleApiClient = GoogleSignIn. getClient(this,gso) ;
+        mGoogleApiClient . signOut (  ) ;
+
+        Intent intent = new Intent (this , Splash_Activity. class ) ;
+        startActivity (intent ) ;
 
     }
 

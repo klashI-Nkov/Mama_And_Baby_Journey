@@ -11,6 +11,7 @@ import java.util.Objects;
 import android.os.Bundle;
 import android.view.View;
 
+
 public class First_Screen extends AppCompatActivity
 {
     @Override
@@ -25,14 +26,12 @@ public class First_Screen extends AppCompatActivity
         Permissions ( ) ;
     }
 
-    // هاد بتنفذ لما اكبس على زر تسجيل الدخول
     public void Go_to_Sing_In ( View view )
     {
         Intent intent = new Intent ( this , Sing_in_Activity. class ) ;
         startActivity ( intent ) ;
     }
 
-    // هاد بتنفذ لما اكبس على زر انشاء حساب
     public void Go_to_Sing_Up ( View view )
     {
         Intent intent = new Intent ( this , Sign_Up_Activity. class ) ;

@@ -4,7 +4,6 @@ import com.example.mamababyjourney.databinding.ActivityMotherSectionMotherActivi
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import de.hdodenhof.circleimageview.CircleImageView;
 import com.example.mamababyjourney.Splash_Activity;
@@ -18,25 +17,21 @@ import android.annotation.SuppressLint;
 import androidx.navigation.Navigation;
 import com.example.mamababyjourney.R;
 import com.squareup.picasso.Picasso;
-
-import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.content.Intent;
-import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.os.Bundle;
 
-@SuppressWarnings ( { "DataFlowIssue" , "SpellCheckingInspection" , "RedundantSuppression" , "ConstantConditions" , "deprecation" } )
+@SuppressWarnings ( { "DataFlowIssue" , "SpellCheckingInspection" , "RedundantSuppression" , "ConstantConditions" , "deprecation" , "UnnecessaryUnicodeEscape"  } )
 @SuppressLint ( { "InflateParams" , "SetTextI18n" } )
 public class Mother_Activity extends AppCompatActivity
 {
-    // هاد المتغير انا مستعمله عشان اعمل action bar مخصص للشاشات بدل ال action bar الي بحطه النظام
     private AppBarConfiguration mAppBarConfiguration ;
 
     private ActivityMotherSectionMotherActivityBinding binding ;
 
-    // هاد الي بحزن فيه رابط الصوره الي بجيبه من ملف الام من الفايرستور
     String image_url  ;
 
     @Override
@@ -55,7 +50,6 @@ public class Mother_Activity extends AppCompatActivity
         Get_Mother_Data ( ) ;
     }
 
-    // هاد الفنكشن وظفيته يجهز الي الشاشة عشان اعرض فيها ال fragment الخاصين بقسم الام
     private void Mother_section_Initialization ( )
     {
 
@@ -73,7 +67,6 @@ public class Mother_Activity extends AppCompatActivity
         NavigationUI . setupWithNavController (binding . MotherNavView ,navController ) ;
     }
 
-    // هاد الفنكشن حاولت افهم من chat GPT متى بتنفذ و شو بعمل الكود الي جواته ما فهمت و لا عرفت لهيك انسيكي منه
     @Override
     public boolean onSupportNavigateUp ( )
     {
@@ -81,71 +74,59 @@ public class Mother_Activity extends AppCompatActivity
         return NavigationUI . navigateUp (navController ,mAppBarConfiguration ) || super . onSupportNavigateUp ( ) ;
     }
 
-    // هاد الفنكشن الي بجيب الي بيانات الام من الفايرستور
     private void Get_Mother_Data ( )
     {
-        // هون انا بجيب الهيدر تاع ال nevgation drawer عشان اعدل على قيم مكوناته
         View childLayout = getLayoutInflater ( ) . inflate (R . layout . layouts_mother_section_mother_activity_nav_header_layout ,null ) ;
+
         CircleImageView user_Profile_Image = childLayout . findViewById (R . id . User_Profile_Image ) ;
 
         TextView User_Email_Tv = childLayout . findViewById (R . id . User_Email_Tv ) ;
         TextView username_Tv   = childLayout . findViewById (R . id . Username_Tv ) ;
 
-        // هون بقله اذا دخلنا شاشة الام الي احنا فيها هلا من شاشة تسجيل الدخول نفذ الي جوا الاف غير هيك نفذ الي جوا ال else
-        if ( getIntent ( ) . getExtras ( ) . getString ( "action" ) . equals ( "signup" ) )
+        if ( getIntent ( ) . getExtras ( ) . getString ("action" ) . equals ( "signup" ) )
         {
-            // هون انا بجيب القيم الي اجتني من شاشة انشاء الحساب مع ال intent و بحطها في مكونات الشاشه
-            username_Tv    . setText ( "الاسم\u0020 : \u0020" + getIntent ( ) . getExtras ( ) . getString ( "name" ) ) ;
-            User_Email_Tv  . setText ( getIntent ( ) . getExtras ( ) . getString ( "email" ) ) ;
+            username_Tv    . setText ( "الاسم\u0020 : \u0020" + getIntent ( ) . getExtras ( ) . getString ("name" ) ) ;
+            User_Email_Tv  . setText ( getIntent ( ) . getExtras ( ) . getString ("email" ) ) ;
 
-            // هون بشيك اذا تم اختيار صوره من الاستديو رح استعملها ما تم اختيار اي صوره رح احط الصوره الافتراضيه
-            if ( getIntent ( ) . getExtras ( ) . getString ( "image form ?" ) . equals ( "uri" ) )
-                Picasso . get ( ) . load ( getIntent ( ) . getData ( ) ) . into ( user_Profile_Image );
+            if ( getIntent ( ) . getExtras ( ) . getString ("image form ?" ) . equals ( "uri" ) )
+                Picasso . get ( ) . load (getIntent ( ) . getData ( ) ) . into (user_Profile_Image );
             else
                 user_Profile_Image.setImageResource ( R . drawable . images_female_user_image ) ;
 
-            // هون بضيف الهيدر تبع ال nevgation drawer عليها
-            binding . MotherNavView . addHeaderView ( childLayout ) ;
+            binding . MotherNavView . addHeaderView (childLayout ) ;
         }
         else
         {
-            // هسه هون انا بروح على الفايرستور و بجيب المعلومات الي في documnet الام وبستعملها
             FirebaseFirestore . getInstance ( )
             .collection ("Mothers" )
             .document   (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) )
-            .get ( ) . addOnCompleteListener ( task ->
+            .get ( ) . addOnCompleteListener (task ->
             {
                 if ( task . isSuccessful ( ) )
                 {
-                    DocumentSnapshot document = task . getResult ( ) ;
 
-                    if ( document . exists ( ) )
+                    if ( task . getResult ( ) . exists ( ) )
                     {
-                        // هون انا بجيب القيم الي اجتني من الفايرستور و بحطها في مكونات الشاشه
-                        username_Tv   . setText ( "الاسم\u0020 : \u0020" + document . get ( "name" ) ) ;
-                        User_Email_Tv . setText ( document . get ( "email" ) + "" ) ;
+                        username_Tv   . setText ( "الاسم\u0020 : \u0020" + task . getResult ( ) . get ( "name" ) ) ;
+                        User_Email_Tv . setText ( task . getResult ( ) . get ( "email" ) + "" ) ;
 
-                        // هون بخزن في هاد image_url المتخير قيمته الي جبتها من الفايرستور والي هو رابط الصوره الي اختارها المستخدم من الاستديو
-                        image_url = document . get ( "image Url" ) + "" ;
+                        image_url = task . getResult ( ) . get ( "image Url" ) + "" ;
 
-                        // هون بشيك اذا كان هاد image_url المتغير فاضي يعني ما تم اختيار صوره من الاستديو وقتها بنفذ الي جوا الاف عير هيك رح ينفذ الي جوا ال else
                         if ( image_url . isEmpty ( ) || image_url . equals ( null )  )
                         {
-                            /*
-                               هون بشيك اذا كانت الطريقه الي انعمل فيها الحساب في التطبيق باستخدام قوقل بقله جيب الي صورة الايميل
+                            if ( task . getResult ( ) . get ( "signUp Method" ) . toString ( ) . equals ( "Sing Up By Google" ) )
 
-                                الي تم استخدامه لعمل الحساب في التطبيق و حطه كصور للمستخدم غير هيك حط الصوره الافتراضيه
-                            */
-                            if ( document . get ( "signUp Method" ) . toString ( ) . equals ( "Sing Up By Google" ) )
-                                Picasso . get ( ) . load (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getPhotoUrl ( ) ) . into ( user_Profile_Image ) ;
+                                 Picasso . get ( ) . load (FirebaseAuth . getInstance ( ) . getCurrentUser ( )
+                                .getPhotoUrl ( ) ) . into (user_Profile_Image ) ;
+
                             else
                                 user_Profile_Image . setImageResource ( R . drawable . images_female_user_image ) ;
                         }
                         else
-                            // هون اذا ما كان هاد image_url المتغير فاضي يعني مخزن فيه رابط الصوره الي تم اختياره من الاستديو عند انشاء الحساب بقله جيبها من الفايرستورج و حطها كصوره للسمتخدم
-                            FirebaseStorage . getInstance ( ) . getReferenceFromUrl ( image_url ) . getDownloadUrl ( ) . addOnSuccessListener ( uri -> Picasso . get ( ) . load ( uri ) . into ( user_Profile_Image ) ) ;
+                            FirebaseStorage . getInstance ( ) . getReferenceFromUrl (image_url ) . getDownloadUrl ( )
+                            .addOnSuccessListener (uri -> Picasso . get ( ) . load ( uri ) . into (user_Profile_Image ) ) ;
 
-                        binding . MotherNavView . addHeaderView ( childLayout ) ;
+                        binding . MotherNavView . addHeaderView (childLayout ) ;
                     }
                 }
             });
