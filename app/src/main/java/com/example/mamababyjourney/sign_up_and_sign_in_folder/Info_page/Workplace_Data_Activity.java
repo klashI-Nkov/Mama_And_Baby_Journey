@@ -4,12 +4,12 @@ import com.example.mamababyjourney.databinding.ActivitySignUpAndSignInFolderInfo
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import android.app.ProgressDialog;
 import android.content.res.ColorStateList;
 import android.annotation.SuppressLint;
 import com.example.mamababyjourney.R;
 import androidx.annotation.Nullable;
 import android.widget.ArrayAdapter;
+import android.app.ProgressDialog;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.TextView;
@@ -54,7 +54,6 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
 
 
 
-
     public void Go_To_Map_BTN ( View view )
     {
         Intent intent = new Intent (this , Map_Activity . class ) ;
@@ -90,13 +89,11 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
     {
         if
         (
-            /*
             ! binding . WorkPlaceLocationCoordinatesTv . getText ( ) . toString ( ) . contains ( "على" ) &&
-            ! binding . DaysAndWorkingHoursTv  . getText ( ) . toString ( ) . contains ( "قم"  ) &&
-            ! binding . WorkPlaceAddress             . getText ( ) . toString ( ) . isEmpty  (       ) &&
-            ! binding . WorkPlaceName                . getText ( ) . toString ( ) . isEmpty  (       ) &&
-            ! binding . PhoneNumber                  . getText ( ) . toString ( ) . isEmpty  (       )*/
-            true
+            ! binding . DaysAndWorkingHoursTv          . getText ( ) . toString ( ) . contains ( "قم"  ) &&
+            ! binding . WorkPlaceAddress               . getText ( ) . toString ( ) . isEmpty  (       ) &&
+            ! binding . WorkPlaceName                  . getText ( ) . toString ( ) . isEmpty  (       ) &&
+            ! binding . PhoneNumber                    . getText ( ) . toString ( ) . isEmpty  (       )
         )
         {
 
@@ -124,7 +121,6 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
         (
             "يرجى التاكد بانك قمت بتعبئة جميع البيانات المطلوبه ومن ضمنها ايام و ساعات العمل و مكان " + workPlace_Type + " على خرائط جوجل"
         );
-
     }
 
     @Override
@@ -142,7 +138,6 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
             "لكن اذا قمت باي تعديل يجيب ان تقوم بتعديل اوقات العمل بالشكل الصحيح ثم قم بالضغط على زر الحفظ"
         );
     }
-
 
 
 
@@ -315,9 +310,7 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
         // set text for add days and working hours BTN
         binding . AddDaysAndWorkingHoursBTN . setText ( "تعديل ايام و ساعات العمل" ) ;
 
-
-
-        progressDialog. dismiss ( ) ;
+        progressDialog . dismiss ( ) ;
     }
 
     private void Snack_Bar ( String Message )
@@ -354,8 +347,6 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
 
         snackbar . show ( ) ;
     }
-
-
 
 
 
@@ -460,6 +451,8 @@ public class Workplace_Data_Activity extends AppCompatActivity implements Adapte
     {
 
     }
+
+
 }
 
 

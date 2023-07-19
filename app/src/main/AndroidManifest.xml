@@ -53,7 +53,7 @@
         <!-- Doctor Data Activity -->
         <activity
             android:name=".sign_up_and_sign_in_folder.Info_page.Doctor_Data_Activity"
-            android:exported="true" />
+            android:exported="false" />
 
         <!-- Workplace Data Activity -->
         <activity

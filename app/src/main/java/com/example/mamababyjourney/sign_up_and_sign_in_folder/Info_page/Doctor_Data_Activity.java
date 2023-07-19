@@ -2,24 +2,23 @@ package com.example.mamababyjourney.sign_up_and_sign_in_folder.Info_page;
 
 import com.example.mamababyjourney.databinding.ActivitySignUpAndSignInFolderInfoFolderDoctorDataActivityBinding;
 import com.example.mamababyjourney.doctor_section.Doctor_Activity;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.concurrent.CompletableFuture;
 import com.google.firebase.auth.FirebaseAuth;
+import androidx.core.content.ContextCompat;
+import android.content.res.ColorStateList;
 import android.annotation.SuppressLint;
 import com.example.mamababyjourney.R;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.app.ProgressDialog;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.graphics.Color;
+import android.view.ViewGroup;
 import android.content.Intent;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -61,6 +60,9 @@ public class Doctor_Data_Activity extends AppCompatActivity
 
         views = new ArrayList < > ( ) ;
     }
+
+
+
 
     public void Add_Workplace_BTN ( View view )
     {
@@ -255,7 +257,6 @@ public class Doctor_Data_Activity extends AppCompatActivity
 
     private void Delete_Workplace ( int id , View childLayout)
     {
-
         CompletableFuture < Void > delete_Workplace_Task = new CompletableFuture < > ( ) ;
 
         String doctor_Document_Id = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ;
@@ -263,7 +264,7 @@ public class Doctor_Data_Activity extends AppCompatActivity
         FirebaseFirestore . getInstance ( )
         .collection ("Doctors/" + doctor_Document_Id + "/workplaces" )
         .document   ("workPlace Number " + id )
-        . delete ( ) . addOnCompleteListener (task ->
+        .delete ( ) . addOnCompleteListener (task ->
         {
             if ( task . isComplete ( ) )
                 delete_Workplace_Task . complete (null ) ;
@@ -286,7 +287,6 @@ public class Doctor_Data_Activity extends AppCompatActivity
                 }
 
                Firebase_Functions_Class . Update_Id ("Delete" ) ;
-
            }
         });
     }
@@ -364,9 +364,7 @@ class Firebase_Functions_Class
 
     public static void Get_workPlace_Data ( int id )
     {
-
         String doctor_Document_Id = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ;
-
 
         FirebaseFirestore . getInstance ( )
         .collection ( "Doctors/" + doctor_Document_Id + "/workplaces" )
@@ -413,7 +411,7 @@ class Firebase_Functions_Class
 
                     Doctor_Data_Activity . get_workPlace_Data_Object_Task . complete (null ) ;
                 }
-        } ) ;
+        });
     }
 
     public static void Update_workPlace_Data ( int id )
