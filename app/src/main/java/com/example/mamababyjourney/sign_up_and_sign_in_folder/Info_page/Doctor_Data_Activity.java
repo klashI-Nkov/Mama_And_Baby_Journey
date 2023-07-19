@@ -2,15 +2,22 @@ package com.example.mamababyjourney.sign_up_and_sign_in_folder.Info_page;
 
 import com.example.mamababyjourney.databinding.ActivitySignUpAndSignInFolderInfoFolderDoctorDataActivityBinding;
 import com.example.mamababyjourney.doctor_section.Doctor_Activity;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.firebase.firestore.SetOptions;
+import java.util.concurrent.CompletableFuture;
+import com.google.firebase.auth.FirebaseAuth;
 import android.annotation.SuppressLint;
 import com.example.mamababyjourney.R;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.app.ProgressDialog;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.content.Intent;
@@ -20,15 +27,22 @@ import java.util.HashMap;
 import android.view.View;
 import android.os.Bundle;
 import java.util.List;
+import java.util.Map;
 
-@SuppressWarnings ( { "deprecation" , "ConstantConditions" , "SpellCheckingInspection" } )
+@SuppressWarnings ( { "deprecation" , "ConstantConditions" , "SameParameterValue" , "SpellCheckingInspection" , "RedundantSuppression" } )
 @SuppressLint ( {"InflateParams" , "SetTextI18n" } )
 public class Doctor_Data_Activity extends AppCompatActivity
 {
-
-    ActivitySignUpAndSignInFolderInfoFolderDoctorDataActivityBinding binding;
+    private ActivitySignUpAndSignInFolderInfoFolderDoctorDataActivityBinding binding;
 
     public static int id = 1 ;
+
+    private List < View > views ;
+
+    public static ProgressDialog progressDialog ;
+
+    public static CompletableFuture < Void > get_workPlace_Data_Object_Task = new CompletableFuture < > ( ) ;
+
 
     @Override
     protected void onCreate ( Bundle savedInstanceState )
@@ -41,65 +55,17 @@ public class Doctor_Data_Activity extends AppCompatActivity
         binding = ActivitySignUpAndSignInFolderInfoFolderDoctorDataActivityBinding . inflate ( getLayoutInflater ( ) ) ;
 
         setContentView ( binding . getRoot ( ) ) ;
+
+        progressDialog = new ProgressDialog ( this );
+        progressDialog . setMessage ( "يرجى الانتظار" ) ;
+
+        views = new ArrayList < > ( ) ;
     }
 
     public void Add_Workplace_BTN ( View view )
     {
-        /*
-            طيب مبدئيا هاد الفنشكن بشتغل نفس هدول الفنكشنين
-            public void Go_to_Sing_In ( View view )
-            public void Go_to_Sing_Up ( View view )
-
-            والي موجودين في كود الجافا ل اول شاشة والي هي ال First_screen
-
-            لكن في اختلاف صغير و كبير بنفس الوقت بينهم وبين طريقة شغلهم
-
-            لو تروحي على كلاس الجافا الخاص بال First_screen
-
-            وتروحي على الفنكشنين الي ذكرتهم بتلاقي نفس الشي الي انا عامله هون لكن لو تدققي
-
-            بتلاقي اني مستعمل startActivity وفي هاد الفنكشن الي احنا فيه هسه مستعمل
-             startActivityForResult
-
-            ومعطيها مع ال intent الرقم 1 و بعبر عن قيمه لمتغير اسمه requestCode
-
-            طيب تعالي هلا اشرح الك بالتفصيل شو الفرق بين startActivityForResult و بين startActivity
-
-            نبلش بالسهل منهم و الي ما بده شرح كثير ال startActivity ببساطه بتنقلنا للشاشه
-            الي حددناها في ال intent والي بتاخده startActivity
-
-            اما ال  startActivityForResult هي بتشغل الشاشة الي حددناها في ال intent +
-            انها بتستنى الشاشه الي اشتغلت والي هي شاشة البيانات في حالتنا هون ترجع قيمه للشاشه الحالية
-            والي هي في حالتنا هون شاشة عرض البيانات
-
-            طيب هسه بتحكي بعقلك فهمت الفرق بينهم شو بالنسبه لللرقم 1
-
-            انا بقلك شو بالنسبة للرقم 1 و لشو وبدي اوصلك الفكره عن طريق مثال
-
-            هسه مش في الدوائر الحكوميه او المعاملات في الجامعه بكون الها ارقام عشان يقدرو يرجعو الها بس يحتاجوها
-
-            هون نفس القصه الرقم 1 بوديه للشاشه الي رح ينقلنا ال intent الها
-
-            ليه بنوديه الها لانه ي منار مو قلنا ال startActivityForResult بتشغل الشاشه الي حددناها في ال intent و بتستنى منها ترجع نتيجه او قيمه
-
-            هاي القيمه هي مثل المعامله الي حكيت عنها في المثال لازم يكون في الها رقم عشان لما بدنا نستخرج البيانات من النتيجه الي رجعت النا بدنا نكون عارفين شو رقم النتيجه الي بدنا ناخد منها البيانات
-        */
         Intent intent = new Intent (this ,Workplace_Data_Activity . class ) ;
-
-        /*
-            هون باستعمال المتغير intent استدعينا فننكشن ال putExtra و الي وظيفته باختصار هي انه
-            ينقل الداتا من شاشه لشاشه اخرى و في حالتنا هون احنا بنبعث داتا للشاشة تعبئة بيانات مكان العمل
-
-            وباخد متغيرين الاول الي هو ال name و الثاني الي هو ال value
-
-            وال name بمثل اشي اسمه ال key او المفتاح وهاد بنستعمله في الشاشة الي بدنا نبعث الها الداتا و الي
-
-            هي الخارطه عشان نحصل ال value الي انبعثت عن طريق هاد الفنكشن
-
-            هاد السطر ببعت داتا مع ال intent لشاشة تعبئة بيانات مكان العمل عشان لما ادحلها من خلال هاي المسج او الداتا اعرف انه دخلتها عشان اضيف داتا و انفذ الاكواد الي بدي تتنفذ لما ادخل الشاشه عشان اضيف داتا
-         */
         intent . putExtra ("Action" ,"Add" ) ;
-
         startActivityForResult ( intent ,1 ) ;
     }
 
@@ -113,9 +79,11 @@ public class Doctor_Data_Activity extends AppCompatActivity
     {
         if ( binding . AddWorkplaceBTN . getText ( ) . toString ( ) . contains ( "اخر" ) )
         {
-            Intent intent = new Intent (this , Doctor_Activity. class );
-            startActivity ( intent ) ;
+            Intent intent = new Intent (this ,Doctor_Activity. class );
+            startActivity (intent ) ;
         }
+        else
+            Snack_Bar ("يجب اضافة مكان عمل واحد على الاقل قبل المتابعة" );
     }
 
 
@@ -124,65 +92,36 @@ public class Doctor_Data_Activity extends AppCompatActivity
     @Override
     protected void onActivityResult ( int requestCode , int resultCode , @Nullable Intent data )
     {
-
         super . onActivityResult (requestCode ,resultCode ,data ) ;
 
         if ( resultCode == RESULT_OK )
         {
             switch ( requestCode )
             {
-                // هاد ال case بتنفذ لما نضيف مكان عمل جديد يعني ال requestCode الي بروح لشاشة تعبئة بيانات مكان العمل و برجع لهاي الشاشه هو 1
+                // هاد ال case بتنفذ لما نضيف مكان عمل جديد
                 case 1 :
                 {
-
-                    /*
-                        هسه الي بصير هون داخل الاف هو انه بجهز الي لوحة عرض بيانات مكان العمل عشان اعرض فيها البيانات الي اختارها الدكتور
-
-                        هسه كل مكان عمل بنضاف بنعمل اله لوحة عرض خاصه فيه بنعرض فيها البيانات تبعته وهاي ال list بخزن فيها هدول اللوحات
-                    */
-                    List < View > views = new ArrayList < > ( ) ;
-
-                    // هسه ي منار انا لما بضيف لوحة العرض بدي زر الحفظ و اضافة يظهرو تحت اللوحه مش قبلها لهيك عرفت هدول المتغيريين الي تحت عشان اخليهم اخزن فيه زر الحفظ و زر اضافة مكان العمل
                     AppCompatButton save_Doctor_Data_BTN = findViewById (R . id . Save_Doctor_Data_BTN ) ;
                     AppCompatButton add_Workplace_BTN    = findViewById (R . id . Add_Workplace_BTN    ) ;
 
-                    // هسه هاد المتغير انا مخزن فيه ال LinearLayout الي بدي اضيف فيها اللوحه
                     LinearLayout parlLayout = findViewById (R . id . par ) ;
 
-                    /*
-                        هسه اللوحه انا ي منار عامل لوحه وحده و هي عباره عن شاشة عاديه لكنها مش مربوطه بشي و كل ما
+                    View childLayout = getLayoutInflater ( )
+                    .inflate (R . layout .layouts_sign_up_and_sign_in_folder_info_folder_workplace_preview_panel_layout ,null ) ;
 
-                        بدي اضيف لوحه بجيب النسخه الي انا عاملها و بعمل منها نسخه جديده وهاد السطر الي بعمل هاد الشي
-                    */
-                    View childLayout = getLayoutInflater ( ) . inflate (R . layout .layouts_sign_up_and_sign_in_folder_info_folder_workplace_preview_panel_layout ,null ) ;
-
-                    /*
-                        هسه قبل ما اضيف اللوحه عشان اخلي زر الحفظ و زر اضافة مكان العمل تحت اللوحه لازم احذفهم من الشاشه عشان اضيفهم
-
-                        بعد ما اضيف اللوحه الي عملتها بحيث يكونو تحتها والي بعمله هدول السطرين الي تحت انهم بحذفو هدول الازرار
-                    */
-                    parlLayout . removeView (add_Workplace_BTN    ) ;
                     parlLayout . removeView (save_Doctor_Data_BTN ) ;
+                    parlLayout . removeView (add_Workplace_BTN    ) ;
 
-                    // هون بستدعي الفنكشن الي بعبي الي بيانات مكان العمل في اللوحه
-                    WorkPlace_Preview_panel_Initialization ( childLayout , data ) ;
+                    WorkPlace_Preview_panel_Initialization (childLayout ,data ,id ,"Add" ) ;
 
-                    // هون بعطي اللوحه tag يعتبر مثل ال id عشان اقدر اوصل الها لما احتاجها
-                    childLayout . setTag ( "WorkPlace Number " + id ) ;
+                    childLayout . setTag ("WorkPlace Number " + id ) ;
 
-                    // هون بضيف اللوحه الي عملتها على ال list الي اسمها views
                     views . add ( childLayout ) ;
 
-                    /*
-                         هون داخل الاف بقله اذا كان عندي بس لوحه وحده ضيفها مباشره على الشاشه
-
-                         اما اذا كان في اكثر من لوحه وحده ادخل جوا ال else
-                    */
                     if ( views . size ( ) == 1 )
                         parlLayout . addView ( childLayout ) ;
                     else
                     {
-
                         /*
                             هسه الي بصير هون داخل ال else هو انه عنا for each بتلف على ال list الي فيها كل اللوحات والي بصر داخل
 
@@ -197,11 +136,9 @@ public class Doctor_Data_Activity extends AppCompatActivity
                         }
                     }
 
-                    // هون بعد ما ضفنا اللوحه بنرجع بنضيف الازرار الي مسحناها قبل ما نضيف اللوحه بحيث انهم يكونو تحت اللوحه
                     parlLayout . addView (add_Workplace_BTN    ) ;
                     parlLayout . addView (save_Doctor_Data_BTN ) ;
 
-                    // و اخر شي بصير هاد السطر الي بغير ال text الي في زر اضافة مكان العمل من "اضافة مكان العمل" ل "اضافة مكان عمل اخر" عشان افهم الدكتور انه لسه عنده امكانيه انه يضيف مكان عمل ثاني غير المكان الي اضافه اول مره
                     binding . AddWorkplaceBTN . setText ( "اضافة مكان عمل اخر" ) ;
 
                     Firebase_Functions_Class . Add_workPlace_Data ( ) ;
@@ -209,43 +146,14 @@ public class Doctor_Data_Activity extends AppCompatActivity
                     break ;
                 }
 
-                // هاد بتنفذ لما نعدل على بيانات مكان عمل ضفناه يعني ال requestCode الي بروح لشاشة تعبئة بيانات مكان العمل و برجع لهاي الشاشه هو 2
+                // هاد بتنفذ لما نعدل على بيانات مكان عمل ضفناه
                 case 2 :
                 {
                     int id = data . getExtras ( ) . getInt ( "Id" ) ;
 
-                    WorkPlace_Data workPlace_Data_Object = WorkPlace_Data . workPlace_Data_Object ;
-
-                    String workPlace_Type = workPlace_Data_Object . workPlace_Type ;
-
-                    TextView textView ;
-
                     View childLayout = binding . par . findViewWithTag ("WorkPlace Number " +  id  ) ;
 
-                    textView = childLayout . findViewWithTag ("Name Text View" ) ;
-                    textView . setText ( "اسم " + workPlace_Type + " : " + workPlace_Data_Object . workPlace_Name ) ;
-
-                    textView = childLayout . findViewWithTag ("Address Text View" ) ;
-                    textView . setText ( "عنوان " + workPlace_Type + " : " + workPlace_Data_Object . workPlace_Address ) ;
-
-                    textView = childLayout . findViewWithTag ("Phone Number Text View" ) ;
-                    textView . setText
-                    (
-                        workPlace_Type . equals ( "العيادة" ) ?
-
-                        "رقم هاتف العيادة" + " : " +  workPlace_Data_Object . phoneNumber
-                        :
-                        "رقم الهاتف" + " : " + workPlace_Data_Object . phoneNumber
-                    ) ;
-
-                    textView = childLayout . findViewWithTag ("WorkPlace Location coordinates Text View" ) ;
-                    textView . setText ( "احداثيات مكان " + workPlace_Type + " التي حددتها هي" + "\n\n" + workPlace_Data_Object . latitude + " , " + workPlace_Data_Object . longitude ) ;
-
-                    textView = childLayout . findViewWithTag ("Days And Working Hours Text View" ) ;
-                    textView . setText ( data . getExtras ( ) . getString ( "days And Working Hours Text" ) ) ;
-
-                    AppCompatButton button = childLayout . findViewWithTag ("Edit Workplace Data BTN " + id ) ;
-                    button . setText ( "تعديل بيانات " + workPlace_Type ) ;
+                    WorkPlace_Preview_panel_Initialization (childLayout ,data ,id ,"Edit" ) ;
 
                     Firebase_Functions_Class . Update_workPlace_Data (id ) ;
 
@@ -255,13 +163,11 @@ public class Doctor_Data_Activity extends AppCompatActivity
         }
     }
 
-    private void WorkPlace_Preview_panel_Initialization (View childLayout ,Intent data )
+    private void WorkPlace_Preview_panel_Initialization (View childLayout ,Intent data , int id ,String action )
     {
-
         WorkPlace_Data workPlace_Data_Object = WorkPlace_Data . workPlace_Data_Object ;
 
         String workPlace_Type = workPlace_Data_Object . workPlace_Type ;
-
 
         TextView textView ;
 
@@ -286,70 +192,164 @@ public class Doctor_Data_Activity extends AppCompatActivity
 
 
         textView = childLayout . findViewWithTag ("WorkPlace Location coordinates Text View" ) ;
-        textView . setText ( "احداثيات مكان " + workPlace_Type + " التي حددتها هي" + "\n\n" + workPlace_Data_Object . latitude + " , " + workPlace_Data_Object . longitude ) ;
+        textView . setText
+        ( "احداثيات مكان " + workPlace_Type + " التي حددتها هي" + "\n\n" + workPlace_Data_Object . latitude + " , " + workPlace_Data_Object . longitude ) ;
 
 
         textView = childLayout . findViewWithTag ("Days And Working Hours Text View" ) ;
-        textView . setText ( data . getExtras ( ) . getString ( "days And Working Hours Text" ) ) ;
+        textView . setText ( data . getExtras ( ) . getString ("days And Working Hours Text" ) ) ;
 
-        AppCompatButton button = childLayout . findViewWithTag ("Edit Workplace Data BTN" ) ;
-        button . setTag ( "Edit Workplace Data BTN " + id ) ;
 
-        button . setText ( "تعديل بيانات " + workPlace_Type ) ;
-
-        button . setOnClickListener ( V ->
+        if ( action . equals ( "Add" ) )
         {
+            AppCompatButton Edit_Workplace_Data_BTN = childLayout . findViewWithTag ("Edit Workplace Data BTN" ) ;
+            Edit_Workplace_Data_BTN . setTag ( "Edit Workplace Data BTN " + id ) ;
+            Edit_Workplace_Data_BTN . setText ( "تعديل بيانات " + workPlace_Type ) ;
 
-            int id = Integer . parseInt
-            ( button . getTag ( ) . toString ( ) . substring ( button . getTag ( ) . toString ( ) . length ( ) - 1 ) ) ;
 
-            Intent intent = new Intent (this , Workplace_Data_Activity . class ) ;
-            intent . putExtra ("Action" ,"Edit" ) ;
-            intent . putExtra ("Id"     ,id     ) ;
+            AppCompatButton delete_Workplace_Data_BTN = childLayout . findViewWithTag ("Delete Workplace BTN" ) ;
+            delete_Workplace_Data_BTN . setTag ( "Delete Workplace BTN " + id ) ;
+            delete_Workplace_Data_BTN . setText ( "حذف مكان العمل" ) ;
 
-            startActivityForResult ( intent ,2 ) ;
+
+            Edit_Workplace_Data_BTN . setOnClickListener ( V ->
+            {
+                progressDialog . show ( ) ;
+
+                int Id = Integer . parseInt (Edit_Workplace_Data_BTN . getTag ( ) . toString ( )
+                .substring (Edit_Workplace_Data_BTN . getTag ( ) . toString ( ) . length ( ) - 1 ) ) ;
+
+                Firebase_Functions_Class . Get_workPlace_Data (Id ) ;
+
+
+                get_workPlace_Data_Object_Task . thenAccept (result ->
+                {
+                    if ( get_workPlace_Data_Object_Task . isDone ( ) )
+                    {
+                        Intent intent = new Intent (this , Workplace_Data_Activity . class ) ;
+
+                        intent . putExtra ("Action" ,"Edit" ) ;
+                        intent . putExtra ("Id"     ,id     ) ;
+
+                        progressDialog . dismiss ( ) ;
+
+                        startActivityForResult ( intent ,2 ) ;
+                    }
+                });
+            });
+
+            delete_Workplace_Data_BTN . setOnClickListener ( v ->
+            {
+                progressDialog . show ( ) ;
+
+                int Id = Integer . parseInt (delete_Workplace_Data_BTN . getTag ( ) . toString ( )
+                .substring (delete_Workplace_Data_BTN . getTag ( ) . toString ( ) . length ( ) - 1 ) ) ;
+
+                View Layout = binding . par . findViewWithTag ("WorkPlace Number " +  id  ) ;
+
+                Delete_Workplace (Id ,Layout ) ;
+            } );
+        }
+
+    }
+
+    private void Delete_Workplace ( int id , View childLayout)
+    {
+
+        CompletableFuture < Void > delete_Workplace_Task = new CompletableFuture < > ( ) ;
+
+        String doctor_Document_Id = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ;
+
+        FirebaseFirestore . getInstance ( )
+        .collection ("Doctors/" + doctor_Document_Id + "/workplaces" )
+        .document   ("workPlace Number " + id )
+        . delete ( ) . addOnCompleteListener (task ->
+        {
+            if ( task . isComplete ( ) )
+                delete_Workplace_Task . complete (null ) ;
+        });
+
+        delete_Workplace_Task . thenAccept ( result ->
+        {
+           if ( delete_Workplace_Task . isDone ( ) )
+           {
+               LinearLayout parlLayout = findViewById (R . id . par ) ;
+
+                parlLayout . removeView (childLayout ) ;
+
+                views . remove (childLayout ) ;
+
+                for ( int i = 0 ; i < views . size ( ) ; i++ )
+                {
+                    TextView text = views . get ( i ) . findViewWithTag ("Workplace Num" ) ;
+                    text . setText ( "مكان العمل " + ( i + 1 ) ) ;
+                }
+
+               Firebase_Functions_Class . Update_Id ("Delete" ) ;
+
+           }
         });
     }
+
+    private void Snack_Bar ( String Message )
+    {
+
+        Snackbar snackbar = Snackbar . make ( binding . Constraint , Message , 7000 ) ;
+
+        int color = Color.parseColor ( "#292929" ) ;
+
+        snackbar . getView ( ) . setBackgroundTintList ( ColorStateList. valueOf (color ) ) ;
+
+        View snackbarView = snackbar . getView ( ) ;
+        TextView textView = snackbarView . findViewById ( com . google . android . material . R . id . snackbar_text ) ;
+
+        textView . setSingleLine ( false ) ;
+
+        textView . setTextColor ( ContextCompat. getColor ( this , R . color . white ) ) ;
+
+        textView . setTextSize ( 15 ) ;
+
+        textView . setTextAlignment ( View . TEXT_ALIGNMENT_CENTER ) ;
+
+        ViewGroup. MarginLayoutParams marginLayoutParams = ( ViewGroup.MarginLayoutParams ) snackbarView . getLayoutParams ( ) ;
+
+        marginLayoutParams . setMargins
+                (
+                        marginLayoutParams  . leftMargin  ,
+                        marginLayoutParams  . topMargin   ,
+                        marginLayoutParams . rightMargin ,
+                        65
+                ) ;
+
+        snackbarView . setLayoutParams ( marginLayoutParams ) ;
+
+        snackbar . show ( ) ;
+    }
+
 }
 
-@SuppressWarnings ( { "ConstantConditions" } )
+@SuppressWarnings ( { "ConstantConditions" , "unchecked" } )
 class Firebase_Functions_Class
 {
     public static void Add_workPlace_Data ( )
     {
-
-        // Add workPlace id to doctor data
-        HashMap < String , Object > data = new HashMap < > ( ) ;
-        data . put ( "workPlace ID" , Doctor_Data_Activity . id ) ;
-
-        FirebaseFirestore . getInstance ( )
-        .collection ("Doctors" )
-        .document   (FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) )
-        .set ( data , SetOptions . merge ( ) ) . addOnCompleteListener ( task ->
-        {
-            // Add workPlace data to doctor data
-            if ( task . isComplete ( ) )
-                Add_WorkPlace_Data_To_Doctor_Data ( ) ;
-        });
-    }
-
-    private static void Add_WorkPlace_Data_To_Doctor_Data ( )
-    {
-        WorkPlace_Data workPlace_Data_Object = WorkPlace_Data . workPlace_Data_Object ;
+        Doctor_Data_Activity . progressDialog . show ( ) ;
 
         String doctor_Document_Id = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ;
 
+        WorkPlace_Data workPlace_Data_Object = WorkPlace_Data . workPlace_Data_Object ;
+
         HashMap < String , Object > workPlace_Data = new HashMap < > ( ) ;
 
-        workPlace_Data . put ( "days_And_Working_Hours_Objects_List" ,   workPlace_Data_Object . days_And_Working_Hours_Objects_List ) ;
-        workPlace_Data . put ( "workPlace_Type_Index_In_Spinner"     ,   workPlace_Data_Object . workPlace_Type_Index_In_Spinner     ) ;
+        workPlace_Data . put ( "days And Working Hours Objects List" , workPlace_Data_Object . days_And_Working_Hours_Objects_List ) ;
+        workPlace_Data . put ( "workPlace Type Index In Spinner"     , workPlace_Data_Object . workPlace_Type_Index_In_Spinner     ) ;
 
         workPlace_Data . put ( "longitude" , workPlace_Data_Object . longitude  ) ;
         workPlace_Data . put ( "latitude"  , workPlace_Data_Object . latitude   ) ;
 
-        workPlace_Data . put ( "workPlace_Address" ,  workPlace_Data_Object . workPlace_Address ) ;
-        workPlace_Data . put ( "workPlace_Name"    ,  workPlace_Data_Object . workPlace_Name    ) ;
-        workPlace_Data . put ( "workPlace_Type"    ,  workPlace_Data_Object . workPlace_Type    ) ;
+        workPlace_Data . put ( "workPlace Address" ,  workPlace_Data_Object . workPlace_Address ) ;
+        workPlace_Data . put ( "workPlace Name"    ,  workPlace_Data_Object . workPlace_Name    ) ;
+        workPlace_Data . put ( "workPlace Type"    ,  workPlace_Data_Object . workPlace_Type    ) ;
         workPlace_Data . put ( "phoneNumber"       ,  workPlace_Data_Object . phoneNumber       ) ;
 
         FirebaseFirestore . getInstance ( )
@@ -358,8 +358,62 @@ class Firebase_Functions_Class
         .set ( workPlace_Data ) . addOnCompleteListener (task ->
         {
             if ( task . isComplete ( ) )
-                Update_Id ( ) ;
+                Update_Id ("Add" ) ;
         });
+    }
+
+    public static void Get_workPlace_Data ( int id )
+    {
+
+        String doctor_Document_Id = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ;
+
+
+        FirebaseFirestore . getInstance ( )
+        .collection ( "Doctors/" + doctor_Document_Id + "/workplaces" )
+        .document ( "workPlace Number " + id )
+        .get ( ) . addOnCompleteListener ( task ->
+        {
+            if ( task . isSuccessful ( ) )
+                if ( task . getResult ( ) . exists ( ) )
+                {
+
+                    ArrayList < Map < String, Object > > days_And_Working_Hours_Objects_List_From_Firebase
+                    = ( ArrayList < Map < String, Object > > ) task . getResult ( ) . get ( "days And Working Hours Objects List" ) ;
+
+                    List < Days_And_Working_Hours > days_And_Working_Hours_List_Objects = new ArrayList <> ( ) ;
+
+                    for ( int i = 0  ; i < days_And_Working_Hours_Objects_List_From_Firebase . size ( )  ; i++ )
+                    {
+                        Map < String, Object > days_And_Working_Hours_Object_From_Firebase = days_And_Working_Hours_Objects_List_From_Firebase . get ( i ) ;
+
+                        Days_And_Working_Hours days_And_Working_Hours_Object = new Days_And_Working_Hours ( ) ;
+
+                        days_And_Working_Hours_Object . from_AM_Or_PM = days_And_Working_Hours_Object_From_Firebase . get ( "from_AM_Or_PM" ) + "" ;
+                        days_And_Working_Hours_Object . to_AM_Or_PM   = days_And_Working_Hours_Object_From_Firebase . get ( "to_AM_Or_PM"   ) + "" ;
+                        days_And_Working_Hours_Object . from_Hour     = days_And_Working_Hours_Object_From_Firebase . get ( "from_Hour"     ) + "" ;
+                        days_And_Working_Hours_Object . to_Hour       = days_And_Working_Hours_Object_From_Firebase . get ( "to_Hour"       ) + "" ;
+                        days_And_Working_Hours_Object . day           = days_And_Working_Hours_Object_From_Firebase . get ( "day"           ) + "" ;
+
+                        days_And_Working_Hours_List_Objects . add ( days_And_Working_Hours_Object ) ;
+                    }
+
+
+                    WorkPlace_Data . workPlace_Data_Object . days_And_Working_Hours_Objects_List = days_And_Working_Hours_List_Objects ;
+
+                    WorkPlace_Data . workPlace_Data_Object . workPlace_Type_Index_In_Spinner = Integer . parseInt
+                    (task . getResult ( ) . get ( "workPlace Type Index In Spinner" ) + "" ) ;
+
+                    WorkPlace_Data . workPlace_Data_Object . longitude = Double . parseDouble (task . getResult ( ) . get ( "longitude" ) + "" ) ;
+                    WorkPlace_Data . workPlace_Data_Object . latitude  = Double . parseDouble (task . getResult ( ) . get ( "latitude"  ) + "" ) ;
+
+                    WorkPlace_Data . workPlace_Data_Object . workPlace_Address = task . getResult ( ) . get ( "workPlace Address" ) + "" ;
+                    WorkPlace_Data . workPlace_Data_Object . workPlace_Name    = task . getResult ( ) . get ( "workPlace Name"    ) + "" ;
+                    WorkPlace_Data . workPlace_Data_Object . workPlace_Type    = task . getResult ( ) . get ( "workPlace Type"    ) + "" ;
+                    WorkPlace_Data . workPlace_Data_Object . phoneNumber       = task . getResult ( ) . get ( "phoneNumber"       ) + "" ;
+
+                    Doctor_Data_Activity . get_workPlace_Data_Object_Task . complete (null ) ;
+                }
+        } ) ;
     }
 
     public static void Update_workPlace_Data ( int id )
@@ -369,15 +423,15 @@ class Firebase_Functions_Class
         String doctor_Document_Id = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ;
 
         HashMap < String , Object > workPlace_Data = new HashMap < > ( ) ;
-        workPlace_Data . put ( "days_And_Working_Hours_Objects_List" ,   workPlace_Data_Object . days_And_Working_Hours_Objects_List ) ;
-        workPlace_Data . put ( "workPlace_Type_Index_In_Spinner"     ,   workPlace_Data_Object . workPlace_Type_Index_In_Spinner     ) ;
+        workPlace_Data . put ( "days And Working Hours Objects List" , workPlace_Data_Object . days_And_Working_Hours_Objects_List ) ;
+        workPlace_Data . put ( "workPlace Type Index In Spinner"     , workPlace_Data_Object . workPlace_Type_Index_In_Spinner     ) ;
 
         workPlace_Data . put ( "longitude" , workPlace_Data_Object . longitude  ) ;
         workPlace_Data . put ( "latitude"  , workPlace_Data_Object . latitude   ) ;
 
-        workPlace_Data . put ( "workPlace_Address" ,  workPlace_Data_Object . workPlace_Address ) ;
-        workPlace_Data . put ( "workPlace_Name"    ,  workPlace_Data_Object . workPlace_Name    ) ;
-        workPlace_Data . put ( "workPlace_Type"    ,  workPlace_Data_Object . workPlace_Type    ) ;
+        workPlace_Data . put ( "workPlace Address" ,  workPlace_Data_Object . workPlace_Address ) ;
+        workPlace_Data . put ( "workPlace Name"    ,  workPlace_Data_Object . workPlace_Name    ) ;
+        workPlace_Data . put ( "workPlace Type"    ,  workPlace_Data_Object . workPlace_Type    ) ;
         workPlace_Data . put ( "phoneNumber"       ,  workPlace_Data_Object . phoneNumber       ) ;
 
         FirebaseFirestore . getInstance ( )
@@ -385,13 +439,26 @@ class Firebase_Functions_Class
         .document   ("workPlace Number " + id ) . update ( workPlace_Data ) ;
     }
 
-    public static void Update_Id ( )
+    public static void Update_Id (String action )
     {
         String doctor_Document_Id = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ;
 
         HashMap < String , Object > id = new HashMap < > ( ) ;
-        id . put ( "workPlace ID" , ++ Doctor_Data_Activity . id  ) ;
+
+        if ( action . equals ( "Add" ) )
+            id . put ( "workPlace ID" , ++ Doctor_Data_Activity . id  ) ;
+        else
+            id . put ( "workPlace ID" , -- Doctor_Data_Activity . id ) ;
+
 
         FirebaseFirestore . getInstance ( ) . collection ("Doctors" ) . document (doctor_Document_Id ) . update (id ) ;
+
+        if ( action . equals ( "Delete" ) )
+        {
+            id . put ( "workPlace ID" , Doctor_Data_Activity . id + 1  ) ;
+            FirebaseFirestore . getInstance ( ) . collection ("Doctors" ) . document (doctor_Document_Id ) . update (id ) ;
+        }
+
+        Doctor_Data_Activity . progressDialog . dismiss ( ) ;
     }
 }

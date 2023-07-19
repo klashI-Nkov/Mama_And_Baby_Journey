@@ -142,7 +142,7 @@
 
             <!-- ال Text View الخاص باحداثيات مكان العمل على الخارطه -->
             <TextView
-                android:id="@+id/WorkPlace_location_coordinates"
+                android:id="@+id/WorkPlace_location_coordinates_Tv"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
 
             <!-- ال Text View الخاص بعرض ايام و ساعات العمل -->
             <TextView
-                android:id="@+id/Days_And_Working_Hours_Text_View"
+                android:id="@+id/Days_And_Working_Hours_Tv"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

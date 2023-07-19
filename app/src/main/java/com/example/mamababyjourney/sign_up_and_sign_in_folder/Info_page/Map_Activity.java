@@ -36,14 +36,12 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.List;
 
-@SuppressWarnings ( { "unused" , "ConstantConditions" , "SpellCheckingInspection" } )
 
+@SuppressWarnings ( "ConstantConditions" )
 @SuppressLint ( "MissingPermission" )
 
 public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
 {
-
-    // اول شي المتغيرات الي مش حاط الها شرح في كومنت بتلاقي شرحها في الفنكشن الي انا مستعملها فيه و بكون عامل هيك لانه شرحها بكون طويل شوي
 
     private ConnectivityManager connectivity_Manager ;
 
@@ -53,10 +51,8 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
 
     private LocationManager location_Manager ;
 
-    // هدول المتغيرين وظيفتهم انه ياكدو الي انه النت و الموقع شغالين او مطفيين
     private boolean is_Internet_Connected , is_Location_Enabled;
 
-    // هدول عشان اخزن فيهم احداثيات مكان العمل
     private double longitude = 0 , latitude = 0 ;
 
     private GoogleMap mMap ;
@@ -66,22 +62,17 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate ( Bundle savedInstanceState )
     {
-
         super . onCreate ( savedInstanceState ) ;
 
         binding = ActivitySignUpAndSignInFolderInfoFolderMapActivityBinding . inflate ( getLayoutInflater ( ) ) ;
         setContentView ( binding . getRoot ( ) ) ;
 
-        // هاد السطر عشان اخلي لون الستاتس بار الي بكون فيه الشبكه و البطاريه شفاف لكنه ما بصير شفاف بصير اسود ليه ما بعرف
         getWindow ( ) . setStatusBarColor ( Color . TRANSPARENT ) ;
 
-        // هون استدعاء الفنكشن الي بتحقق من انه خدمة الموقع شغاله
         Check_Location ( ) ;
 
-        // هون استدعاء الفنكشن الي بتحقق من انه الانترنت شغال
         Check_Internet ( ) ;
 
-        // هون استدعاء الفنكشن الي بجهز الخريطه للعرض
         Map_Initialization ( ) ;
 
         // وهاد الفنكشن بستدعى لما المستخدم يضغط على زر البحث في الكيبورد لما يحط اسم الموقع الي بده يبحث عنه
@@ -103,44 +94,25 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
             }
 
         });
-
     }
 
 
 
-    // --------------- بداية الجزء الي فيه الفنكشن الي بخصو الازرار في هاي الشاشه ---------------
 
-    // هاد الفنكشن بتنفذ لما نضغط على زر الحفظ
     public void Save_Workplace_On_Map_BTN ( View view )
     {
-        // هون حاكي اله اذا الدكتور ما حدد مكان العمل لا تخليه يرجع لشاشة تعبئة بيانات مكان العمل الا بعد ما يحدد مكان العمل
         if ( latitude != 0 && longitude != 0 )
         {
-            // اول سطر و اخر سطرين داخل هاي الاف هم نفسهم الي موجودين في فنكشن ال Save_Workplace_Data_BTN في كلاس ال Workplace_Data_Activity
-
             Intent intent = getIntent ( ) ;
 
-            /*
-                هدول السطرين
+            intent . putExtra ("longitude" ,longitude ) ;
+            intent . putExtra ("latitude"  ,latitude  ) ;
 
-                intent . putExtra ( "latitude" , latitude ) ;
-                intent . putExtra ( "longitude" , longitude ) ;
-
-                هم نفسهم الي موجودين في فنكشن ال Go_To_Map_BTN الي في كلاس ال Workplace_Data_Activity
-
-                لكن الي بفرق هون انه احنا في كلاس ال Workplace_Data_Activity في فنكشن ال Go_To_Map_BTN
-
-                كنا بنرسل داتا للخارطه اما في هاد الفنكشن احنا بنرجع داتا لكلاس Workplace_Data_Activity
-             */
-            intent . putExtra ( "longitude" ,longitude ) ;
-            intent . putExtra ( "latitude"  ,latitude  ) ;
-
-            setResult ( RESULT_OK , intent ) ;
+            setResult (RESULT_OK ,intent ) ;
             finish ( ) ;
         }
         else
         {
-
             String workPlace_Type = getIntent ( ) . getExtras ( ) . getString ( "workPlace_Type" ) ;
 
             Snack_Bar
@@ -151,20 +123,6 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    // --------------- نهاية الجزء الي فيه الفنكشن الي بخصو الازرار في هاي الشاشه ---------------
-
-
-
-
-    /**/
-
-
-
-
-    // --------------- بداية الجزء الي فيه الفنكشن الي بخصو هاد الكلاس ---------------
-
-
-    // هاد الفنشكن بتنفذ لما نضغط على زر الرجوع الي موجود في الشاشه من تحت الي هو تاع النظام
     @Override
     public void onBackPressed ( )
     {
@@ -183,7 +141,11 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    // هاد الفنكشن هو الي بس تشتغل الخارطه بجهزها للعرض و مستعمله في فنكشن onCreate الي بستدعى او ما تفتحي الشاشه فرح يستدعى لما تفتحي الخارطه
+
+
+
+
+
     private void Map_Initialization ( )
     {
 
@@ -204,13 +166,13 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
 
             في حالة انسئلتي عنه في المناقشه
 
-            والاندرويد SDK اختصار ل android softwaer devlopment kit
+            والاندرويد SDK اختصار ل android software development kit
 
             اذا حابه تعرفي معلومات اكثر عنه بتروحي على chat gpt
 
             بتحكي اله بالحرف الواحد
 
-            بالتفصيل الممل اشرح لي ما هو ال android softwaer devlopment kit وما هي فائدته و وظفيته و ماذا يفعل
+            بالتفصيل الممل اشرح لي ما هو ال android software development kit وما هي فائدته و وظفيته و ماذا يفعل
 
             يعني خدي السطر الي فوق و حطيه في chat gpt وهاد عشان لو انسئلتي عنه تكوني عارفه شو هو
          */
@@ -230,19 +192,10 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
          */
         SupportMapFragment mapFragment = ( SupportMapFragment ) getSupportFragmentManager ( ) . findFragmentById ( R . id . map ) ;
 
-        // هون حطينا الاف عشان اذا كانت قيمة ال mapFragment  تساوي null ( لاشيء ) رح يصير خطا و يوقف التطبيق فلازم نتاكد انه مش null
-        if ( mapFragment != null )
-
-            /*
-                    هاد السطر وظيفته يحمل النا الخارطه من API الخرائط ولما حطينا قبله جملة اف
-                    حطينها عشان نتاكد انها ال Fragment في التصميم موجوده ومجهزه لحتى تنعرض فيها الخارطه
-                    لانه لو ما كانت موجوده او مش مجهزه للعرض الخارطه فيه رح يصير عنها خطا
-                    و ال getMapAsync هو فنكشن من الكلاس SupportMapFragment وهو المسؤول عن تحميل الخارطه من API الخرائط
-                 */
-            mapFragment . getMapAsync ( this ) ;
+        // هاد السطر وظيفته يحمل النا الخارطه من API الخرائط
+        mapFragment . getMapAsync ( this ) ;
     }
 
-    // هاد الفنكشن بتم استدعاؤه تلقائيا بعد ما يتنفذ الي جوا فنكشن ال Map_Initialization وبياخد اوجبكت من نوع GoogleMap
     @Override
     public void onMapReady ( @NonNull GoogleMap googleMap )
     {
@@ -358,7 +311,6 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    // هاد الفنكشن هو المسؤول عن البحث عن الموقع باستخدام الاسم لما نكتبه في البحث
     private void Find_a_place ( )
     {
         /*
@@ -484,7 +436,6 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    // هاد الفنشكن مجرد ما تطلعي من الخارطه رح يتنفذ وما رح تفهمي الي جواته حتى لو قريتي الكومنتات لازم تشوفي الشرح الي في فنشكن ال Check_Location و الي في فنكشن ال Check_Internet بعدين ترجعي تقري الي جواته عشان تفهمي
     @Override
     protected void onPause ( )
     {
@@ -550,18 +501,11 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    // --------------- نهاية الجزء الي فيه الفنكشن الي بخصو هاد الكلاس ---------------
 
 
 
-    /* */
 
 
-
-    // --------------- بداية الجزء الي فيه الفنكشن الي بخصو التحقق من انه النت و خدمة الموقع شغالين ---------------
-
-
-    // للتحقق اذا كان النت شغال او مش شغال و برضو لاني مستعمله في فنكشن onCreate و رح يستدعى لما تفتحي الخارطه
     private void Check_Internet ( )
     {
 
@@ -657,7 +601,6 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
         Check_Location_And_Internet ( ) ;
     }
 
-    // للتحقق اذا كان الموقع شغال او مش شغال وبرضو لاني مستعمله في فنكشن onCreate و رح يستدعى لما تفتحي الخارطه
     private void Check_Location ( )
     {
 
@@ -773,7 +716,6 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    // هاد الفنكشن المسؤول عن عرض المسج اذا كان النت او الموقع واحد منهم مطفي او الاثنين مطفيين وهاد الفنكشن مستعمله في فنكشن Check_Location و فنشكن Check_Internet
     private void Check_Location_And_Internet ( )
     {
         /*
@@ -827,8 +769,5 @@ public class Map_Activity extends FragmentActivity implements OnMapReadyCallback
         else
             runOnUiThread ( ( ) -> setContentView ( binding.getRoot ( ) ) ) ;
     }
-
-
-    // --------------- نهاية الجزء الي فيه الفنكشن الي بخصو هاد الكلاس ---------------
 
 }

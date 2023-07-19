@@ -44,16 +44,16 @@
             android:name=".sign_up_and_sign_in_folder.Sing_in_Activity"
             android:exported="false" />
 
-        <!-- Doctor Data Activity -->
+        <!-- Doctor Activity -->
         <activity
             android:name=".doctor_section.Doctor_Activity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.MamaBabyJourney.NoActionBar" />
 
         <!-- Doctor Data Activity -->
         <activity
             android:name=".sign_up_and_sign_in_folder.Info_page.Doctor_Data_Activity"
-            android:exported="false" />
+            android:exported="true" />
 
         <!-- Workplace Data Activity -->
         <activity

@@ -8,7 +8,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.StorageReference;
@@ -38,7 +37,7 @@ import android.view.View;
 import java.util.HashMap;
 import android.net.Uri;
 
-@SuppressWarnings ( { "FieldMayBeFinal" , "ConstantConditions" , "IfStatementWithIdenticalBranches" , "deprecation" } )
+@SuppressWarnings ( { "FieldMayBeFinal" , "ConstantConditions" , "IfStatementWithIdenticalBranches" , "deprecation" , "SpellCheckingInspection" , "RedundantSuppression" , "UnnecessaryUnicodeEscape"} )
 @SuppressLint ( { "ClickableViewAccessibility" , "IntentReset" , "SuspiciousIndentation" } )
 
 public class Sign_Up_Activity extends AppCompatActivity
@@ -46,21 +45,12 @@ public class Sign_Up_Activity extends AppCompatActivity
 
     private ActivitySignUpAndSignInFolderSignUpActivityBinding binding ;
 
-    // هاد المتغير بخزن فيه الصوره الي بختارها من الاستديو
     private Uri uri = null ;
 
-    // هون انا بمعل زي ما تقولي مسج بتظهر للمستخدم بتقله الرجاء الانتظار يعني يستنى لحد ما تتخزن الداتا في الفاير بيس
     ProgressDialog progressDialog ;
 
     Intent intent ;
 
-    /*
-        هدول ال 3 متغيرات
-        الاول بخزن فيه الباس الي بتنكتب في ال edit text تبع الباس
-        الثاني بخزن فيه الايميل الي بنكتب في ال edit text تبع الايميل
-        الثالث بخزن فيه الاسم الي بنكتب في ال edit text تبع الاسم
-        الرابع بحط فيه رابط الصوره الي بحطها المستخدم
-    */
     private String password , email , name;
 
 
@@ -114,7 +104,6 @@ public class Sign_Up_Activity extends AppCompatActivity
         Theme ( ) ;
     }
 
-    //هاد الفنكشن عملته عشان اغير لون خط ال Radio buttons حسب الثيم
     public void Theme ( )
     {
 
@@ -138,8 +127,6 @@ public class Sign_Up_Activity extends AppCompatActivity
         }
     }
 
-
-    // هاد بتنفذ عند لما نكبس على زر انشاء الحساب و وظفيته انه ينقل المستخدم للشاشه الي بعد شاشة انشاء الحساب
     public void Sing_Up_BTN ( View view )
     {
 
@@ -200,7 +187,6 @@ public class Sign_Up_Activity extends AppCompatActivity
 
     }
 
-    // هاد بتنفذ لما اضغط على انشاء حساب باستخدام جوجل
     public void Sing_Up_By_Google ( View view)
     {
         // هون بقله اذا المسخدم حدد الصفه نفذ الي جوا الاف لو ما حدد اعرض اله المسج الي تحت
@@ -262,31 +248,16 @@ public class Sign_Up_Activity extends AppCompatActivity
                                 email = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getEmail ( ) ;
                                 name  = FirebaseAuth  . getInstance ( ) . getCurrentUser ( ) . getDisplayName ( ) ;
 
-                                // هاد بتنفذ في حالة كان الي بعمل الحساب دكتور
                                 if ( binding . DoctorRBTN . isChecked ( ) || binding . FDoctorRBTN . isChecked ( ) )
                                 {
-                                    // هون احنا بنجهز ال intent لحتى ينقلنا لشاشة الدكتور
                                     intent = new Intent (Sign_Up_Activity . this ,Doctor_Data_Activity . class ) ;
 
-                                    // هون بشيك هل هي طبيب او طبيبه اذا كان طبيب رح يخزن في هاد user_Kind المتغير طبيب اذا طبيبه رح يخزن طبيبه
                                     String user_Kind = binding . DoctorRBTN . isChecked ( ) ?
                                            binding . DoctorRBTN . getText ( ) + "" : binding . FDoctorRBTN . getText ( ) + "" ;
 
-                                    // هون اذا ما تم اختيار صوره من الاستديو مباشره بستعمل الصوره الي على الايميل
                                     if ( uri == null )
                                     uri = FirebaseAuth . getInstance ( ) . getCurrentUser ( ) . getPhotoUrl ( ) ;
 
-                                    /*
-                                        هون انا بستدعي الفنكشن الي بضيف الي في الفايرستور بيانات الدكتور الي انعمل اله حساب وببعث اله
-
-                                         1- اسم ال id الي بدي اضيفه لبيانات االمستخدم
-                                         2- اسم ال collection الي بدي اضيف فيها بيانات المستخدم
-                                         3- صفة المستخدم
-
-                                         4- نوع طريقة انشاء الحساب عشان اخزنها مع بيانات الدكتور مشان ي منار لو ما كان مختار صوره من الاستديو وعامل
-                                         حساب باستخدام جوجل من خلال هاد المتغير اعرف انه مستخدم حساب جوجل لعمل حساب و مش مختار صوره من
-                                         الاستديو عشان بس يعمل تسجيل دخول المره الجاي استعمل صورة ايميله بدل الصوره الافتراضيه
-                                    */
                                     Add_Doctor_Or_Mother_Data_To_firestore ("Doctors" ,user_Kind , "Sing Up By Google" ) ;
                                 }
 
@@ -350,7 +321,6 @@ public class Sign_Up_Activity extends AppCompatActivity
         snackbar . show ( ) ;
     }
 
-    // هاد الفنكشن بتنفذ لما اضغط على زر انشاء الحساب
     private void Create_Account_With_Email ( )
     {
         progressDialog . show ( ) ;
@@ -406,42 +376,33 @@ public class Sign_Up_Activity extends AppCompatActivity
         });
     }
 
-    // هاد الفنكشن الي بضيف الي داتا السمتخدم في الفاير ستور
     private void Add_Doctor_Or_Mother_Data_To_firestore ( String collection_Name , String user_Kind , String signUp_Method )
     {
-        // هون انا بشيك اذا المستخدم اختار صوره بقله ادخل جوا الاف و ابعت الصوره للشاشة الي رح توديني الها شاشة انشاء الحسا وقله انه الصوره تم اختيارها من الاستديو
         if ( uri != null )
         {
-            // هون ببعت الصوره
             intent . setData ( uri ) ;
-
-            // هون بستدعي الفنكشن الي بضيف الي الصوره على الفايرستورج
             Add_Image_To_Firestorage (collection_Name ) ;
-
-            // هون بقله تم اختيار الصوره من الاستديو
             intent . putExtra ("image form ?" ,"uri" ) ;
         }
         else
             intent . putExtra ("image form ?" ,"Drawable" ) ;
 
-        // هون انا ببعت مع ال intent مسج بوضح انا في اي شاشة كنت قبل ما انتقل للشاشة الي رح توديني الها شاشة انشاء الحساب
         intent . putExtra ( "action" , "signup" ) ;
 
-        // هون انا ببعت اسم المستخدم للشاشه الي رح توديني الها شاشة انشاء الحساب
         intent . putExtra ( "name" , name ) ;
 
-        // هون انا ببعت ايميل المستخدم للشاشه الي رح توديني الها شاشة انشاء الحساب
         intent . putExtra ( "email" , email ) ;
 
-        // هون انا بعمل HashMap عشان احط فيها داتا المستخدم الي انعمل اله حساب
         HashMap < String , Object > data = new HashMap < > ( ) ;
 
-        // هون بحط باقي الداتا الخاصه بالنستخدم الي انعمل اله حساب في هاي data ال HashMap
         data . put ( "name" , name ) ;
         data . put ( "صفة المستخدم" , user_Kind ) ;
         data . put ( "image Url" , "" ) ;
         data . put ( "signUp Method" , signUp_Method ) ;
         data . put ( "email" , email ) ;
+
+        if ( binding . DoctorRBTN . isChecked ( ) || binding . FDoctorRBTN . isChecked ( ) )
+            data . put ( "workPlace ID" , Doctor_Data_Activity . id ) ;
 
 
         // هون لما استعدينا الفنكشن الي احنا فيه حسب صفة المستخدم حددنا اسم ال collection الي بدي اضيف فيها الداتا و الي بعثنها اسمها لهاد الفنكشن في هاد collection_Name المتغير
@@ -454,7 +415,6 @@ public class Sign_Up_Activity extends AppCompatActivity
         startActivity (intent ) ;
     }
 
-    // هاد الي بخزن الي الصوره الي اختاره المستخدم في الفايرستورج
     private void Add_Image_To_Firestorage ( String collection_Name )
     {
         // هون انا بروح على الفايرستورج و بعمل مجلد اسمه images واسم الصوره بكون user number + اال id تبع المستخدم
